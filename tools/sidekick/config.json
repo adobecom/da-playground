@@ -2,7 +2,7 @@
   "plugins": [
     {
       "id": "library",
-      "title": "Library",
+      "title": "Library test",
       "environments": [
         "edit"
       ],
