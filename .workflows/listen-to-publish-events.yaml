@@ -1,0 +1,29 @@
+name: DA Rolling Import
+
+on: 
+    repository_dispatch:
+      types:
+        - resource-published
+        - resources-published
+
+env:
+  AEM_PATH: ${{ github.event.client_payload.path }}
+      
+permissions:
+  contents: read
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+    - name: Set up Node.js
+      uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
+      with:
+        node-version: 18
+
+    - name: Run script
+      run: node ./index.js
