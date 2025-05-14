@@ -1,8 +1,9 @@
 name: DA Rolling Import
 
 on: 
-    repository_dispatch:
-      types: [resource-published, resources-published]
+  repository_dispatch:
+    types:
+      - resource-published
 
 env:
   AEM_PATH: ${{ github.event.client_payload.path }}
