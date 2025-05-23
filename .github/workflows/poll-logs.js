@@ -90,7 +90,7 @@ async function main() {
   const REPOSITORY_DISPATCH_EVENT = env.REPOSITORY_DISPATCH_EVENT;
   const LAST_RUN_ISO = env.LAST_RUN_ISO || getYesterdayISOString(); // Should be set by workflow
   const GH_TOKEN = env.GITHUB_TOKEN;
-
+  console.log("Debug: LAST_RUN_ISO", LAST_RUN_ISO);
   if (!ORG || !REPO || !LAST_RUN_ISO) {
     console.error('Missing required environment variables (ORG, REPO, LAST_RUN_ISO)');
     exit(1);
@@ -131,7 +131,6 @@ async function main() {
       const dispatchUrl = `https://api.github.com/repos/${ORG}/${REPO}/dispatches`;
       console.log(`Triggering dispatch for ${path} with event type: ${REPOSITORY_DISPATCH_EVENT}`);
       if(!env.LOCAL_RUN) {
-        console.log("ah")
         await fetch(dispatchUrl, {
           method: 'POST',
           headers: {

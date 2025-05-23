@@ -1,7 +1,7 @@
 name: Track Publishes
 on:
   schedule:
-    - cron: "0/5 * * * *"
+    - cron: "1 * * * *"
   workflow_dispatch:
 
 
