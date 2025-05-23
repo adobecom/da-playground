@@ -166,7 +166,7 @@ jobs:
           if [[ -z "${{ secrets.AEM_LIVE_ADMIN_TOKEN }}" ]]; then
             echo "::error::The AEM_LIVE_ADMIN_TOKEN secret is not configured. Please add this secret to your repository settings."
             exit 1
-          fi$
+          fi
       - name: Set up Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
