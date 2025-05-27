@@ -1,7 +1,5 @@
 name: Track Publishes
 on:
-  schedule:
-    - cron: "18 */2 * * *"
   workflow_dispatch:
 
 
@@ -10,10 +8,6 @@ permissions:
   contents: write # required to access the repository, for the dispatch event
 
 env:
-  ADD_MD_SUFFIX: "true" # default value for all triggers, this is a compatibility fix for older workflows
-  REPOSITORY_DISPATCH_EVENT: "resource-published-native" # default value for all triggers, this is a compatibility fix for older workflows
-  WORKFLOW_CALL_USE: "example" # if REPOSITORY_DISPATCH_EVENT is unset, this is the workflow file that will be called
-  ROUTE_FILTER: "live" # filter for the route field in the logs, can be 'live' or 'preview'
   ORG: "adobecom"
   REPO: "da-playground"
 
@@ -177,9 +171,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ORG: ${{ env.ORG }}
           REPO: ${{ env.REPO }}
-          ROUTE_FILTER: ${{ env.ROUTE_FILTER }}
-          ADD_MD_SUFFIX: ${{ env.ADD_MD_SUFFIX }}
-          REPOSITORY_DISPATCH_EVENT: ${{ env.REPOSITORY_DISPATCH_EVENT }}
-          WORKFLOW_CALL_USE: ${{ env.WORKFLOW_CALL_USE }}
+          ROLLING_IMPORT_SLACK: ${{ env.ROLLING_IMPORT_SLACK }}
           LAST_RUN_ISO: ${{ needs.check-last-run.outputs.last-run-iso }}
+          IMS_URL: ${{ secrets.IMS_URL }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          CODE: ${{ secrets.CODE }}
+          GRANT_TYPE: ${{ secrets.GRANT_TYPE }}
         run: node ./.github/workflows/poll-logs.js
