@@ -188,5 +188,5 @@ jobs:
           ENABLE_DEBUG_LOGS: ${{ secrets.ENABLE_DEBUG_LOGS }}
           ROLLING_IMPORT_IMPORT_FROM: ${{ secrets.ROLLING_IMPORT_IMPORT_FROM }}
           ROLLING_IMPORT_LIVE_DOMAIN: ${{ secrets.ROLLING_IMPORT_LIVE_DOMAIN }}
-          ROLLING_IMPORT_POLL_LOGS_FROM_REPO: "milo"
+          ROLLING_IMPORT_POLL_LOGS_FROM_REPO: ${{ secrets.ROLLING_IMPORT_POLL_LOGS_FROM_REPO }}
         run: node ./.github/workflows/import/poll-logs.js
