@@ -179,4 +179,6 @@ jobs:
           CODE: ${{ secrets.CODE }}
           GRANT_TYPE: ${{ secrets.GRANT_TYPE }}
           ENABLE_DEBUG_LOGS: ${{ secrets.ENABLE_DEBUG_LOGS }}
+          IMPORT_FROM: ${{ secrets.IMPORT_FROM }}
+          LIVE_DOMAIN: ${{ secrets.LIVE_DOMAIN }}
         run: node ./.github/workflows/import/poll-logs.js
