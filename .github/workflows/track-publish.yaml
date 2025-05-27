@@ -7,10 +7,6 @@ permissions:
   actions: read # required to access workflow runs
   contents: write # required to access the repository, for the dispatch event
 
-env:
-  ORG: "adobecom"
-  REPO: "da-playground"
-
 jobs:
   check-token-expiry:
     runs-on: ubuntu-latest
@@ -173,9 +169,9 @@ jobs:
         env:
           AEM_LIVE_ADMIN_TOKEN: ${{ secrets.AEM_LIVE_ADMIN_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORG: ${{ env.ORG }}
-          REPO: ${{ env.REPO }}
-          ROLLING_IMPORT_SLACK: ${{ env.ROLLING_IMPORT_SLACK }}
+          ORG: ${{ secrets.ORG }}
+          REPO: ${{ secrets.REPO }}
+          ROLLING_IMPORT_SLACK: ${{ secrets.ROLLING_IMPORT_SLACK }}
           LAST_RUN_ISO: ${{ needs.check-last-run.outputs.last-run-iso }}
           IMS_URL: ${{ secrets.IMS_URL }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
