@@ -169,8 +169,8 @@ jobs:
         env:
           AEM_LIVE_ADMIN_TOKEN: ${{ secrets.AEM_LIVE_ADMIN_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORG: ${{ secrets.ORG }}
-          REPO: ${{ secrets.REPO }}
+          ORG: "adobecom"
+          REPO: "da-playground"
           ROLLING_IMPORT_SLACK: ${{ secrets.ROLLING_IMPORT_SLACK }}
           LAST_RUN_ISO: ${{ needs.check-last-run.outputs.last-run-iso }}
           IMS_URL: ${{ secrets.IMS_URL }}

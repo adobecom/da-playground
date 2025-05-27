@@ -244,7 +244,7 @@ async function main() {
 
   if (!LOCAL_RUN)
     await slackNotification(
-      `Imported ${result.success} paths and failed to import ${result.error} paths.`
+      `Succcessful: ${result.success} paths | Failed: ${result.error} paths.`
     );
 }
 
