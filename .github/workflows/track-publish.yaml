@@ -165,6 +165,10 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 21
+
+      - name: Install dependencies
+        run: cd ./.github/workflows/import/ && npm install
+
       - name: Run poll-logs.js
         env:
           AEM_LIVE_ADMIN_TOKEN: ${{ secrets.AEM_LIVE_ADMIN_TOKEN }}
