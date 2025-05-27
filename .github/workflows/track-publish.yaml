@@ -176,16 +176,17 @@ jobs:
         env:
           AEM_LIVE_ADMIN_TOKEN: ${{ secrets.AEM_LIVE_ADMIN_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORG: "adobecom"
-          REPO: "da-playground"
+          ROLLING_IMPORT_ORG: "adobecom"
+          ROLLING_IMPORT_REPO: "da-playground"
           ROLLING_IMPORT_SLACK: ${{ secrets.ROLLING_IMPORT_SLACK }}
           LAST_RUN_ISO: ${{ needs.check-last-run.outputs.last-run-iso }}
-          IMS_URL: ${{ secrets.IMS_URL }}
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          CODE: ${{ secrets.CODE }}
-          GRANT_TYPE: ${{ secrets.GRANT_TYPE }}
+          ROLLING_IMPORT_IMS_URL: ${{ secrets.ROLLING_IMPORT_IMS_URL }}
+          ROLLING_IMPORT_CLIENT_ID: ${{ secrets.ROLLING_IMPORT_CLIENT_ID }}
+          ROLLING_IMPORT_CLIENT_SECRET: ${{ secrets.ROLLING_IMPORT_CLIENT_SECRET }}
+          ROLLING_IMPORT_CODE: ${{ secrets.ROLLING_IMPORT_CODE }}
+          ROLLING_IMPORT_GRANT_TYPE: ${{ secrets.ROLLING_IMPORT_GRANT_TYPE }}
           ENABLE_DEBUG_LOGS: ${{ secrets.ENABLE_DEBUG_LOGS }}
-          IMPORT_FROM: ${{ secrets.IMPORT_FROM }}
-          LIVE_DOMAIN: ${{ secrets.LIVE_DOMAIN }}
+          ROLLING_IMPORT_IMPORT_FROM: ${{ secrets.ROLLING_IMPORT_IMPORT_FROM }}
+          ROLLING_IMPORT_LIVE_DOMAIN: ${{ secrets.ROLLING_IMPORT_LIVE_DOMAIN }}
+          ROLLING_IMPORT_POLL_LOGS_FROM_REPO: "milo"
         run: node ./.github/workflows/import/poll-logs.js
