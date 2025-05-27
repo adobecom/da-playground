@@ -236,6 +236,7 @@ async function main() {
   }
   await queue.onIdle();
 
+  console.log({result})
   if (result.errorPaths.length)
     result.errorPaths.forEach((path) => {
       console.log(`Erroring path: ${path}`);

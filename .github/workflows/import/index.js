@@ -6,7 +6,7 @@ import { JSDOM } from 'jsdom';
 // Run from the root of the project for local testing: node --env-file=.env .github/workflows/import/index.js
 const EXTS = ['json', 'svg', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'pdf'];
 
-const ENABLE_DEBUG_LOGS = process.env.ENABLE_DEBUG_LOGS == true;
+const ENABLE_DEBUG_LOGS = process.env.ENABLE_DEBUG_LOGS == "true";
 const toOrg = process.env.ORG;
 const toRepo = process.env.REPO;
 const importFrom = process.env.IMPORT_FROM
