@@ -1,7 +1,8 @@
 name: Track Publishes
 on:
+  schedule:
+    - cron: '35 */4 * * *'
   workflow_dispatch:
-
 
 permissions:
   actions: read # required to access workflow runs
@@ -161,6 +162,12 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 21
+
+      - name: Clone milo import directory
+        run: |
+          git clone --depth 1 --branch centralized-importer https://github.com/adobecom/milo.git temp-milo
+          cp -r temp-milo/.github/workflows/import .github/workflows/import
+          rm -rf temp-milo
 
       - name: Install dependencies
         run: cd ./.github/workflows/import/ && npm install
