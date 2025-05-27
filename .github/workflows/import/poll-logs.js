@@ -23,6 +23,7 @@ const {
   IMS_URL,
   IMPORT_FROM,
   LIVE_DOMAIN,
+  ENABLE_DEBUG_LOGS,
 } = env;
 
 if(!LOCAL_RUN) console.log({
@@ -42,6 +43,7 @@ if(!LOCAL_RUN) console.log({
     IMS_URL: !!IMS_URL,
     IMPORT_FROM: !!IMPORT_FROM,
     LIVE_DOMAIN: !!LIVE_DOMAIN,
+    ENABLE_DEBUG_LOGS: !!ENABLE_DEBUG_LOGS,
   });
 
 const queue = new PQueue({ concurrency: 10 });
