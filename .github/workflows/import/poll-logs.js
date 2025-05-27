@@ -26,7 +26,7 @@ const {
   ENABLE_DEBUG_LOGS,
 } = env;
 
-if(!LOCAL_RUN) console.log({
+if (!LOCAL_RUN) console.log({
     AEM_LIVE_ADMIN_TOKEN: !!AEM_LIVE_ADMIN_TOKEN,
     ORG: !!ORG,
     REPO: !!REPO,
