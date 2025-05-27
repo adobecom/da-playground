@@ -178,4 +178,5 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           CODE: ${{ secrets.CODE }}
           GRANT_TYPE: ${{ secrets.GRANT_TYPE }}
+          ENABLE_DEBUG_LOGS: ${{ secrets.ENABLE_DEBUG_LOGS }}
         run: node ./.github/workflows/import/poll-logs.js
