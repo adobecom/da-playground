@@ -1,14 +1,14 @@
 export default [
   {
     "path": "/africa/fragments/products/cards/headless-cms",
-    "route": "preview"
+    "route": "live"
   },
   {
     "path": "/africa/fragments/products/cards/journey-optimizer-b2b-edition",
-    "route": "preview"
+    "route": "live"
   },
   {
     "path": "/africa/fragments/products/cards/learning-manager",
-    "route": "preview"
+    "route": "live"
   }
 ]
