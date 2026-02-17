@@ -80,15 +80,28 @@ decorateArea();
 
 const miloLibs = setLibs(LIBS);
 
-(function loadStyles() {
-  const paths = [`${miloLibs}/styles/styles.css`];
-  if (STYLES) { paths.push(STYLES); }
-  paths.forEach((path) => {
-    const link = document.createElement('link');
-    link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('href', path);
-    document.head.appendChild(link);
-  });
+function loadStyle(path) {
+  const link = document.createElement('link');
+  link.setAttribute('rel', 'stylesheet');
+  link.setAttribute('href', path);
+  document.head.appendChild(link);
+}
+
+function getMetadata(name, doc = document) {
+  const attr = name && name.includes(':') ? 'property' : 'name';
+  const meta = doc.head.querySelector(`meta[${attr}="${name}"]`);
+  return meta && meta.content;
+}
+
+(async function loadBaseStyles() {
+  console.log('test1');
+  const pathsToLoad = [];
+  const stylesPrefix = getMetadata('foundation') === 'c2' ? '/c2' : '';
+  pathsToLoad.push(`${miloLibs}${stylesPrefix}/styles/styles.css`);
+  const theme = getMetadata('theme');
+  if (theme) pathsToLoad.push(`${miloLibs}/styles/themes/${theme}.css`);
+
+  await Promise.all(pathsToLoad.map((path) => loadStyle(path)));
 }());
 
 (async function loadPage() {
