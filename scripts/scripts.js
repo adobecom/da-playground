@@ -81,8 +81,18 @@ decorateArea();
 
 const miloLibs = setLibs(LIBS);
 
+function getMetadata(name, doc = document) {
+  const attr = name && name.includes(':') ? 'property' : 'name';
+  const meta = doc.head.querySelector(`meta[${attr}="${name}"]`);
+  return meta && meta.content;
+}
+
 (function loadStyles() {
-  const paths = [`${miloLibs}/styles/styles.css`];
+  const paths = [];
+  const stylesPrefix = getMetadata('foundation') === 'c2' ? '/c2' : '';
+  paths.push(`${miloLibs}${stylesPrefix}/styles/styles.css`);
+  const skin = getMetadata('skin');
+  if (skin) paths.push(`${miloLibs}/styles/skins/${skin}.css`);
   if (STYLES) { paths.push(STYLES); }
   paths.forEach((path) => {
     const link = document.createElement('link');
