@@ -1,0 +1,247 @@
+/* ── Block wrapper ── */
+.product-card-grid {
+  --pcg-bg: #000;
+  --pcg-card-bg: rgba(255, 255, 255, 0.08);
+  --pcg-card-bg-hover: rgba(255, 255, 255, 0.13);
+  --pcg-text: #fff;
+  --pcg-text-muted: rgba(255, 255, 255, 0.75);
+  --pcg-cta-border: rgba(255, 255, 255, 0.55);
+  --pcg-gap: 8px;
+  --pcg-radius: 16px;
+  --pcg-card-padding: 24px;
+
+  background: var(--pcg-bg);
+  color: var(--pcg-text);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Hero section
+   Matches the Figma "Hero" frame: centered headline, subheadline,
+   pill-shaped ghost CTA with backdrop-blur.
+───────────────────────────────────────────────────────────────── */
+.product-card-grid-hero {
+  padding: 96px 48px 64px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+.product-card-grid-hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+/* Heading — "Tools that work for you." */
+.product-card-grid-hero h1,
+.product-card-grid-hero h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  color: var(--pcg-text);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Sub-headline — descriptive sentence */
+.product-card-grid-hero p {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--pcg-text-muted);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* CTA actions row */
+.product-card-grid-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* Pill-shaped ghost CTA button — matches Figma "See all products" */
+.product-card-grid-hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  border-radius: 75px;
+  border: 1px solid var(--pcg-cta-border);
+  color: var(--pcg-text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card-grid-hero-actions a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Card grid wrapper
+───────────────────────────────────────────────────────────────── */
+.product-card-grid-wrap {
+  padding: 0 var(--pcg-gap) var(--pcg-gap);
+}
+
+/* 3-column grid — matches the 3×3 Figma layout with 8px gaps */
+.product-card-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--pcg-gap);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Individual product card
+   White 8% opacity bg, 16px radius, 24px padding (from Figma)
+───────────────────────────────────────────────────────────────── */
+.product-card-grid-card {
+  background: var(--pcg-card-bg);
+  border-radius: var(--pcg-radius);
+  padding: var(--pcg-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card-grid-card:hover {
+  background: var(--pcg-card-bg-hover);
+}
+
+/* ── App icon — 32×32px (from Figma component size) ── */
+.product-card-grid-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.product-card-grid-icon img,
+.product-card-grid-icon picture img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  object-fit: contain;
+}
+
+/* ── Card text content ── */
+.product-card-grid-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+/* Eyebrow — e.g. "20+ Apps" on Creative Cloud card */
+.product-card-grid-eyebrow {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--pcg-text);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Product name heading — 24px Black weight (from Figma) */
+.product-card-grid-content h2,
+.product-card-grid-content h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--pcg-text);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Description — 16px Regular (from Figma) */
+.product-card-grid-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--pcg-text-muted);
+  margin: 0;
+}
+
+/* ── Card CTA links (optional, inline or block) ── */
+.product-card-grid-card-actions {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.product-card-grid-card-actions a {
+  color: var(--pcg-text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.product-card-grid-card-actions a:hover {
+  text-decoration: underline;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────────────── */
+
+/* 2-column at medium screens */
+@media (max-width: 1024px) {
+  .product-card-grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Stack hero text, reduce padding */
+@media (max-width: 900px) {
+  .product-card-grid-hero {
+    padding: 64px 32px 48px;
+  }
+
+  .product-card-grid-hero h1,
+  .product-card-grid-hero h2 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  .product-card-grid-hero p {
+    font-size: 1.0625rem;
+  }
+}
+
+/* Single column on mobile */
+@media (max-width: 600px) {
+  .product-card-grid-hero {
+    padding: 48px 20px 32px;
+  }
+
+  .product-card-grid-wrap {
+    padding: 0 12px 12px;
+  }
+
+  .product-card-grid-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card-grid-hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,195 @@
+/* ── Block wrapper ── */
+.news-strip {
+  --news-strip-bg: #ffffff;
+  --news-strip-border: rgba(0, 0, 0, 0.1);
+  --news-strip-text: #2c2c2c;
+  --news-strip-muted: rgba(0, 0, 0, 0.64);
+  --news-strip-accent: #eb1000;
+  --news-strip-icon-size: 24px;
+
+  background: var(--news-strip-bg);
+  border-top: 1px solid var(--news-strip-border);
+  border-bottom: 1px solid var(--news-strip-border);
+}
+
+/* ── Inner container ── */
+.news-strip > div {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 48px;
+}
+
+/* ── Header: icon + label ── */
+.news-strip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Adobe app icon — red tile with "A" shape, rendered via CSS when no image provided */
+.news-strip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--news-strip-icon-size);
+  height: var(--news-strip-icon-size);
+  flex-shrink: 0;
+}
+
+.news-strip-icon:empty::before {
+  content: '';
+  display: block;
+  width: var(--news-strip-icon-size);
+  height: var(--news-strip-icon-size);
+  background: var(--news-strip-accent);
+  border-radius: 4px;
+  /* Adobe "A" mnemonic via mask */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M13.966 21.5L12 16.5l-1.966 5H6.5L12 8l5.5 13.5h-3.534z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M13.966 21.5L12 16.5l-1.966 5H6.5L12 8l5.5 13.5h-3.534z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: var(--news-strip-accent);
+}
+
+.news-strip-icon img {
+  width: var(--news-strip-icon-size);
+  height: var(--news-strip-icon-size);
+  display: block;
+  object-fit: contain;
+}
+
+.news-strip-label {
+  font-size: 1rem;        /* 16px — matches Figma */
+  font-weight: 700;
+  color: var(--news-strip-muted);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* ── News grid: 3 equal columns ── */
+.news-strip-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+/* ── Individual news card ── */
+.news-strip-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 24px;
+  border-right: 1px solid var(--news-strip-border);
+}
+
+.news-strip-item:first-child {
+  padding-left: 0;
+}
+
+.news-strip-item:last-child {
+  padding-right: 0;
+  border-right: none;
+}
+
+/* ── Content area ── */
+.news-strip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Headline ── */
+.news-strip-headline {
+  font-size: 1.3125rem;   /* ~21px, close to Figma 24px at 1280px max-width */
+  font-weight: 900;
+  color: var(--news-strip-text);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* ── Description ── */
+.news-strip-desc {
+  font-size: 0.9375rem;   /* 15px */
+  font-weight: 400;
+  color: var(--news-strip-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── CTA: "Read story ›" ── */
+.news-strip-cta {
+  margin-top: auto;
+}
+
+.news-strip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875rem;    /* 14px */
+  font-weight: 700;
+  color: var(--news-strip-text);
+  text-decoration: none;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.news-strip-link:hover {
+  color: var(--news-strip-accent);
+}
+
+.news-strip-link::after {
+  content: '\203A'; /* › single right-pointing angle quotation mark */
+  font-size: 1.1em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* ── Dark variant ── */
+.news-strip.dark {
+  --news-strip-bg: #141414;
+  --news-strip-border: rgba(255, 255, 255, 0.1);
+  --news-strip-text: #ffffff;
+  --news-strip-muted: rgba(255, 255, 255, 0.64);
+}
+
+/* ── Responsive: tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+  .news-strip > div {
+    padding: 24px 32px;
+  }
+
+  .news-strip-headline {
+    font-size: 1.125rem;
+  }
+}
+
+/* ── Responsive: collapse to single column (≤900px) ── */
+@media (max-width: 900px) {
+  .news-strip-list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .news-strip-item {
+    padding: 0 0 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--news-strip-border);
+  }
+
+  .news-strip-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .news-strip-headline {
+    font-size: 1.25rem;
+  }
+}
+
+/* ── Responsive: mobile (≤480px) ── */
+@media (max-width: 480px) {
+  .news-strip > div {
+    padding: 20px 20px;
+  }
+}

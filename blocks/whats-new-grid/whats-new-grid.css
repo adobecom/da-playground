@@ -1,0 +1,239 @@
+/* ── Block wrapper ── */
+.whats-new-grid {
+  --whats-new-grid-bg: #fff;
+  --whats-new-grid-text: #2c2c2c;
+  --whats-new-grid-muted: #6e6e6e;
+  --whats-new-grid-eyebrow: rgba(0, 0, 0, 0.64);
+  --whats-new-grid-accent: #eb1000;
+  --whats-new-grid-card-bg: #f8f8f8;
+  --whats-new-grid-radius: 12px;
+  --whats-new-grid-gap: 24px;
+
+  background: var(--whats-new-grid-bg);
+  padding: 80px 40px;
+}
+
+/* ── Inner container: centers and constrains all direct children ── */
+.whats-new-grid > div {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Section Heading ── */
+.whats-new-grid-heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.whats-new-grid-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--whats-new-grid-eyebrow);
+  margin: 0 0 12px;
+}
+
+.whats-new-grid-heading h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  color: var(--whats-new-grid-text);
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+.whats-new-grid-heading p:not(.whats-new-grid-eyebrow) {
+  font-size: 1.25rem;
+  color: var(--whats-new-grid-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Featured Card ── */
+.whats-new-grid-card.featured {
+  background: var(--whats-new-grid-card-bg);
+  border-radius: var(--whats-new-grid-radius);
+  overflow: hidden;
+  margin-bottom: var(--whats-new-grid-gap);
+}
+
+.whats-new-grid-card.featured .whats-new-grid-media {
+  width: 100%;
+  aspect-ratio: 22 / 10;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.whats-new-grid-card.featured .whats-new-grid-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.whats-new-grid-card.featured .whats-new-grid-copy {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 32px;
+}
+
+.whats-new-grid-card.featured .whats-new-grid-text h3,
+.whats-new-grid-card.featured .whats-new-grid-text strong {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--whats-new-grid-text);
+  display: block;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.whats-new-grid-card.featured .whats-new-grid-text p {
+  font-size: 1rem;
+  color: var(--whats-new-grid-muted);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 680px;
+}
+
+/* ── 3-Column Grid ── */
+.whats-new-grid-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--whats-new-grid-gap);
+}
+
+/* ── Grid Card ── */
+.whats-new-grid-card {
+  background: var(--whats-new-grid-card-bg);
+  border-radius: var(--whats-new-grid-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.whats-new-grid-media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.whats-new-grid-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.whats-new-grid-copy {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.whats-new-grid-text h3,
+.whats-new-grid-text strong {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--whats-new-grid-text);
+  display: block;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.whats-new-grid-text p {
+  font-size: 0.9375rem;
+  color: var(--whats-new-grid-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── CTA Actions ── */
+.whats-new-grid-actions {
+  margin-top: 20px;
+}
+
+.whats-new-grid-card.featured .whats-new-grid-actions {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+.whats-new-grid-actions a {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--whats-new-grid-text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.whats-new-grid-actions a::after {
+  content: '\2192';
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.whats-new-grid-actions a:hover {
+  color: var(--whats-new-grid-accent);
+}
+
+.whats-new-grid-actions a:hover::after {
+  transform: translateX(4px);
+}
+
+/* ── Dark variant ── */
+.whats-new-grid.dark {
+  --whats-new-grid-bg: #141414;
+  --whats-new-grid-text: #fff;
+  --whats-new-grid-muted: rgba(255, 255, 255, 0.7);
+  --whats-new-grid-eyebrow: rgba(255, 255, 255, 0.64);
+  --whats-new-grid-card-bg: #1e1e1e;
+}
+
+/* ── Responsive: 2 columns at medium screens ── */
+@media (max-width: 1024px) {
+  .whats-new-grid {
+    padding: 60px 32px;
+  }
+
+  .whats-new-grid-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Responsive: stack featured copy at narrow widths ── */
+@media (max-width: 900px) {
+  .whats-new-grid-card.featured .whats-new-grid-copy {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .whats-new-grid-card.featured .whats-new-grid-actions {
+    margin-top: 16px;
+  }
+}
+
+/* ── Responsive: single column at mobile ── */
+@media (max-width: 600px) {
+  .whats-new-grid {
+    padding: 48px 20px;
+  }
+
+  .whats-new-grid-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .whats-new-grid-heading h2 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .whats-new-grid-card.featured .whats-new-grid-media {
+    aspect-ratio: 16 / 9;
+  }
+}
