@@ -20,54 +20,40 @@ function el(tag, attrs = {}, ...children) {
   return node;
 }
 
-// ── Orange Claude Robot SVG ───────────────────────────────────────────────────
+// ── Pixel Claude Robot SVG ────────────────────────────────────────────────────
 function buildRobotSVG(cls = 'robot--idle') {
   const wrap = el('div', { class: 'robot-col' });
   const svgWrap = el('div', {});
-  svgWrap.innerHTML = `<svg class="robot ${cls}" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Antenna -->
-  <line x1="40" y1="5" x2="40" y2="17" stroke="#fdba74" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="40" cy="4" r="5" fill="#fb923c"/>
-  <circle cx="40" cy="4" r="2.5" fill="#fde68a"/>
+  svgWrap.innerHTML = `<svg class="robot ${cls}" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left ear nub -->
+  <rect x="12" y="12" width="8" height="16" fill="#C17850"/>
+  <!-- Right ear nub -->
+  <rect x="60" y="12" width="8" height="16" fill="#C17850"/>
   <!-- Head -->
-  <rect x="14" y="17" width="52" height="38" rx="11" fill="#f97316"/>
-  <rect x="14" y="17" width="52" height="18" rx="11" fill="#fb923c" opacity="0.45"/>
-  <!-- Visor -->
-  <rect x="19" y="26" width="42" height="17" rx="5" fill="#0f172a"/>
-  <!-- Eye glows -->
-  <rect x="23" y="29" width="14" height="9" rx="3" fill="#f97316" opacity="0.18"/>
-  <rect x="43" y="29" width="14" height="9" rx="3" fill="#f97316" opacity="0.18"/>
-  <!-- Eyes -->
-  <rect class="robot-eye" x="24" y="30" width="12" height="7" rx="2.5" fill="#f97316"/>
-  <rect class="robot-eye" x="44" y="30" width="12" height="7" rx="2.5" fill="#f97316"/>
-  <!-- Highlights -->
-  <rect x="25" y="31" width="3.5" height="2" rx="1" fill="#fed7aa" opacity="0.8"/>
-  <rect x="45" y="31" width="3.5" height="2" rx="1" fill="#fed7aa" opacity="0.8"/>
-  <!-- Mouth: smile -->
-  <path d="M28 40 Q40 47 52 40" stroke="#ea580c" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <rect x="20" y="8" width="40" height="28" fill="#C17850"/>
+  <!-- Head top shadow row -->
+  <rect x="20" y="8" width="40" height="4" fill="#8B5533"/>
+  <!-- Left eye -->
+  <rect class="robot-eye" x="26" y="16" width="8" height="8" fill="#1A1A1A"/>
+  <!-- Right eye -->
+  <rect class="robot-eye" x="46" y="16" width="8" height="8" fill="#1A1A1A"/>
+  <!-- Eye highlights -->
+  <rect x="26" y="16" width="2" height="2" fill="#D49068"/>
+  <rect x="46" y="16" width="2" height="2" fill="#D49068"/>
   <!-- Neck -->
-  <rect x="31" y="55" width="18" height="7" rx="3" fill="#ea580c"/>
+  <rect x="28" y="36" width="24" height="4" fill="#8B5533"/>
   <!-- Body -->
-  <rect x="8" y="62" width="64" height="46" rx="13" fill="#f97316"/>
-  <rect x="8" y="62" width="64" height="22" rx="13" fill="#fb923c" opacity="0.4"/>
-  <!-- Chest panel -->
-  <rect x="16" y="70" width="48" height="26" rx="7" fill="#ea580c" opacity="0.45"/>
-  <!-- Chest lights -->
-  <circle class="chest-light" cx="26" cy="78" r="4" fill="#fbbf24"/>
-  <circle class="chest-light" cx="40" cy="78" r="4" fill="#fb923c"/>
-  <circle class="chest-light" cx="54" cy="78" r="4" fill="#f97316"/>
-  <!-- Progress bar track -->
-  <rect x="20" y="88" width="40" height="4" rx="2" fill="#0f172a" opacity="0.3"/>
-  <rect class="progress-bar" x="20" y="88" width="22" height="4" rx="2" fill="#fdba74"/>
+  <rect x="16" y="40" width="48" height="20" fill="#C17850"/>
+  <!-- Body bottom shadow row -->
+  <rect x="16" y="56" width="48" height="4" fill="#8B5533"/>
   <!-- Left arm -->
-  <rect class="robot-arm-l" x="0" y="66" width="10" height="30" rx="5" fill="#ea580c"/>
-  <rect x="0" y="91" width="10" height="10" rx="5" fill="#c2410c"/>
+  <rect class="robot-arm-l" x="8" y="42" width="8" height="14" fill="#C17850"/>
   <!-- Right arm -->
-  <rect class="robot-arm-r" x="70" y="66" width="10" height="30" rx="5" fill="#ea580c"/>
-  <rect x="70" y="91" width="10" height="10" rx="5" fill="#c2410c"/>
-  <!-- Feet -->
-  <rect x="14" y="106" width="20" height="12" rx="6" fill="#ea580c"/>
-  <rect x="46" y="106" width="20" height="12" rx="6" fill="#ea580c"/>
+  <rect class="robot-arm-r" x="64" y="42" width="8" height="14" fill="#C17850"/>
+  <!-- Left leg -->
+  <rect x="22" y="60" width="10" height="12" fill="#C17850"/>
+  <!-- Right leg -->
+  <rect x="48" y="60" width="10" height="12" fill="#C17850"/>
 </svg>`;
 
   const statusLabel = el('div', { class: 'robot-status-label' }, 'working…');
@@ -366,13 +352,18 @@ function buildUI(context, token, username) {
 
   const topbarBrand = el('div', { class: 'topbar-brand' });
   const topbarRobotWrap = el('div', { class: 'topbar-robot-wrap' });
-  topbarRobotWrap.innerHTML = `<svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="40" cy="4" r="5" fill="#fb923c"/>
-    <rect x="14" y="17" width="52" height="38" rx="11" fill="#f97316"/>
-    <rect x="19" y="26" width="42" height="17" rx="5" fill="#0f172a"/>
-    <rect x="24" y="30" width="12" height="7" rx="2.5" fill="#f97316"/>
-    <rect x="44" y="30" width="12" height="7" rx="2.5" fill="#f97316"/>
-    <rect x="8" y="62" width="64" height="46" rx="13" fill="#f97316"/>
+  topbarRobotWrap.innerHTML = `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="12" y="12" width="8" height="16" fill="#C17850"/>
+    <rect x="60" y="12" width="8" height="16" fill="#C17850"/>
+    <rect x="20" y="8" width="40" height="28" fill="#C17850"/>
+    <rect x="20" y="8" width="40" height="4" fill="#8B5533"/>
+    <rect x="26" y="16" width="8" height="8" fill="#1A1A1A"/>
+    <rect x="46" y="16" width="8" height="8" fill="#1A1A1A"/>
+    <rect x="28" y="36" width="24" height="4" fill="#8B5533"/>
+    <rect x="16" y="40" width="48" height="20" fill="#C17850"/>
+    <rect x="16" y="56" width="48" height="4" fill="#8B5533"/>
+    <rect x="22" y="60" width="10" height="12" fill="#C17850"/>
+    <rect x="48" y="60" width="10" height="12" fill="#C17850"/>
   </svg>`;
 
   const topbarTitle = el('span', { class: 'topbar-title' }, 'Figma → DA Prototyper');
@@ -471,36 +462,6 @@ function buildUI(context, token, username) {
   const workspace = el('div', { class: 'workspace' }, sidebarInstance.el, main);
 
   document.body.append(topbar, workspace);
-
-  // Background effects
-  const blobA = el('div', { class: 'bg-blob bg-blob-a' });
-  const blobB = el('div', { class: 'bg-blob bg-blob-b' });
-  const scanlineEl = el('div', { class: 'scanline' });
-  const cursorGlow = el('div', { class: 'cursor-glow' });
-  document.body.prepend(scanlineEl, blobA, blobB, cursorGlow);
-
-  // Lerped cursor glow
-  let mx = window.innerWidth / 2;
-  let my = window.innerHeight / 2;
-  let cx = mx;
-  let cy = my;
-  window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
-  (function tick() {
-    cx += (mx - cx) * 0.055;
-    cy += (my - cy) * 0.055;
-    cursorGlow.style.left = `${cx}px`;
-    cursorGlow.style.top = `${cy}px`;
-    requestAnimationFrame(tick);
-  }());
-
-  // Card spotlight
-  document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-      card.style.setProperty('--my', `${e.clientY - r.top}px`);
-    });
-  });
 
   // ── Helpers ──
   function showError(msg) { errorMsg.textContent = msg; errorMsg.classList.add('visible'); }
