@@ -51,6 +51,13 @@ read when it becomes relevant.
 |------|---------|
 | `figma-content-extractor.md` | Extracts structured content (text, media, tokens) from a single Figma frame. Run once per viewport. |
 
+### external skills (optional — load only when the phase below indicates)
+| Skill | Load when | Purpose |
+|------|---------|---------|
+| `.claude/skills/consonant-extract-refiner/SKILL.md` | Phase 1b | Block fingerprinting + `match.mjs` scoring against the design-system-index. Preferred matcher. |
+| `.claude/skills/block-knowledge-base/SKILL.md` | Phase 1b (fallback) | Lighter block catalog matcher. Used only when consonant-extract-refiner is not installed. |
+| `figma:figma-use` (system skill, invoke via `/figma-use`) | Phase 4b SVG branch | Mandatory prerequisite before every `use_figma` Plugin API call. |
+
 ---
 
 ## Inputs
@@ -85,27 +92,47 @@ the frame name. Look for a recognizable block name in the frame
 label or parent component name (e.g. "aside", "marquee", "brick",
 "media", "editorial-card").
 
-#### Consult the block knowledge base (recommended)
+#### Consult the consonant-extract-refiner (recommended)
 
-Before asking the user to confirm a single name, run the matcher
-from the `block-knowledge-base` skill so the user can pick from
-ranked candidates rather than answering "what's the block?" cold.
+Before asking the user to confirm a single name, check whether the
+`consonant-extract-refiner` skill is accessible at
+`.claude/skills/consonant-extract-refiner/SKILL.md`. This is the
+preferred matching path — it produces scored, audited binding
+decisions against a pre-computed design-system-index of every C2
+block.
 
-1. Build a short design summary from the Figma frame(s) (columns,
-   slot inventory, media position, slide count, viewport-height
-   hint, behavior hints). Full schema in
-   `.claude/skills/block-knowledge-base/references/matching-heuristics.md`.
-2. Load the `block-knowledge-base` skill and run its
-   `match-figma-to-block` agent with the summary and the absolute
-   path to its `catalog/` directory.
-3. Receive `ranked_candidates` (each with score, confidence,
-   proposed_variants, gaps) and `top_pick`.
+If the skill is accessible:
+
+1. Load `.claude/skills/consonant-extract-refiner/SKILL.md`.
+2. Execute its **Phase 3** (fingerprint-figma-frame):
+   - Call `get_design_context` on the Figma frame URL and save the
+     raw output to `/tmp/figma-to-milo/<run-id>/raw.json`.
+   - Run `fingerprint-figma-frame.mjs --raw raw.json` (the scripts
+     live in the consonant-extract-refiner skill's own `scripts/`
+     directory; ensure CWD is its project root when running them).
+   - The fingerprint lands at `/tmp/figma-to-milo/<run-id>/section.json`.
+3. Execute its **Phase 4** (match + audit):
+   - Run `match.mjs` against the design-system-index to produce
+     `result.json` with `recommendation.block`, `recommendation.variant`,
+     `recommendation.bindingDecision`, and a ranked candidates list.
+   - If `bindingDecision` is `ambiguous`, surface the top two
+     candidates to the user now (before proceeding).
+   - Run the `agents/matcher-audit.md` subagent on the top-3
+     candidates; if the audit returns `confirmed: false`, surface its
+     concerns to the user and halt block-name resolution.
+4. From the confirmed match result, read `recommendation.block` as
+   the proposed block name and `recommendation.variant` as the
+   proposed variant axes.
+
+If the `consonant-extract-refiner` is not accessible, fall back to
+the `block-knowledge-base` skill if installed (run its
+`match-figma-to-block` agent as before).
 
 Then present to the user:
 
 ```
 Inferred frame name:      <name from get_metadata>
-Top match from catalog:   <name>  (score: <N>, confidence: <high|medium|low>)
+Top match (consonant):    <name>  (score: <N>, confidence: <high|medium|low>)
                           proposed variants: <variant list, or "none">
                           gaps: <list, or "none">
 Other candidates:         <name2> (<score>), <name3> (<score>)
@@ -116,12 +143,12 @@ Ask the user to pick one option. Their selection becomes the block
 name (and, if a candidate was picked, the variant set used in the
 authoring header / class list).
 
-#### When the knowledge base is not available
+#### When neither matcher is available
 
-If `block-knowledge-base` is not installed (e.g. running in a
-project that hasn't imported it), fall back to the original
-behavior: present only the inferred name and ask the user to
-confirm or override.
+If neither `consonant-extract-refiner` nor `block-knowledge-base` is
+installed (e.g. running in a project that hasn't imported either),
+fall back to the original behavior: present only the inferred name
+and ask the user to confirm or override.
 
 Either way, this name becomes the class on the block's outer
 `<div>`.
@@ -293,6 +320,11 @@ Common types from Figma:
 - `JPEG image data` → use `.jpg` extension
 
 #### SVG icons follow a different path than raster images
+
+> **Before handling SVG icons, invoke the `figma:figma-use` system
+> skill** (`/figma-use`). This is a mandatory prerequisite — load
+> it now, before running any Plugin API code below. If you have
+> not loaded it yet, do so before continuing.
 
 Icons in Figma are almost always multi-layer (background +
 symbol/text). `get_design_context` decomposes them into separate
