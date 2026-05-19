@@ -1,0 +1,26 @@
+{
+  "id": "media",
+  "name": "Media",
+  "description": "Standalone image or video component, optionally with a heading and text. Use for product screenshots, demo videos, or large feature images that stand alone. Don't use when the image is part of a hero with prominent CTAs (use marquee).",
+  "category": "block",
+  "variants": ["small", "medium", "large", "xlarge", "rounded-corners"],
+  "visualSignals": "Dominant image or video (often full-width or large), minimal text, no CTA prominence.",
+  "domInput": {
+    "tableNamePattern": "Media (large)",
+    "columns": 2,
+    "rows": [
+      { "kind": "name" },
+      {
+        "kind": "content",
+        "cols": [
+          { "index": 0, "role": "media", "contains": "picture>img product image or video" },
+          { "index": 1, "role": "text", "optional": true, "contains": "h2 optional caption heading + p optional supporting text" }
+        ]
+      }
+    ],
+    "optionalRows": [
+      { "kind": "background", "position": "before-content", "shape": "single-cell <tr><td><picture><img></td></tr> background image" }
+    ],
+    "notes": "If there is no text, use a single-column table (one <td> in the content row, no Col 1). Col 0 = image/video, Col 1 = optional text."
+  }
+}

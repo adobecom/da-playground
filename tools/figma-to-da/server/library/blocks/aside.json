@@ -1,0 +1,23 @@
+{
+  "id": "aside",
+  "name": "Aside",
+  "description": "Compact side panel, notification banner, or callout box. Typically narrower than a full editorial panel — used for contextual information, alerts, or subscription prompts. Don't use for: full-width heroes (marquee), icon feature grids (icon-block).",
+  "category": "block",
+  "variants": ["split", "inline", "notification", "extra-small", "small", "medium", "large"],
+  "visualSignals": "Smaller than a hero, often inset or contained width, may have a close/dismiss button, icon or small image paired with short text and a link",
+  "domInput": {
+    "tableNamePattern": "Aside (split)",
+    "columns": 2,
+    "rows": [
+      { "kind": "name", "note": "use 'notification' variant for dismissible banners" },
+      {
+        "kind": "content",
+        "cols": [
+          { "index": 0, "role": "media", "optional": true, "contains": "picture>img icon or small image" },
+          { "index": 1, "role": "text", "contains": "h3 heading + p body + a link" }
+        ]
+      }
+    ],
+    "notes": "Col 0 is optional icon/image; Col 1 is the text content."
+  }
+}

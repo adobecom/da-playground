@@ -1,0 +1,22 @@
+{
+  "id": "text",
+  "name": "Text",
+  "description": "Standalone text section — heading, body copy, optional icon, and optional CTAs — without a dedicated image column. Use for centered copy sections, introductory paragraphs, or supporting text between other blocks. Don't use when there is a prominent image alongside the text (use marquee or columns instead).",
+  "category": "block",
+  "variants": ["large", "medium", "small", "xlarge", "inset", "full-width"],
+  "visualSignals": "No prominent image, purely typographic content. May have a small icon above or beside the heading.",
+  "domInput": {
+    "tableNamePattern": "Text (large)",
+    "columns": 1,
+    "rows": [
+      { "kind": "name" },
+      {
+        "kind": "content",
+        "cols": [
+          { "index": 0, "role": "text", "colspan": 2, "contains": "h2 heading + p body + a link (all in one colspan=2 cell)" }
+        ]
+      }
+    ],
+    "notes": "Both the name row cell AND the content cell use colspan='2'. The table always has a logical width of 2 columns even though all content is in a single cell. For text-only sections without images, this is almost always the right block."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "accordion",
+  "name": "Accordion",
+  "description": "Expandable FAQ or feature comparison sections. Each item has a short heading and a hidden body that expands on click. Use for FAQs, expandable feature lists, or any vertically stacked expandable content.",
+  "category": "block",
+  "variants": ["seo", "editorial", "expand-all-button"],
+  "visualSignals": "A vertical list of items with chevrons or +/- indicators. Items expand to reveal content. Commonly used for FAQs.",
+  "domInput": {
+    "tableNamePattern": "Accordion",
+    "columns": 1,
+    "rows": [
+      { "kind": "name" },
+      { "kind": "question", "repeatable": true, "contains": "plain text question/trigger (single <td>)" },
+      { "kind": "answer", "repeatable": true, "contains": "p answer text with optional links (single <td>)" }
+    ],
+    "notes": "CRITICAL: Alternating single-cell rows — odd rows (1st, 3rd, 5th…) are the question/trigger text; even rows (2nd, 4th, 6th…) are the expandable answer. Each row has exactly ONE <td>. Do NOT use two cells per row. Use 'seo' variant to generate FAQPage schema markup."
+  }
+}
