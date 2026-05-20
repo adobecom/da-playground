@@ -676,6 +676,7 @@ function buildUI(context, token, username) {
         const text = blockBranch ? `Block branch: ${blockBranch}${summary ? `\n\n${summary}` : ''}` : summary;
         pipeResultActions.append(el('pre', { class: 'result-summary-block' }, text));
       }
+      showUsage(entry.usage);
     }
 
     if (entry.value) {
@@ -687,6 +688,27 @@ function buildUI(context, token, username) {
     return el('div', { class: 'token-cell' },
       el('span', { class: 'token-cell-value' }, value),
       el('span', { class: 'token-cell-label' }, label));
+  }
+
+  function showUsage(usage) {
+    if (!usage) return;
+    const fmt = (n) => n != null ? n.toLocaleString() : '—';
+    const fmtMs = (ms) => ms >= 60000 ? `${(ms / 60000).toFixed(1)}m` : `${(ms / 1000).toFixed(1)}s`;
+    const total = (usage.inputTokens || 0) + (usage.outputTokens || 0);
+    pipeStats.replaceChildren(
+      el('span', { class: 'card-label' }, 'Token Usage'),
+      el('div', { class: 'token-grid' },
+        statCell('Input', fmt(usage.inputTokens)),
+        statCell('Output', fmt(usage.outputTokens)),
+        statCell('Cache read', fmt(usage.cacheReadTokens)),
+        statCell('Cache write', fmt(usage.cacheWriteTokens)),
+        statCell('Total', fmt(total)),
+        ...(usage.costUsd != null ? [statCell('Cost', `$${usage.costUsd.toFixed(4)}`)] : []),
+        ...(usage.numTurns != null ? [statCell('Turns', String(usage.numTurns))] : []),
+        ...(usage.durationMs != null ? [statCell('Duration', fmtMs(usage.durationMs))] : []),
+      ),
+    );
+    pipeStats.classList.add('visible');
   }
 
   function showResult(value, summary, blockBranch, usage, mode) {
@@ -719,25 +741,7 @@ function buildUI(context, token, username) {
     resetBtn.addEventListener('click', resetForm);
     pipeResultActions.append(resetBtn);
 
-    if (usage) {
-      const fmt = (n) => n != null ? n.toLocaleString() : '—';
-      const fmtMs = (ms) => ms >= 60000 ? `${(ms / 60000).toFixed(1)}m` : `${(ms / 1000).toFixed(1)}s`;
-      const total = (usage.inputTokens || 0) + (usage.outputTokens || 0);
-      pipeStats.replaceChildren(
-        el('span', { class: 'card-label' }, 'Token Usage'),
-        el('div', { class: 'token-grid' },
-          statCell('Input', fmt(usage.inputTokens)),
-          statCell('Output', fmt(usage.outputTokens)),
-          statCell('Cache read', fmt(usage.cacheReadTokens)),
-          statCell('Cache write', fmt(usage.cacheWriteTokens)),
-          statCell('Total', fmt(total)),
-          ...(usage.costUsd != null ? [statCell('Cost', `$${usage.costUsd.toFixed(4)}`)] : []),
-          ...(usage.numTurns != null ? [statCell('Turns', String(usage.numTurns))] : []),
-          ...(usage.durationMs != null ? [statCell('Duration', fmtMs(usage.durationMs))] : []),
-        ),
-      );
-      pipeStats.classList.add('visible');
-    }
+    showUsage(usage);
 
     if (summary || blockBranch) {
       const text = blockBranch ? `Block branch: ${blockBranch}${summary ? `\n\n${summary}` : ''}` : summary;
@@ -750,6 +754,7 @@ function buildUI(context, token, username) {
     const MAX_ERRORS = 5;
     let errs = 0;
     let seenMsgCount = 0;
+    const activeDag = dagInstance;
 
     return new Promise((resolve, reject) => {
       const interval = setInterval(async () => {
@@ -760,7 +765,7 @@ function buildUI(context, token, username) {
           errs = 0;
 
           // Update DAG
-          dagInstance.update(job);
+          activeDag.update(job);
 
           // Update robot state
           if (robotInstance) {
@@ -875,6 +880,7 @@ function buildUI(context, token, username) {
         slug,
         summary,
         blockBranch,
+        usage,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isError: false,
         ts: Date.now(),
