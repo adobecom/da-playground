@@ -7,6 +7,72 @@ const HISTORY_KEY = 'figma-da:history';
 const POLL_INTERVAL = 3000;
 const MAX_HISTORY = 20;
 
+const DEFAULT_BREAKPOINTS = [
+  { label: 'Desktop', width: 1440, figmaUrl: '' },
+  { label: 'Tablet', width: 768, figmaUrl: '' },
+  { label: 'Mobile', width: 390, figmaUrl: '' },
+];
+
+// ── Multi-breakpoint input ─────────────────────────────────────────────────────
+function buildBreakpointList(initial = DEFAULT_BREAKPOINTS) {
+  const rows = [];
+
+  const list = el('div', { class: 'bp-list' });
+
+  function updateRemoveButtons() {
+    rows.forEach((r) => {
+      r.removeBtn.style.visibility = rows.length > 1 ? '' : 'hidden';
+    });
+  }
+
+  function addRow(data = { label: '', width: null, figmaUrl: '' }) {
+    const labelInput = el('input', { type: 'text', placeholder: 'Label', value: data.label });
+    const widthInput = el('input', { type: 'number', placeholder: 'px', value: data.width ?? '', min: '1', max: '9999' });
+    const urlInput = el('input', { type: 'text', placeholder: 'https://www.figma.com/design/…', value: data.figmaUrl });
+    const removeBtn = el('button', { class: 'bp-remove', type: 'button', title: 'Remove' }, '×');
+
+    const row = el('div', { class: 'bp-row' }, labelInput, widthInput, urlInput, removeBtn);
+    const rowData = { el: row, labelInput, widthInput, urlInput, removeBtn };
+
+    removeBtn.addEventListener('click', () => {
+      if (rows.length <= 1) return;
+      const idx = rows.indexOf(rowData);
+      if (idx !== -1) rows.splice(idx, 1);
+      row.remove();
+      updateRemoveButtons();
+    });
+
+    rows.push(rowData);
+    list.append(row);
+    updateRemoveButtons();
+  }
+
+  initial.forEach((d) => addRow(d));
+
+  const addBtn = el('button', { class: 'bp-add', type: 'button' }, '+ Add breakpoint');
+  addBtn.addEventListener('click', () => addRow());
+
+  const wrap = el('div', { class: 'bp-wrap' },
+    el('div', { class: 'bp-header' },
+      el('span', { class: 'form-label' }, 'Breakpoints'),
+      el('span', { class: 'bp-hint' }, 'Label · Width · Figma URL')),
+    list,
+    addBtn);
+
+  return {
+    el: wrap,
+    getBreakpoints() {
+      return rows
+        .map((r) => ({
+          label: r.labelInput.value.trim() || 'Breakpoint',
+          width: r.widthInput.value ? Number(r.widthInput.value) : null,
+          figmaUrl: r.urlInput.value.trim(),
+        }))
+        .filter((b) => b.figmaUrl.includes('figma.com'));
+    },
+  };
+}
+
 // ── Tiny DOM builder ──────────────────────────────────────────────────────────
 function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
@@ -224,9 +290,9 @@ function buildPipelineHtmlToDA() {
 
   const genStep = makeStep('gen-html', 'Generate prototype HTML');
   const lineA = makeLine();
-  const convertStep = makeStep('snowflake-convert', 'Convert to Milo blocks');
+  const convertStep = makeStep('html-map', 'Map HTML to Milo blocks');
   const lineB = makeLine();
-  const pushStep = makeStep('push', 'Commit & push to DA');
+  const pushStep = makeStep('upload', 'Assemble & upload to DA');
 
   dag.append(genStep, lineA, convertStep, lineB, pushStep);
 
@@ -446,6 +512,26 @@ function buildUI(context, token, username) {
 
   // ── Form card ──
   const figmaInput = el('textarea', { placeholder: 'https://www.figma.com/design/...' });
+
+  // Multi-breakpoint toggle
+  let bpMultiMode = false;
+  let breakpointList = buildBreakpointList();
+  breakpointList.el.style.display = 'none';
+
+  const bpToggle = el('button', { class: 'bp-toggle', type: 'button' }, '＋ Add breakpoints');
+  bpToggle.addEventListener('click', () => {
+    bpMultiMode = !bpMultiMode;
+    figmaInput.style.display = bpMultiMode ? 'none' : '';
+    breakpointList.el.style.display = bpMultiMode ? '' : 'none';
+    bpToggle.textContent = bpMultiMode ? '× Single URL' : '＋ Add breakpoints';
+    if (bpMultiMode) {
+      // Reset to fresh default list each time multi-mode is activated
+      const newList = buildBreakpointList();
+      breakpointList.el.replaceWith(newList.el);
+      breakpointList = newList;
+    }
+  });
+
   const serverInput = el('input', { type: 'text', placeholder: 'http://localhost:3002', value: currentServerUrl });
   serverInput.addEventListener('blur', () => { currentServerUrl = serverInput.value.trim(); localStorage.setItem(STORAGE_KEY, currentServerUrl); });
 
@@ -484,11 +570,25 @@ function buildUI(context, token, username) {
   const snowflakeRunBtn = snowflakeContent.querySelector('button.btn');
   snowflakeRunBtn.addEventListener('click', async () => {
     clearError();
-    const figmaUrl = figmaInput.value.trim();
     const serverUrl = serverInput.value.trim();
     const repoPath = repoPathInput.value.trim();
     const figmaToken = figmaTokenInput.value.trim();
-    if (!figmaUrl || !figmaUrl.includes('figma.com')) { showError('Please enter a valid Figma URL.'); return; }
+
+    // Resolve figma source — single URL or multi-breakpoint
+    let sfFigmaPayload;
+    let sfPrimaryFigmaUrl;
+    if (bpMultiMode) {
+      const bps = breakpointList.getBreakpoints();
+      if (!bps.length) { showError('Add at least one valid Figma URL (figma.com/design/…).'); return; }
+      sfFigmaPayload = { breakpoints: bps };
+      sfPrimaryFigmaUrl = bps[0].figmaUrl;
+    } else {
+      const figmaUrl = figmaInput.value.trim();
+      if (!figmaUrl || !figmaUrl.includes('figma.com')) { showError('Please enter a valid Figma URL.'); return; }
+      sfFigmaPayload = { figmaUrl };
+      sfPrimaryFigmaUrl = figmaUrl;
+    }
+
     if (!serverUrl) { showError('Please enter your agent server URL.'); configContent.style.display = ''; return; }
     if (!repoPath) { showError('Please enter the Repo Path.'); configContent.style.display = ''; return; }
     currentServerUrl = serverUrl;
@@ -503,7 +603,7 @@ function buildUI(context, token, username) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          figmaUrl,
+          ...sfFigmaPayload,
           daContext: { ...context, token, username },
           mode: 'snowflake',
           repoPath,
@@ -516,12 +616,12 @@ function buildUI(context, token, username) {
       const { value, summary, blockBranch, usage, mode } = await pollJob(serverUrl, jobId);
       showResult(value, summary, blockBranch, usage, mode);
       let slug = value ? value.split('/').at(-1).replace(/\.html$/, '') : '—';
-      sidebarInstance.addEntry({ mode, figmaUrl, value, slug, summary, blockBranch,
+      sidebarInstance.addEntry({ mode, figmaUrl: sfPrimaryFigmaUrl, value, slug, summary, blockBranch,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isError: false, ts: Date.now() });
       if (value) previewPanel.showPreview(value, mode, serverUrl);
     } catch (e) {
       showResult('error', e.message, null, null, 'snowflake');
-      sidebarInstance.addEntry({ mode: 'snowflake', figmaUrl, value: null, slug: '—',
+      sidebarInstance.addEntry({ mode: 'snowflake', figmaUrl: sfPrimaryFigmaUrl, value: null, slug: '—',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isError: true, ts: Date.now() });
     } finally {
       currentMode = savedMode;
@@ -554,6 +654,8 @@ function buildUI(context, token, username) {
     el('div', { class: 'form-group' },
       el('span', { class: 'form-label' }, 'Figma URL'),
       figmaInput),
+    breakpointList.el,
+    bpToggle,
     errorMsg,
     el('div', { style: 'display:flex; gap:10px; align-items:center' }, runBtn, configToggle),
     el('div', { class: 'config-section' }, configContent),
@@ -817,10 +919,23 @@ function buildUI(context, token, username) {
     const repoPath = repoPathInput.value.trim();
     const figmaToken = figmaTokenInput.value.trim();
 
-    if (!figmaUrl || !figmaUrl.includes('figma.com')) {
-      showError('Please enter a valid Figma URL (figma.com/design/… or figma.com/file/…).');
-      return;
+    // Resolve figma source — single URL or multi-breakpoint
+    let figmaPayload;
+    let primaryFigmaUrl;
+    if (bpMultiMode) {
+      const bps = breakpointList.getBreakpoints();
+      if (!bps.length) { showError('Add at least one valid Figma URL (figma.com/design/…).'); return; }
+      figmaPayload = { breakpoints: bps };
+      primaryFigmaUrl = bps[0].figmaUrl;
+    } else {
+      if (!figmaUrl || !figmaUrl.includes('figma.com')) {
+        showError('Please enter a valid Figma URL (figma.com/design/… or figma.com/file/…).');
+        return;
+      }
+      figmaPayload = { figmaUrl };
+      primaryFigmaUrl = figmaUrl;
     }
+
     if (!serverUrl) {
       showError('Please enter your agent server URL (e.g. http://localhost:3002).');
       configContent.style.display = '';
@@ -848,7 +963,7 @@ function buildUI(context, token, username) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          figmaUrl,
+          ...figmaPayload,
           daContext: { ...context, token, username },
           mode: currentMode,
           repoPath,
@@ -875,7 +990,7 @@ function buildUI(context, token, username) {
 
       sidebarInstance.addEntry({
         mode,
-        figmaUrl,
+        figmaUrl: primaryFigmaUrl,
         value,
         slug,
         summary,
@@ -892,7 +1007,7 @@ function buildUI(context, token, username) {
       showResult('error', e.message, null, null, currentMode);
       sidebarInstance.addEntry({
         mode: currentMode,
-        figmaUrl,
+        figmaUrl: primaryFigmaUrl,
         value: null,
         slug: '—',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
