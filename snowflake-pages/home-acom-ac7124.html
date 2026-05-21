@@ -1,0 +1,2108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adobe — Make anything.</title>
+  <style>
+    /* ── Custom Properties ── */
+    :root {
+      --adobe-red: #eb1000;
+      --acrobat-red: #b30b00;
+      --firefly-red: #ea0f00;
+      --ps-blue: #001e36;
+      --pr-blue: #00005b;
+      --ai-orange: #330000;
+      --black: #000000;
+      --white: #ffffff;
+      --gray-f5: #f5f5f5;
+      --gray-f8: #f8f8f8;
+      --gray-13: #131313;
+      --gray-0f: #0f0f0f;
+      --gray-1c: #1c1c1c;
+      --text-white-muted: #f7f7f7;
+      --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --content-width: 1480px;
+      --content-px: 220px;
+      --transition: 0.2s ease;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--white); color: var(--black); line-height: 1.5; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul, ol { list-style: none; }
+
+    /* ── Utility ── */
+    .container {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 var(--content-px);
+    }
+    .container--wide {
+      max-width: 1920px;
+      margin: 0 auto;
+      padding: 0 var(--content-px);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      border-radius: 75px;
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: #2c2c2c; transform: translateY(-1px); }
+    .btn-secondary-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      background: transparent;
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      border-radius: 75px;
+      border: 1px solid var(--black);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .btn-secondary-outline:hover { background: var(--black); color: var(--white); transform: translateY(-1px); }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      border-radius: 75px;
+      backdrop-filter: blur(33px);
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .btn-white:hover { background: rgba(255,255,255,0.88); transform: translateY(-1px); }
+    .btn-white-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      background: transparent;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      border-radius: 75px;
+      border: 1px solid var(--white);
+      backdrop-filter: blur(33px);
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .btn-white-outline:hover { background: rgba(255,255,255,0.15); transform: translateY(-1px); }
+    .eyebrow {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    /* ── Scroll entrance animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ══════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════ */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .site-nav.scrolled {
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-logo svg {
+      width: 34px;
+      height: 26px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+      transition: opacity var(--transition);
+    }
+    .nav-links a:hover { opacity: 0.8; }
+    .nav-chevron {
+      width: 8px;
+      height: 8px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+      flex-shrink: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 8px 16px 8px 12px;
+      height: 40px;
+      cursor: pointer;
+      transition: box-shadow var(--transition);
+    }
+    .nav-search-bar:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+    .nav-search-bar svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .nav-search-bar span {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray-13);
+      white-space: nowrap;
+    }
+    .nav-search-bar .ask-btn {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-13);
+      border-left: 1px solid #e0e0e0;
+      padding-left: 10px;
+      margin-left: 2px;
+    }
+    .nav-sign-in {
+      background: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 75px;
+      height: 40px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-sign-in:hover { background: rgba(255,255,255,0.88); transform: translateY(-1px); }
+    .nav-icon-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      border-radius: 50%;
+      transition: background var(--transition);
+      cursor: pointer;
+    }
+    .nav-icon-btn:hover { background: rgba(255,255,255,0.15); }
+    .nav-icon-btn svg { width: 20px; height: 20px; }
+
+    /* ══════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      height: 960px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('./home-acom-ac7124/hero-bg.png');
+      background-size: cover;
+      background-position: center right;
+      background-repeat: no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.80) 0%,
+        rgba(0,0,0,0.10) 22%,
+        rgba(0,0,0,0.05) 55%,
+        rgba(0,0,0,0.92) 92%,
+        rgba(0,0,0,1) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 132px 64px 0;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 667px;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+    }
+    .app-tile {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .app-tile--acrobat { background: var(--acrobat-red); }
+    .app-tile--firefly { background: var(--firefly-red); }
+    .app-tile--photoshop { background: var(--ps-blue); }
+    .app-tile--premiere { background: var(--pr-blue); }
+    .app-tile--experience { background: var(--adobe-red); }
+    .app-tile--cc {
+      background: linear-gradient(135deg, #ff0084 0%, #ff8800 30%, #ffdd00 60%, #00d2ff 100%);
+    }
+    .app-tile svg { width: 14px; height: 14px; }
+    .hero-headline {
+      font-size: 80px;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -3.2px;
+      color: var(--white);
+    }
+    .hero-body {
+      max-width: 500px;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--text-white-muted);
+    }
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    /* Router Navigation */
+    .hero-router {
+      position: absolute;
+      bottom: 0;
+      left: 64px;
+      right: 64px;
+      z-index: 3;
+    }
+    .router-tabs {
+      display: flex;
+      align-items: flex-end;
+    }
+    .router-tab {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      width: 220px;
+      cursor: pointer;
+      background: transparent;
+      transition: background var(--transition);
+      position: relative;
+    }
+    .router-tab[data-active="true"] {
+      background: rgba(255,255,255,0.12);
+    }
+    .router-tab-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 12px;
+      width: 96px;
+      height: 3px;
+      background: transparent;
+      transition: background var(--transition);
+    }
+    .router-tab[data-active="true"] .router-tab-indicator {
+      background: var(--adobe-red);
+    }
+    .router-tab-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .router-tab-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .router-tab-label {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      color: var(--white);
+      opacity: 0.7;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .router-tab[data-active="true"] .router-tab-label {
+      opacity: 1;
+    }
+    .router-tab-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      opacity: 0.65;
+    }
+    .router-tab[data-active="true"] .router-tab-cta { opacity: 1; }
+    .router-tab-cta span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .router-chevron {
+      width: 5px;
+      height: 8px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(-45deg);
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════
+       HUB ROUTER SECTION
+    ══════════════════════════════════════ */
+    .hub-router {
+      background: var(--white);
+      padding: 80px 0 0;
+    }
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 48px;
+    }
+    .section-heading .eyebrow { color: var(--gray-13); }
+    .section-heading h2 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -1.5px;
+      color: var(--black);
+      max-width: 800px;
+    }
+    .section-heading p {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--gray-13);
+      max-width: 720px;
+    }
+    .section-ctas {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    /* Carousel */
+    .hub-carousel {
+      margin-top: 0;
+    }
+    .hub-carousel-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      gap: 0;
+    }
+    .hub-carousel-tab {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(0,0,0,0.55);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1px;
+      transition: color var(--transition), border-color var(--transition);
+      white-space: nowrap;
+      background: none;
+    }
+    .hub-carousel-tab:hover { color: var(--black); }
+    .hub-carousel-tab[aria-selected="true"] {
+      color: var(--black);
+      border-bottom-color: var(--black);
+    }
+    .hub-carousel-tab .tab-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .hub-carousel-panels {
+      position: relative;
+      overflow: hidden;
+    }
+    .hub-carousel-panel {
+      display: none;
+    }
+    .hub-carousel-panel[data-active="true"] {
+      display: block;
+    }
+    .hub-carousel-panel img {
+      width: 100%;
+      height: auto;
+      max-height: 576px;
+      object-fit: contain;
+      object-position: center top;
+    }
+
+    /* ══════════════════════════════════════
+       WHAT'S NEW SECTION
+    ══════════════════════════════════════ */
+    .whats-new {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    .whats-new .section-heading { max-width: var(--content-width); }
+    .feature-full {
+      margin-top: 48px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--gray-f5);
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 0;
+      min-height: 480px;
+      transition: transform var(--transition);
+    }
+    .feature-full:hover { transform: translateY(-2px); }
+    .feature-full .feature-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-full .feature-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-full .feature-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px 48px;
+      gap: 12px;
+    }
+    .feature-full .feature-copy .app-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-full .feature-copy .app-label span {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-13);
+    }
+    .feature-full .feature-copy h3 {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--black);
+    }
+    .feature-full .feature-copy p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22px;
+      color: var(--gray-0f);
+    }
+    .feature-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-top: 8px;
+      transition: gap var(--transition);
+    }
+    .feature-cta:hover { gap: 10px; }
+    .feature-cta-arrow {
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .feature-3col {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--gray-f5);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .feature-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+    .feature-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .feature-card-body .app-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-card-body .app-label span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-13);
+    }
+    .feature-card-body h3 {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--black);
+    }
+    .feature-card-body p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22px;
+      color: var(--gray-0f);
+    }
+
+    /* ══════════════════════════════════════
+       SOCIAL PROOF SECTION
+    ══════════════════════════════════════ */
+    .social-proof {
+      background: var(--black);
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .social-proof-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .social-slide {
+      min-width: 100%;
+      min-height: 824px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .social-slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .social-slide-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+    .social-slide-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--content-width);
+      padding: 0 var(--content-px);
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .social-quote {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -1.5px;
+      color: var(--white);
+      max-width: 900px;
+    }
+    .social-attribution {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .social-attribution .name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .social-attribution .role {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+    }
+    .social-proof-nav {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .social-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .social-nav-btn:hover { background: rgba(255,255,255,0.88); transform: scale(1.05); }
+    .social-nav-btn svg { width: 16px; height: 16px; color: var(--black); }
+    .social-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .social-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .social-dot.active {
+      background: var(--white);
+      transform: scale(1.25);
+    }
+    .social-slide-cta {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* ══════════════════════════════════════
+       NEWS SECTION
+    ══════════════════════════════════════ */
+    .news-section {
+      background: var(--gray-0f);
+      padding: 48px 0;
+    }
+    .news-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .news-header .app-tile { width: 20px; height: 20px; }
+    .news-header h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .news-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .news-item {
+      background: rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 152px;
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .news-item:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    .news-item-text h3 {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .news-item-text p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22px;
+      color: rgba(255,255,255,0.7);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .news-item-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      transition: gap var(--transition);
+    }
+    .news-item-cta:hover { gap: 10px; }
+
+    /* ══════════════════════════════════════
+       PRODUCT ROUTER SECTION
+    ══════════════════════════════════════ */
+    .product-router {
+      background: var(--black);
+      padding: 0;
+      position: relative;
+    }
+    .product-router-hero {
+      position: relative;
+      min-height: 1040px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 60px;
+      overflow: hidden;
+    }
+    .product-router-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('./home-acom-ac7124/product-router-hero-bg.png');
+      background-size: cover;
+      background-position: center;
+    }
+    .product-router-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0) 30%,
+        rgba(0,0,0,0.5) 65%,
+        rgba(0,0,0,0.95) 100%
+      );
+    }
+    .product-router-copy {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .product-router-copy-inner {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 var(--content-px);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+    }
+    .product-router-copy-inner .text-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 780px;
+    }
+    .product-router-copy-inner h2 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -1.5px;
+      color: var(--white);
+    }
+    .product-router-copy-inner p {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      color: rgba(255,255,255,0.85);
+    }
+    .product-grid-section {
+      background: var(--black);
+      padding: 60px 0;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      min-height: 255px;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(255,255,255,0.1);
+    }
+    .product-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .product-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-card-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(0,0,0,0.6);
+    }
+    .product-card h3 {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--black);
+    }
+    .product-card p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22px;
+      color: rgba(0,0,0,0.65);
+    }
+    .product-card.all-products {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .product-card.all-products h3,
+    .product-card.all-products p { color: var(--white); }
+    .product-card.all-products p { color: rgba(255,255,255,0.65); }
+    .product-card.all-products .product-card-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ══════════════════════════════════════
+       AGENTIC SEARCH SECTION
+    ══════════════════════════════════════ */
+    .agentic-search {
+      background: var(--black);
+      padding: 60px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .agentic-search-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+    }
+    .agentic-search-inner .eyebrow {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .agentic-search-inner h2 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -1.5px;
+      color: var(--white);
+    }
+    .agentic-search-inner > p {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      color: rgba(255,255,255,0.75);
+    }
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-radius: 28px;
+      padding: 10px 10px 10px 20px;
+      width: 100%;
+      max-width: 768px;
+      gap: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      transition: box-shadow var(--transition);
+    }
+    .search-input-wrapper:focus-within {
+      box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    }
+    .search-input-icon { width: 20px; height: 20px; flex-shrink: 0; color: rgba(0,0,0,0.4); }
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--black);
+      background: transparent;
+      min-width: 0;
+    }
+    .search-input::placeholder { color: rgba(0,0,0,0.4); }
+    .search-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--black);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .search-submit:hover { background: #2c2c2c; transform: scale(1.05); }
+    .search-submit svg { width: 18px; height: 18px; color: var(--white); }
+    .agentic-search-inner .disclaimer {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      max-width: 600px;
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--black);
+      padding: 64px 0 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-main {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 32px 24px;
+      margin-bottom: 56px;
+    }
+    .footer-col h5 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-featured {
+      margin-bottom: 40px;
+    }
+    .footer-featured h5 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-featured-products {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .footer-product-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: opacity var(--transition);
+    }
+    .footer-product-item:hover { opacity: 0.8; }
+    .footer-product-item .app-tile { width: 20px; height: 20px; }
+    .footer-product-item span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+    }
+    .footer-bottom-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-region {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+      cursor: pointer;
+      transition: opacity var(--transition);
+    }
+    .footer-region:hover { opacity: 0.8; }
+    .footer-copyright {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copyright span,
+    .footer-copyright a {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+    .footer-copyright a:hover { color: var(--white); }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .social-link {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.65);
+      transition: color var(--transition);
+    }
+    .social-link:hover { color: var(--white); }
+    .social-link svg { width: 18px; height: 18px; }
+
+    /* ══════════════════════════════════════
+       MODAL (CTA states)
+    ══════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 40px;
+      width: 480px;
+      max-width: 90vw;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0); }
+    .modal-box h3 { font-size: 24px; font-weight: 900; color: var(--black); }
+    .modal-box p { font-size: 16px; color: var(--gray-0f); }
+    .modal-close {
+      align-self: flex-end;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+    }
+    .modal-loading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      color: var(--gray-0f);
+    }
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(0,0,0,0.2);
+      border-top-color: var(--black);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Search loading state ── */
+    .search-loading { display: none; }
+    .search-loading.visible {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+    }
+    .search-loading .spinner {
+      border-color: rgba(255,255,255,0.2);
+      border-top-color: var(--white);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════ NAVIGATION ════════════ -->
+  <header class="site-nav" id="site-nav">
+    <div class="nav-left">
+      <a href="#" class="nav-logo" aria-label="Adobe home">
+        <!-- Adobe logo -->
+        <svg viewBox="0 0 34 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.31 0h13.69v26L20.31 0Z" fill="#FA0F00"/>
+          <path d="M13.69 0H0v26L13.69 0Z" fill="#FA0F00"/>
+          <path d="M17 9.56 21.61 22H18.1l-1.35-3.79h-4.81L17 9.56Z" fill="#FA0F00"/>
+        </svg>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#">Products <span class="nav-chevron"></span></a>
+        <a href="#">Use Cases <span class="nav-chevron"></span></a>
+        <a href="#">Solutions <span class="nav-chevron"></span></a>
+        <a href="#">Learn &amp; Support <span class="nav-chevron"></span></a>
+        <a href="#">Plans</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="nav-search-bar">
+        <svg viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="m10 10 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>What's the best plan for me?</span>
+        <span class="ask-btn">Ask</span>
+      </a>
+      <button class="nav-icon-btn" aria-label="Apps">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <rect x="2" y="2" width="6" height="6" rx="1"/>
+          <rect x="12" y="2" width="6" height="6" rx="1"/>
+          <rect x="2" y="12" width="6" height="6" rx="1"/>
+          <rect x="12" y="12" width="6" height="6" rx="1"/>
+        </svg>
+      </button>
+      <a href="#" class="nav-sign-in">Sign In</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ════════════ HERO ════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            <div class="app-tile app-tile--acrobat">
+              <svg viewBox="0 0 14 14" fill="none">
+                <path d="M7 1L2 4v6l5 3 5-3V4L7 1z" fill="white" opacity="0.9"/>
+              </svg>
+            </div>
+            Acrobat
+          </div>
+          <h1 class="hero-headline">Get documents<br> done. Faster.</h1>
+          <p class="hero-body">Create, edit, share, and sign documents with Acrobat Studio. Edit PDFs, collaborate securely, and move work forward with built-in AI and powerful document tools.</p>
+          <div class="hero-ctas">
+            <a href="#" class="btn-white cta-btn" data-modal="freeTrial">Learn more</a>
+            <a href="#" class="btn-white-outline cta-btn" data-modal="plans">Explore plans</a>
+          </div>
+        </div>
+      </div>
+      <!-- Router Navigation -->
+      <nav class="hero-router" aria-label="Product navigation">
+        <div class="router-tabs">
+          <button class="router-tab" data-active="false" data-tab="creativity">
+            <div class="router-tab-top">
+              <div class="router-tab-icon app-tile app-tile--cc"></div>
+            </div>
+            <div class="router-tab-cta">
+              <span>Creativity and design</span>
+              <span class="router-chevron"></span>
+            </div>
+            <div class="router-tab-indicator"></div>
+          </button>
+          <button class="router-tab" data-active="false" data-tab="content">
+            <div class="router-tab-top">
+              <div class="router-tab-icon app-tile app-tile--firefly"></div>
+            </div>
+            <div class="router-tab-cta">
+              <span>Content creation</span>
+              <span class="router-chevron"></span>
+            </div>
+            <div class="router-tab-indicator"></div>
+          </button>
+          <button class="router-tab" data-active="true" data-tab="pdf">
+            <div class="router-tab-top">
+              <div class="router-tab-icon app-tile app-tile--acrobat"></div>
+            </div>
+            <div class="router-tab-cta">
+              <span>PDF and productivity</span>
+              <span class="router-chevron"></span>
+            </div>
+            <div class="router-tab-indicator"></div>
+          </button>
+          <button class="router-tab" data-active="false" data-tab="business">
+            <div class="router-tab-top">
+              <div class="router-tab-icon app-tile app-tile--experience"></div>
+            </div>
+            <div class="router-tab-cta">
+              <span>Adobe for Business</span>
+              <span class="router-chevron"></span>
+            </div>
+            <div class="router-tab-indicator"></div>
+          </button>
+          <button class="router-tab" data-active="false" data-tab="students">
+            <div class="router-tab-top">
+              <div class="router-tab-icon app-tile app-tile--cc"></div>
+            </div>
+            <div class="router-tab-cta">
+              <span>Students and teachers</span>
+              <span class="router-chevron"></span>
+            </div>
+            <div class="router-tab-indicator"></div>
+          </button>
+        </div>
+      </nav>
+    </section>
+
+    <!-- ════════════ HUB ROUTER ════════════ -->
+    <section class="hub-router" id="hub-router">
+      <div class="container--wide">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Optimized Workflows</span>
+          <h2>Everything you need to make anything.</h2>
+          <p>Whether you're a student, social influencer, creative professional, performance marketer, or large enterprise — Adobe has what you need.</p>
+          <div class="section-ctas">
+            <a href="#" class="btn-primary cta-btn" data-modal="freeTrial">Start your free trial</a>
+            <a href="#" class="btn-secondary-outline cta-btn" data-modal="products">View all products</a>
+          </div>
+        </div>
+
+        <div class="hub-carousel">
+          <!-- Tabs -->
+          <div class="hub-carousel-tabs" role="tablist">
+            <button class="hub-carousel-tab" role="tab" aria-selected="true" data-panel="firefly-panel">
+              <span class="tab-icon app-tile app-tile--firefly"></span>
+              Creativity and design
+            </button>
+            <button class="hub-carousel-tab" role="tab" aria-selected="false" data-panel="cc-panel">
+              <span class="tab-icon app-tile app-tile--cc"></span>
+              Content creation
+            </button>
+            <button class="hub-carousel-tab" role="tab" aria-selected="false" data-panel="acrobat-panel">
+              <span class="tab-icon app-tile app-tile--acrobat"></span>
+              PDF and productivity
+            </button>
+            <button class="hub-carousel-tab" role="tab" aria-selected="false" data-panel="genstudio-panel">
+              <span class="tab-icon app-tile app-tile--experience"></span>
+              Adobe for Business
+            </button>
+            <button class="hub-carousel-tab" role="tab" aria-selected="false" data-panel="students-panel">
+              <span class="tab-icon app-tile app-tile--cc"></span>
+              Students and teachers
+            </button>
+          </div>
+          <!-- Panels -->
+          <div class="hub-carousel-panels">
+            <div class="hub-carousel-panel" id="firefly-panel" data-active="true">
+              <img src="./home-acom-ac7124/carousel-firefly.png" alt="Firefly — Next-level creative" loading="lazy"/>
+            </div>
+            <div class="hub-carousel-panel" id="cc-panel" data-active="false">
+              <img src="./home-acom-ac7124/carousel-creative-cloud.png" alt="Creative Cloud — Content creation" loading="lazy"/>
+            </div>
+            <div class="hub-carousel-panel" id="acrobat-panel" data-active="false">
+              <img src="./home-acom-ac7124/carousel-acrobat.png" alt="Acrobat — PDF and productivity" loading="lazy"/>
+            </div>
+            <div class="hub-carousel-panel" id="genstudio-panel" data-active="false">
+              <img src="./home-acom-ac7124/carousel-genstudio.png" alt="GenStudio — Adobe for Business" loading="lazy"/>
+            </div>
+            <div class="hub-carousel-panel" id="students-panel" data-active="false">
+              <img src="./home-acom-ac7124/carousel-students.png" alt="Students and teachers" loading="lazy"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ WHAT'S NEW ════════════ -->
+    <section class="whats-new" id="whats-new">
+      <div class="container--wide">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Features and Releases</span>
+          <h2>Explore what's new.</h2>
+          <p>Discover the latest product features from Adobe.</p>
+          <div class="section-ctas">
+            <a href="#" class="btn-primary cta-btn" data-modal="newFeatures">Explore releases</a>
+            <a href="#" class="btn-secondary-outline cta-btn" data-modal="blog">Read the blog</a>
+          </div>
+        </div>
+
+        <!-- Full column feature -->
+        <a href="#" class="feature-full reveal cta-btn" data-modal="firefly">
+          <div class="feature-img">
+            <img src="./home-acom-ac7124/whats-new-full.png" alt="Edit images in an instant with Firefly" loading="lazy"/>
+          </div>
+          <div class="feature-copy">
+            <div class="app-label">
+              <div class="app-tile app-tile--firefly" style="width:20px;height:20px;border-radius:4px;"></div>
+              <span>Adobe Firefly</span>
+            </div>
+            <h3>Edit images in an instant.</h3>
+            <p>Fill, remove, expand, or upscale imagery with total control. AI tools in the Firefly image editor make precision editing effortless.</p>
+            <span class="feature-cta">
+              Explore Firefly
+              <span class="feature-cta-arrow">
+                <svg viewBox="0 0 14 14" fill="none" width="14" height="14">
+                  <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+          </div>
+        </a>
+
+        <!-- 3-column features -->
+        <div class="feature-3col">
+          <a href="#" class="feature-card reveal reveal-delay-1 cta-btn" data-modal="acrobat">
+            <div class="feature-card-img">
+              <img src="./home-acom-ac7124/whats-new-3col.png" alt="PDF Spaces — Acrobat" loading="lazy" style="object-position: 0 0;"/>
+            </div>
+            <div class="feature-card-body">
+              <div class="app-label">
+                <div class="app-tile app-tile--acrobat" style="width:18px;height:18px;border-radius:3px;"></div>
+                <span>Adobe Acrobat</span>
+              </div>
+              <h3>Unlock insights and next steps with PDF Spaces.</h3>
+              <p>Transform files and links into a conversational knowledge hub. Chat with your documents and extract key insights instantly.</p>
+              <span class="feature-cta">
+                Explore Acrobat
+                <span class="feature-cta-arrow">
+                  <svg viewBox="0 0 14 14" fill="none" width="14" height="14">
+                    <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </a>
+          <a href="#" class="feature-card reveal reveal-delay-2 cta-btn" data-modal="photoshop">
+            <div class="feature-card-img" style="background:#001e36;">
+              <img src="./home-acom-ac7124/whats-new-3col.png" alt="Harmonize — Photoshop" loading="lazy" style="object-position: 50% 0;"/>
+            </div>
+            <div class="feature-card-body">
+              <div class="app-label">
+                <div class="app-tile app-tile--photoshop" style="width:18px;height:18px;border-radius:3px;"></div>
+                <span>Photoshop</span>
+              </div>
+              <h3>Generative composition with Harmonize.</h3>
+              <p>Instantly blend people and objects into any background. Harmonize matches the lighting, shadows, and colors automatically.</p>
+              <span class="feature-cta">
+                Explore Photoshop
+                <span class="feature-cta-arrow">
+                  <svg viewBox="0 0 14 14" fill="none" width="14" height="14">
+                    <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </a>
+          <a href="#" class="feature-card reveal reveal-delay-3 cta-btn" data-modal="illustrator">
+            <div class="feature-card-img" style="background:#300000;">
+              <img src="./home-acom-ac7124/whats-new-3col.png" alt="Pencil Tool — Illustrator" loading="lazy" style="object-position: 100% 0;"/>
+            </div>
+            <div class="feature-card-body">
+              <div class="app-label">
+                <div class="app-tile" style="background:#ff9a00;width:18px;height:18px;border-radius:3px;"></div>
+                <span>Illustrator</span>
+              </div>
+              <h3>Draw with pro precision.</h3>
+              <p>Unlock total control with the enhanced Pencil tool. Now with live preview, you can draw with smoother lines and sharper detail.</p>
+              <span class="feature-cta">
+                Explore Illustrator
+                <span class="feature-cta-arrow">
+                  <svg viewBox="0 0 14 14" fill="none" width="14" height="14">
+                    <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ SOCIAL PROOF ════════════ -->
+    <section class="social-proof" id="social-proof">
+      <div class="social-proof-track" id="social-track">
+
+        <!-- Slide 1 -->
+        <div class="social-slide">
+          <div class="social-slide-bg" style="background-color:#111; background-image: url('./home-acom-ac7124/social-proof.png'); background-size: cover; background-position: 0 0;"></div>
+          <div class="social-slide-content">
+            <blockquote class="social-quote">"Firefly helped me unlock the true speed of my creativity."</blockquote>
+            <div class="social-attribution">
+              <p class="name">Hollie Morrish</p>
+              <p class="role">Award-winning photographer and retoucher</p>
+            </div>
+            <div class="social-slide-cta">
+              <a href="#" class="btn-white cta-btn" data-modal="firefly">Create with Firefly</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="social-slide">
+          <div class="social-slide-bg" style="background-color:#0a0a2a; background-image: url('./home-acom-ac7124/social-proof.png'); background-size: cover; background-position: 33.3% 0;"></div>
+          <div class="social-slide-content">
+            <blockquote class="social-quote">"Photoshop's new AI tools have completely changed how I work. What used to take hours now takes minutes."</blockquote>
+            <div class="social-attribution">
+              <p class="name">Marcus Lee</p>
+              <p class="role">Creative Director, Studio Bloom</p>
+            </div>
+            <div class="social-slide-cta">
+              <a href="#" class="btn-white cta-btn" data-modal="photoshop">Explore Photoshop</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="social-slide">
+          <div class="social-slide-bg" style="background-color:#1a0a00; background-image: url('./home-acom-ac7124/social-proof.png'); background-size: cover; background-position: 66.6% 0;"></div>
+          <div class="social-slide-content">
+            <blockquote class="social-quote">"Acrobat has transformed how our team reviews and signs documents — everything is faster and more secure."</blockquote>
+            <div class="social-attribution">
+              <p class="name">Priya Nair</p>
+              <p class="role">Operations Lead, GlobalOps Inc.</p>
+            </div>
+            <div class="social-slide-cta">
+              <a href="#" class="btn-white cta-btn" data-modal="acrobat">Try Acrobat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="social-proof-nav">
+        <button class="social-nav-btn" id="social-prev" aria-label="Previous testimonial">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="social-dots">
+          <button class="social-dot active" data-slide="0" aria-label="Slide 1"></button>
+          <button class="social-dot" data-slide="1" aria-label="Slide 2"></button>
+          <button class="social-dot" data-slide="2" aria-label="Slide 3"></button>
+        </div>
+        <button class="social-nav-btn" id="social-next" aria-label="Next testimonial">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ════════════ NEWS SECTION ════════════ -->
+    <section class="news-section" id="news">
+      <div class="container--wide">
+        <div class="news-header">
+          <div class="app-tile app-tile--experience" style="width:20px;height:20px;border-radius:4px;"></div>
+          <h4>Adobe News</h4>
+        </div>
+        <ul class="news-list">
+          <li>
+            <a href="#" class="news-item cta-btn" data-modal="news1">
+              <div class="news-item-text">
+                <h3>Adobe apps are top choice for Sundance filmmakers.</h3>
+                <p>85% of Sundance Filmmakers Choose Adobe as Company Releases New AI Video Innovations and $10M in Creative Grants.</p>
+              </div>
+              <span class="news-item-cta">
+                Read story
+                <svg viewBox="0 0 14 14" fill="none" width="14" height="14">
+                  <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="news-item cta-btn" data-modal="news2">
+              <div class="news-item-text">
+                <h3>Adobe's new Incubator creates the future.</h3>
+                <p>At Adobe, innovating for our customers has always been our north star. From pioneering digital creativity to shaping the future of AI.</p>
+              </div>
+              <span class="news-item-cta">
+                Read story
+                <svg viewBox="0 0 14 14" fill="none" width="14" height="14">
+                  <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="news-item cta-btn" data-modal="news3">
+              <div class="news-item-text">
+                <h3>Adobe partners with OpenAI to test ads in ChatGPT</h3>
+                <p>Adobe empowers marketing professionals with AI-driven Customer Experience Orchestration to create, deliver, and optimize ads.</p>
+              </div>
+              <span class="news-item-cta">
+                Read story
+                <svg viewBox="0 0 14 14" fill="none" width="14" height="14">
+                  <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ════════════ PRODUCT ROUTER ════════════ -->
+    <section class="product-router" id="products">
+      <!-- Hero with bg image -->
+      <div class="product-router-hero">
+        <div class="product-router-hero-bg"></div>
+        <div class="product-router-copy">
+          <div class="product-router-copy-inner">
+            <div class="text-group reveal">
+              <h2>Tools that work for you.</h2>
+              <p>Bring any idea to life with products for<br>creators, businesses, and beyond.</p>
+            </div>
+            <div class="reveal reveal-delay-1">
+              <a href="#" class="btn-white cta-btn" data-modal="allProducts">See all products</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product cards grid -->
+      <div class="product-grid-section">
+        <div class="container--wide">
+          <div class="product-grid">
+            <!-- Firefly -->
+            <a href="#" class="product-card reveal cta-btn" data-modal="firefly">
+              <div class="product-card-header">
+                <div class="product-card-icon app-tile app-tile--firefly" style="width:40px;height:40px;border-radius:9px;"></div>
+              </div>
+              <h3>Firefly</h3>
+              <p>Create and enhance images, video, and audio with AI-powered tools.</p>
+            </a>
+            <!-- Acrobat -->
+            <a href="#" class="product-card reveal reveal-delay-1 cta-btn" data-modal="acrobat">
+              <div class="product-card-header">
+                <div class="product-card-icon app-tile app-tile--acrobat" style="width:40px;height:40px;border-radius:9px;"></div>
+              </div>
+              <h3>Adobe Acrobat</h3>
+              <p>Quickly and easily create, edit, sign, and manage your PDFs anywhere.</p>
+            </a>
+            <!-- Photoshop -->
+            <a href="#" class="product-card reveal reveal-delay-2 cta-btn" data-modal="photoshop">
+              <div class="product-card-header">
+                <div class="product-card-icon app-tile app-tile--photoshop" style="width:40px;height:40px;border-radius:9px;"></div>
+              </div>
+              <h3>Photoshop</h3>
+              <p>Create gorgeous images, rich graphics, and incredible art.</p>
+            </a>
+            <!-- Premiere -->
+            <a href="#" class="product-card reveal reveal-delay-1 cta-btn" data-modal="premiere">
+              <div class="product-card-header">
+                <div class="product-card-icon app-tile app-tile--premiere" style="width:40px;height:40px;border-radius:9px;"></div>
+              </div>
+              <h3>Premiere</h3>
+              <p>Create everything from social clips to feature films with the leading video editor.</p>
+            </a>
+            <!-- Creative Cloud -->
+            <a href="#" class="product-card reveal reveal-delay-2 cta-btn" data-modal="cc">
+              <div class="product-card-header">
+                <div class="product-card-icon app-tile app-tile--cc" style="width:40px;height:40px;border-radius:9px;"></div>
+                <span class="product-card-label">20+ Apps</span>
+              </div>
+              <h3>Creative Cloud</h3>
+              <p>Get 20+ apps, including Photoshop, Illustrator, Premiere Pro, and Acrobat Pro.</p>
+            </a>
+            <!-- GenStudio -->
+            <a href="#" class="product-card reveal reveal-delay-3 cta-btn" data-modal="genstudio">
+              <div class="product-card-header">
+                <div class="product-card-icon app-tile app-tile--experience" style="width:40px;height:40px;border-radius:9px;"></div>
+              </div>
+              <h3>GenStudio for Performance Marketing</h3>
+              <p>Scale your content supply chain with AI-powered creative automation.</p>
+            </a>
+            <!-- Business Products -->
+            <a href="#" class="product-card reveal reveal-delay-1 cta-btn" data-modal="business">
+              <div class="product-card-header">
+                <div class="product-card-icon" style="width:40px;height:40px;border-radius:9px;background:#000b1d;display:flex;align-items:center;justify-content:center;">
+                  <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+                    <circle cx="10" cy="10" r="8" stroke="#eb1000" stroke-width="2"/>
+                    <path d="M7 10l2 2 4-4" stroke="#eb1000" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+              <h3>Business Products</h3>
+              <p>Adobe solutions integrate our best-in-class products to help you tackle pressing business challenges.</p>
+            </a>
+            <!-- All products -->
+            <a href="#" class="product-card all-products reveal reveal-delay-2 cta-btn" data-modal="allProducts">
+              <div class="product-card-header">
+                <div class="product-card-icon-wrap">
+                  <svg viewBox="0 0 20 20" fill="none" width="20" height="20">
+                    <path d="M4 10h12M10 4l6 6-6 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <h3>All products</h3>
+              <p>See all Adobe products</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ AGENTIC SEARCH ════════════ -->
+    <section class="agentic-search" id="agentic-search">
+      <div class="container--wide">
+        <div class="agentic-search-inner">
+          <span class="eyebrow">Adobe is for everyone</span>
+          <h2>Find what you're looking for.</h2>
+          <p>Get answers, find assets, access your work and create.</p>
+          <form class="search-input-wrapper" id="agentic-form">
+            <svg class="search-input-icon" viewBox="0 0 20 20" fill="none">
+              <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.5"/>
+              <path d="m13 13 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="search-input" placeholder="Ask anything" aria-label="Search Adobe" id="agentic-input"/>
+            <button type="submit" class="search-submit" aria-label="Search">
+              <svg viewBox="0 0 18 18" fill="none">
+                <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+          <div class="search-loading" id="search-loading">
+            <div class="spinner"></div>
+            Searching Adobe…
+          </div>
+          <p class="disclaimer">Adobe AI may produce inaccurate information about products, plans, and features. Verify important information.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer>
+    <div class="container--wide">
+      <div class="footer-main">
+        <div class="footer-col">
+          <h5>For individuals<br>&amp; small business</h5>
+          <ul>
+            <li><a href="#">Creative AI</a></li>
+            <li><a href="#">Photography</a></li>
+            <li><a href="#">Design &amp; Illustration</a></li>
+            <li><a href="#">Video &amp; animation</a></li>
+            <li><a href="#">PDF</a></li>
+            <li><a href="#">3D</a></li>
+            <li><a href="#">Elements Family</a></li>
+            <li><a href="#">Stock images &amp; video</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>For medium<br>&amp; large business</h5>
+          <ul>
+            <li><a href="#">Personalization at scale</a></li>
+            <li><a href="#">Content supply chain</a></li>
+            <li><a href="#">Unified customer experience</a></li>
+            <li><a href="#">Creativity and production</a></li>
+            <li><a href="#">B2B GTM orchestration</a></li>
+            <li><a href="#">View all products</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>For<br>Organizations</h5>
+          <ul>
+            <li><a href="#">Education</a></li>
+            <li><a href="#">Nonprofits</a></li>
+            <li><a href="#">Government</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Download and install</a></li>
+            <li><a href="#">Adobe Community</a></li>
+            <li><a href="#">Adobe Learn</a></li>
+            <li><a href="#">Medium &amp; large business support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="#">Chat with sales</a></li>
+            <li><a href="#">Request information</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Adobe</h5>
+          <ul>
+            <li><a href="#">Log into your account</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Corporate Responsibility</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Supply Chain</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-featured">
+        <h5>Featured Products</h5>
+        <div class="footer-featured-products">
+          <a href="#" class="footer-product-item">
+            <div class="app-tile app-tile--acrobat"></div>
+            <span>Acrobat Reader</span>
+          </a>
+          <a href="#" class="footer-product-item">
+            <div class="app-tile app-tile--firefly"></div>
+            <span>Firefly</span>
+          </a>
+          <a href="#" class="footer-product-item">
+            <div class="app-tile app-tile--experience"></div>
+            <span>Adobe Express</span>
+          </a>
+          <a href="#" class="footer-product-item">
+            <div class="app-tile app-tile--photoshop"></div>
+            <span>Photoshop</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-logo">
+          <svg viewBox="0 0 34 26" fill="white" width="34" height="26">
+            <path d="M20.31 0h13.69v26L20.31 0Z"/>
+            <path d="M13.69 0H0v26L13.69 0Z"/>
+            <path d="M17 9.56 21.61 22H18.1l-1.35-3.79h-4.81L17 9.56Z"/>
+          </svg>
+        </div>
+        <div class="footer-bottom-left">
+          <a href="#" class="footer-region">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+              <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
+              <ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M1.5 6h13M1.5 10h13" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            Change region
+          </a>
+          <div class="footer-copyright">
+            <span>© 2026 Adobe Inc. All rights reserved.</span>
+            <a href="#">Do not sell or share my personal information</a>
+            <a href="#">AdChoices</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms of Use</a>
+          </div>
+        </div>
+        <div class="footer-social">
+          <!-- Instagram -->
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="#" class="social-link" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CTA Modal -->
+  <div class="modal-overlay" id="cta-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <h3 id="modal-title">Loading…</h3>
+      <div class="modal-loading" id="modal-loading">
+        <div class="spinner"></div> Just a moment…
+      </div>
+      <p id="modal-desc" style="display:none"></p>
+      <button class="modal-close" id="modal-close">Close ✕</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ── Prevent default on all anchors ── */
+      document.querySelectorAll('a[href="#"]').forEach(a => {
+        a.addEventListener('click', e => { e.preventDefault(); });
+      });
+
+      /* ── Sticky header ── */
+      const nav = document.getElementById('site-nav');
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > 10) { nav.classList.add('scrolled'); }
+        else { nav.classList.remove('scrolled'); }
+        lastScroll = y;
+      }, { passive: true });
+
+      /* ── IntersectionObserver for reveal animations ── */
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      /* ── Hub Router tab switching ── */
+      const hubTabs = document.querySelectorAll('.hub-carousel-tab');
+      const hubPanels = document.querySelectorAll('.hub-carousel-panel');
+      hubTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const panelId = tab.dataset.panel;
+          hubTabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+          hubPanels.forEach(p => p.dataset.active = 'false');
+          tab.setAttribute('aria-selected', 'true');
+          const panel = document.getElementById(panelId);
+          if (panel) panel.dataset.active = 'true';
+        });
+      });
+
+      /* ── Hero router tab click ── */
+      const routerTabs = document.querySelectorAll('.router-tab');
+      routerTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          routerTabs.forEach(t => t.dataset.active = 'false');
+          tab.dataset.active = 'true';
+        });
+      });
+
+      /* ── Social Proof Carousel ── */
+      const track = document.getElementById('social-track');
+      const dots = document.querySelectorAll('.social-dot');
+      let currentSlide = 0;
+      const totalSlides = 3;
+
+      function goToSlide(idx) {
+        currentSlide = (idx + totalSlides) % totalSlides;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+      }
+
+      document.getElementById('social-prev').addEventListener('click', () => goToSlide(currentSlide - 1));
+      document.getElementById('social-next').addEventListener('click', () => goToSlide(currentSlide + 1));
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.slide, 10)));
+      });
+
+      // Auto-advance carousel every 6 seconds
+      let autoSlide = setInterval(() => goToSlide(currentSlide + 1), 6000);
+      track.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
+      track.parentElement.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(() => goToSlide(currentSlide + 1), 6000);
+      });
+
+      /* ── CTA Modal ── */
+      const modal = document.getElementById('cta-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalLoading = document.getElementById('modal-loading');
+      const modalClose = document.getElementById('modal-close');
+
+      const ctaMessages = {
+        freeTrial: { title: 'Start your free trial', desc: 'Get access to all Adobe apps free for 7 days. No credit card required.' },
+        plans: { title: 'Explore plans', desc: 'Choose the plan that's right for you — individual, teams, or enterprise.' },
+        products: { title: 'View all products', desc: 'Browse the full suite of Adobe creative and document tools.' },
+        firefly: { title: 'Adobe Firefly', desc: 'Create and enhance images, video, and audio with Adobe\'s generative AI.' },
+        acrobat: { title: 'Adobe Acrobat', desc: 'The world\'s leading PDF solution for creating, editing, and signing documents.' },
+        photoshop: { title: 'Photoshop', desc: 'The industry-standard photo editing and compositing software.' },
+        illustrator: { title: 'Illustrator', desc: 'Create stunning vector art, illustrations, and typography.' },
+        premiere: { title: 'Premiere Pro', desc: 'Professional video editing for film, TV, and the web.' },
+        cc: { title: 'Creative Cloud', desc: 'Get 20+ creative apps plus cloud storage and collaboration tools.' },
+        genstudio: { title: 'GenStudio', desc: 'Scale your content supply chain with AI-powered marketing tools.' },
+        business: { title: 'Adobe Business Products', desc: 'Enterprise solutions for customer experience management and data insights.' },
+        allProducts: { title: 'All Adobe Products', desc: 'Find the right Adobe tool for your creative or business needs.' },
+        newFeatures: { title: 'New Features', desc: 'Discover the latest releases and innovations across Adobe products.' },
+        blog: { title: 'Adobe Blog', desc: 'Insights, tutorials, and inspiration from the Adobe community.' },
+        news1: { title: 'Adobe at Sundance', desc: '85% of Sundance Filmmakers Choose Adobe as Company Releases New AI Video Innovations.' },
+        news2: { title: 'Adobe Incubator', desc: 'At Adobe, innovating for our customers has always been our north star.' },
+        news3: { title: 'Adobe + OpenAI', desc: 'Adobe empowers marketing professionals with AI-driven Customer Experience Orchestration.' },
+      };
+
+      function openModal(key) {
+        const data = ctaMessages[key] || { title: 'Coming soon', desc: 'This feature will be available soon.' };
+        modalTitle.textContent = data.title;
+        modalDesc.textContent = '';
+        modalLoading.style.display = 'flex';
+        modalDesc.style.display = 'none';
+        modal.classList.add('open');
+
+        setTimeout(() => {
+          modalLoading.style.display = 'none';
+          modalDesc.textContent = data.desc;
+          modalDesc.style.display = 'block';
+        }, 900);
+      }
+
+      document.querySelectorAll('.cta-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          const key = btn.dataset.modal;
+          if (key) openModal(key);
+        });
+      });
+
+      modalClose.addEventListener('click', () => modal.classList.remove('open'));
+      modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+
+      /* ── Agentic Search ── */
+      const agenticForm = document.getElementById('agentic-form');
+      const searchInput = document.getElementById('agentic-input');
+      const searchLoadingEl = document.getElementById('search-loading');
+
+      agenticForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        if (!query) return;
+        searchLoadingEl.classList.add('visible');
+        setTimeout(() => {
+          searchLoadingEl.classList.remove('visible');
+          openModal('allProducts');
+        }, 1400);
+      });
+
+      /* ── Nav search bar click ── */
+      document.querySelector('.nav-search-bar').addEventListener('click', e => {
+        e.preventDefault();
+        const searchSection = document.getElementById('agentic-search');
+        if (searchSection) {
+          searchSection.scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => searchInput.focus(), 600);
+        }
+      });
+
+    }); // end DOMContentLoaded
+  </script>
+</body>
+</html>
