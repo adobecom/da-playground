@@ -1,0 +1,2012 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adobe — Creativity, Marketing and Document Management Solutions</title>
+  <style>
+    /* ──────────────────────────────────────────────
+       CSS CUSTOM PROPERTIES
+    ────────────────────────────────────────────── */
+    :root {
+      --color-red:        #EB1000;
+      --color-black:      #000000;
+      --color-white:      #FFFFFF;
+      --color-near-white: #F8F8F8;
+      --color-dark-text:  #131313;
+      --color-gray-light: #F5F5F5;
+      --color-gray-mid:   #4F4F4F;
+      --color-gray-border:#E5E5E5;
+
+      --font-stack:       'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+      --content-width:    1480px;
+      --page-max-width:   1920px;
+      --content-padding:  0 220px;
+      --section-gap:      8px;
+    }
+
+    /* ──────────────────────────────────────────────
+       RESET & BASE
+    ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-stack);
+      background: var(--color-black);
+      color: var(--color-dark-text);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+
+    /* ──────────────────────────────────────────────
+       NAV
+    ────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--page-max-width);
+      height: 72px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px 0 24px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav.scrolled {
+      background: rgba(0,0,0,0.92);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .nav-logo svg {
+      width: 67px;
+      height: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--color-white);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .nav-links li a:hover { opacity: 0.75; }
+
+    .nav-links li a .chevron {
+      display: inline-block;
+      width: 6px;
+      height: 4px;
+      border-left: 2px solid var(--color-white);
+      border-bottom: 2px solid var(--color-white);
+      transform: rotate(-45deg) translateY(-2px);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+    .nav-icon:hover { opacity: 1; }
+
+    .btn-signin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 20px;
+      background: var(--color-white);
+      color: var(--color-black);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 24px;
+      transition: background 0.2s, opacity 0.2s;
+      white-space: nowrap;
+    }
+    .btn-signin:hover { background: var(--color-near-white); }
+
+    /* ──────────────────────────────────────────────
+       HERO SECTION
+    ────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 960px;
+      background: var(--color-black) url('./home-acom-2f0767/hero-background.png') center center / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.60) 0%,
+        rgba(0,0,0,0.20) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 144px 220px 0; /* 72px nav + 72px extra */
+      flex: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 16px;
+      line-height: 20px;
+      letter-spacing: 0;
+    }
+
+    .hero-headline {
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--color-white);
+      line-height: 76px;
+      letter-spacing: -3.2px;
+      max-width: 667px;
+      margin-bottom: 8px;
+    }
+
+    .hero-body {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--color-near-white);
+      line-height: 24px;
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 24px;
+      background: var(--color-white);
+      color: var(--color-black);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 24px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-hero-primary:hover {
+      background: var(--color-near-white);
+      transform: translateY(-1px);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 24px;
+      background: transparent;
+      color: var(--color-white);
+      font-size: 14px;
+      font-weight: 700;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-hero-secondary:hover {
+      border-color: var(--color-white);
+      transform: translateY(-1px);
+    }
+
+    /* ──────────────────────────────────────────────
+       HERO TAB ROUTER
+    ────────────────────────────────────────────── */
+    .hero-tabs {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 220px;
+    }
+
+    .hero-tabs-inner {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hero-tab {
+      width: 220px;
+      height: 68px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 12px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.75);
+      position: relative;
+      transition: background 0.2s;
+    }
+    .hero-tab:hover { background: rgba(20,20,20,0.90); }
+
+    .hero-tab.active {
+      background: var(--color-white);
+    }
+    .hero-tab.active .hero-tab-label {
+      color: var(--color-black);
+    }
+    .hero-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 96px;
+      height: 4px;
+      background: var(--color-red);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .hero-tab-icon {
+      width: 18px;
+      height: 18px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 3px;
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+    .hero-tab.active .hero-tab-icon {
+      background: var(--color-red);
+    }
+
+    .hero-tab-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-tab-play {
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.75);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-bottom: 14px;
+      margin-left: 16px;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .hero-tab-play:hover { background: rgba(40,40,40,0.90); }
+
+    .hero-tab-play svg {
+      width: 10px;
+      height: 12px;
+      fill: white;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION COMMON
+    ────────────────────────────────────────────── */
+    .section-heading {
+      padding: 80px 220px 0;
+    }
+
+    .section-eyebrow {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 60px;
+      letter-spacing: -1.5px;
+      max-width: 984px;
+      margin-bottom: 16px;
+    }
+
+    .section-body {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--color-dark-text);
+      max-width: 736px;
+      margin-bottom: 24px;
+    }
+
+    .section-btns {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-primary-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 41px;
+      padding: 0 24px;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 24px;
+      border: 2px solid var(--color-black);
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary-dark:hover { background: #333; border-color: #333; }
+
+    .btn-secondary-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 41px;
+      padding: 0 24px;
+      background: transparent;
+      color: var(--color-black);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 24px;
+      border: 2px solid var(--color-black);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .btn-secondary-dark:hover { background: rgba(0,0,0,0.06); }
+
+    /* ──────────────────────────────────────────────
+       HUB ROUTER SECTION
+    ────────────────────────────────────────────── */
+    .hub-router {
+      background: var(--color-white);
+      padding-bottom: 80px;
+    }
+
+    .hub-router .section-heading {
+      padding-bottom: 40px;
+    }
+
+    .hub-carousel {
+      margin: 0 109px;
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    .hub-card {
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+    .hub-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    }
+
+    .hub-card-light { background: var(--color-gray-light); }
+    .hub-card-dark  { background: var(--color-black); }
+
+    .hub-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+    }
+
+    .hub-card-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .hub-card-cat {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      flex: 1;
+    }
+
+    .hub-card-cat-dark { color: var(--color-black); }
+    .hub-card-cat-light { color: var(--color-white); }
+
+    .hub-card-arrow {
+      width: 6px;
+      height: 10px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(-45deg);
+      margin-right: 4px;
+      flex-shrink: 0;
+    }
+
+    .hub-card-image {
+      width: 100%;
+      height: 394px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hub-card-image-placeholder {
+      width: 100%;
+      height: 394px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f9f0e6, #f0e0d0);
+      font-size: 24px;
+      font-weight: 900;
+      color: #cc0000;
+    }
+
+    .hub-card-footer {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .hub-card-footer-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      margin-bottom: 8px;
+    }
+
+    .hub-card-footer-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-dark-text);
+    }
+
+    .hub-card-footer-title-dark,
+    .hub-card-footer-desc-dark {
+      color: var(--color-white);
+    }
+
+    /* ──────────────────────────────────────────────
+       WHAT'S NEW SECTION
+    ────────────────────────────────────────────── */
+    .whats-new {
+      background: var(--color-white);
+      padding-bottom: 80px;
+    }
+
+    .whats-new .section-heading {
+      padding-bottom: 48px;
+    }
+
+    .whats-new-content {
+      padding: 0 220px;
+    }
+
+    /* Full-width feature */
+    .whats-new-full {
+      margin-bottom: 32px;
+    }
+
+    .whats-new-full-image {
+      width: 100%;
+      height: 670px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .whats-new-full-copy {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-top: 24px;
+    }
+
+    .whats-new-full-text { flex: 1; max-width: 1311px; }
+
+    .whats-new-full-headline {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 28px;
+      color: var(--color-black);
+      margin-bottom: 8px;
+    }
+
+    .whats-new-full-sub {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-dark-text);
+      max-width: 567px;
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-black);
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+    .cta-link:hover { opacity: 0.7; }
+
+    .cta-link::after {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 9px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(-45deg);
+    }
+
+    /* 3-column grid */
+    .whats-new-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 488px);
+      gap: 8px;
+    }
+
+    .whats-new-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .whats-new-col-image {
+      width: 100%;
+      height: 366px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .whats-new-col-copy {
+      padding: 24px 0;
+    }
+
+    .whats-new-col-headline {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 28px;
+      color: var(--color-black);
+      margin-bottom: 8px;
+      max-width: 440px;
+    }
+
+    .whats-new-col-sub {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-dark-text);
+      max-width: 440px;
+      margin-bottom: 16px;
+    }
+
+    /* ──────────────────────────────────────────────
+       SOCIAL PROOF SECTION
+    ────────────────────────────────────────────── */
+    .social-proof {
+      position: relative;
+      width: 100%;
+      height: 824px;
+      background: var(--color-black) url('./home-acom-2f0767/social-proof-slide.png') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .social-proof::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 100%);
+      pointer-events: none;
+    }
+
+    .social-proof-slide {
+      position: relative;
+      z-index: 1;
+      padding: 0 220px;
+      max-width: 760px;
+    }
+
+    .social-proof-quote {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 60px;
+      color: var(--color-white);
+      margin-bottom: 32px;
+      letter-spacing: -1.5px;
+    }
+
+    .social-proof-author {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 4px;
+    }
+
+    .social-proof-role {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--color-white);
+      margin-bottom: 32px;
+    }
+
+    .btn-social-proof {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 24px;
+      background: var(--color-white);
+      color: var(--color-black);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 24px;
+      transition: background 0.2s;
+    }
+    .btn-social-proof:hover { background: var(--color-near-white); }
+
+    /* Carousel controls */
+    .carousel-controls {
+      position: absolute;
+      bottom: 40px;
+      right: 220px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-btn:hover {
+      background: var(--color-near-white);
+      transform: scale(1.05);
+    }
+
+    .carousel-btn svg {
+      width: 11px;
+      height: 11px;
+      fill: none;
+      stroke: var(--color-black);
+      stroke-width: 2;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 52px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .carousel-dot.active { background: var(--color-white); }
+
+    /* ──────────────────────────────────────────────
+       NEWS SECTION
+    ────────────────────────────────────────────── */
+    .news {
+      background: var(--color-white);
+      padding: 48px 220px 64px;
+    }
+
+    .news-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .news-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--color-red);
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .news-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-black);
+    }
+
+    .news-list {
+      display: grid;
+      grid-template-columns: repeat(3, 488px);
+      gap: 8px;
+    }
+
+    .news-item {
+      padding: 24px;
+      border-bottom: 1px solid var(--color-gray-border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .news-item-texts {}
+
+    .news-item-headline {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 28px;
+      color: var(--color-black);
+      margin-bottom: 8px;
+    }
+
+    .news-item-sub {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-dark-text);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ──────────────────────────────────────────────
+       PRODUCT ROUTER HERO
+    ────────────────────────────────────────────── */
+    .product-hero {
+      position: relative;
+      width: 100%;
+      height: 1040px;
+      background: var(--color-black) url('./home-acom-2f0767/product-router-hero.png') center 20% / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .product-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.0) 25%,
+        rgba(0,0,0,0.0) 65%,
+        rgba(0,0,0,0.95) 100%
+      );
+      pointer-events: none;
+    }
+
+    .product-hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 0 16px 80px;
+      text-align: center;
+    }
+
+    .product-hero-headline {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 60px;
+      color: var(--color-white);
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .product-hero-sub {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--color-near-white);
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    .btn-see-all {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 24px;
+      background: var(--color-white);
+      color: var(--color-black);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 24px;
+      transition: background 0.2s;
+    }
+    .btn-see-all:hover { background: var(--color-near-white); }
+
+    /* ──────────────────────────────────────────────
+       PRODUCT GRID
+    ────────────────────────────────────────────── */
+    .product-grid {
+      background: var(--color-black);
+      padding: 0 220px 80px;
+    }
+
+    .product-grid-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 488px);
+      gap: 8px;
+    }
+
+    .product-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.25s;
+    }
+    .product-card:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-3px);
+    }
+
+    .product-card-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .product-card-texts {}
+
+    .product-card-name {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--color-white);
+      margin-bottom: 8px;
+      line-height: 28px;
+    }
+
+    .product-card-desc {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      line-height: 20px;
+    }
+
+    /* ──────────────────────────────────────────────
+       AGENTIC SEARCH
+    ────────────────────────────────────────────── */
+    .agentic-search {
+      background: var(--color-black);
+      padding: 40px 124px 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .agentic-search-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 64px;
+    }
+
+    .agentic-search-copy { flex: 1; }
+
+    .agentic-search-eyebrow {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-gray-mid);
+      margin-bottom: 8px;
+    }
+
+    .agentic-search-headline {
+      font-size: 56px;
+      font-weight: 900;
+      color: var(--color-white);
+      line-height: 60px;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .agentic-search-sub {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--color-white);
+      line-height: 26px;
+      margin-bottom: 16px;
+    }
+
+    .agentic-search-input-area {
+      flex: 1;
+      max-width: 768px;
+    }
+
+    .agentic-search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 32px;
+      padding: 0 16px;
+      height: 56px;
+      cursor: text;
+      transition: background 0.2s;
+    }
+    .agentic-search-input-wrap:focus-within {
+      background: rgba(255,255,255,0.16);
+      outline: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .agentic-search-gradient-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #EB1000, #FF6B6B, #FFD700);
+      border-radius: 3px;
+    }
+
+    .agentic-search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--color-white);
+      font-family: var(--font-stack);
+      caret-color: var(--color-white);
+    }
+    .agentic-search-input::placeholder { color: rgba(255,255,255,0.5); }
+
+    .agentic-search-disclaimer {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      line-height: 18px;
+      margin-top: 16px;
+    }
+
+    /* ──────────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────────── */
+    footer {
+      background: var(--color-black);
+      padding: 64px 220px 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .footer-col-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 16px;
+      line-height: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      line-height: 18px;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--color-white); }
+
+    .footer-featured {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 24px;
+    }
+
+    .footer-featured-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-white);
+      white-space: nowrap;
+    }
+
+    .footer-featured-icons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-product-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom-links a {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: var(--color-white); }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ──────────────────────────────────────────────
+       SCROLL ENTRANCE ANIMATIONS
+    ────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Adobe SVG Logo Colors */
+    .icon-firefly   { background: #EB1000; }
+    .icon-acrobat   { background: #B30B00; }
+    .icon-photoshop { background: #001E36; }
+    .icon-premiere  { background: #00005B; }
+    .icon-cc        { background: #DA1F26; }
+    .icon-genstudio { background: #EB1000; }
+    .icon-platform  { background: #000B1D; }
+    .icon-illustrator { background: #330000; }
+    .icon-allproducts { background: #333; }
+    .icon-experience  { background: #EB1000; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════ -->
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
+    <div class="nav-left">
+      <a href="#" class="nav-logo" aria-label="Adobe home">
+        <!-- Adobe wordmark SVG -->
+        <svg viewBox="0 0 67 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M25.42 0h-8.54L8 16h5.17l2.06-4.73h8.24L25.54 16H31L25.42 0zm-7.72 7.5 2.45-5.6 2.46 5.6h-4.91zM0 0v16l6.47-8L0 0zM31.85 0v16l6.47-8-6.47-8z" fill="white"/>
+          <path d="M43.1 0h-4.96v16h4.96c4.71 0 8.01-2.77 8.01-8 0-5.24-3.3-8-8.01-8zm-.12 12.66h-1.25V3.34h1.25c2.96 0 4.52 1.74 4.52 4.66 0 2.93-1.56 4.66-4.52 4.66zM59.78 0c-4.35 0-7.22 3.09-7.22 8s2.87 8 7.22 8c4.34 0 7.22-3.09 7.22-8s-2.88-8-7.22-8zm0 12.72c-2.11 0-3.57-1.79-3.57-4.72 0-2.94 1.46-4.72 3.57-4.72s3.57 1.78 3.57 4.72c0 2.93-1.46 4.72-3.57 4.72z" fill="white"/>
+        </svg>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Products <span class="chevron"></span></a></li>
+        <li><a href="#">Use Cases <span class="chevron"></span></a></li>
+        <li><a href="#">Solutions <span class="chevron"></span></a></li>
+        <li><a href="#">Learn &amp; Support <span class="chevron"></span></a></li>
+        <li><a href="#">Plans</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <div class="nav-icon" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="8" r="5.5" stroke="white" stroke-width="1.5"/>
+          <path d="M12 12L16 16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="nav-icon" aria-label="Account">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4" stroke="white" stroke-width="1.5"/>
+          <path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="nav-icon" aria-label="Apps">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="6" height="6" rx="1.5" fill="white"/>
+          <rect x="11" y="1" width="6" height="6" rx="1.5" fill="white"/>
+          <rect x="1" y="11" width="6" height="6" rx="1.5" fill="white"/>
+          <rect x="11" y="11" width="6" height="6" rx="1.5" fill="white"/>
+        </svg>
+      </div>
+      <a href="#" class="btn-signin">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Acrobat</p>
+      <h1 class="hero-headline">Get documents&nbsp;done. Faster.</h1>
+      <p class="hero-body">Create, edit, share, and sign documents with Acrobat Studio.&nbsp;Edit PDFs, collaborate securely, and move work forward with built-in AI and powerful document tools.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-hero-primary">Learn more</a>
+        <a href="#" class="btn-hero-secondary">Explore plans</a>
+      </div>
+    </div>
+
+    <!-- Tab router at bottom of hero -->
+    <div class="hero-tabs">
+      <div class="hero-tabs-inner" id="hero-tabs">
+        <div class="hero-tab" data-tab="0">
+          <div class="hero-tab-icon" style="background:#DA1F26;"></div>
+          <span class="hero-tab-label">Creativity and design</span>
+        </div>
+        <div class="hero-tab" data-tab="1">
+          <div class="hero-tab-icon" style="background:#EB1000;"></div>
+          <span class="hero-tab-label">Content creation</span>
+        </div>
+        <div class="hero-tab active" data-tab="2">
+          <div class="hero-tab-icon" style="background:#B30B00;"></div>
+          <span class="hero-tab-label">PDF and productivity</span>
+        </div>
+        <div class="hero-tab" data-tab="3">
+          <div class="hero-tab-icon" style="background:#EB1000;"></div>
+          <span class="hero-tab-label">Adobe for Business</span>
+        </div>
+        <div class="hero-tab" data-tab="4">
+          <div class="hero-tab-icon" style="background:#DA1F26;"></div>
+          <span class="hero-tab-label">Students and teachers</span>
+        </div>
+      </div>
+      <div class="hero-tab-play" id="hero-play" aria-label="Play/Pause slideshow">
+        <svg viewBox="0 0 10 12" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1l8 5-8 5V1z"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HUB ROUTER (Optimized Workflows)
+    ════════════════════════════════════════════ -->
+    <section class="hub-router" id="hub-router" aria-label="Optimized Workflows">
+      <div class="section-heading">
+        <p class="section-eyebrow reveal">Optimized Workflows</p>
+        <h2 class="section-title reveal reveal-delay-1">Everything you need to make anything.</h2>
+        <p class="section-body reveal reveal-delay-2">Whether you're a student, social influencer, creative professional, performance marketer, or global brand—Adobe has the apps you need to make it happen.</p>
+        <div class="section-btns reveal reveal-delay-2">
+          <a href="#" class="btn-primary-dark">Get started</a>
+          <a href="#" class="btn-secondary-dark">View all apps</a>
+        </div>
+      </div>
+
+      <!-- Routing Carousel -->
+      <div class="hub-carousel" style="margin-top:40px;" role="list">
+
+        <!-- Firefly -->
+        <a href="#" class="hub-card hub-card-light reveal reveal-delay-1" style="width:294px;" role="listitem">
+          <div class="hub-card-header">
+            <div class="hub-card-icon" style="background:#EB1000;border-radius:5px;"></div>
+            <span class="hub-card-cat hub-card-cat-dark">Creativity and design</span>
+            <span class="hub-card-arrow" style="color:#000;"></span>
+          </div>
+          <img src="./home-acom-2f0767/card-firefly.png" alt="Creative Cloud apps" class="hub-card-image" />
+          <div class="hub-card-footer">
+            <p class="hub-card-footer-title hub-card-footer-title">Next-level creative</p>
+            <p class="hub-card-footer-desc">Do it all with industry-leading apps for design, photo, video, and creative AI.</p>
+          </div>
+        </a>
+
+        <!-- Creative Cloud (dark) -->
+        <a href="#" class="hub-card hub-card-dark reveal reveal-delay-2" style="width:496px;" role="listitem">
+          <div class="hub-card-header">
+            <div class="hub-card-icon" style="background:#EB1000;border-radius:5px;"></div>
+            <span class="hub-card-cat hub-card-cat-light">Content creation</span>
+            <span class="hub-card-arrow" style="color:#fff;"></span>
+          </div>
+          <div class="hub-card-image" style="background:linear-gradient(145deg,#1a1a2e,#16213e,#0f3460);display:flex;align-items:center;justify-content:center;height:394px;">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="30" width="80" height="60" rx="8" fill="rgba(255,255,255,0.08)"/>
+              <rect x="30" y="42" width="50" height="4" rx="2" fill="rgba(255,255,255,0.4)"/>
+              <rect x="30" y="54" width="36" height="4" rx="2" fill="rgba(255,255,255,0.25)"/>
+              <circle cx="85" cy="52" r="20" fill="#EB1000" opacity="0.7"/>
+              <path d="M80 52l6-4v8l-6-4z" fill="white"/>
+            </svg>
+          </div>
+          <div class="hub-card-footer">
+            <p class="hub-card-footer-title hub-card-footer-title-dark">Content made easy</p>
+            <p class="hub-card-footer-desc hub-card-footer-desc-dark">Quickly create and edit images, video, and audio with creative AI.</p>
+          </div>
+        </a>
+
+        <!-- Acrobat -->
+        <a href="#" class="hub-card hub-card-light reveal reveal-delay-2" style="width:294px;" role="listitem">
+          <div class="hub-card-header">
+            <div class="hub-card-icon" style="background:#B30B00;border-radius:5px;"></div>
+            <span class="hub-card-cat hub-card-cat-dark">PDF and productivity</span>
+            <span class="hub-card-arrow" style="color:#000;"></span>
+          </div>
+          <img src="./home-acom-2f0767/card-acrobat.png" alt="Adobe Acrobat PDF tools" class="hub-card-image" style="object-fit:contain;background:#fff;" />
+          <div class="hub-card-footer">
+            <p class="hub-card-footer-title">Documents done faster</p>
+            <p class="hub-card-footer-desc">Edit, sign, and convert PDFs and create polished documents.</p>
+          </div>
+        </a>
+
+        <!-- GenStudio -->
+        <a href="#" class="hub-card hub-card-light reveal reveal-delay-3" style="width:293px;" role="listitem">
+          <div class="hub-card-header">
+            <div class="hub-card-icon" style="background:#EB1000;border-radius:5px;"></div>
+            <span class="hub-card-cat hub-card-cat-dark">Adobe for Business</span>
+            <span class="hub-card-arrow" style="color:#000;"></span>
+          </div>
+          <div class="hub-card-image" style="background:linear-gradient(145deg,#f9f0e6,#f0d9b5);display:flex;align-items:center;justify-content:center;height:394px;">
+            <div style="text-align:center;">
+              <div style="font-size:28px;font-weight:900;color:#cc0000;line-height:1.1;letter-spacing:-1px;">BORN<br>FREE</div>
+              <div style="width:48px;height:28px;background:white;border-radius:4px;margin:16px auto;display:flex;align-items:center;justify-content:center;">
+                <svg width="24" height="14" viewBox="0 0 24 14" fill="none">
+                  <path d="M1 7h22M15 1l7 6-7 6" stroke="#EB1000" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="hub-card-footer">
+            <p class="hub-card-footer-title">Solutions at scale</p>
+            <p class="hub-card-footer-desc">Design and deliver great customer experiences.</p>
+          </div>
+        </a>
+
+        <!-- Students -->
+        <a href="#" class="hub-card hub-card-light reveal reveal-delay-4" style="width:293px;" role="listitem">
+          <div class="hub-card-header">
+            <div class="hub-card-icon" style="background:#DA1F26;border-radius:5px;"></div>
+            <span class="hub-card-cat hub-card-cat-dark">Students and teachers</span>
+            <span class="hub-card-arrow" style="color:#000;"></span>
+          </div>
+          <img src="./home-acom-2f0767/card-students.png" alt="Students and teachers" class="hub-card-image" />
+          <div class="hub-card-footer">
+            <p class="hub-card-footer-title">Learn anything</p>
+            <p class="hub-card-footer-desc">Get the tools to express your ideas while building 21st-century skills.</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         WHAT'S NEW
+    ════════════════════════════════════════════ -->
+    <section class="whats-new" id="whats-new" aria-label="What's New">
+      <div class="section-heading">
+        <p class="section-eyebrow reveal">Features and Releases</p>
+        <h2 class="section-title reveal reveal-delay-1">Explore what's new.</h2>
+        <p class="section-body reveal reveal-delay-2">Discover the latest product features from Adobe.</p>
+        <div class="section-btns reveal reveal-delay-2">
+          <a href="#" class="btn-primary-dark">Explore features</a>
+          <a href="#" class="btn-secondary-dark">See all releases</a>
+        </div>
+      </div>
+
+      <div class="whats-new-content" style="padding-top:48px;">
+
+        <!-- Full-width Firefly feature -->
+        <div class="whats-new-full reveal">
+          <img
+            src="./home-acom-2f0767/whats-new-hero.png"
+            alt="Edit images in an instant with Firefly"
+            class="whats-new-full-image"
+          />
+          <div class="whats-new-full-copy">
+            <div class="whats-new-full-text">
+              <h3 class="whats-new-full-headline">Edit images in an instant.</h3>
+              <p class="whats-new-full-sub">Fill, remove, expand, or upscale imagery with total control. AI tools in the Firefly image editor make complex adjustments simple.</p>
+            </div>
+            <a href="#" class="cta-link">Explore Firefly</a>
+          </div>
+        </div>
+
+        <!-- 3-column grid -->
+        <div class="whats-new-cols">
+
+          <div class="whats-new-col reveal">
+            <img src="./home-acom-2f0767/whats-new-col1.png" alt="PDF Spaces in Adobe Acrobat" class="whats-new-col-image" />
+            <div class="whats-new-col-copy">
+              <h3 class="whats-new-col-headline">Unlock insights and next steps with PDF Spaces.</h3>
+              <p class="whats-new-col-sub">Transform files and links into a conversational knowledge hub. With PDF Spaces, you can chat with your docs for faster insights with citations...</p>
+              <a href="#" class="cta-link">Explore Acrobat</a>
+            </div>
+          </div>
+
+          <div class="whats-new-col reveal reveal-delay-1">
+            <img src="./home-acom-2f0767/whats-new-col2.png" alt="Generative composition in Photoshop" class="whats-new-col-image" />
+            <div class="whats-new-col-copy">
+              <h3 class="whats-new-col-headline">Generative composition with Harmonize.</h3>
+              <p class="whats-new-col-sub">Instantly blend people and objects into any background. Harmonize matches the lighting, shadows, colors, and other details for a seamless scene in seconds.</p>
+              <a href="#" class="cta-link">Explore Photoshop</a>
+            </div>
+          </div>
+
+          <div class="whats-new-col reveal reveal-delay-2">
+            <img src="./home-acom-2f0767/whats-new-col3.png" alt="Pencil tool in Illustrator" class="whats-new-col-image" />
+            <div class="whats-new-col-copy">
+              <h3 class="whats-new-col-headline">Draw with pro precision.</h3>
+              <p class="whats-new-col-sub">Unlock total control with the enhanced Pencil tool. Now with live preview, you can draw with smoother strokes and render effects in real time.</p>
+              <a href="#" class="cta-link">Explore Illustrator</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SOCIAL PROOF (Testimonial Carousel)
+    ════════════════════════════════════════════ -->
+    <section class="social-proof" id="social-proof" aria-label="Customer testimonials">
+
+      <div class="social-proof-slide" id="testimonial-slide">
+        <blockquote class="social-proof-quote">"Firefly helped me unlock the true speed of my creativity."</blockquote>
+        <p class="social-proof-author">Noah Spence</p>
+        <p class="social-proof-role">Digital Creator, Studio Spence</p>
+        <a href="#" class="btn-social-proof">Create with Firefly</a>
+      </div>
+
+      <!-- Dots -->
+      <div class="carousel-dots" role="tablist" aria-label="Testimonial navigation">
+        <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Testimonial 1"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 2"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 3"></button>
+      </div>
+
+      <!-- Prev / Next -->
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Previous testimonial">
+          <svg viewBox="0 0 11 11">
+            <polyline points="7,2 3,5.5 7,9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="carousel-btn" id="carousel-next" aria-label="Next testimonial">
+          <svg viewBox="0 0 11 11">
+            <polyline points="4,2 8,5.5 4,9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         NEWS
+    ════════════════════════════════════════════ -->
+    <section class="news" id="news" aria-label="Adobe News">
+      <div class="news-header">
+        <div class="news-icon" aria-hidden="true"></div>
+        <h2 class="news-title">Adobe News</h2>
+      </div>
+
+      <div class="news-list">
+
+        <article class="news-item reveal">
+          <div class="news-item-texts">
+            <h3 class="news-item-headline">Adobe apps are top choice for Sundance filmmakers.</h3>
+            <p class="news-item-sub">85% of Sundance Filmmakers Choose Adobe as Company Releases New AI Video Innovations and $10M in Creator Grants.</p>
+          </div>
+          <a href="#" class="cta-link">Read story</a>
+        </article>
+
+        <article class="news-item reveal reveal-delay-1">
+          <div class="news-item-texts">
+            <h3 class="news-item-headline">Adobe's new Incubator creates the future.</h3>
+            <p class="news-item-sub">At Adobe, innovating for our customers has always been our north star. From pioneering digital creativity to reimagining the future of customer engagement, our mission has been to change the world through personalized digital experiences.</p>
+          </div>
+          <a href="#" class="cta-link">Read story</a>
+        </article>
+
+        <article class="news-item reveal reveal-delay-2">
+          <div class="news-item-texts">
+            <h3 class="news-item-headline">Adobe partners with OpenAI to test ads in ChatGPT</h3>
+            <p class="news-item-sub">Adobe empowers marketing professionals with AI-driven Customer Experience Orchestration to create, deliver and optimize personalized digital experiences.</p>
+          </div>
+          <a href="#" class="cta-link">Read story</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PRODUCT ROUTER HERO
+    ════════════════════════════════════════════ -->
+    <section class="product-hero" id="product-hero" aria-label="All Products">
+      <div class="product-hero-content">
+        <h2 class="product-hero-headline">Tools that work for you.</h2>
+        <p class="product-hero-sub">Bring any idea to life with products for creators, businesses, and beyond.</p>
+        <a href="#" class="btn-see-all">See all products</a>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PRODUCT GRID
+    ════════════════════════════════════════════ -->
+    <section class="product-grid" id="product-grid" aria-label="Adobe Products">
+      <div class="product-grid-inner">
+
+        <!-- Firefly -->
+        <a href="#" class="product-card reveal">
+          <div class="product-card-icon icon-firefly"></div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">Firefly</h3>
+            <p class="product-card-desc">Create and enhance images, video, and audio with AI-powered tools.</p>
+          </div>
+        </a>
+
+        <!-- Acrobat -->
+        <a href="#" class="product-card reveal reveal-delay-1">
+          <div class="product-card-icon icon-acrobat"></div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">Adobe Acrobat</h3>
+            <p class="product-card-desc">Quickly and easily create, edit, sign, and manage your PDFs anywhere.</p>
+          </div>
+        </a>
+
+        <!-- Photoshop -->
+        <a href="#" class="product-card reveal reveal-delay-2">
+          <div class="product-card-icon icon-photoshop"></div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">Photoshop</h3>
+            <p class="product-card-desc">Create gorgeous images, rich graphics, and incredible art.</p>
+          </div>
+        </a>
+
+        <!-- Premiere -->
+        <a href="#" class="product-card reveal reveal-delay-1">
+          <div class="product-card-icon icon-premiere"></div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">Premiere</h3>
+            <p class="product-card-desc">Create everything from social clips to feature films with the leading video editor.</p>
+          </div>
+        </a>
+
+        <!-- Creative Cloud -->
+        <a href="#" class="product-card reveal reveal-delay-2">
+          <div class="product-card-icon icon-cc" style="display:flex;align-items:center;justify-content:center;background:#DA1F26;">
+            <span style="font-size:8px;font-weight:900;color:white;line-height:1;">CC</span>
+          </div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">Creative Cloud</h3>
+            <p class="product-card-desc">Get 20+ apps, including Photoshop, Illustrator, Premiere Pro, and Acrobat Pro.</p>
+          </div>
+        </a>
+
+        <!-- GenStudio -->
+        <a href="#" class="product-card reveal reveal-delay-3">
+          <div class="product-card-icon icon-genstudio"></div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">GenStudio for Performance Marketing</h3>
+            <p class="product-card-desc">Scale your content supply chain.</p>
+          </div>
+        </a>
+
+        <!-- All Products -->
+        <a href="#" class="product-card reveal">
+          <div class="product-card-icon" style="background:rgba(255,255,255,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="1" y="1" width="6" height="6" rx="1" fill="white"/>
+              <rect x="9" y="1" width="6" height="6" rx="1" fill="white"/>
+              <rect x="1" y="9" width="6" height="6" rx="1" fill="white"/>
+              <rect x="9" y="9" width="6" height="6" rx="1" fill="white"/>
+            </svg>
+          </div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">All products</h3>
+            <p class="product-card-desc">See all Adobe products.</p>
+          </div>
+        </a>
+
+        <!-- Business Products -->
+        <a href="#" class="product-card reveal reveal-delay-1">
+          <div class="product-card-icon icon-platform"></div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">Business Products</h3>
+            <p class="product-card-desc">Adobe solutions integrate our best-in-class products to help you tackle pressing business challenges.</p>
+          </div>
+        </a>
+
+        <!-- Illustrator -->
+        <a href="#" class="product-card reveal reveal-delay-2">
+          <div class="product-card-icon icon-illustrator"></div>
+          <div class="product-card-texts">
+            <h3 class="product-card-name">Illustrator</h3>
+            <p class="product-card-desc">Create beautiful designs, icons, and more, then use them anyplace at any size.</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         AGENTIC SEARCH
+    ════════════════════════════════════════════ -->
+    <section class="agentic-search" id="agentic-search" aria-label="Adobe AI Search">
+      <div class="agentic-search-inner">
+
+        <div class="agentic-search-copy reveal">
+          <p class="agentic-search-eyebrow">Adobe is for everyone</p>
+          <h2 class="agentic-search-headline">Find what you're looking for.</h2>
+          <p class="agentic-search-sub">Get answers, find assets, access your work and create.</p>
+        </div>
+
+        <div class="agentic-search-input-area reveal reveal-delay-1">
+          <div class="agentic-search-input-wrap" id="search-wrap">
+            <div class="agentic-search-gradient-icon" aria-hidden="true"></div>
+            <input
+              class="agentic-search-input"
+              id="search-input"
+              type="text"
+              placeholder="Ask anything"
+              aria-label="Ask Adobe AI anything"
+            />
+          </div>
+          <p class="agentic-search-disclaimer">Use of this beta AI chatbot is subject to Adobe's Privacy Policy. Don't share sensitive data. AI responses are not your Content, may be inaccurate and any offers provided are non-binding. Generative AI Terms.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer aria-label="Site footer">
+    <div class="footer-links">
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">For individuals &amp; small business</h3>
+        <ul>
+          <li><a href="#">Creative AI</a></li>
+          <li><a href="#">Photography</a></li>
+          <li><a href="#">Design &amp; Illustration</a></li>
+          <li><a href="#">Video &amp; animation</a></li>
+          <li><a href="#">PDF</a></li>
+          <li><a href="#">3D</a></li>
+          <li><a href="#">Elements Family</a></li>
+          <li><a href="#">Stock images &amp; video</a></li>
+          <li><a href="#">View all products</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">For medium &amp; large business</h3>
+        <ul>
+          <li><a href="#">Personalization at scale</a></li>
+          <li><a href="#">Content supply chain</a></li>
+          <li><a href="#">Unified customer experience</a></li>
+          <li><a href="#">Creativity and production</a></li>
+          <li><a href="#">B2B GTM orchestration</a></li>
+          <li><a href="#">View all products</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">For Organizations</h3>
+        <ul>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Nonprofits</a></li>
+          <li><a href="#">Government</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Support</h3>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Download and install</a></li>
+          <li><a href="#">Adobe Community</a></li>
+          <li><a href="#">Adobe Learn</a></li>
+          <li><a href="#">Medium &amp; large business support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Contact</h3>
+        <ul>
+          <li><a href="#">Chat with sales</a></li>
+          <li><a href="#">Request information</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Adobe</h3>
+        <ul>
+          <li><a href="#">Log into your account</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Newsroom</a></li>
+          <li><a href="#">Corporate Responsibility</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Trust Center</a></li>
+          <li><a href="#">Adobe Blog</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Featured Products -->
+    <div class="footer-featured">
+      <span class="footer-featured-title">Featured Products</span>
+      <div class="footer-featured-icons" aria-label="Featured Adobe products">
+        <div class="footer-product-icon icon-firefly" title="Firefly"></div>
+        <div class="footer-product-icon icon-acrobat" title="Acrobat"></div>
+        <div class="footer-product-icon icon-photoshop" title="Photoshop"></div>
+        <div class="footer-product-icon icon-premiere" title="Premiere Pro"></div>
+        <div class="footer-product-icon icon-illustrator" title="Illustrator"></div>
+        <div class="footer-product-icon icon-cc" title="Creative Cloud"></div>
+        <div class="footer-product-icon" style="background:#330000;border-radius:4px;width:24px;height:24px;" title="InDesign"></div>
+        <div class="footer-product-icon" style="background:#470137;border-radius:4px;width:24px;height:24px;" title="After Effects"></div>
+      </div>
+    </div>
+
+    <!-- Bottom links -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie preferences</a>
+        <a href="#">Do not sell my personal information</a>
+        <a href="#">AdChoices</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <p class="footer-copyright">Copyright &copy; 2026 Adobe. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ─────────────────────────────────────────
+         PREVENT DEFAULT ON ALL ANCHORS
+      ───────────────────────────────────────── */
+      document.querySelectorAll('a[href="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+        });
+      });
+
+      /* ─────────────────────────────────────────
+         STICKY NAV — scroll-based class toggle
+      ───────────────────────────────────────── */
+      const nav = document.getElementById('main-nav');
+      const onScroll = () => {
+        if (window.scrollY > 64) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      /* ─────────────────────────────────────────
+         HERO TAB ROUTER — active tab switching
+      ───────────────────────────────────────── */
+      const heroTabEls = document.querySelectorAll('.hero-tab');
+      const playPauseBtn = document.getElementById('hero-play');
+      let isPlaying = false;
+      let tabInterval = null;
+      let activeTabIndex = 2; // PDF tab is default active
+
+      const heroContent = {
+        0: {
+          eyebrow: 'Creative Cloud',
+          headline: 'Create anything you imagine.',
+          body: 'Get 20+ creative apps, including Photoshop, Illustrator, Premiere Pro, and more.',
+        },
+        1: {
+          eyebrow: 'Adobe Firefly',
+          headline: 'AI that works for you.',
+          body: 'Create and enhance images, video, and audio with AI-powered tools designed for creators.',
+        },
+        2: {
+          eyebrow: 'Acrobat',
+          headline: 'Get documents done. Faster.',
+          body: 'Create, edit, share, and sign documents with Acrobat Studio. Edit PDFs, collaborate securely, and move work forward with built-in AI and powerful document tools.',
+        },
+        3: {
+          eyebrow: 'Adobe for Business',
+          headline: 'Scale your content. Grow your business.',
+          body: 'Enterprise-grade creative and marketing solutions to power your entire content supply chain.',
+        },
+        4: {
+          eyebrow: 'Students & Teachers',
+          headline: 'Learn with the best tools.',
+          body: 'Empower students and educators with industry-leading creative tools at a special price.',
+        },
+      };
+
+      const heroEyebrow = document.querySelector('.hero-eyebrow');
+      const heroHeadline = document.querySelector('.hero-headline');
+      const heroBody = document.querySelector('.hero-body');
+
+      function setActiveTab(idx) {
+        activeTabIndex = idx;
+        heroTabEls.forEach((tab, i) => {
+          tab.classList.toggle('active', i === idx);
+        });
+        const data = heroContent[idx];
+        if (data) {
+          heroEyebrow.textContent = data.eyebrow;
+          heroHeadline.textContent = data.headline;
+          heroBody.textContent = data.body;
+        }
+      }
+
+      heroTabEls.forEach((tab, i) => {
+        tab.addEventListener('click', () => {
+          setActiveTab(i);
+          stopAutoplay();
+        });
+      });
+
+      function startAutoplay() {
+        isPlaying = true;
+        playPauseBtn.innerHTML = `<svg viewBox="0 0 10 12" fill="white" width="10" height="12"><rect x="1" y="1" width="3" height="10" rx="1"/><rect x="6" y="1" width="3" height="10" rx="1"/></svg>`;
+        tabInterval = setInterval(() => {
+          setActiveTab((activeTabIndex + 1) % heroTabEls.length);
+        }, 3500);
+      }
+
+      function stopAutoplay() {
+        isPlaying = false;
+        clearInterval(tabInterval);
+        playPauseBtn.innerHTML = `<svg viewBox="0 0 10 12" fill="white" width="10" height="12"><path d="M1 1l8 5-8 5V1z"/></svg>`;
+      }
+
+      playPauseBtn.addEventListener('click', () => {
+        if (isPlaying) stopAutoplay();
+        else startAutoplay();
+      });
+
+      /* ─────────────────────────────────────────
+         SOCIAL PROOF CAROUSEL
+      ───────────────────────────────────────── */
+      const testimonials = [
+        {
+          quote: '"Firefly helped me unlock the true speed of my creativity."',
+          author: 'Noah Spence',
+          role: 'Digital Creator, Studio Spence',
+          cta: 'Create with Firefly',
+        },
+        {
+          quote: '"Adobe tools have transformed how I deliver work to clients."',
+          author: 'Maya Chen',
+          role: 'Graphic Designer, Freelance',
+          cta: 'Explore Creative Cloud',
+        },
+        {
+          quote: '"With Acrobat, signing and sharing documents is completely seamless."',
+          author: 'James Robertson',
+          role: 'Operations Director, TechCorp',
+          cta: 'Explore Acrobat',
+        },
+      ];
+
+      const quoteEl = document.querySelector('.social-proof-quote');
+      const authorEl = document.querySelector('.social-proof-author');
+      const roleEl = document.querySelector('.social-proof-role');
+      const ctaEl = document.querySelector('.btn-social-proof');
+      const dots = document.querySelectorAll('.carousel-dot');
+      let currentSlide = 0;
+
+      function goToSlide(idx) {
+        currentSlide = (idx + testimonials.length) % testimonials.length;
+        const t = testimonials[currentSlide];
+
+        // fade out
+        const slide = document.getElementById('testimonial-slide');
+        slide.style.opacity = '0';
+        slide.style.transform = 'translateX(-20px)';
+
+        setTimeout(() => {
+          quoteEl.textContent = t.quote;
+          authorEl.textContent = t.author;
+          roleEl.textContent = t.role;
+          ctaEl.textContent = t.cta;
+          slide.style.transition = 'none';
+          slide.style.opacity = '0';
+          slide.style.transform = 'translateX(20px)';
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              slide.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+              slide.style.opacity = '1';
+              slide.style.transform = 'translateX(0)';
+            });
+          });
+        }, 250);
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+          dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
+        });
+      }
+
+      // add transition style to slide
+      const slideEl = document.getElementById('testimonial-slide');
+      slideEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+      document.getElementById('carousel-prev').addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+      });
+      document.getElementById('carousel-next').addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
+      });
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          goToSlide(i);
+        });
+      });
+
+      /* ─────────────────────────────────────────
+         SCROLL-ENTRANCE ANIMATIONS
+      ───────────────────────────────────────── */
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+        revealEls.forEach(el => observer.observe(el));
+      } else {
+        // Fallback: show all
+        revealEls.forEach(el => el.classList.add('in-view'));
+      }
+
+      /* ─────────────────────────────────────────
+         SEARCH INPUT — focus and submit behavior
+      ───────────────────────────────────────── */
+      const searchInput = document.getElementById('search-input');
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const val = searchInput.value.trim();
+          if (val) {
+            searchInput.value = '';
+            searchInput.placeholder = 'Searching…';
+            setTimeout(() => {
+              searchInput.placeholder = 'Ask anything';
+            }, 1500);
+          }
+        }
+      });
+
+      /* ─────────────────────────────────────────
+         ACTIVE NAV LINK — IntersectionObserver
+      ───────────────────────────────────────── */
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => link.style.opacity = '');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(section => sectionObserver.observe(section));
+
+    }); // end DOMContentLoaded
+  </script>
+
+</body>
+</html>
