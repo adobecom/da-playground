@@ -389,7 +389,14 @@ function buildSidebar(onNewClick, onEntryClick, onPendingClick) {
         el('span', { class: 'sidebar-time' }, entry.time),
       );
       const dot = el('div', { class: 'sidebar-dot' });
-      item.append(badge, info, dot);
+      const removeBtn = el('button', { class: 'sidebar-remove', type: 'button', title: 'Remove' }, '×');
+      removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        history.splice(idx, 1);
+        saveHistory(history);
+        renderList(history);
+      });
+      item.append(badge, info, dot, removeBtn);
       item.addEventListener('click', () => {
         document.querySelectorAll('.sidebar-item').forEach((i) => i.classList.remove('active'));
         item.classList.add('active');
