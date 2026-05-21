@@ -813,7 +813,7 @@ function buildUI(context, token, username) {
     pipeStats.classList.add('visible');
   }
 
-  function showResult(value, summary, blockBranch, usage, mode) {
+  function showResult(value, summary, blockBranch, usage, mode, daUrl) {
     runBtn.disabled = false;
     snowflakeRunBtn.disabled = false;
     modeButtons.forEach((b) => { b.disabled = false; });
@@ -834,6 +834,14 @@ function buildUI(context, token, username) {
         const openBtn = el('button', { class: 'btn', type: 'button' }, 'Open preview →');
         openBtn.addEventListener('click', () => window.open(value, '_blank', 'noopener'));
         pipeResultActions.append(chip, openBtn);
+
+        // Show DA edit link when it differs from the preview URL
+        if (daUrl && daUrl !== value) {
+          const daChip = el('a', { class: 'result-url-chip result-url-chip--da', href: daUrl, target: '_blank', rel: 'noopener' }, daUrl);
+          const daBtn = el('button', { class: 'btn btn-ghost', type: 'button' }, 'Edit in DA →');
+          daBtn.addEventListener('click', () => window.open(daUrl, '_blank', 'noopener'));
+          pipeResultActions.append(daChip, daBtn);
+        }
       } else if (isSnowflake) {
         pipeResultActions.append(el('span', { class: 'result-url-chip result-url-chip--path' }, value));
       }
@@ -895,6 +903,7 @@ function buildUI(context, token, username) {
               value: job.previewUrl || job.filePath,
               summary: job.summary,
               blockBranch: job.blockBranch,
+              daUrl: job.daUrl,
               usage: job.usage,
               mode: job.mode ?? currentMode,
             });
@@ -973,11 +982,11 @@ function buildUI(context, token, username) {
       if (!res.ok) throw new Error(`Failed to start job (HTTP ${res.status})`);
       const { jobId } = await res.json();
 
-      const { value, summary, blockBranch, usage, mode } = await pollJob(serverUrl, jobId);
+      const { value, summary, blockBranch, daUrl, usage, mode } = await pollJob(serverUrl, jobId);
       resultValue = value;
       resultMode = mode;
 
-      showResult(value, summary, blockBranch, usage, mode);
+      showResult(value, summary, blockBranch, usage, mode, daUrl);
 
       // Derive slug for sidebar
       if (value) {
@@ -995,6 +1004,7 @@ function buildUI(context, token, username) {
         slug,
         summary,
         blockBranch,
+        daUrl,
         usage,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isError: false,
