@@ -329,7 +329,7 @@ function buildPipelineHtmlToDA() {
 }
 
 // ── Sidebar ───────────────────────────────────────────────────────────────────
-function buildSidebar(onNewClick, onEntryClick) {
+function buildSidebar(onNewClick, onEntryClick, onPendingClick) {
   const sidebar = el('div', { class: 'sidebar' });
   const header = el('div', { class: 'sidebar-header' });
   const title = el('span', { class: 'sidebar-title' }, 'Sessions');
@@ -351,12 +351,34 @@ function buildSidebar(onNewClick, onEntryClick) {
     try { localStorage.setItem(HISTORY_KEY, JSON.stringify(entries.slice(0, MAX_HISTORY))); } catch { /* storage unavailable */ }
   }
 
+  let pendingEntry = null;
+
   function renderList(entries) {
-    if (entries.length === 0) {
+    const pendingItems = [];
+    if (pendingEntry) {
+      const item = el('div', { class: 'sidebar-item sidebar-item--pending' });
+      const badgeLabel = pendingEntry.mode === 'da' ? 'DA' : pendingEntry.mode === 'html-to-da' ? 'H→DA' : '❄';
+      const badgeClass = `sidebar-badge sidebar-badge-${pendingEntry.mode === 'html-to-da' ? 'html-to-da' : pendingEntry.mode}`;
+      const badge = el('span', { class: badgeClass }, badgeLabel);
+      const info = el('div', { class: 'sidebar-item-info' },
+        el('span', { class: 'sidebar-slug' }, pendingEntry.slug || 'running…'),
+        el('span', { class: 'sidebar-time' }, pendingEntry.time),
+      );
+      const dot = el('div', { class: 'sidebar-dot' });
+      item.append(badge, info, dot);
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-item').forEach((i) => i.classList.remove('active'));
+        item.classList.add('active');
+        onPendingClick?.();
+      });
+      pendingItems.push(item);
+    }
+
+    if (entries.length === 0 && !pendingEntry) {
       list.replaceChildren(emptyMsg);
       return;
     }
-    list.replaceChildren(...entries.map((entry, idx) => {
+    list.replaceChildren(...pendingItems, ...entries.map((entry, idx) => {
       const isUrl = entry.value?.startsWith('http');
       const item = el('div', { class: `sidebar-item${entry.isError ? ' sidebar-item--error' : ''}` });
       const badgeLabel = entry.mode === 'da' ? 'DA' : entry.mode === 'html-to-da' ? 'H→DA' : '❄';
@@ -387,6 +409,17 @@ function buildSidebar(onNewClick, onEntryClick) {
       if (history.length > MAX_HISTORY) history = history.slice(0, MAX_HISTORY);
       saveHistory(history);
       renderList(history);
+    },
+    setPendingEntry(entry) {
+      pendingEntry = entry;
+      renderList(history);
+    },
+    markPendingActive() {
+      const pendingItem = list.querySelector('.sidebar-item--pending');
+      if (pendingItem) {
+        document.querySelectorAll('.sidebar-item').forEach((i) => i.classList.remove('active'));
+        pendingItem.classList.add('active');
+      }
     },
     markActive(idx) {
       const items = list.querySelectorAll('.sidebar-item');
@@ -464,6 +497,10 @@ function buildPreviewPanel() {
 function buildUI(context, token, username) {
   let currentMode = 'da';
   let currentServerUrl = localStorage.getItem(STORAGE_KEY) || 'http://localhost:3002';
+  let isViewingActiveJob = false;
+  let savedLiveDag = null;
+  let savedLiveRobot = null;
+  let savedLogChildren = null;
   let dagInstance = buildPipelineDA();
   let robotInstance = null;
 
@@ -598,6 +635,14 @@ function buildUI(context, token, username) {
     resetPipeline();
     showPipeline();
     robotInstance.setState('working');
+    isViewingActiveJob = true;
+    sidebarInstance.setPendingEntry({
+      mode: 'snowflake',
+      figmaUrl: sfPrimaryFigmaUrl,
+      slug: 'running…',
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    });
+    sidebarInstance.markPendingActive();
     try {
       const res = await fetch(`${serverUrl}/jobs`, {
         method: 'POST',
@@ -614,13 +659,21 @@ function buildUI(context, token, username) {
       if (!res.ok) throw new Error(`Failed to start job (HTTP ${res.status})`);
       const { jobId } = await res.json();
       const { value, summary, blockBranch, usage, mode } = await pollJob(serverUrl, jobId);
-      showResult(value, summary, blockBranch, usage, mode);
+      if (isViewingActiveJob) {
+        showResult(value, summary, blockBranch, usage, mode);
+        if (value) previewPanel.showPreview(value, mode, serverUrl);
+      }
+      isViewingActiveJob = false;
+      savedLiveDag = null; savedLiveRobot = null; savedLogChildren = null;
+      sidebarInstance.setPendingEntry(null);
       let slug = value ? value.split('/').at(-1).replace(/\.html$/, '') : '—';
       sidebarInstance.addEntry({ mode, figmaUrl: sfPrimaryFigmaUrl, value, slug, summary, blockBranch,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isError: false, ts: Date.now() });
-      if (value) previewPanel.showPreview(value, mode, serverUrl);
     } catch (e) {
-      showResult('error', e.message, null, null, 'snowflake');
+      if (isViewingActiveJob) showResult('error', e.message, null, null, 'snowflake');
+      isViewingActiveJob = false;
+      savedLiveDag = null; savedLiveRobot = null; savedLogChildren = null;
+      sidebarInstance.setPendingEntry(null);
       sidebarInstance.addEntry({ mode: 'snowflake', figmaUrl: sfPrimaryFigmaUrl, value: null, slug: '—',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isError: true, ts: Date.now() });
     } finally {
@@ -683,6 +736,27 @@ function buildUI(context, token, username) {
   const sidebarInstance = buildSidebar(
     () => resetForm(),
     (entry) => { restoreSession(entry); },
+    () => {
+      isViewingActiveJob = true;
+      if (savedLiveDag) {
+        dagInstance.el.replaceWith(savedLiveDag.el);
+        dagInstance = savedLiveDag;
+        savedLiveDag = null;
+        robotInstance.el.replaceWith(savedLiveRobot.el);
+        robotInstance = savedLiveRobot;
+        savedLiveRobot = null;
+        const newEntries = [...logList.children];
+        logList.replaceChildren(...savedLogChildren, ...newEntries);
+        savedLogChildren = null;
+        pipeResultActions.replaceChildren();
+        pipeStats.replaceChildren();
+        pipeStats.classList.remove('visible');
+      }
+      pipelinePanel.classList.add('visible');
+      runBtn.disabled = true;
+      snowflakeRunBtn.disabled = true;
+      modeButtons.forEach((b) => { b.disabled = true; });
+    },
   );
 
   // ── Layout assembly ──
@@ -732,6 +806,12 @@ function buildUI(context, token, username) {
   }
 
   function restoreSession(entry) {
+    if (isViewingActiveJob) {
+      savedLiveDag = dagInstance;
+      savedLiveRobot = robotInstance;
+      savedLogChildren = [...logList.children];
+    }
+    isViewingActiveJob = false;
     const isPrimary = entry.mode === 'da' || entry.mode === 'html-to-da';
     if (currentMode !== entry.mode) {
       currentMode = isPrimary ? entry.mode : currentMode;
@@ -749,6 +829,7 @@ function buildUI(context, token, username) {
     currentMode = savedMode;
 
     runBtn.disabled = false;
+    snowflakeRunBtn.disabled = false;
     modeButtons.forEach((b) => { b.disabled = false; });
     pipelinePanel.classList.add('visible');
     robotInstance.setState('idle');
@@ -865,6 +946,7 @@ function buildUI(context, token, username) {
     let errs = 0;
     let seenMsgCount = 0;
     const activeDag = dagInstance;
+    const activeRobot = robotInstance;
 
     return new Promise((resolve, reject) => {
       const interval = setInterval(async () => {
@@ -877,15 +959,15 @@ function buildUI(context, token, username) {
           // Update DAG
           activeDag.update(job);
 
-          // Update robot state
-          if (robotInstance) {
+          // Update robot state (use captured reference so resetPipeline doesn't affect it)
+          if (activeRobot) {
             const stage = job.stage ?? 0;
             const workers = job.workers ?? {};
             const isParallel = job.mode === 'da' && stage === 1
               && (workers['build-blocks'] === 'running' || workers['extract'] === 'running');
-            if (job.status === 'done') robotInstance.setState('done');
-            else if (isParallel) robotInstance.setState('parallel');
-            else robotInstance.setState('working');
+            if (job.status === 'done') activeRobot.setState('done');
+            else if (isParallel) activeRobot.setState('parallel');
+            else activeRobot.setState('working');
           }
 
           // Append new log messages
@@ -962,6 +1044,14 @@ function buildUI(context, token, username) {
     resetPipeline();
     showPipeline();
     robotInstance.setState('working');
+    isViewingActiveJob = true;
+    sidebarInstance.setPendingEntry({
+      mode: currentMode,
+      figmaUrl: primaryFigmaUrl,
+      slug: 'running…',
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    });
+    sidebarInstance.markPendingActive();
 
     let slug = '—';
     let resultMode = currentMode;
@@ -986,7 +1076,13 @@ function buildUI(context, token, username) {
       resultValue = value;
       resultMode = mode;
 
-      showResult(value, summary, blockBranch, usage, mode, daUrl);
+      if (isViewingActiveJob) {
+        showResult(value, summary, blockBranch, usage, mode, daUrl);
+        previewPanel.showPreview(value, mode, serverUrl);
+      }
+      isViewingActiveJob = false;
+      savedLiveDag = null; savedLiveRobot = null; savedLogChildren = null;
+      sidebarInstance.setPendingEntry(null);
 
       // Derive slug for sidebar
       if (value) {
@@ -1010,11 +1106,11 @@ function buildUI(context, token, username) {
         isError: false,
         ts: Date.now(),
       });
-
-      // Show preview
-      previewPanel.showPreview(value, mode, serverUrl);
     } catch (e) {
-      showResult('error', e.message, null, null, currentMode);
+      if (isViewingActiveJob) showResult('error', e.message, null, null, currentMode);
+      isViewingActiveJob = false;
+      savedLiveDag = null; savedLiveRobot = null; savedLogChildren = null;
+      sidebarInstance.setPendingEntry(null);
       sidebarInstance.addEntry({
         mode: currentMode,
         figmaUrl: primaryFigmaUrl,

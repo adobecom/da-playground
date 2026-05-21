@@ -274,6 +274,10 @@ body {
   background: var(--green);
 }
 .sidebar-item--error .sidebar-dot { background: var(--red); }
+.sidebar-item--pending .sidebar-dot {
+  background: var(--accent);
+  animation: pipe-pulse 1.3s ease-in-out infinite;
+}
 
 /* ════════════════════════════════════════════════════════
    MAIN AREA
