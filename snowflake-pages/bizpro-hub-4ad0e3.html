@@ -1,0 +1,2155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizPro Hub — PDF &amp; Productivity | Adobe Acrobat</title>
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      --s2a-color-gray-25: #fff;
+      --s2a-color-gray-50: #f8f8f8;
+      --s2a-color-gray-100: #e9e9e9;
+      --s2a-color-gray-200: #f5f5f5;
+      --s2a-color-gray-300: #f6f6f6;
+      --s2a-color-gray-500: #8f8f8f;
+      --s2a-color-gray-600: #4f4f4f;
+      --s2a-color-gray-800: #292929;
+      --s2a-color-gray-900: #131313;
+      --s2a-color-gray-1000: #000;
+      --s2a-color-red-700: #ff513d;
+      --s2a-color-brand-adobe-red: #eb1000;
+      --s2a-spacing-8: 8px;
+      --s2a-spacing-16: 16px;
+      --s2a-spacing-24: 24px;
+      --s2a-spacing-32: 32px;
+      --s2a-spacing-48: 48px;
+      --s2a-spacing-64: 64px;
+      --s2a-spacing-80: 80px;
+      --s2a-layout-sm: 80px;
+      --s2a-layout-md: 96px;
+      --s2a-layout-lg: 124px;
+      --s2a-border-radius-md: 16px;
+      --s2a-border-radius-round: 999px;
+      --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --page-max: 1440px;
+      --nav-h: 64px;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--s2a-color-gray-25);
+      color: var(--s2a-color-gray-1000);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; cursor: pointer; font: inherit; }
+    ul, ol { list-style: none; }
+
+    /* ── Utility ── */
+    .eyebrow {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--s2a-color-gray-900);
+      margin-bottom: 12px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--s2a-color-brand-adobe-red);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: var(--s2a-border-radius-round);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #c50d00; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--s2a-color-gray-1000);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border: 2px solid var(--s2a-color-gray-1000);
+      border-radius: var(--s2a-border-radius-round);
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { background: var(--s2a-color-gray-1000); color: #fff; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--s2a-color-gray-1000);
+      padding: 10px 16px;
+      transition: opacity 0.2s;
+    }
+    .btn-ghost:hover { opacity: 0.7; }
+    .learn-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--s2a-color-gray-1000);
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .learn-more::after { content: '→'; }
+    .learn-more:hover { opacity: 0.6; }
+    .learn-more-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      border-bottom: 1.5px solid #fff;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .learn-more-white::after { content: '→'; }
+    .learn-more-white:hover { opacity: 0.7; }
+
+    /* scroll animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.in-view { opacity: 1; transform: none; }
+
+    /* ── NAV ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .site-header.scrolled {
+      border-color: var(--s2a-color-gray-100);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      gap: 0;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 40px;
+      flex-shrink: 0;
+    }
+    .nav-logo svg { width: 34px; height: 26px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex: 1;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--s2a-color-gray-1000);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-item:hover { background: rgba(0,0,0,0.05); }
+    .nav-item .chevron {
+      width: 10px;
+      height: 6px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(0,0,0,0.16);
+      margin: 0 6px;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .nav-signin {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--s2a-color-gray-1000);
+      padding: 8px 14px;
+      border-radius: 24px;
+      border: 1.5px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .nav-signin:hover { border-color: var(--s2a-color-gray-100); }
+    .nav-pricing {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--s2a-color-gray-1000);
+      padding: 8px 18px;
+      border-radius: 24px;
+      transition: background 0.2s;
+    }
+    .nav-pricing:hover { background: var(--s2a-color-gray-800); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--s2a-color-gray-25);
+      overflow: hidden;
+      position: relative;
+      min-height: 720px;
+    }
+    .hero-text-area {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 72px 8.333% 48px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--s2a-color-gray-1000);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 5.5vw, 80px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--s2a-color-gray-1000);
+      max-width: 780px;
+      margin: 0 auto 24px;
+    }
+    .hero-body {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--s2a-color-gray-900);
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .hero-cta .btn-primary {
+      font-size: 16px;
+      padding: 15px 32px;
+    }
+    .hero-cta .btn-primary svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Hero document collage */
+    .hero-docs {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      align-items: end;
+    }
+    .doc-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .doc-card:hover { transform: translateY(-4px) rotate(0deg) !important; box-shadow: 0 12px 36px rgba(0,0,0,0.16); }
+    .doc-card img { width: 100%; height: 100%; object-fit: cover; }
+
+    .doc-col { display: flex; flex-direction: column; gap: 14px; }
+
+    /* Styled doc placeholders */
+    .doc-placeholder {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+    .doc-placeholder:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.16); }
+    .doc-placeholder .doc-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .doc-placeholder .doc-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hero-center-img {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+      align-self: center;
+      transition: transform 0.3s ease;
+    }
+    .hero-center-img:hover { transform: scale(1.02); }
+    .hero-center-img img { width: 100%; }
+
+    /* ── AUDIENCE ── */
+    .audience {
+      background: var(--s2a-color-gray-25);
+      padding: var(--s2a-layout-md) 8.333%;
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+    .audience-copy {
+      margin-bottom: 48px;
+    }
+    .audience-copy h2 {
+      font-size: clamp(36px, 3.9vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .audience-copy p {
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--s2a-color-gray-900);
+      max-width: 680px;
+    }
+    .audience-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--s2a-color-gray-100);
+    }
+    .audience-tab {
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 24px;
+      color: var(--s2a-color-gray-500);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .audience-tab:hover { color: var(--s2a-color-gray-900); }
+    .audience-tab.active { color: var(--s2a-color-gray-1000); border-bottom-color: var(--s2a-color-gray-1000); }
+
+    .audience-panel { display: none; }
+    .audience-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .audience-panel-text h3 {
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .audience-panel-text p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--s2a-color-gray-900);
+      margin-bottom: 24px;
+      max-width: 420px;
+    }
+    .audience-panel-media {
+      position: relative;
+      border-radius: var(--s2a-border-radius-md);
+      overflow: hidden;
+      background: var(--s2a-color-gray-100);
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .audience-panel-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--s2a-border-radius-md);
+    }
+    .audience-doc-overlay {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      max-width: 200px;
+    }
+    .audience-doc-overlay .doc-type {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--s2a-color-gray-600);
+      margin-bottom: 6px;
+    }
+    .audience-doc-overlay .doc-headline {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* Audience placeholder media */
+    .audience-visual-sales {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      border-radius: var(--s2a-border-radius-md);
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .audience-visual-sales::before {
+      content: '';
+      position: absolute;
+      top: 40px; right: 40px;
+      width: 180px; height: 240px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .audience-visual-marketing {
+      background: linear-gradient(135deg, #f0f0ff 0%, #e8e8ff 100%);
+      border-radius: var(--s2a-border-radius-md);
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+    .audience-visual-legal {
+      background: linear-gradient(135deg, #f8f8f0 0%, #f0f0e8 100%);
+      border-radius: var(--s2a-border-radius-md);
+      min-height: 400px;
+    }
+    .audience-visual-hr {
+      background: linear-gradient(135deg, #f0f8ff 0%, #e8f4ff 100%);
+      border-radius: var(--s2a-border-radius-md);
+      min-height: 400px;
+    }
+
+    /* ── JTBD ── */
+    .jtbd {
+      background: var(--s2a-color-gray-200);
+      padding: var(--s2a-layout-md) 8.333%;
+    }
+    .jtbd-inner { max-width: var(--page-max); margin: 0 auto; }
+    .jtbd-copy {
+      margin-bottom: 56px;
+    }
+    .jtbd-copy h2 {
+      font-size: clamp(36px, 3.9vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .jtbd-copy p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--s2a-color-gray-900);
+      max-width: 640px;
+    }
+    .jtbd-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .jtbd-card {
+      border-radius: var(--s2a-border-radius-md);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .jtbd-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+    .jtbd-card-dark {
+      background: var(--s2a-color-gray-1000);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .jtbd-card-dark .card-media {
+      flex: 1;
+      overflow: hidden;
+    }
+    .jtbd-card-dark .card-media img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .jtbd-card-body {
+      padding: 28px 28px 32px;
+    }
+    .jtbd-card-dark .jtbd-card-body { background: var(--s2a-color-gray-1000); }
+    .jtbd-card-body h3 {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .jtbd-card-body p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      opacity: 0.85;
+    }
+    .jtbd-card-light {
+      background: #fff;
+    }
+    .jtbd-card-light .card-media {
+      overflow: hidden;
+    }
+    .jtbd-card-light .card-media img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+    /* placeholder visuals for jtbd cards */
+    .jtbd-visual-share {
+      height: 260px;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .jtbd-visual-share .collab-chip {
+      background: #fff;
+      border-radius: 24px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    .jtbd-visual-create {
+      height: 260px;
+      background: linear-gradient(135deg, #fffde0 0%, #fff9b0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ── OFFER (floating docs) ── */
+    .offer-section {
+      background: var(--s2a-color-gray-25);
+      padding: var(--s2a-layout-md) 8.333%;
+      overflow: hidden;
+    }
+    .offer-inner { max-width: var(--page-max); margin: 0 auto; }
+    .offer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .offer-text-side {}
+    .offer-text-side .offer-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--s2a-color-gray-1000);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .offer-text-side h2 {
+      font-size: clamp(30px, 3vw, 44px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .offer-text-side p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--s2a-color-gray-900);
+      margin-bottom: 28px;
+    }
+    .offer-doc-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 440px;
+    }
+    .offer-doc-main {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.16);
+      max-width: 340px;
+      transition: transform 0.35s ease;
+    }
+    .offer-doc-main:hover { transform: scale(1.03) rotate(-1deg); }
+    .offer-doc-main img { width: 100%; }
+    .offer-doc-secondary {
+      position: absolute;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+      max-width: 220px;
+      transition: transform 0.35s ease;
+    }
+    .offer-doc-secondary:hover { transform: scale(1.04); }
+    .offer-doc-secondary img { width: 100%; }
+    .offer-doc-top-right { top: 0; right: 0; transform: rotate(4deg); }
+    .offer-doc-bottom-left { bottom: 0; left: 0; transform: rotate(-3deg); }
+
+    /* ── PDF GRID / CREATE ── */
+    .pdf-grid-section {
+      background: var(--s2a-color-gray-300);
+      padding: var(--s2a-layout-md) 8.333%;
+    }
+    .pdf-grid-inner { max-width: var(--page-max); margin: 0 auto; }
+    .pdf-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .pdf-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .pdf-thumb {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 10px 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .pdf-thumb:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .pdf-thumb-icon {
+      width: 36px;
+      height: 48px;
+      margin: 0 auto 8px;
+      background: var(--s2a-color-gray-100);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--s2a-color-brand-adobe-red);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .pdf-thumb-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--s2a-color-gray-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pdf-create-text h2 {
+      font-size: clamp(28px, 2.8vw, 40px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .pdf-create-text p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--s2a-color-gray-900);
+      margin-bottom: 28px;
+    }
+
+    /* ── WHAT'S NEW ── */
+    .whats-new {
+      background: var(--s2a-color-gray-200);
+      padding: var(--s2a-layout-md) 8.333%;
+    }
+    .whats-new-inner { max-width: var(--page-max); margin: 0 auto; }
+    .section-heading {
+      margin-bottom: 48px;
+    }
+    .section-heading .eyebrow {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-heading h2 {
+      font-size: clamp(32px, 3.5vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      max-width: 640px;
+    }
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: var(--s2a-border-radius-md);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.10); }
+    .feature-card-media {
+      height: 240px;
+      overflow: hidden;
+      background: var(--s2a-color-gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .feature-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-card-body {
+      padding: 24px 24px 28px;
+    }
+    .feature-card-body h3 {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .feature-card-body p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--s2a-color-gray-900);
+      margin-bottom: 20px;
+    }
+
+    /* Podcast visual */
+    .visual-podcast {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+    }
+    .podcast-waveform {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 60px;
+    }
+    .podcast-waveform span {
+      display: block;
+      width: 4px;
+      background: var(--s2a-color-brand-adobe-red);
+      border-radius: 2px;
+      animation: wave 1.2s ease-in-out infinite;
+    }
+    @keyframes wave {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1); }
+    }
+    .podcast-label { color: #fff; font-size: 13px; font-weight: 700; }
+
+    /* Brand kit visual */
+    .visual-brandkit {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 24px;
+    }
+    .brand-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+    }
+
+    /* Video highlights visual */
+    .visual-video {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .play-btn {
+      width: 56px;
+      height: 56px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .play-btn svg { width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
+    .highlight-chips {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      gap: 8px;
+    }
+    .highlight-chip {
+      background: var(--s2a-color-brand-adobe-red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 24px;
+      white-space: nowrap;
+    }
+
+    /* ── PLANS / PRICING ── */
+    .pricing {
+      background: var(--s2a-color-gray-25);
+      padding: var(--s2a-layout-md) 8.333%;
+    }
+    .pricing-inner { max-width: var(--page-max); margin: 0 auto; }
+    .pricing-header {
+      margin-bottom: 48px;
+    }
+    .pricing-header .eyebrow { font-size: 16px; }
+    .pricing-header h2 {
+      font-size: clamp(32px, 3.5vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .pricing-header p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--s2a-color-gray-900);
+      max-width: 700px;
+      margin-bottom: 32px;
+    }
+    .plan-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--s2a-color-gray-100);
+      padding: 4px;
+      border-radius: 30px;
+      width: fit-content;
+    }
+    .plan-tab {
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 26px;
+      color: var(--s2a-color-gray-600);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .plan-tab.active {
+      background: var(--s2a-color-gray-1000);
+      color: #fff;
+    }
+    .plan-tab:hover:not(.active) { background: rgba(0,0,0,0.06); color: var(--s2a-color-gray-900); }
+
+    .plan-panels { margin-top: 48px; }
+    .plan-panel { display: none; }
+    .plan-panel.active { display: block; }
+
+    .plan-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .plan-card {
+      border: 1.5px solid var(--s2a-color-gray-100);
+      border-radius: var(--s2a-border-radius-md);
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      background: #fff;
+    }
+    .plan-card:hover { border-color: var(--s2a-color-gray-800); box-shadow: 0 8px 32px rgba(0,0,0,0.09); transform: translateY(-2px); }
+    .plan-card.featured {
+      background: var(--s2a-color-gray-1000);
+      border-color: var(--s2a-color-gray-1000);
+      color: #fff;
+    }
+    .plan-card.featured:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+    .plan-tier {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--s2a-color-gray-600);
+      margin-bottom: 8px;
+    }
+    .plan-card.featured .plan-tier { color: rgba(255,255,255,0.6); }
+    .plan-name {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .plan-desc {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--s2a-color-gray-900);
+      margin-bottom: 24px;
+      flex-grow: 0;
+    }
+    .plan-card.featured .plan-desc { color: rgba(255,255,255,0.75); }
+    .plan-price-block { margin-bottom: 20px; }
+    .plan-price {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .plan-billing {
+      font-size: 13px;
+      color: var(--s2a-color-gray-500);
+    }
+    .plan-card.featured .plan-billing { color: rgba(255,255,255,0.55); }
+    .plan-ctarow {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .plan-btn-primary {
+      display: block;
+      text-align: center;
+      background: var(--s2a-color-brand-adobe-red);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: var(--s2a-border-radius-round);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .plan-btn-primary:hover { background: #c50d00; transform: translateY(-1px); }
+    .plan-btn-ghost {
+      display: block;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: var(--s2a-border-radius-round);
+      border: 1.5px solid currentColor;
+      transition: background 0.2s, color 0.2s;
+    }
+    .plan-card:not(.featured) .plan-btn-ghost:hover { background: var(--s2a-color-gray-1000); color: #fff; }
+    .plan-card.featured .plan-btn-ghost { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .plan-card.featured .plan-btn-ghost:hover { background: rgba(255,255,255,0.15); }
+    .plan-divider {
+      height: 1px;
+      background: var(--s2a-color-gray-100);
+      margin-bottom: 20px;
+    }
+    .plan-card.featured .plan-divider { background: rgba(255,255,255,0.15); }
+    .plan-features-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--s2a-color-gray-600);
+      margin-bottom: 12px;
+    }
+    .plan-card.featured .plan-features-label { color: rgba(255,255,255,0.6); }
+    .plan-features {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .plan-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .feature-check {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--s2a-color-gray-900);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .plan-card.featured .feature-check { background: rgba(255,255,255,0.9); }
+    .feature-check svg { width: 8px; height: 8px; stroke: #fff; stroke-width: 2.5; fill: none; }
+    .plan-card.featured .feature-check svg { stroke: var(--s2a-color-gray-1000); }
+    .pricing-footer { margin-top: 32px; text-align: center; }
+    .pricing-footer a { font-size: 14px; font-weight: 700; border-bottom: 1.5px solid; padding-bottom: 2px; }
+
+    /* ── FOOTER CTA (dark) ── */
+    .footer-cta {
+      background: var(--s2a-color-gray-1000);
+      color: #fff;
+      padding: var(--s2a-layout-lg) 8.333% var(--s2a-layout-md);
+    }
+    .footer-cta-inner { max-width: var(--page-max); margin: 0 auto; }
+    .footer-cta-eyebrow {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--s2a-color-gray-500);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .footer-cta h2 {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+    .footer-cta-body {
+      font-size: 20px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.75);
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+    .ai-chat-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: var(--s2a-border-radius-round);
+      padding: 16px 24px;
+      gap: 12px;
+      max-width: 640px;
+      margin-bottom: 16px;
+      cursor: text;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .ai-chat-bar:focus-within {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.12);
+    }
+    .ai-chat-bar input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-family: var(--font-body);
+      color: #fff;
+    }
+    .ai-chat-bar input::placeholder { color: rgba(255,255,255,0.5); }
+    .ai-chat-send {
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .ai-chat-send:hover { transform: scale(1.1); background: var(--s2a-color-gray-100); }
+    .ai-chat-send svg { width: 14px; height: 14px; fill: var(--s2a-color-gray-1000); }
+    .ai-chat-disclaimer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      max-width: 640px;
+      line-height: 1.5;
+      margin-bottom: 64px;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--s2a-color-gray-1000);
+      color: #fff;
+      padding: 0 8.333% 48px;
+    }
+    .footer-inner { max-width: var(--page-max); margin: 0 auto; }
+    .footer-divider { height: 1px; background: rgba(255,255,255,0.12); margin-bottom: 48px; }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .footer-col-heading {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+    .footer-bottom-links a {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: #fff; }
+    .footer-copyright {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      width: 100%;
+    }
+
+    /* ── Featured Products row ── */
+    .footer-featured-products {
+      margin-bottom: 40px;
+    }
+    .footer-featured-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .footer-featured-list {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer-product-chip {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: #fff;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .footer-product-chip:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: #fff;
+      border-radius: var(--s2a-border-radius-md);
+      padding: 48px 40px;
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      transform: translateY(20px);
+      transition: transform 0.25s;
+    }
+    .modal-overlay.open .modal-box { transform: none; }
+    .modal-box h3 { font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+    .modal-box p { font-size: 16px; color: var(--s2a-color-gray-900); margin-bottom: 28px; line-height: 1.5; }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      background: var(--s2a-color-gray-100);
+      border: none;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--s2a-color-gray-200); }
+    .modal-box-relative { position: relative; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<header class="site-header" id="site-header">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="Adobe home">
+      <svg viewBox="0 0 34 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M21.5 0H34V26L21.5 0Z" fill="#eb1000"/>
+        <path d="M12.5 0H0V26L12.5 0Z" fill="#eb1000"/>
+        <path d="M17 9.5L25.5 26H20.1L17.8 20.5H12.2L17 9.5Z" fill="#eb1000"/>
+      </svg>
+    </a>
+    <div class="nav-links" role="menubar">
+      <button class="nav-item" role="menuitem" aria-haspopup="true">
+        Use Cases
+        <svg class="chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </button>
+      <div class="nav-divider" role="separator"></div>
+      <button class="nav-item" role="menuitem" aria-haspopup="true">
+        PDF &amp; Productivity
+        <svg class="chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </button>
+      <button class="nav-item" role="menuitem" aria-haspopup="true">
+        Acrobat
+        <svg class="chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </button>
+      <button class="nav-item" role="menuitem" aria-haspopup="true">
+        Express
+        <svg class="chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </button>
+      <button class="nav-item" role="menuitem" aria-haspopup="true">
+        Sign
+        <svg class="chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </button>
+      <button class="nav-item" role="menuitem" aria-haspopup="true">
+        Scan
+        <svg class="chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </button>
+      <button class="nav-item" role="menuitem">Compare Plans</button>
+    </div>
+    <div class="nav-actions">
+      <a href="#" class="nav-signin">Sign In</a>
+      <a href="#pricing" class="nav-pricing">View Pricing</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- candidate-block: marquee, variants: large -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-text-area">
+    <span class="hero-eyebrow">PDF &amp; Productivity</span>
+    <h1 id="hero-heading">With great power comes great productivity.</h1>
+    <p class="hero-body">Do your best work faster with trusted PDF tools, AI-powered document insights, secure collaboration, and professional content creation&nbsp;— all in one place.</p>
+    <div class="hero-cta">
+      <p><strong><a href="#" class="btn-primary" id="hero-cta-btn">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="9" cy="9" r="8" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M7 6l5 3-5 3V6z" fill="#fff"/></svg>
+        Start an Acrobat free trial
+      </a></strong></p>
+    </div>
+  </div>
+
+  <!-- Document collage grid -->
+  <div class="hero-docs" aria-hidden="true">
+    <!-- col 1 -->
+    <div class="doc-col">
+      <div class="doc-placeholder" style="background:#1c2b1a;height:180px;">
+        <span class="doc-label" style="color:rgba(255,255,255,0.5);">Sustainability</span>
+        <span class="doc-title" style="color:#fff;font-size:16px;">Annual Report 2024</span>
+      </div>
+      <div class="doc-placeholder" style="background:#fff;border:1.5px solid #e9e9e9;height:160px;">
+        <span class="doc-label" style="color:#8f8f8f;">CONTRACT</span>
+        <span class="doc-title" style="color:#000;font-size:18px;font-style:italic;">Rm Ma</span>
+      </div>
+    </div>
+    <!-- col 2 -->
+    <div class="doc-col">
+      <div class="doc-placeholder" style="background:#ff6b35;height:160px;">
+        <span class="doc-label" style="color:rgba(255,255,255,0.7);">Promotion</span>
+        <span class="doc-title" style="color:#fff;font-size:26px;font-weight:900;">70%</span>
+      </div>
+      <picture class="doc-card" style="height:200px;display:block;">
+        <img src="./bizpro-hub-4ad0e3/hero-doc-thumbnail.png" alt="Research document" style="height:200px;object-fit:cover;width:100%;">
+      </picture>
+    </div>
+    <!-- col 3 center - UI screenshot -->
+    <div class="hero-center-img">
+      <picture>
+        <img src="./bizpro-hub-4ad0e3/jtbd-doc1.png" alt="Pipeline Generation analytics document" style="height:360px;object-fit:cover;width:100%;border-radius:12px;">
+      </picture>
+    </div>
+    <!-- col 4 -->
+    <div class="doc-col">
+      <div class="doc-placeholder" style="background:#f0f0ff;height:160px;border:1.5px solid #e0e0ff;">
+        <span class="doc-label" style="color:#5050a0;">ACROBAT</span>
+        <span class="doc-title" style="color:#000;">Document Overview<br>Results Summary</span>
+      </div>
+      <div class="doc-placeholder" style="background:#fff;border:1.5px solid #e9e9e9;height:200px;">
+        <span class="doc-label" style="color:#8f8f8f;">INVOICE</span>
+        <span class="doc-title" style="color:#000;font-size:20px;font-weight:900;">$70,150</span>
+      </div>
+    </div>
+    <!-- col 5 -->
+    <div class="doc-col">
+      <picture class="doc-card">
+        <img src="./bizpro-hub-4ad0e3/jtbd-doc2.png" alt="Team collaboration" style="height:220px;object-fit:cover;width:100%;">
+      </picture>
+      <div class="doc-placeholder" style="background:#f8f8f0;border:1.5px solid #e0e0d0;height:140px;">
+        <span class="doc-label" style="color:#8f8f8f;">LEGAL</span>
+        <span class="doc-title" style="color:#000;">Master Service<br>Agreement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- candidate-block: tabs -->
+<section class="audience" aria-labelledby="audience-heading">
+  <div class="audience-copy fade-up">
+    <h2 id="audience-heading">Work faster.<br>No matter the work.</h2>
+    <p>Work smarter with 70+ professional PDF tools to create, edit, sign, share, and more — all powered by AI.</p>
+  </div>
+  <div role="tablist" class="audience-tabs" aria-label="Industry solutions">
+    <button class="audience-tab active" role="tab" aria-selected="true" aria-controls="panel-sales" id="tab-sales">Sales</button>
+    <button class="audience-tab" role="tab" aria-selected="false" aria-controls="panel-marketing" id="tab-marketing">Marketing</button>
+    <button class="audience-tab" role="tab" aria-selected="false" aria-controls="panel-legal" id="tab-legal">Legal</button>
+    <button class="audience-tab" role="tab" aria-selected="false" aria-controls="panel-hr" id="tab-hr">Human Resources</button>
+  </div>
+
+  <div id="panel-sales" class="audience-panel active" role="tabpanel" aria-labelledby="tab-sales">
+    <div class="audience-panel-text fade-up">
+      <h3>Close more deals.</h3>
+      <p>Streamline proposal creation, contract signing, and deal tracking. Send polished PDFs, collect e-signatures in seconds, and keep every stakeholder on the same page with shared PDF Spaces.</p>
+      <p><strong><a href="#" class="btn-primary">Start free trial</a></strong></p>
+    </div>
+    <div class="audience-panel-media">
+      <picture>
+        <img src="./bizpro-hub-4ad0e3/offer-doc1.png" alt="Financial Review 2024 document" style="object-fit:contain;padding:24px;max-height:400px;margin:auto;">
+      </picture>
+      <div class="audience-doc-overlay">
+        <div class="doc-type">Contract</div>
+        <div class="doc-headline">Q4 Master Service Agreement</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-marketing" class="audience-panel" role="tabpanel" aria-labelledby="tab-marketing">
+    <div class="audience-panel-text fade-up">
+      <h3>Take the pain out of campaigns.</h3>
+      <p>Create on-brand presentations, social content, and campaign assets in minutes. Use AI to generate designs from your documents and keep everything consistent with a brand kit.</p>
+      <p><strong><a href="#" class="btn-primary">Start free trial</a></strong></p>
+    </div>
+    <div class="audience-panel-media">
+      <picture>
+        <img src="./bizpro-hub-4ad0e3/offer-doc2.png" alt="Outdoor lifestyle campaign document" style="object-fit:contain;padding:24px;max-height:400px;margin:auto;">
+      </picture>
+      <div class="audience-doc-overlay">
+        <div class="doc-type">Campaign</div>
+        <div class="doc-headline">Spring Collection Brand Brief</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-legal" class="audience-panel" role="tabpanel" aria-labelledby="tab-legal">
+    <div class="audience-panel-text fade-up">
+      <h3>Move the fine print faster.</h3>
+      <p>Redline contracts, redact sensitive data, and collect binding e-signatures. AI Assistant helps you analyze dense legal text, extract key clauses, and surface risks — in seconds.</p>
+      <p><strong><a href="#" class="btn-primary">Start free trial</a></strong></p>
+    </div>
+    <div class="audience-panel-media">
+      <picture>
+        <img src="./bizpro-hub-4ad0e3/hero-doc-thumbnail.png" alt="Legal research document" style="object-fit:contain;padding:24px;max-height:400px;margin:auto;">
+      </picture>
+      <div class="audience-doc-overlay">
+        <div class="doc-type">Legal</div>
+        <div class="doc-headline">Master Service Agreement</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-hr" class="audience-panel" role="tabpanel" aria-labelledby="tab-hr">
+    <div class="audience-panel-text fade-up">
+      <h3>Make policy more personal.</h3>
+      <p>Distribute handbooks, gather signed acknowledgements, and onboard new hires with fully digital document workflows — no printing required.</p>
+      <p><strong><a href="#" class="btn-primary">Start free trial</a></strong></p>
+    </div>
+    <div class="audience-panel-media">
+      <picture>
+        <img src="./bizpro-hub-4ad0e3/jtbd-doc2.png" alt="HR team collaboration" style="object-fit:cover;width:100%;height:400px;">
+      </picture>
+      <div class="audience-doc-overlay">
+        <div class="doc-type">HR</div>
+        <div class="doc-headline">Employee Onboarding Packet 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- candidate-block: columns -->
+<section class="jtbd" aria-labelledby="jtbd-heading">
+  <div class="jtbd-inner">
+    <div class="jtbd-copy fade-up">
+      <h2 id="jtbd-heading">There's more to Acrobat than Acrobat.</h2>
+      <p>Create, edit, sign, and more with 70+ professional tools. Use AI to generate a presentation from your document, analyze a contract, or summarize a lengthy report in seconds.</p>
+    </div>
+    <div class="jtbd-grid">
+      <!-- Dark card: Understand quickly -->
+      <div class="jtbd-card jtbd-card-dark fade-up">
+        <div class="card-media">
+          <picture>
+            <img src="./bizpro-hub-4ad0e3/feature-asset.png" alt="Professional using Acrobat AI Assistant on laptop">
+          </picture>
+        </div>
+        <div class="jtbd-card-body">
+          <h3 style="color:#fff;">Understand quickly.</h3>
+          <p style="color:rgba(255,255,255,0.75);">Ask your AI Assistant to quickly summarize, analyze, provide insights, turn docs into decks, and more.</p>
+          <a href="#" class="learn-more-white">Learn more</a>
+        </div>
+      </div>
+      <!-- Light card: Share effortlessly -->
+      <div class="jtbd-card jtbd-card-light fade-up" style="transition-delay:0.1s">
+        <div class="card-media">
+          <picture>
+            <img src="./bizpro-hub-4ad0e3/hero-single-doc.png" alt="PDF Spaces collaboration diagram" style="height:260px;object-fit:cover;width:100%;">
+          </picture>
+        </div>
+        <div class="jtbd-card-body">
+          <h3>Share effortlessly.</h3>
+          <p>Share a secure PDF Space with teammates, where everyone can ask AI Assistant to help with research, analysis, and more.</p>
+          <a href="#" class="learn-more">Learn more</a>
+        </div>
+      </div>
+      <!-- Light card: Create beautifully -->
+      <div class="jtbd-card jtbd-card-light fade-up" style="transition-delay:0.2s">
+        <div class="card-media jtbd-visual-create">
+          <picture>
+            <img src="./bizpro-hub-4ad0e3/jtbd-doc1.png" alt="Pipeline Generation analytics card" style="height:260px;object-fit:contain;max-width:200px;margin:auto;">
+          </picture>
+        </div>
+        <div class="jtbd-card-body">
+          <h3>Create beautifully.</h3>
+          <p>Empower your whole team to create polished on-brand presentations, social content, and more using AI — right from your PDFs.</p>
+          <a href="#" class="learn-more">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- candidate-block: z-pattern, variants: large -->
+<section class="offer-section" aria-labelledby="offer1-heading">
+  <div class="offer-inner">
+    <div class="offer-grid">
+      <div class="offer-text-side fade-up">
+        <span class="offer-label">Legal</span>
+        <h2 id="offer1-heading">Move the fine print faster.</h2>
+        <p>Redline contracts, redact sensitive information, and collect legally binding e-signatures all from one place. AI Assistant helps you analyze dense legal text and surface key risks in seconds.</p>
+        <p><em><a href="#" class="learn-more">Learn more</a></em></p>
+      </div>
+      <div class="offer-doc-side">
+        <div class="offer-doc-secondary offer-doc-top-right">
+          <picture>
+            <img src="./bizpro-hub-4ad0e3/offer-doc2.png" alt="Outdoor lifestyle report document">
+          </picture>
+        </div>
+        <div class="offer-doc-main">
+          <picture>
+            <img src="./bizpro-hub-4ad0e3/offer-section.png" alt="Global Fintech Adoption Industry Report">
+          </picture>
+        </div>
+        <div class="offer-doc-secondary offer-doc-bottom-left">
+          <picture>
+            <img src="./bizpro-hub-4ad0e3/offer-doc1.png" alt="Financial Review 2024 document">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- candidate-block: columns -->
+<section class="pdf-grid-section" aria-labelledby="pdf-grid-heading">
+  <div class="pdf-grid-inner">
+    <div class="pdf-grid-layout">
+      <div class="pdf-thumbs fade-up" aria-hidden="true">
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Flyer.pdf</div></div>
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Invoice.pdf</div></div>
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Report.pdf</div></div>
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Poster.pdf</div></div>
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Infographic.pdf</div></div>
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Invite.pdf</div></div>
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Deck.pdf</div></div>
+        <div class="pdf-thumb"><div class="pdf-thumb-icon">PDF</div><div class="pdf-thumb-label">Social.pdf</div></div>
+        <div class="pdf-thumb" style="background:var(--s2a-color-gray-1000);color:#fff;"><div class="pdf-thumb-icon" style="background:rgba(255,255,255,0.15);color:#fff;">+</div><div class="pdf-thumb-label" style="color:rgba(255,255,255,0.7);">More</div></div>
+      </div>
+      <div class="pdf-create-text fade-up" style="transition-delay:0.15s">
+        <h2 id="pdf-grid-heading">Create beautifully.</h2>
+        <p>Empower your whole team to create polished, on-brand presentations, social content, and more using AI tools powered by Adobe Firefly — right from your existing documents.</p>
+        <p><em><a href="#" class="learn-more">Learn more</a></em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- candidate-block: card -->
+<section class="whats-new" aria-labelledby="whats-new-heading">
+  <div class="whats-new-inner">
+    <div class="section-heading fade-up">
+      <span class="eyebrow">Features and Releases</span>
+      <h2 id="whats-new-heading">There's always something new with Acrobat.</h2>
+    </div>
+    <div class="feature-cards">
+      <!-- PDF to Podcast -->
+      <article class="feature-card fade-up">
+        <div class="feature-card-media visual-podcast" aria-hidden="true">
+          <div>
+            <div class="podcast-waveform">
+              <span style="height:20px;animation-delay:0s"></span>
+              <span style="height:40px;animation-delay:0.1s"></span>
+              <span style="height:60px;animation-delay:0.2s"></span>
+              <span style="height:50px;animation-delay:0.15s"></span>
+              <span style="height:35px;animation-delay:0.3s"></span>
+              <span style="height:55px;animation-delay:0.05s"></span>
+              <span style="height:45px;animation-delay:0.25s"></span>
+              <span style="height:30px;animation-delay:0.4s"></span>
+              <span style="height:20px;animation-delay:0.35s"></span>
+            </div>
+            <div class="podcast-label">PDF to Podcast</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3>PDF to Podcast</h3>
+          <p>Convert any PDF into audio playback, with options to hear a quick overview or a complete narration.</p>
+          <a href="#" class="learn-more">Learn more</a>
+        </div>
+      </article>
+      <!-- One-click Brand Kit -->
+      <article class="feature-card fade-up" style="transition-delay:0.1s">
+        <div class="feature-card-media visual-brandkit" aria-hidden="true">
+          <div class="brand-swatch" style="background:#eb1000;"></div>
+          <div class="brand-swatch" style="background:#1a1a1a;"></div>
+          <div class="brand-swatch" style="background:#f5f5f5;border:1.5px solid #e9e9e9;"></div>
+          <div class="brand-swatch" style="background:#0050e6;"></div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-left:8px;">
+            <div style="width:60px;height:10px;background:#1a1a1a;border-radius:2px;"></div>
+            <div style="width:60px;height:10px;background:#e9e9e9;border-radius:2px;font-size:10px;display:flex;align-items:center;padding-left:4px;color:#8f8f8f;font-weight:700;">Aa</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3>One-click Brand Kit Setup</h3>
+          <p>Set up a complete brand kit in a single click by automatically extracting logos, colors, and fonts from your existing documents.</p>
+          <a href="#" class="learn-more">Learn more</a>
+        </div>
+      </article>
+      <!-- AI Video Highlights -->
+      <article class="feature-card fade-up" style="transition-delay:0.2s">
+        <div class="feature-card-media visual-video" aria-hidden="true">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+          <div class="highlight-chips">
+            <span class="highlight-chip">0:35 Key moment</span>
+            <span class="highlight-chip">4:50 Summary</span>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3>AI-Powered Video Highlights</h3>
+          <p>Upload any video and let Adobe Express automatically find the highlights, add captions, and export it for social media.</p>
+          <a href="#" class="learn-more">Learn more</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- candidate-block: comparison-table -->
+<section class="pricing" id="pricing" aria-labelledby="pricing-heading">
+  <div class="pricing-inner">
+    <div class="pricing-header fade-up">
+      <span class="eyebrow">Plans &amp; Pricing</span>
+      <h2 id="pricing-heading">Plans that work for you.</h2>
+      <p>Everyone from solo-preneurs to the world's largest enterprises are using Acrobat to work faster, unleash creativity, accomplish more — and do it their way.</p>
+      <div class="plan-tabs" role="tablist" aria-label="Plan audience">
+        <button class="plan-tab active" role="tab" aria-selected="true" aria-controls="plans-individuals" id="ptab-individuals">Individuals</button>
+        <button class="plan-tab" role="tab" aria-selected="false" aria-controls="plans-business" id="ptab-business">Businesses</button>
+        <button class="plan-tab" role="tab" aria-selected="false" aria-controls="plans-students" id="ptab-students">Students &amp; Teachers</button>
+      </div>
+    </div>
+
+    <div class="plan-panels">
+      <!-- Individuals panel -->
+      <div class="plan-panel active" id="plans-individuals" role="tabpanel" aria-labelledby="ptab-individuals">
+        <div class="plan-cards">
+          <!-- Acrobat Reader -->
+          <div class="plan-card">
+            <div class="plan-tier">PDF viewing</div>
+            <div class="plan-name">Acrobat Reader</div>
+            <div class="plan-desc">Start with the trusted standard for viewing and sharing PDFs.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">Free</div>
+              <div class="plan-billing">Download today</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Get free app</a>
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-features-label">What's included</div>
+            <ul class="plan-features">
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>View, Print, Share PDFs</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Annotate and comment</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Fill and sign forms</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Secure transaction</span>
+              </li>
+            </ul>
+          </div>
+          <!-- Acrobat Express -->
+          <div class="plan-card">
+            <div class="plan-tier">AI Insights and creation</div>
+            <div class="plan-name">Acrobat Express</div>
+            <div class="plan-desc">Get document insights with AI-powered tools, and quickly create on-brand content.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">US$9.99<span style="font-size:16px;font-weight:400;">/mo</span></div>
+              <div class="plan-billing">Annual, billed monthly</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Free Trial</a>
+              <a href="#" class="plan-btn-ghost">Learn more</a>
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-features-label">What's included</div>
+            <ul class="plan-features">
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Core PDF tools — Convert, export, view, print</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>AI Assistant — Summaries, insights, answers</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>PDF Spaces — Organize and share</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Creation tools — Flyers, social ads, decks</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Secure transaction</span>
+              </li>
+            </ul>
+          </div>
+          <!-- Acrobat Pro -->
+          <div class="plan-card">
+            <div class="plan-tier">Full PDF toolset</div>
+            <div class="plan-name">Acrobat Pro</div>
+            <div class="plan-desc">Create, edit, and sign PDFs with secure document and e-signature workflows.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">US$19.99<span style="font-size:16px;font-weight:400;">/mo</span></div>
+              <div class="plan-billing">Annual, billed monthly</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Free Trial</a>
+              <a href="#" class="plan-btn-ghost">Learn more</a>
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-features-label">What's included</div>
+            <ul class="plan-features">
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>70+ PDF tools — Create, edit, convert, compare</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Collect e-signatures and track responses</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Password-protect and redact PDFs</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Create, fill, sign, and send forms</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Secure transaction</span>
+              </li>
+            </ul>
+          </div>
+          <!-- Acrobat Studio - featured -->
+          <div class="plan-card featured">
+            <div class="plan-tier">All-in-one solution</div>
+            <div class="plan-name">Acrobat Studio</div>
+            <div class="plan-desc">Do it all with the complete AI-powered PDF and design solution for document workflows.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">US$24.99<span style="font-size:16px;font-weight:400;opacity:0.7;">/mo</span></div>
+              <div class="plan-billing">Annual, billed monthly</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Free Trial</a>
+              <a href="#" class="plan-btn-ghost">Learn more</a>
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-features-label">What's included</div>
+            <ul class="plan-features">
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>All Acrobat Pro PDF tools</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Ask AI to edit, convert, or compress PDFs</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Contract analysis and insights</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Creation tools — Presentations, social, flyers</span>
+              </li>
+              <li class="plan-feature-item">
+                <span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span>
+                <span>Design with easy-to-use tools</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-footer fade-up">
+          <a href="#">Compare Plans</a>
+        </div>
+      </div>
+
+      <!-- Businesses panel (simplified) -->
+      <div class="plan-panel" id="plans-business" role="tabpanel" aria-labelledby="ptab-business">
+        <div class="plan-cards">
+          <div class="plan-card">
+            <div class="plan-tier">Teams</div>
+            <div class="plan-name">Acrobat Pro for Teams</div>
+            <div class="plan-desc">The full Acrobat Pro experience with centralized license management for your team.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">US$23.99<span style="font-size:16px;font-weight:400;">/mo</span></div>
+              <div class="plan-billing">Per license, annual billed monthly</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Free Trial</a>
+              <a href="#" class="plan-btn-ghost">Learn more</a>
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-features-label">What's included</div>
+            <ul class="plan-features">
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>70+ PDF tools</span></li>
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>E-signatures for your whole team</span></li>
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>Admin console &amp; centralized deployment</span></li>
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>24/7 tech support</span></li>
+            </ul>
+          </div>
+          <div class="plan-card featured" style="grid-column:span 2;">
+            <div class="plan-tier">Enterprise</div>
+            <div class="plan-name">Acrobat for Enterprise</div>
+            <div class="plan-desc">Custom pricing and deployment for large organizations with advanced security and compliance needs.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">Contact sales</div>
+              <div class="plan-billing">Custom pricing available</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Request a demo</a>
+            </div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-tier">Sign</div>
+            <div class="plan-name">Acrobat Sign for Business</div>
+            <div class="plan-desc">Enterprise-grade e-signature platform with deep workflow automation.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">US$39.99<span style="font-size:16px;font-weight:400;">/mo</span></div>
+              <div class="plan-billing">Per license, annual billed monthly</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Free Trial</a>
+              <a href="#" class="plan-btn-ghost">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Students panel (simplified) -->
+      <div class="plan-panel" id="plans-students" role="tabpanel" aria-labelledby="ptab-students">
+        <div class="plan-cards">
+          <div class="plan-card featured">
+            <div class="plan-tier">Education discount</div>
+            <div class="plan-name">Acrobat Pro for Students</div>
+            <div class="plan-desc">The complete Acrobat Pro experience at a deeply discounted price for verified students and educators.</div>
+            <div class="plan-price-block">
+              <div class="plan-price">US$9.99<span style="font-size:16px;font-weight:400;opacity:0.7;">/mo</span></div>
+              <div class="plan-billing">First year, then US$19.99/mo</div>
+            </div>
+            <div class="plan-ctarow">
+              <a href="#" class="plan-btn-primary">Get started</a>
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-features-label">What's included</div>
+            <ul class="plan-features">
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>All 70+ PDF tools</span></li>
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>AI Assistant</span></li>
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>E-signatures</span></li>
+              <li class="plan-feature-item"><span class="feature-check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2"/></svg></span><span>Requires verified .edu email</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- candidate-block: marquee, variants: dark -->
+<section class="footer-cta" aria-labelledby="footer-cta-heading">
+  <div class="footer-cta-inner">
+    <span class="footer-cta-eyebrow">Adobe is for everyone</span>
+    <h2 id="footer-cta-heading">Find what you're looking for.</h2>
+    <p class="footer-cta-body">Get answers from our agent about Adobe products and solutions.</p>
+    <div class="ai-chat-bar" role="search">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M12.5 12.5L16 16" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input type="text" id="ai-chat-input" placeholder="Ask anything" aria-label="Search Adobe products and solutions">
+      <button class="ai-chat-send" id="ai-chat-send-btn" aria-label="Submit question">
+        <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><path d="M1 7h12M8 2l5 5-5 5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </button>
+    </div>
+    <p class="ai-chat-disclaimer">Use of this beta AI chatbot is subject to Adobe's Privacy Policy. Don't share sensitive data. AI responses are not legal, medical, or professional advice.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" aria-label="Site footer">
+  <div class="footer-inner">
+    <div class="footer-divider"></div>
+    <div class="footer-featured-products">
+      <div class="footer-featured-heading">Featured Products</div>
+      <div class="footer-featured-list">
+        <a href="#" class="footer-product-chip">Acrobat Reader</a>
+        <a href="#" class="footer-product-chip">Firefly</a>
+        <a href="#" class="footer-product-chip">Adobe Express</a>
+        <a href="#" class="footer-product-chip">Photoshop</a>
+      </div>
+    </div>
+    <nav class="footer-cols" aria-label="Footer navigation">
+      <div class="footer-col">
+        <div class="footer-col-heading">For individuals &amp; small business</div>
+        <ul>
+          <li><a href="#">Creative AI</a></li>
+          <li><a href="#">Photography</a></li>
+          <li><a href="#">Design &amp; Illustration</a></li>
+          <li><a href="#">Video &amp; animation</a></li>
+          <li><a href="#">PDF</a></li>
+          <li><a href="#">3D</a></li>
+          <li><a href="#">Stock images &amp; video</a></li>
+          <li><a href="#">View all products</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-heading">For medium &amp; large business</div>
+        <ul>
+          <li><a href="#">Personalization at scale</a></li>
+          <li><a href="#">Content supply chain</a></li>
+          <li><a href="#">Unified customer experience</a></li>
+          <li><a href="#">Creativity and production</a></li>
+          <li><a href="#">B2B GTM orchestration</a></li>
+          <li><a href="#">View all products</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-heading">For Organizations</div>
+        <ul>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Nonprofits</a></li>
+          <li><a href="#">Government</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-heading">Support</div>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Download and install</a></li>
+          <li><a href="#">Adobe Community</a></li>
+          <li><a href="#">Adobe Learn</a></li>
+          <li><a href="#">Enterprise support</a></li>
+        </ul>
+        <div class="footer-col-heading" style="margin-top:24px;">Contact</div>
+        <ul>
+          <li><a href="#">Chat with sales</a></li>
+          <li><a href="#">Request information</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-heading">Adobe</div>
+        <ul>
+          <li><a href="#">Log into your account</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Newsroom</a></li>
+          <li><a href="#">Corporate Responsibility</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Trust Center</a></li>
+          <li><a href="#">Adobe Blog</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="footer-bottom">
+      <div class="footer-logo">Adobe</div>
+      <div class="footer-bottom-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie preferences</a>
+        <a href="#">Do not sell or share my personal information</a>
+        <a href="#">AdChoices</a>
+        <a href="#">Change region</a>
+      </div>
+      <div class="footer-copyright">© 2026 Adobe Inc. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Trial modal -->
+<div class="modal-overlay" id="trial-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box-relative modal-box">
+    <button class="modal-close" id="modal-close-btn" aria-label="Close dialog">✕</button>
+    <h3 id="modal-title">Start your free trial</h3>
+    <p>Sign in with your Adobe ID or create a free account to begin your 7-day Acrobat free trial — no credit card required.</p>
+    <a href="#" class="btn-primary" style="display:inline-flex;margin:0 auto;">Create free account</a>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Sticky nav shadow ── */
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ── Scroll-entrance animations ── */
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(el => observer.observe(el));
+
+  /* ── Audience tabs ── */
+  const audienceTabs = document.querySelectorAll('.audience-tab');
+  const audiencePanels = document.querySelectorAll('.audience-panel');
+  audienceTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('aria-controls');
+      audienceTabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      audiencePanels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  /* ── Plan tabs ── */
+  const planTabs = document.querySelectorAll('.plan-tab');
+  const planPanels = document.querySelectorAll('.plan-panel');
+  planTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('aria-controls');
+      planTabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      planPanels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  /* ── Trial modal ── */
+  const modal = document.getElementById('trial-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const heroCta = document.getElementById('hero-cta-btn');
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalCloseBtn.focus();
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (heroCta) {
+    heroCta.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  }
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeModal);
+  }
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    // Trap escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  }
+
+  /* ── All other anchor clicks: prevent default ── */
+  document.querySelectorAll('a[href="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  });
+
+  /* ── Smooth scroll for pricing link ── */
+  document.querySelectorAll('a[href="#pricing"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById('pricing');
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  /* ── Plan "Free Trial" & "Buy now" buttons show mini loading state ── */
+  document.querySelectorAll('.plan-btn-primary').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const original = btn.textContent.trim();
+      btn.textContent = 'Loading…';
+      btn.style.opacity = '0.7';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.opacity = '';
+      }, 1800);
+    });
+  });
+
+  /* ── AI Chat submit ── */
+  const chatInput = document.getElementById('ai-chat-input');
+  const chatSendBtn = document.getElementById('ai-chat-send-btn');
+
+  function handleChatSubmit() {
+    const val = chatInput ? chatInput.value.trim() : '';
+    if (!val) return;
+    chatInput.value = '';
+    chatInput.placeholder = 'Thinking…';
+    if (chatSendBtn) chatSendBtn.style.opacity = '0.5';
+    setTimeout(() => {
+      chatInput.placeholder = 'Ask anything';
+      if (chatSendBtn) chatSendBtn.style.opacity = '';
+    }, 2000);
+  }
+
+  if (chatSendBtn) {
+    chatSendBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleChatSubmit();
+    });
+  }
+  if (chatInput) {
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleChatSubmit();
+    });
+  }
+
+  /* ── Active nav link via IntersectionObserver ── */
+  const sections = document.querySelectorAll('main section[aria-labelledby]');
+  const navPricingLink = document.querySelector('.nav-pricing');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.target.id === 'pricing' && navPricingLink) {
+        navPricingLink.style.background = '#eb1000';
+      } else if (!entry.isIntersecting && entry.target.id === 'pricing' && navPricingLink) {
+        navPricingLink.style.background = '';
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => sectionObserver.observe(s));
+
+});
+</script>
+</body>
+</html>
