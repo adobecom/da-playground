@@ -436,7 +436,7 @@ function buildSidebar(onNewClick, onEntryClick, onPendingClick) {
 }
 
 // ── Preview panel ─────────────────────────────────────────────────────────────
-function buildPreviewPanel() {
+function buildPreviewPanel(token) {
   const outer = el('div', { class: 'preview-outer' });
   outer.classList.add('open');
 
@@ -467,7 +467,7 @@ function buildPreviewPanel() {
 
   function open() { outer.classList.add('open'); }
 
-  function showPreview(value, mode, serverUrl) {
+  function showPreview(value, mode, serverUrl, daHtml = null) {
     // Update badge
     const previewBadgeLabel = mode === 'da' ? 'DA' : mode === 'html-to-da' ? 'H→DA' : '❄';
     const previewBadgeClass = `preview-badge preview-badge-${mode === 'html-to-da' ? 'html-to-da' : mode}`;
@@ -482,15 +482,50 @@ function buildPreviewPanel() {
       content.append(iframe);
       open();
     } else if ((mode === 'da' || mode === 'html-to-da') && value && value.startsWith('http')) {
-      const card = el('div', { class: 'preview-da-card' });
-      const openBtn = el('button', { class: 'btn', type: 'button' }, 'Open in new tab →');
+      const bar = el('div', { class: 'preview-da-bar' });
+      const urlLink = el('a', { class: 'preview-da-url', href: value, target: '_blank', rel: 'noopener' }, value);
+      const openBtn = el('button', { class: 'btn preview-da-open', type: 'button' }, '↗');
       openBtn.addEventListener('click', () => window.open(value, '_blank', 'noopener'));
-      card.append(
-        el('div', { class: 'card-label' }, 'DA Page Preview'),
-        el('a', { class: 'preview-da-url', href: value, target: '_blank', rel: 'noopener' }, value),
-        openBtn,
-      );
-      content.append(card);
+      bar.append(urlLink, openBtn);
+
+      // Loads the *.aem.page shell with ?dapreview, then injects DA HTML via the
+      // dapreview.js MessageChannel protocol so the page's own loadPage() renders blocks.
+      // Protocol: parent sends { ready:true } + MessageChannel port → dapreview.js
+      //           confirms with { ready:true } → parent sends { set:'body', body:html }.
+      // dapreview.js runs via a dynamic import so we retry the handshake a few times
+      // in case it hasn't finished loading when the iframe load event fires.
+      function mountIframe(html) {
+        const src = `${value}${value.includes('?') ? '&' : '?'}dapreview`;
+        const iframe = el('iframe', { class: 'preview-iframe', src, title: 'DA page preview' });
+        iframe.addEventListener('load', () => {
+          let done = false;
+          function handshake() {
+            if (done || !iframe.isConnected) return;
+            const { port1, port2 } = new MessageChannel();
+            port1.onmessage = (e) => {
+              if (e.data?.ready && !done) {
+                done = true;
+                port1.postMessage({ set: 'body', body: html });
+              }
+            };
+            iframe.contentWindow?.postMessage({ ready: true }, '*', [port2]);
+          }
+          [0, 300, 700, 1500].forEach((d) => setTimeout(handshake, d));
+        }, { once: true });
+        content.replaceChildren(iframe, bar);
+      }
+
+      function showFallback() {
+        const msg = el('div', { class: 'preview-da-fallback' },
+          'Preview not available — open in browser to view.');
+        content.replaceChildren(msg, bar);
+      }
+
+      if (daHtml) {
+        mountIframe(daHtml);
+      } else {
+        showFallback();
+      }
       open();
     } else {
       content.append(emptyState);
@@ -738,7 +773,7 @@ function buildUI(context, token, username) {
   pipelinePanel.append(panelLabel, pipelineBody, logList, pipeStats, pipeResultActions);
 
   // ── Preview & sidebar ──
-  const previewPanel = buildPreviewPanel();
+  const previewPanel = buildPreviewPanel(token);
 
   const sidebarInstance = buildSidebar(
     () => resetForm(),
@@ -870,7 +905,7 @@ function buildUI(context, token, username) {
     }
 
     if (entry.value) {
-      previewPanel.showPreview(entry.value, entry.mode, localStorage.getItem(STORAGE_KEY) || '');
+      previewPanel.showPreview(entry.value, entry.mode, localStorage.getItem(STORAGE_KEY) || '', entry.daHtml || null);
     }
   }
 
@@ -993,6 +1028,7 @@ function buildUI(context, token, username) {
               summary: job.summary,
               blockBranch: job.blockBranch,
               daUrl: job.daUrl,
+              daHtml: job.daHtml || null,
               usage: job.usage,
               mode: job.mode ?? currentMode,
             });
@@ -1079,13 +1115,13 @@ function buildUI(context, token, username) {
       if (!res.ok) throw new Error(`Failed to start job (HTTP ${res.status})`);
       const { jobId } = await res.json();
 
-      const { value, summary, blockBranch, daUrl, usage, mode } = await pollJob(serverUrl, jobId);
+      const { value, summary, blockBranch, daUrl, daHtml, usage, mode } = await pollJob(serverUrl, jobId);
       resultValue = value;
       resultMode = mode;
 
       if (isViewingActiveJob) {
         showResult(value, summary, blockBranch, usage, mode, daUrl);
-        previewPanel.showPreview(value, mode, serverUrl);
+        previewPanel.showPreview(value, mode, serverUrl, daHtml);
       }
       isViewingActiveJob = false;
       savedLiveDag = null; savedLiveRobot = null; savedLogChildren = null;
@@ -1108,6 +1144,7 @@ function buildUI(context, token, username) {
         summary,
         blockBranch,
         daUrl,
+        ...(daHtml && daHtml.length < 200_000 && { daHtml }),
         usage,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isError: false,

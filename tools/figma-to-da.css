@@ -981,6 +981,16 @@ input::placeholder, textarea::placeholder { color: var(--text-dim); }
   padding: 24px;
 }
 
+.preview-da-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
 .preview-da-url {
   font-family: var(--mono);
   font-size: 12px;
@@ -991,6 +1001,30 @@ input::placeholder, textarea::placeholder { color: var(--text-dim); }
   opacity: 0.8;
 }
 .preview-da-url:hover { opacity: 1; }
+
+.preview-da-bar .preview-da-url {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: normal;
+  text-align: left;
+}
+
+.preview-da-open {
+  flex-shrink: 0;
+}
+
+.preview-da-fallback {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 24px;
+}
 
 .preview-empty {
   flex: 1;
