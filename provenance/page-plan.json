@@ -1,0 +1,79 @@
+[
+  {
+    "sectionId": "section-0",
+    "section": "hero",
+    "block": "marquee",
+    "variants": [
+      "large"
+    ],
+    "binding": "tight-variant",
+    "score": 0.93
+  },
+  {
+    "sectionId": "section-1",
+    "section": "intro",
+    "block": "text",
+    "variants": [],
+    "binding": "tight-variant",
+    "score": 0.74,
+    "gap": "custom red-to-orange gradient background"
+  },
+  {
+    "sectionId": "section-2",
+    "section": "categories",
+    "block": "base-card",
+    "variants": [],
+    "binding": "below-threshold",
+    "score": 0.62
+  },
+  {
+    "sectionId": "section-3",
+    "section": "features-header",
+    "block": "text",
+    "variants": [],
+    "binding": "tight-variant",
+    "score": 0.73,
+    "gap": "custom purple-to-cyan gradient background"
+  },
+  {
+    "sectionId": "section-4",
+    "section": "features",
+    "block": "features-cards",
+    "variants": [],
+    "binding": "snowflake",
+    "score": 0.42
+  },
+  {
+    "sectionId": "section-5",
+    "section": "testimonial",
+    "block": "quote",
+    "variants": [],
+    "binding": "tight-variant",
+    "score": 0.76,
+    "gap": "decorative radial-gradient blobs and dark bg not natively supported"
+  },
+  {
+    "sectionId": "section-6",
+    "section": "news-section",
+    "block": "base-card",
+    "variants": [],
+    "binding": "tight-variant",
+    "score": 0.78
+  },
+  {
+    "sectionId": "section-7",
+    "section": "cta-banner",
+    "block": "marquee",
+    "variants": [],
+    "binding": "tight-variant",
+    "score": 0.88
+  },
+  {
+    "sectionId": "section-8",
+    "section": "product-grid",
+    "block": "base-card",
+    "variants": [],
+    "binding": "tight-variant",
+    "score": 0.78
+  }
+]

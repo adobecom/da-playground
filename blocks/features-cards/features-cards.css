@@ -1,0 +1,22 @@
+:root{--c-yellow:#FFD100;--c-purple:#7B2FFF;--c-pink:#FF2D78;--c-white:#FFFFFF;--c-light:#F4F3F0;--sp-xs:0.5rem;--sp-sm:1rem;--sp-md:2rem;--sp-lg:4rem;--r-lg:24px;--r-xl:36px;--t-eye:0.7rem;--t-h2:clamp(1.5rem,3vw,2.25rem);--t-h3:clamp(1.125rem,2vw,1.5rem);--t-sm:0.875rem}
+
+.features-cards{background:var(--c-light);padding:var(--sp-lg) var(--sp-md)}
+.features-cards .features-inner{max-width:1280px;margin:0 auto}
+.features-cards .featured-card{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r-xl);overflow:hidden;min-height:420px;margin-bottom:var(--sp-md);background:linear-gradient(135deg,var(--c-purple) 0%,var(--c-pink) 100%)}
+@media(max-width:700px){.features-cards .featured-card{grid-template-columns:1fr}}
+.features-cards .featured-card .fc-text{padding:var(--sp-lg);display:flex;flex-direction:column;justify-content:center}
+.features-cards .fc-eyebrow{font-size:var(--t-eye);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--c-yellow);margin-bottom:var(--sp-sm)}
+.features-cards .featured-card h3{font-size:var(--t-h2);font-weight:900;color:var(--c-white);letter-spacing:-.03em;line-height:1.1;margin-bottom:var(--sp-sm)}
+.features-cards .featured-card p{color:rgba(255,255,255,.8);font-size:1rem;line-height:1.6;margin-bottom:var(--sp-md)}
+.features-cards .card-link{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;font-size:var(--t-sm);text-decoration:none;color:var(--link-color,var(--c-yellow))}
+.features-cards .card-link::after{content:' →'}
+.features-cards .featured-card .fc-media{overflow:hidden}
+.features-cards .featured-card .fc-media img{width:100%;height:100%;object-fit:cover}
+.features-cards .mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--sp-sm)}
+.features-cards .mini-card{border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;min-height:340px}
+.features-cards .mini-card .mc-media{flex:0 0 180px;overflow:hidden}
+.features-cards .mini-card .mc-media img{width:100%;height:180px;object-fit:cover}
+.features-cards .mini-card .mc-text{flex:1;padding:var(--sp-md);display:flex;flex-direction:column;justify-content:flex-end}
+.features-cards .mini-card h3{font-size:var(--t-h3);font-weight:900;color:var(--c-white);letter-spacing:-.025em;line-height:1.15;margin-bottom:var(--sp-xs)}
+.features-cards .mini-card p{font-size:var(--t-sm);color:rgba(255,255,255,.75);line-height:1.55;margin-bottom:var(--sp-sm)}
+.features-cards .mini-card .card-link{--link-color:rgba(255,255,255,.9)}

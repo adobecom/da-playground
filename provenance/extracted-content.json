@@ -1,0 +1,144 @@
+[
+  {
+    "sectionId": "section-0",
+    "eyebrow": "Creative Cloud",
+    "heading": "Create at the highest level.",
+    "body": "Photoshop, Illustrator, Premiere, and much more. Work with the tools behind the world's most iconic creative content. Save 50% on Creative Cloud Pro.",
+    "ctas": [
+      {
+        "label": "Free trial",
+        "style": "primary"
+      },
+      {
+        "label": "See plans",
+        "style": "secondary"
+      }
+    ],
+    "media": [
+      {
+        "src": "https://main--da-playground--adobecom.aem.live/media_178b5587738511a769c0512bd18117bf1b8c8c190.jpg?width=2000&format=jpg&optimize=medium",
+        "alt": "Creative Cloud hero background"
+      }
+    ],
+    "background": "linear-gradient(135deg, rgba(123,47,255,.88) 0%, rgba(255,45,120,.72) 100%)",
+    "notes": "Full-bleed hero 92vh; bg image with purple-pink gradient overlay; eyebrow pill yellow; h1 with gradient-text span yellow-to-green; primary+secondary CTA pair"
+  },
+  {
+    "sectionId": "section-1",
+    "eyebrow": "",
+    "heading": "Everything you need to make anything.",
+    "body": "Whether you're a student, social influencer, creative professional, performance marketer, or global brand, Adobe has the apps you need to make it happen.",
+    "ctas": [],
+    "media": [],
+    "background": "linear-gradient(135deg, #FA1E00 0%, #FF6B00 100%)",
+    "notes": "Centered h2+body on red-to-orange gradient; max-width 860px; no CTAs or media"
+  },
+  {
+    "sectionId": "section-2",
+    "eyebrow": "Explore by category",
+    "heading": "",
+    "body": "5 cards: Creativity & Design (purple, CC icon, industry-leading apps) | Content Creation (cyan, Firefly icon, generate stunning content with AI) | PDF & Productivity (red, Acrobat icon, create/edit/share PDFs) | Adobe for Business (green, Experience Cloud icon, orchestrate customer experiences) | Education (yellow, CC icon, students and teachers save 71%)",
+    "ctas": [],
+    "media": [
+      {
+        "src": "https://main--da-playground--adobecom.aem.live/media_123c15ca5b250c113b7f1027f0513ea6226f725cc.png?width=750&format=png&optimize=medium",
+        "alt": "Creativity and design"
+      },
+      {
+        "src": "https://main--da-playground--adobecom.aem.live/media_182beb06b779224bc280f16b61d7e49d21fe49b1b.png?width=750&format=png&optimize=medium",
+        "alt": "Content creation"
+      },
+      {
+        "src": "https://main--da-playground--adobecom.aem.live/media_1d243344be7183a3379b1c3c6ae6d023587ccdd18.png?width=750&format=png&optimize=medium",
+        "alt": "PDF and productivity"
+      },
+      {
+        "src": "https://main--da-playground--adobecom.aem.live/media_1f42c38b1bfa9847b0a51aae46ad3d988f261f566.png?width=750&format=png&optimize=medium",
+        "alt": "Adobe for Business"
+      },
+      {
+        "src": "https://main--da-playground--adobecom.aem.live/media_196fcd7a65634001581d6dede382ee51d1608c74f.png?width=750&format=png&optimize=medium",
+        "alt": "Education"
+      }
+    ],
+    "background": "#0A0A14",
+    "notes": "5-card auto-fill grid minmax 210px on dark bg; each card icon SVG+eyebrow+h3+body+4:3 media; per-card --bg and --accent CSS vars; below-threshold"
+  },
+  {
+    "sectionId": "section-3",
+    "eyebrow": "Features & Releases",
+    "heading": "Explore what's new.",
+    "body": "Discover the latest product features from Adobe.",
+    "ctas": [],
+    "media": [],
+    "background": "linear-gradient(135deg, #7B2FFF 0%, #00C6FF 100%)",
+    "notes": "Centered eyebrow pill+h2+body on purple-to-cyan gradient; text-align center"
+  },
+  {
+    "sectionId": "section-4",
+    "eyebrow": "",
+    "heading": "",
+    "body": "",
+    "ctas": [],
+    "media": [],
+    "background": "#F4F3F0",
+    "notes": "Snowflake: featured 2-col card (purple-pink gradient bg, Firefly AI eyebrow, h3/body/link, media right) above 3-up mini card grid (each gradient bg, 180px top media, h3/body/link)",
+    "bespokeHtml": "<div class=\"features-inner\"><div class=\"featured-card\"><div class=\"fc-text\"><p class=\"fc-eyebrow\">Firefly AI</p><h3>Upscale images instantly with AI.</h3><p>Improve resolution, clarity, and sharpness while preserving detail—perfect for photos, designs, and creatives.</p><a href=\"https://www.adobe.com/products/firefly/features/image-upscaler.html\" class=\"card-link\">Explore Firefly</a></div><div class=\"fc-media\"><img src=\"https://main--da-playground--adobecom.aem.live/media_1077c0a1df7b976f84d3cfb16c5d1592785dade38.png?width=2000&format=png&optimize=medium\" alt=\"AI image upscaling demo\"></div></div><div class=\"mini-grid\"><div class=\"mini-card\" style=\"background:linear-gradient(160deg,#FA1E00 0%,#FF6B00 100%)\"><div class=\"mc-media\"><img src=\"https://main--da-playground--adobecom.aem.live/media_11baea9af9d1d1306f14797ab9e4566c1620ecc11.png?width=750&format=png&optimize=medium\" alt=\"Acrobat AI features\"></div><div class=\"mc-text\"><h3>Work smarter with documents.</h3><p>Trusted PDF tools, now with AI for editing, insights, and content creation.</p><a href=\"https://www.adobe.com/acrobat.html\" class=\"card-link\">Explore Acrobat</a></div></div><div class=\"mini-card\" style=\"background:linear-gradient(160deg,#7B2FFF 0%,#00C6FF 100%)\"><div class=\"mc-media\"><img src=\"https://main--da-playground--adobecom.aem.live/media_1843f7a14f7fa382f536bd71aed82c74f7674725c.png?width=750&format=png&optimize=medium\" alt=\"Multiple AI models in Firefly\"></div><div class=\"mc-text\"><h3>Generate with top AI models in one place.</h3><p>Access Gemini, GPT Image, Runway, FLUX models, Luma AI, and more.</p><a href=\"https://www.adobe.com/products/firefly/partner-models.html\" class=\"card-link\">Get started</a></div></div><div class=\"mini-card\" style=\"background:linear-gradient(160deg,#00C080 0%,#00C6FF 100%)\"><div class=\"mc-media\"><img src=\"https://main--da-playground--adobecom.aem.live/media_1805d203313e9cd166f23e32b27517d7ce05612b7.png?width=750&format=png&optimize=medium\" alt=\"Photoshop Harmonize feature\"></div><div class=\"mc-text\"><h3>Blend images seamlessly with Harmonize.</h3><p>Combine people and objects into any background instantly.</p><a href=\"https://www.adobe.com/products/photoshop/harmonize-image-blender.html\" class=\"card-link\">Get started</a></div></div></div></div>",
+    "bespokeCss": ":root{--c-yellow:#FFD100;--c-purple:#7B2FFF;--c-pink:#FF2D78;--c-white:#FFFFFF;--c-light:#F4F3F0;--sp-xs:0.5rem;--sp-sm:1rem;--sp-md:2rem;--sp-lg:4rem;--r-lg:24px;--r-xl:36px;--t-eye:0.7rem;--t-h2:clamp(1.5rem,3vw,2.25rem);--t-h3:clamp(1.125rem,2vw,1.5rem);--t-sm:0.875rem}section.features{background:var(--c-light);padding:var(--sp-lg) var(--sp-md)}.features-inner{max-width:1280px;margin:0 auto}.featured-card{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r-xl);overflow:hidden;min-height:420px;margin-bottom:var(--sp-md);background:linear-gradient(135deg,var(--c-purple) 0%,var(--c-pink) 100%)}@media(max-width:700px){.featured-card{grid-template-columns:1fr}}.featured-card .fc-text{padding:var(--sp-lg);display:flex;flex-direction:column;justify-content:center}.fc-eyebrow{font-size:var(--t-eye);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--c-yellow);margin-bottom:var(--sp-sm)}.featured-card h3{font-size:var(--t-h2);font-weight:900;color:var(--c-white);letter-spacing:-.03em;line-height:1.1;margin-bottom:var(--sp-sm)}.featured-card p{color:rgba(255,255,255,.8);font-size:1rem;line-height:1.6;margin-bottom:var(--sp-md)}.card-link{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;font-size:var(--t-sm);text-decoration:none;color:var(--link-color,var(--c-yellow))}.card-link::after{content:' →'}.featured-card .fc-media{overflow:hidden}.featured-card .fc-media img{width:100%;height:100%;object-fit:cover}.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--sp-sm)}.mini-card{border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;min-height:340px}.mini-card .mc-media{flex:0 0 180px;overflow:hidden}.mini-card .mc-media img{width:100%;height:180px;object-fit:cover}.mini-card .mc-text{flex:1;padding:var(--sp-md);display:flex;flex-direction:column;justify-content:flex-end}.mini-card h3{font-size:var(--t-h3);font-weight:900;color:var(--c-white);letter-spacing:-.025em;line-height:1.15;margin-bottom:var(--sp-xs)}.mini-card p{font-size:var(--t-sm);color:rgba(255,255,255,.75);line-height:1.55;margin-bottom:var(--sp-sm)}.mini-card .card-link{--link-color:rgba(255,255,255,.9)}"
+  },
+  {
+    "sectionId": "section-5",
+    "eyebrow": "",
+    "heading": "",
+    "body": "With Acrobat, I can summarize key contract details in seconds.",
+    "ctas": [
+      {
+        "label": "See all plans",
+        "style": "primary"
+      }
+    ],
+    "media": [],
+    "background": "#131326",
+    "notes": "Testimonial quote by Angi Ciccarelli (Real Estate Agent); large red quote glyph 9rem Georgia; author name in cyan; decorative abs-positioned radial-gradient blobs (purple upper-right, pink lower-left); primary CTA with red background override"
+  },
+  {
+    "sectionId": "section-6",
+    "eyebrow": "Adobe News",
+    "heading": "",
+    "body": "Film & Video: Adobe apps are top choice for Sundance filmmakers — 85% chose Adobe, company releases new AI video innovations and $10M in creator grants. | Innovation: Adobe's new Incubator creates the future — from digital creativity to reimagining customer engagement. | AI & Advertising: Adobe partners with OpenAI to test ads in ChatGPT.",
+    "ctas": [],
+    "media": [],
+    "background": "#F4F3F0",
+    "notes": "3-col news card grid auto-fill minmax 300px; each card: left-border accent color (red/purple/cyan), category tag, h3, body, read link; white card bg on light page bg"
+  },
+  {
+    "sectionId": "section-7",
+    "eyebrow": "",
+    "heading": "Tools that work for you.",
+    "body": "Bring any idea to life with products for creators, businesses, and beyond.",
+    "ctas": [
+      {
+        "label": "See all products",
+        "style": "secondary"
+      }
+    ],
+    "media": [
+      {
+        "src": "https://main--da-playground--adobecom.aem.live/media_1e479b3bb7044d01f03be72d280b50c484a5bdfd2.png?width=2000&format=png&optimize=medium",
+        "alt": ""
+      }
+    ],
+    "background": "linear-gradient(135deg, rgba(0,198,255,.82) 0%, rgba(0,232,122,.76) 100%)",
+    "notes": "Full-width CTA banner 58vh; bg image with cyan-to-green gradient overlay; centered h2+body+secondary CTA; dark text on light gradient"
+  },
+  {
+    "sectionId": "section-8",
+    "eyebrow": "",
+    "heading": "The full Adobe suite.",
+    "body": "9 products: Firefly (create/enhance with AI) | Adobe Acrobat (AI-powered PDF) | Photoshop (gorgeous images and art) | Premiere (social clips to feature films) | Creative Cloud (20+ apps) | GenStudio (content supply chain) | Illustrator (precision vectors) | Business Products (enterprise solutions) | All products (complete catalog)",
+    "ctas": [],
+    "media": [],
+    "background": "#0A0A14",
+    "notes": "3x3 product card grid on dark bg; h2 with vivid gradient span purple-to-pink; each pcard: 3px colored accent bar + 34px icon SVG + h3 + body; per-card --accent color; all cards link to product pages"
+  }
+]

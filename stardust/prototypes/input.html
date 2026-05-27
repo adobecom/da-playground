@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+<head>
+  <title>Adobe — Make Anything</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      /* ── Color tokens ── */
+      --c-red:    #FA1E00;
+      --c-orange: #FF6B00;
+      --c-yellow: #FFD100;
+      --c-green:  #00E87A;
+      --c-cyan:   #00C6FF;
+      --c-purple: #7B2FFF;
+      --c-pink:   #FF2D78;
+      --c-dark:   #0A0A14;
+      --c-mid:    #131326;
+      --c-card:   #1A1A2E;
+      --c-light:  #F4F3F0;
+      --c-white:  #FFFFFF;
+
+      /* ── Typography ── */
+      --font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+      /* ── Type scale ── */
+      --t-hero:    clamp(3rem, 8vw, 6.5rem);
+      --t-h1:      clamp(2.25rem, 5vw, 4rem);
+      --t-h2:      clamp(1.5rem, 3vw, 2.25rem);
+      --t-h3:      clamp(1.125rem, 2vw, 1.5rem);
+      --t-body:    1rem;
+      --t-sm:      0.875rem;
+      --t-eye:     0.7rem;
+
+      /* ── Spacing ── */
+      --sp-xs: 0.5rem;
+      --sp-sm: 1rem;
+      --sp-md: 2rem;
+      --sp-lg: 4rem;
+      --sp-xl: 6.5rem;
+
+      /* ── Radii ── */
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 36px;
+
+      /* ── Gradients ── */
+      --grad-hero:  linear-gradient(135deg, rgba(123,47,255,.88) 0%, rgba(255,45,120,.72) 100%);
+      --grad-intro: linear-gradient(135deg, #FA1E00 0%, #FF6B00 100%);
+      --grad-feat:  linear-gradient(135deg, #7B2FFF 0%, #00C6FF 100%);
+      --grad-cta:   linear-gradient(135deg, rgba(0,198,255,.82) 0%, rgba(0,232,122,.76) 100%);
+      --grad-news:  linear-gradient(90deg, #00C6FF, #00E87A);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--c-light);
+      color: var(--c-dark);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ══════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--c-dark);
+      border-bottom: 2.5px solid var(--c-purple);
+      padding: 0 var(--sp-md);
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+    .header-brand img { width: 34px; height: 34px; }
+    .header-brand span {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--c-white);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-md);
+    }
+    .header-nav a {
+      font-size: var(--t-sm);
+      font-weight: 500;
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .header-nav a:hover { color: var(--c-white); }
+    .nav-cta {
+      background: var(--c-red) !important;
+      color: var(--c-white) !important;
+      font-weight: 700 !important;
+      padding: 0.4rem 1.1rem;
+      border-radius: var(--r-sm);
+    }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    section.hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--grad-hero);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: var(--sp-xl) var(--sp-md);
+    }
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--t-eye);
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--c-yellow);
+      background: rgba(255,209,0,.15);
+      border: 1.5px solid rgba(255,209,0,.45);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: var(--sp-sm);
+    }
+    .hero-title {
+      font-size: var(--t-hero);
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: -.04em;
+      color: var(--c-white);
+      margin-bottom: var(--sp-sm);
+    }
+    .hero-title .gradient-text {
+      background: linear-gradient(90deg, var(--c-yellow) 0%, var(--c-green) 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-body {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.82);
+      max-width: 52ch;
+      margin-bottom: var(--sp-md);
+      line-height: 1.6;
+    }
+    .cta-row {
+      display: flex;
+      gap: var(--sp-sm);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    /* EDS button convention: <strong><a> = primary */
+    strong a, .btn-pri {
+      display: inline-block;
+      background: var(--c-yellow);
+      color: var(--c-dark) !important;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: var(--r-md);
+      text-decoration: none;
+      letter-spacing: -.01em;
+      transition: transform .15s, box-shadow .15s;
+    }
+    strong a:hover, .btn-pri:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(255,209,0,.45);
+    }
+    /* EDS button convention: <em><a> = secondary */
+    em a, .btn-sec {
+      display: inline-block;
+      color: var(--c-white) !important;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: var(--r-md);
+      border: 2px solid rgba(255,255,255,.5);
+      text-decoration: none;
+      font-style: normal;
+      transition: border-color .15s;
+    }
+    em a:hover, .btn-sec:hover { border-color: var(--c-white); }
+
+    /* ══════════════════════════════════════
+       INTRO
+    ══════════════════════════════════════ */
+    section.intro {
+      background: var(--grad-intro);
+      padding: var(--sp-xl) var(--sp-md);
+      text-align: center;
+    }
+    .intro-inner { max-width: 860px; margin: 0 auto; }
+    .intro h2 {
+      font-size: var(--t-h1);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      color: var(--c-white);
+      margin-bottom: var(--sp-sm);
+    }
+    .intro p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.82);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════
+       CATEGORIES
+    ══════════════════════════════════════ */
+    section.categories {
+      background: var(--c-dark);
+      padding: var(--sp-lg) var(--sp-md);
+    }
+    .section-label {
+      font-size: var(--t-eye);
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--c-cyan);
+      margin-bottom: var(--sp-md);
+    }
+    .cat-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 0.75rem;
+    }
+    .cat-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      background: var(--bg, var(--c-card));
+      border-radius: var(--r-lg);
+      padding: var(--sp-md);
+      border: 1px solid rgba(255,255,255,.06);
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 50px rgba(0,0,0,.5);
+    }
+    .cat-accent {
+      width: 36px; height: 4px;
+      border-radius: 2px;
+      background: var(--accent, var(--c-cyan));
+      margin-bottom: var(--sp-sm);
+      flex-shrink: 0;
+    }
+    .cat-card .cat-icon {
+      width: 36px; height: 36px;
+      margin-bottom: var(--sp-sm);
+      flex-shrink: 0;
+    }
+    .cat-eyebrow {
+      font-size: var(--t-eye);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent, var(--c-cyan));
+      margin-bottom: .2rem;
+    }
+    .cat-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--c-white);
+      letter-spacing: -.02em;
+      margin-bottom: var(--sp-xs);
+    }
+    .cat-card .cat-body {
+      font-size: var(--t-sm);
+      color: rgba(255,255,255,.55);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .cat-media {
+      margin: var(--sp-sm) -2rem -2rem;
+      border-radius: 0 0 var(--r-lg) var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      margin-top: var(--sp-md);
+    }
+    .cat-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ══════════════════════════════════════
+       FEATURES HEADER
+    ══════════════════════════════════════ */
+    section.features-header {
+      background: var(--grad-feat);
+      padding: var(--sp-lg) var(--sp-md);
+      text-align: center;
+    }
+    .features-header .eyebrow-pill {
+      color: var(--c-yellow);
+    }
+    .features-header h2 {
+      font-size: var(--t-h1);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      color: var(--c-white);
+    }
+    .features-header p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.78);
+      margin-top: var(--sp-xs);
+    }
+
+    /* ══════════════════════════════════════
+       FEATURES CARDS
+    ══════════════════════════════════════ */
+    section.features {
+      background: var(--c-light);
+      padding: var(--sp-lg) var(--sp-md);
+    }
+    .features-inner { max-width: 1280px; margin: 0 auto; }
+
+    /* Featured (full-width) card */
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      min-height: 420px;
+      margin-bottom: var(--sp-md);
+      background: linear-gradient(135deg, var(--c-purple) 0%, var(--c-pink) 100%);
+    }
+    @media (max-width: 700px) {
+      .featured-card { grid-template-columns: 1fr; }
+    }
+    .featured-card .fc-text {
+      padding: var(--sp-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .fc-eyebrow {
+      font-size: var(--t-eye);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--c-yellow);
+      margin-bottom: var(--sp-sm);
+    }
+    .featured-card h3 {
+      font-size: var(--t-h2);
+      font-weight: 900;
+      color: var(--c-white);
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: var(--sp-sm);
+    }
+    .featured-card p {
+      color: rgba(255,255,255,.8);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: var(--sp-md);
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      font-size: var(--t-sm);
+      letter-spacing: .02em;
+      text-decoration: none;
+      color: var(--link-color, var(--c-yellow));
+    }
+    .card-link::after { content: " →"; }
+    .featured-card .fc-media {
+      overflow: hidden;
+    }
+    .featured-card .fc-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Mini 3-up cards */
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--sp-sm);
+    }
+    .mini-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 340px;
+    }
+    .mini-card .mc-media {
+      flex: 0 0 180px;
+      overflow: hidden;
+    }
+    .mini-card .mc-media img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .mini-card .mc-text {
+      flex: 1;
+      padding: var(--sp-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .mini-card h3 {
+      font-size: var(--t-h3);
+      font-weight: 900;
+      color: var(--c-white);
+      letter-spacing: -.025em;
+      line-height: 1.15;
+      margin-bottom: var(--sp-xs);
+    }
+    .mini-card p {
+      font-size: var(--t-sm);
+      color: rgba(255,255,255,.75);
+      line-height: 1.55;
+      margin-bottom: var(--sp-sm);
+    }
+    .mini-card .card-link { --link-color: rgba(255,255,255,.9); }
+
+    /* ══════════════════════════════════════
+       TESTIMONIAL
+    ══════════════════════════════════════ */
+    section.testimonial {
+      background: var(--c-mid);
+      padding: var(--sp-xl) var(--sp-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-blob {
+      position: absolute;
+      right: -180px;
+      top: -100px;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,47,255,.28) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .testimonial-blob2 {
+      position: absolute;
+      left: -200px;
+      bottom: -140px;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,45,120,.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .testimonial-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .quote-glyph {
+      font-family: Georgia, serif;
+      font-size: 9rem;
+      line-height: .65;
+      color: var(--c-red);
+      display: block;
+      margin-bottom: var(--sp-sm);
+    }
+    .testimonial-quote {
+      font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      line-height: 1.2;
+      color: var(--c-white);
+      margin-bottom: var(--sp-md);
+    }
+    .testimonial-by strong {
+      display: block;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--c-cyan);
+    }
+    .testimonial-by span {
+      font-size: var(--t-sm);
+      color: rgba(255,255,255,.45);
+    }
+    .testimonial-cta { margin-top: var(--sp-md); }
+
+    /* ══════════════════════════════════════
+       NEWS
+    ══════════════════════════════════════ */
+    section.news-section {
+      background: var(--c-light);
+      padding: var(--sp-lg) var(--sp-md);
+    }
+    .news-inner { max-width: 1280px; margin: 0 auto; }
+    .news-badge {
+      display: inline-block;
+      background: var(--grad-news);
+      color: var(--c-dark);
+      font-weight: 800;
+      font-size: var(--t-eye);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border-radius: 100px;
+      margin-bottom: var(--sp-lg);
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--sp-md);
+    }
+    .news-card {
+      background: var(--c-white);
+      border-radius: var(--r-lg);
+      padding: var(--sp-md);
+      border-left: 5px solid var(--accent, var(--c-purple));
+      box-shadow: 0 2px 20px rgba(0,0,0,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 36px rgba(0,0,0,.1);
+    }
+    .news-tag {
+      display: block;
+      font-size: var(--t-eye);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent, var(--c-purple));
+      margin-bottom: var(--sp-sm);
+    }
+    .news-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--c-dark);
+      letter-spacing: -.02em;
+      line-height: 1.3;
+      margin-bottom: var(--sp-xs);
+    }
+    .news-card p {
+      font-size: var(--t-sm);
+      color: #5a5a6e;
+      line-height: 1.6;
+      margin-bottom: var(--sp-sm);
+    }
+    .news-card a.read-link {
+      font-size: var(--t-sm);
+      font-weight: 700;
+      color: var(--accent, var(--c-purple));
+      text-decoration: none;
+    }
+    .news-card a.read-link::after { content: " →"; }
+
+    /* ══════════════════════════════════════
+       CTA BANNER
+    ══════════════════════════════════════ */
+    section.cta-banner {
+      position: relative;
+      min-height: 58vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cta-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--grad-cta);
+    }
+    .cta-banner-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--sp-xl) var(--sp-md);
+    }
+    .cta-banner-content h2 {
+      font-size: var(--t-h1);
+      font-weight: 900;
+      color: var(--c-dark);
+      letter-spacing: -.035em;
+      margin-bottom: var(--sp-sm);
+    }
+    .cta-banner-content p {
+      font-size: 1.2rem;
+      color: rgba(0,0,0,.68);
+      margin-bottom: var(--sp-md);
+    }
+    .btn-dark {
+      display: inline-block;
+      background: var(--c-dark);
+      color: var(--c-white) !important;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 0.9rem 2.5rem;
+      border-radius: var(--r-md);
+      text-decoration: none;
+      letter-spacing: -.01em;
+      font-style: normal;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,.3);
+    }
+
+    /* ══════════════════════════════════════
+       PRODUCT GRID
+    ══════════════════════════════════════ */
+    section.product-grid {
+      background: var(--c-dark);
+      padding: var(--sp-lg) var(--sp-md);
+    }
+    .product-grid-inner { max-width: 1280px; margin: 0 auto; }
+    .pg-title {
+      font-size: var(--t-h1);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      color: var(--c-white);
+      text-align: center;
+      margin-bottom: var(--sp-lg);
+    }
+    .pg-title .vivid {
+      background: linear-gradient(90deg, var(--c-purple), var(--c-pink) 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background: rgba(255,255,255,.04);
+    }
+    @media (max-width: 700px) {
+      .pgrid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .pcard {
+      display: block;
+      text-decoration: none;
+      background: #0d0d1f;
+      padding: var(--sp-md);
+      position: relative;
+      overflow: hidden;
+      transition: background .2s;
+    }
+    .pcard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent, var(--c-purple));
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .pcard:hover::before { opacity: .09; }
+    .pcard-accent-bar {
+      width: 32px; height: 3px;
+      border-radius: 2px;
+      background: var(--accent, var(--c-purple));
+      margin-bottom: var(--sp-sm);
+      position: relative;
+    }
+    .pcard img {
+      width: 34px; height: 34px;
+      margin-bottom: var(--sp-sm);
+      position: relative;
+    }
+    .pcard h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--c-white);
+      letter-spacing: -.02em;
+      margin-bottom: var(--sp-xs);
+      position: relative;
+    }
+    .pcard p {
+      font-size: var(--t-sm);
+      color: rgba(255,255,255,.45);
+      line-height: 1.5;
+      position: relative;
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--c-dark);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: var(--sp-md);
+      text-align: center;
+    }
+    footer p { font-size: var(--t-sm); color: rgba(255,255,255,.35); }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: rgba(255,255,255,.8); }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="https://www.adobe.com/" class="header-brand">
+    <img src="https://main--federal--adobecom.aem.live/federal/ace1201/assets/adobe-logo-white.svg" alt="Adobe, Inc.">
+    <span>Adobe</span>
+  </a>
+  <nav class="header-nav">
+    <a href="https://www.adobe.com/products/catalog.html">Products</a>
+    <a href="https://www.adobe.com/creativecloud/plans.html">Plans</a>
+    <a href="https://www.adobe.com/creativecloud.html" class="nav-cta">Free trial</a>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <!-- ═══ HERO ═══════════════════════════════════════ -->
+  <section class="hero">
+    <img class="hero-bg"
+         src="https://main--da-playground--adobecom.aem.live/media_178b5587738511a769c0512bd18117bf1b8c8c190.jpg?width=2000&format=jpg&optimize=medium"
+         alt="Creative Cloud hero background">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="eyebrow-pill">Creative Cloud</span>
+      <h1 class="hero-title">
+        Create at the<br>
+        <span class="gradient-text">highest level.</span>
+      </h1>
+      <p class="hero-body">
+        Photoshop, Illustrator, Premiere, and much more. Work with the tools behind the world's most iconic creative content. Save 50% on Creative Cloud Pro.
+      </p>
+      <div class="cta-row">
+        <strong><a href="https://www.adobe.com/creativecloud.html">Free trial</a></strong>
+        <em><a href="https://www.adobe.com/creativecloud/plans.html">See plans</a></em>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INTRO ══════════════════════════════════════ -->
+  <section class="intro">
+    <div class="intro-inner">
+      <h2>Everything you need<br>to make anything.</h2>
+      <p>Whether you're a student, social influencer, creative professional, performance marketer, or global brand, Adobe has the apps you need to make it happen.</p>
+    </div>
+  </section>
+
+  <!-- ═══ CATEGORIES ═════════════════════════════════ -->
+  <section class="categories">
+    <div class="cat-grid">
+      <p class="section-label" style="grid-column: 1/-1;">Explore by category</p>
+
+      <a class="cat-card" href="https://www.adobe.com/creativecloud.html"
+         style="--bg:#150f2a; --accent:var(--c-purple)">
+        <div class="cat-accent"></div>
+        <img class="cat-icon" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="">
+        <p class="cat-eyebrow">Creativity &amp; Design</p>
+        <h3>Create at the highest level.</h3>
+        <p class="cat-body">Industry-leading apps for design, photo, video, and creative AI.</p>
+        <div class="cat-media">
+          <img src="https://main--da-playground--adobecom.aem.live/media_123c15ca5b250c113b7f1027f0513ea6226f725cc.png?width=750&format=png&optimize=medium" alt="Creativity and design">
+        </div>
+      </a>
+
+      <a class="cat-card" href="https://www.adobe.com/products/firefly.html"
+         style="--bg:#091826; --accent:var(--c-cyan)">
+        <div class="cat-accent"></div>
+        <img class="cat-icon" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="">
+        <p class="cat-eyebrow">Content Creation</p>
+        <h3>Generate stunning content easily.</h3>
+        <p class="cat-body">Quickly create and edit images, video, and audio with creative AI.</p>
+        <div class="cat-media">
+          <img src="https://main--da-playground--adobecom.aem.live/media_182beb06b779224bc280f16b61d7e49d21fe49b1b.png?width=750&format=png&optimize=medium" alt="Content creation">
+        </div>
+      </a>
+
+      <a class="cat-card" href="https://www.adobe.com/acrobat.html"
+         style="--bg:#200c08; --accent:var(--c-red)">
+        <div class="cat-accent"></div>
+        <img class="cat-icon" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/acrobat-pro.svg" alt="">
+        <p class="cat-eyebrow">PDF &amp; Productivity</p>
+        <h3>Get work done faster.</h3>
+        <p class="cat-body">Create, edit, and share PDFs. Make edits and create presentations with AI.</p>
+        <div class="cat-media">
+          <img src="https://main--da-playground--adobecom.aem.live/media_1d243344be7183a3379b1c3c6ae6d023587ccdd18.png?width=750&format=png&optimize=medium" alt="PDF and productivity">
+        </div>
+      </a>
+
+      <a class="cat-card" href="https://business.adobe.com/"
+         style="--bg:#091a10; --accent:var(--c-green)">
+        <div class="cat-accent"></div>
+        <img class="cat-icon" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/experience-cloud-logo.svg" alt="">
+        <p class="cat-eyebrow">Adobe for Business</p>
+        <h3>Orchestrate customer experiences.</h3>
+        <p class="cat-body">Deliver business impact, move faster, and personalize at scale.</p>
+        <div class="cat-media">
+          <img src="https://main--da-playground--adobecom.aem.live/media_1f42c38b1bfa9847b0a51aae46ad3d988f261f566.png?width=750&format=png&optimize=medium" alt="Adobe for Business">
+        </div>
+      </a>
+
+      <a class="cat-card" href="https://www.adobe.com/creativecloud/buy/students.html"
+         style="--bg:#1a1500; --accent:var(--c-yellow)">
+        <div class="cat-accent"></div>
+        <img class="cat-icon" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="">
+        <p class="cat-eyebrow">Education</p>
+        <h3>Students and teachers save 71%.</h3>
+        <p class="cat-body">Save a bundle on the biggest bundle of industry creative tools.</p>
+        <div class="cat-media">
+          <img src="https://main--da-playground--adobecom.aem.live/media_196fcd7a65634001581d6dede382ee51d1608c74f.png?width=750&format=png&optimize=medium" alt="Education">
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES HEADER ════════════════════════════ -->
+  <section class="features-header">
+    <span class="eyebrow-pill">Features &amp; Releases</span>
+    <h2>Explore what's new.</h2>
+    <p>Discover the latest product features from Adobe.</p>
+  </section>
+
+  <!-- ═══ FEATURES CARDS ═════════════════════════════ -->
+  <section class="features">
+    <div class="features-inner">
+
+      <div class="featured-card">
+        <div class="fc-text">
+          <p class="fc-eyebrow">Firefly AI</p>
+          <h3>Upscale images instantly with AI.</h3>
+          <p>Improve resolution, clarity, and sharpness while preserving detail—perfect for photos, designs, and creatives.</p>
+          <a href="https://www.adobe.com/products/firefly/features/image-upscaler.html" class="card-link">Explore Firefly</a>
+        </div>
+        <div class="fc-media">
+          <img src="https://main--da-playground--adobecom.aem.live/media_1077c0a1df7b976f84d3cfb16c5d1592785dade38.png?width=2000&format=png&optimize=medium" alt="AI image upscaling demo">
+        </div>
+      </div>
+
+      <div class="mini-grid">
+
+        <div class="mini-card" style="background: linear-gradient(160deg, #FA1E00 0%, #FF6B00 100%)">
+          <div class="mc-media">
+            <img src="https://main--da-playground--adobecom.aem.live/media_11baea9af9d1d1306f14797ab9e4566c1620ecc11.png?width=750&format=png&optimize=medium" alt="Acrobat AI features">
+          </div>
+          <div class="mc-text">
+            <h3>Work smarter with documents.</h3>
+            <p>Trusted PDF tools, now with AI for editing, insights, and content creation.</p>
+            <a href="https://www.adobe.com/acrobat.html" class="card-link">Explore Acrobat</a>
+          </div>
+        </div>
+
+        <div class="mini-card" style="background: linear-gradient(160deg, #7B2FFF 0%, #00C6FF 100%)">
+          <div class="mc-media">
+            <img src="https://main--da-playground--adobecom.aem.live/media_1843f7a14f7fa382f536bd71aed82c74f7674725c.png?width=750&format=png&optimize=medium" alt="Multiple AI models in Firefly">
+          </div>
+          <div class="mc-text">
+            <h3>Generate with top AI models in one place.</h3>
+            <p>Access Gemini, GPT Image, Runway, FLUX models, Luma AI, and more.</p>
+            <a href="https://www.adobe.com/products/firefly/partner-models.html" class="card-link">Get started</a>
+          </div>
+        </div>
+
+        <div class="mini-card" style="background: linear-gradient(160deg, #00C080 0%, #00C6FF 100%)">
+          <div class="mc-media">
+            <img src="https://main--da-playground--adobecom.aem.live/media_1805d203313e9cd166f23e32b27517d7ce05612b7.png?width=750&format=png&optimize=medium" alt="Photoshop Harmonize feature">
+          </div>
+          <div class="mc-text">
+            <h3>Blend images seamlessly with Harmonize.</h3>
+            <p>Combine people and objects into any background instantly.</p>
+            <a href="https://www.adobe.com/products/photoshop/harmonize-image-blender.html" class="card-link">Get started</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIAL ════════════════════════════════ -->
+  <section class="testimonial">
+    <div class="testimonial-blob"></div>
+    <div class="testimonial-blob2"></div>
+    <div class="testimonial-inner">
+      <span class="quote-glyph">"</span>
+      <p class="testimonial-quote">
+        With Acrobat, I can summarize key contract details in seconds.
+      </p>
+      <div class="testimonial-by">
+        <strong>Angi Ciccarelli</strong>
+        <span>Real Estate Agent</span>
+      </div>
+      <div class="testimonial-cta">
+        <strong><a href="https://adobe.com/" style="background: var(--c-red);">See all plans</a></strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NEWS ═══════════════════════════════════════ -->
+  <section class="news-section">
+    <div class="news-inner">
+      <span class="news-badge">Adobe News</span>
+      <div class="news-grid">
+
+        <div class="news-card" style="--accent: var(--c-red)">
+          <span class="news-tag">Film &amp; Video</span>
+          <h3>Adobe apps are top choice for Sundance filmmakers.</h3>
+          <p>85% of Sundance filmmakers chose Adobe as the company releases new AI video innovations and $10M in creator grants.</p>
+          <a href="https://news.adobe.com/news/2026/01/sundance-filmmakers-choose-adobe" class="read-link">Read story</a>
+        </div>
+
+        <div class="news-card" style="--accent: var(--c-purple)">
+          <span class="news-tag">Innovation</span>
+          <h3>Adobe's new Incubator creates the future.</h3>
+          <p>From pioneering digital creativity to reimagining the future of customer engagement — our north star has always been innovation.</p>
+          <a href="https://blog.adobe.com/en/publish/2025/11/17/adobes-new-incubator-creates-future" class="read-link">Read story</a>
+        </div>
+
+        <div class="news-card" style="--accent: var(--c-cyan)">
+          <span class="news-tag">AI &amp; Advertising</span>
+          <h3>Adobe partners with OpenAI to test ads in ChatGPT.</h3>
+          <p>Adobe is working closely with OpenAI to explore how advertising can be thoughtfully integrated into ChatGPT.</p>
+          <a href="https://blog.adobe.com/en/publish/2026/02/09/adobe-partners-openai-test-ads-chatgpt" class="read-link">Read story</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANNER ═════════════════════════════════ -->
+  <section class="cta-banner">
+    <img class="cta-banner-bg"
+         src="https://main--da-playground--adobecom.aem.live/media_1e479b3bb7044d01f03be72d280b50c484a5bdfd2.png?width=2000&format=png&optimize=medium"
+         alt="">
+    <div class="cta-banner-overlay"></div>
+    <div class="cta-banner-content">
+      <h2>Tools that work for you.</h2>
+      <p>Bring any idea to life with products for creators, businesses, and beyond.</p>
+      <em><a href="https://www.adobe.com/products/catalog.html" class="btn-dark">See all products</a></em>
+    </div>
+  </section>
+
+  <!-- ═══ PRODUCT GRID ═══════════════════════════════ -->
+  <section class="product-grid">
+    <div class="product-grid-inner">
+      <h2 class="pg-title">The full <span class="vivid">Adobe suite.</span></h2>
+      <div class="pgrid">
+
+        <a class="pcard" href="https://www.adobe.com/products/firefly.html"
+           style="--accent: var(--c-cyan)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="">
+          <h3>Firefly</h3>
+          <p>Create and enhance images, video, and audio with AI-powered tools.</p>
+        </a>
+
+        <a class="pcard" href="https://www.adobe.com/acrobat.html"
+           style="--accent: var(--c-red)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/acrobat-pro.svg" alt="">
+          <h3>Adobe Acrobat</h3>
+          <p>The complete AI-powered PDF and design solution for business workflows.</p>
+        </a>
+
+        <a class="pcard" href="https://www.adobe.com/photoshop.html"
+           style="--accent: var(--c-purple)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/photoshop-80.svg" alt="">
+          <h3>Photoshop</h3>
+          <p>Create gorgeous images, rich graphics, and incredible art.</p>
+        </a>
+
+        <a class="pcard" href="https://www.adobe.com/products/premiere.html"
+           style="--accent: var(--c-pink)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/premiere-pro-1.svg" alt="">
+          <h3>Premiere</h3>
+          <p>Create everything from social clips to feature films.</p>
+        </a>
+
+        <a class="pcard" href="https://www.adobe.com/creativecloud/pro.html"
+           style="--accent: var(--c-orange)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="">
+          <h3>Creative Cloud</h3>
+          <p>Get 20+ apps — Photoshop, Illustrator, Premiere, and Acrobat Pro.</p>
+        </a>
+
+        <a class="pcard" href="https://business.adobe.com/products/genstudio-for-performance-marketing.html"
+           style="--accent: var(--c-green)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/experience-cloud-logo.svg" alt="">
+          <h3>GenStudio</h3>
+          <p>Scale your content supply chain.</p>
+        </a>
+
+        <a class="pcard" href="https://www.adobe.com/products/illustrator.html"
+           style="--accent: var(--c-yellow)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/illustrator-1.svg" alt="">
+          <h3>Illustrator</h3>
+          <p>Precision vector graphics — sharp, scalable, fully editable.</p>
+        </a>
+
+        <a class="pcard" href="http://business.adobe.com/"
+           style="--accent: var(--c-cyan)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/b-app-experiencecloud.svg" alt="">
+          <h3>Business Products</h3>
+          <p>Best-in-class solutions to tackle pressing business challenges.</p>
+        </a>
+
+        <a class="pcard" href="https://adobe.com/products/catalog.html"
+           style="--accent: var(--c-pink)">
+          <div class="pcard-accent-bar"></div>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/all-products.svg" alt="">
+          <h3>All products</h3>
+          <p>See the complete Adobe product catalog.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 Adobe Inc. All rights reserved.&nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://www.adobe.com/privacy.html">Privacy</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://www.adobe.com/legal/terms.html">Terms of Use</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://www.adobe.com/accessibility.html">Accessibility</a>
+  </p>
+</footer>
+
+</body>
+</html>
