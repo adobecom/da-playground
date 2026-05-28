@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+<head>
+  <title>DA Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* CONSONANT 2 TOKENS */
+    :root {
+      --s2a-color-gray-25: #fff;
+      --s2a-color-gray-50: #f8f8f8;
+      --s2a-color-gray-100: #e9e9e9;
+      --s2a-color-gray-500: #8f8f8f;
+      --s2a-color-gray-700: #505050;
+      --s2a-color-gray-800: #292929;
+      --s2a-color-gray-900: #131313;
+      --s2a-color-gray-1000: #000;
+      --s2a-color-blue-500: #8eb9fc;
+      --s2a-color-blue-600: #729efd;
+      --s2a-color-blue-700: #5d89ff;
+      --s2a-color-blue-800: #4b75ff;
+      --s2a-color-blue-900: #3b63fb;
+      --s2a-color-blue-1000: #274dea;
+      --s2a-color-blue-1300: #10288c;
+      --s2a-color-blue-1400: #0c1f69;
+      --s2a-color-blue-1500: #0e1843;
+      --s2a-color-blue-1600: #070b1e;
+      --s2a-color-green-400: #6be3a2;
+      --s2a-color-green-500: #2bd17d;
+      --s2a-color-green-600: #12b867;
+      --s2a-color-orange-400: #ffc15e;
+      --s2a-color-orange-500: #ffa213;
+      --s2a-color-orange-600: #fc7d00;
+      --s2a-color-yellow-300: #ffde2c;
+      --s2a-color-red-600: #ff7665;
+      --s2a-color-red-700: #ff513d;
+      --s2a-color-brand-adobe-red: #eb1000;
+      --s2a-color-brand-cc-3dar: #99e83f;
+      --s2a-color-brand-cc-il: #ff9a00;
+      --s2a-color-brand-cc-ppafx: #9999ff;
+      --s2a-color-brand-cc-ps: #3a18ff;
+      --s2a-spacing-4: 4px; --s2a-spacing-8: 8px; --s2a-spacing-12: 12px;
+      --s2a-spacing-16: 16px; --s2a-spacing-20: 20px; --s2a-spacing-24: 24px;
+      --s2a-spacing-32: 32px; --s2a-spacing-40: 40px; --s2a-spacing-48: 48px;
+      --s2a-spacing-64: 64px; --s2a-spacing-80: 80px; --s2a-spacing-96: 96px;
+      --s2a-spacing-124: 124px;
+      --s2a-layout-sm: 80px; --s2a-layout-md: 96px; --s2a-layout-lg: 124px;
+      --s2a-border-radius-md: 16px;
+      --s2a-border-radius-round: 999px;
+      --s2a-font-family-adobe-clean: "Adobe Clean", "Adobe Clean UI", adobe-clean, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --s2a-font-family-adobe-clean-display: "Adobe Clean Display", "Adobe Clean", adobe-clean, ui-sans-serif, system-ui, sans-serif;
+      /* Page aliases */
+      --text-color: var(--s2a-color-gray-25);
+      /* App brand shortcuts */
+      --col-cc:  var(--s2a-color-brand-cc-il);
+      --col-ff:  var(--s2a-color-brand-cc-3dar);
+      --col-acr: var(--s2a-color-brand-adobe-red);
+      --col-biz: var(--s2a-color-blue-700);
+      --col-edu: var(--s2a-color-brand-cc-ppafx);
+      --col-ps:  var(--s2a-color-brand-cc-ps);
+      --col-ora: var(--s2a-color-orange-500);
+      /* Rainbow gradient */
+      --rainbow: linear-gradient(90deg, var(--col-acr) 0%, var(--col-cc) 25%, var(--col-ff) 50%, var(--col-ps) 75%, var(--col-edu) 100%);
+    }
+
+    /* RESET */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--s2a-font-family-adobe-clean);
+      background: var(--s2a-color-gray-1000);
+      color: var(--s2a-color-gray-25);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img, picture { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    p { margin: 0; }
+    strong, em { font-style: inherit; font-weight: inherit; }
+
+    /* BUTTONS (.con-button) */
+    .con-button {
+      background-color: transparent;
+      border-radius: 16px;
+      border: 2px solid var(--text-color, #fff);
+      color: var(--text-color, #fff);
+      display: inline-block;
+      font-family: var(--s2a-font-family-adobe-clean);
+      font-size: 15px; font-weight: 700; line-height: 16px;
+      padding: 5px 14px; text-decoration: none; cursor: pointer;
+      transition: background-color 0.18s, color 0.18s, border-color 0.18s;
+    }
+    .con-button:hover { background-color: var(--s2a-color-gray-25); border-color: var(--s2a-color-gray-25); color: var(--s2a-color-gray-1000); }
+    .con-button.button-l  { border-radius: 20px; font-size: 17px; line-height: 20px; padding: 7px 18px 8px; }
+    .con-button.button-xl { border-radius: 25px; font-size: 19px; line-height: 24px; padding: 10px 24px 8px; }
+    .con-button.button-xxl{ border-radius: 30px; font-size: 22px; line-height: 27px; padding: 14px 30px 15px; }
+    .con-button.fill { background-color: var(--s2a-color-gray-25); color: var(--s2a-color-gray-1000); border-color: var(--s2a-color-gray-25); }
+    .con-button.fill:hover { background-color: rgba(255,255,255,0.88); border-color: rgba(255,255,255,0.88); color: var(--s2a-color-gray-1000); }
+
+    /* SITE HEADER — sticky, rainbow bottom strip */
+    .site-header {
+      position: sticky; top: 0; z-index: 200;
+      height: 60px;
+      background: rgba(0,0,0,0.93);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 0 8.333%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s2a-spacing-32);
+    }
+    /* Rainbow strip replaces the plain border */
+    .site-header::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--rainbow);
+    }
+    .site-header .brand-logo { height: 32px; width: auto; }
+    .site-header nav ul { display: flex; gap: var(--s2a-spacing-32); }
+    .site-header nav a { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.72); transition: color 0.15s; }
+    .site-header nav a:hover { color: #fff; }
+    .site-header .header-cta { flex-shrink: 0; }
+
+    /* HERO / MARQUEE — blue-purple overlay, gradient headline */
+    /* candidate-block: router-marquee, variants: large, dark */
+    section.hero {
+      position: relative; min-height: 680px;
+      display: flex; align-items: flex-end;
+      padding: var(--s2a-layout-lg) 8.333% calc(var(--s2a-layout-lg) + 80px);
+      overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        130deg,
+        rgba(14,5,60,0.94) 0%,
+        rgba(30,8,80,0.78) 40%,
+        rgba(0,0,0,0.45) 100%
+      );
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 640px; }
+    .rm-eyebrow {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--col-cc);
+      margin-bottom: var(--s2a-spacing-16);
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--col-cc);
+    }
+    .hero-content h1 {
+      font-family: var(--s2a-font-family-adobe-clean-display);
+      font-size: 80px; font-weight: 900; line-height: 0.95; letter-spacing: -3.2px;
+      /* Gradient text: white → light blue → soft purple */
+      background: linear-gradient(95deg, #fff 0%, var(--s2a-color-blue-500) 55%, var(--col-edu) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--s2a-spacing-24);
+    }
+    .hero-content .rm-body {
+      font-size: 18px; line-height: 28px;
+      color: rgba(255,255,255,0.80); max-width: 520px;
+      margin-bottom: var(--s2a-spacing-32);
+    }
+    .hero-ctas { display: flex; gap: var(--s2a-spacing-12); flex-wrap: wrap; align-items: center; }
+    .hero-ctas p { margin: 0; }
+
+    /* Product tabs — each colored with its brand palette */
+    .rm-product-tabs {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      padding: var(--s2a-spacing-20) 8.333%;
+      display: flex; gap: var(--s2a-spacing-8);
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+      overflow-x: auto;
+    }
+    .rm-tab {
+      display: inline-flex; align-items: center; gap: var(--s2a-spacing-8);
+      padding: 8px 14px; border-radius: var(--s2a-border-radius-round);
+      font-size: 13px; font-weight: 600; white-space: nowrap;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+    }
+    .rm-tab img { width: 20px; height: 20px; flex-shrink: 0; }
+    /* Per-product tab colors */
+    .rm-tab.tab-cc  { background: rgba(255,154,0,0.18);  border: 1px solid rgba(255,154,0,0.5);  color: var(--col-cc); }
+    .rm-tab.tab-ff  { background: rgba(153,232,63,0.16); border: 1px solid rgba(153,232,63,0.45); color: var(--col-ff); }
+    .rm-tab.tab-acr { background: rgba(235,16,0,0.18);   border: 1px solid rgba(235,16,0,0.5);   color: #ff7665; }
+    .rm-tab.tab-biz { background: rgba(93,137,255,0.18); border: 1px solid rgba(93,137,255,0.5); color: var(--col-biz); }
+    .rm-tab.tab-edu { background: rgba(153,153,255,0.16);border: 1px solid rgba(153,153,255,0.45);color: var(--col-edu); }
+    .rm-tab.tab-cc:hover  { background: rgba(255,154,0,0.30); color: #fff; }
+    .rm-tab.tab-ff:hover  { background: rgba(153,232,63,0.28); color: #fff; }
+    .rm-tab.tab-acr:hover { background: rgba(235,16,0,0.30); color: #fff; }
+    .rm-tab.tab-biz:hover { background: rgba(93,137,255,0.30); color: #fff; }
+    .rm-tab.tab-edu:hover { background: rgba(153,153,255,0.28); color: #fff; }
+
+    /* INTRO — deep indigo-to-purple gradient, gradient headline */
+    /* candidate-block: rich-content, variants: center, dark */
+    section.intro {
+      background: linear-gradient(165deg, #070b1e 0%, #18054a 35%, #0c1845 70%, #000 100%);
+      padding: var(--s2a-layout-md) 8.333%;
+      text-align: center;
+    }
+    section.intro h2 {
+      font-family: var(--s2a-font-family-adobe-clean-display);
+      font-size: 48px; font-weight: 900; line-height: 1.05; letter-spacing: -1.68px;
+      /* purple → white → blue */
+      background: linear-gradient(95deg, var(--col-edu) 0%, #fff 45%, var(--s2a-color-blue-500) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      max-width: 800px; margin: 0 auto var(--s2a-spacing-16);
+    }
+    section.intro p {
+      font-size: 20px; line-height: 32px; color: rgba(255,255,255,0.65);
+      max-width: 640px; margin: 0 auto;
+    }
+
+    /* PRODUCT CATEGORY STRIP — deep purple bg, visibly colored cards */
+    /* candidate-block: columns, variants: 5-up, dark */
+    section.products {
+      background: linear-gradient(170deg, #1a0540 0%, #0b0920 50%, #070b1e 100%);
+      padding: var(--s2a-layout-sm) 8.333%;
+    }
+    .products-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s2a-spacing-16); }
+    .product-card {
+      --accent: var(--col-biz);
+      --ar: 93; --ag: 137; --ab: 255; /* accent RGB components */
+      position: relative;
+      border-radius: var(--s2a-border-radius-md);
+      /* Visible color background tint from top-left */
+      background: linear-gradient(145deg, rgba(var(--ar),var(--ag),var(--ab),0.16) 0%, rgba(255,255,255,0.03) 100%);
+      border: 1px solid rgba(var(--ar),var(--ag),var(--ab),0.30);
+      padding: var(--s2a-spacing-24) var(--s2a-spacing-16) var(--s2a-spacing-20);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: var(--s2a-spacing-8);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden; text-decoration: none; color: var(--s2a-color-gray-25);
+    }
+    /* Always-visible top accent bar */
+    .product-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--accent);
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 36px rgba(var(--ar),var(--ag),var(--ab),0.28);
+    }
+    .product-card picture { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+    .product-card picture img { width: 48px; height: 48px; }
+    .product-card .pc-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+    .product-card h3 { font-family: var(--s2a-font-family-adobe-clean-display); font-size: 16px; font-weight: 700; line-height: 1.3; }
+    .product-card p { font-size: 13px; line-height: 20px; color: rgba(255,255,255,0.6); }
+    /* Card accent overrides — use rgb components for bg tint */
+    .pc-cc  { --accent: var(--col-cc);  --ar: 255; --ag: 154; --ab: 0;   }
+    .pc-ff  { --accent: var(--col-ff);  --ar: 153; --ag: 232; --ab: 63;  }
+    .pc-acr { --accent: var(--col-acr); --ar: 235; --ag:  16; --ab: 0;   }
+    .pc-biz { --accent: var(--col-biz); --ar:  93; --ag: 137; --ab: 255; }
+    .pc-edu { --accent: var(--col-edu); --ar: 153; --ag: 153; --ab: 255; }
+
+    /* FEATURES HEADER — warm dark amber, gradient headline */
+    section.features-header {
+      background: linear-gradient(135deg, #1c0a00 0%, #281200 45%, var(--s2a-color-gray-900) 100%);
+      padding: var(--s2a-layout-md) 8.333% var(--s2a-spacing-48);
+      text-align: center;
+    }
+    .section-eyebrow {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: var(--s2a-spacing-12);
+    }
+    section.features-header .section-eyebrow { color: var(--s2a-color-orange-400); }
+    section.features-header h2 {
+      font-family: var(--s2a-font-family-adobe-clean-display);
+      font-size: 48px; font-weight: 900; letter-spacing: -1.68px; line-height: 1.05;
+      /* orange → white → lime */
+      background: linear-gradient(95deg, var(--s2a-color-orange-400) 0%, #fff 50%, var(--col-ff) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--s2a-spacing-12);
+    }
+    section.features-header > p { font-size: 18px; line-height: 28px; color: rgba(255,255,255,0.6); }
+
+    /* FEATURE CARDS — color-washed backgrounds, bold top borders */
+    /* candidate-block: base-card, variants: dark, featured */
+    section.feature-cards {
+      background: var(--s2a-color-gray-900);
+      padding: var(--s2a-spacing-48) 8.333% var(--s2a-layout-md);
+    }
+    .fc-row { display: grid; gap: var(--s2a-spacing-20); margin-bottom: var(--s2a-spacing-20); }
+    .fc-featured { grid-template-columns: 1fr 1fr; }
+    .fc-three-up { grid-template-columns: repeat(3, 1fr); }
+    .feature-card {
+      --card-accent: var(--col-biz);
+      --cr: 93; --cg: 137; --cb: 255;
+      display: flex; flex-direction: column;
+      border-radius: var(--s2a-border-radius-md);
+      overflow: hidden;
+      /* Color-washed gradient background */
+      background: linear-gradient(160deg, rgba(var(--cr),var(--cg),var(--cb),0.12) 0%, #1a1a1a 55%);
+      border: 1px solid rgba(var(--cr),var(--cg),var(--cb),0.20);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      text-decoration: none; color: var(--s2a-color-gray-25);
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 36px rgba(var(--cr),var(--cg),var(--cb),0.22);
+    }
+    .feature-card .card-media { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+    .fc-featured .feature-card .card-media { aspect-ratio: 16/9; }
+    .feature-card .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.32s ease; }
+    .feature-card:hover .card-media img { transform: scale(1.05); }
+    .feature-card .card-media .app-badge {
+      position: absolute; top: 12px; left: 12px;
+      width: 28px; height: 28px; border-radius: 6px;
+      overflow: hidden; background: rgba(0,0,0,0.35);
+    }
+    .feature-card .card-media .app-badge img { width: 28px; height: 28px; }
+    .feature-card .card-fg {
+      padding: var(--s2a-spacing-20) var(--s2a-spacing-20) var(--s2a-spacing-24);
+      flex: 1; display: flex; flex-direction: column; gap: var(--s2a-spacing-8);
+      border-top: 4px solid var(--card-accent);
+    }
+    .feature-card h3 { font-family: var(--s2a-font-family-adobe-clean-display); font-size: 20px; font-weight: 700; line-height: 1.3; }
+    .feature-card .card-body { font-size: 15px; line-height: 23px; color: rgba(255,255,255,0.62); flex: 1; }
+    .feature-card .card-link {
+      font-size: 14px; font-weight: 700; color: var(--card-accent);
+      display: inline-flex; align-items: center; margin-top: var(--s2a-spacing-4);
+    }
+    .feature-card .card-link::after { content: " →"; margin-left: 2px; }
+    .fc-red    { --card-accent: var(--col-acr); --cr: 235; --cg:  16; --cb: 0;   }
+    .fc-green  { --card-accent: var(--col-ff);  --cr: 153; --cg: 232; --cb: 63;  }
+    .fc-blue   { --card-accent: var(--col-biz); --cr:  93; --cg: 137; --cb: 255; }
+    .fc-orange { --card-accent: var(--col-cc);  --cr: 255; --cg: 154; --cb: 0;   }
+    .fc-purple { --card-accent: var(--col-edu); --cr: 153; --cg: 153; --cb: 255; }
+
+    /* TESTIMONIAL — deep purple-blue overlay, bold red quote border */
+    /* candidate-block: rich-content, variants: dark, hero */
+    section.testimonial {
+      position: relative; min-height: 500px;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .testimonial-bg { position: absolute; inset: 0; z-index: 0; }
+    .testimonial-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .testimonial-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(90deg, rgba(14,5,50,0.97) 0%, rgba(0,0,0,0.78) 55%, rgba(0,0,0,0.2) 100%);
+    }
+    .testimonial-content { position: relative; z-index: 2; padding: var(--s2a-layout-md) 8.333%; max-width: 720px; }
+    .testimonial-content blockquote {
+      font-family: var(--s2a-font-family-adobe-clean-display);
+      font-size: 38px; font-weight: 700; line-height: 1.18; letter-spacing: -1.2px;
+      color: var(--s2a-color-gray-25);
+      padding-left: var(--s2a-spacing-24);
+      border-left: 6px solid var(--col-acr);
+      margin-bottom: var(--s2a-spacing-24);
+    }
+    .testimonial-attribution { padding-left: var(--s2a-spacing-24); }
+    .testimonial-attribution strong { display: block; font-size: 18px; font-weight: 700; margin-bottom: 2px; }
+    .testimonial-attribution span { font-size: 15px; color: rgba(255,255,255,0.55); }
+    .testimonial-cta { padding-left: var(--s2a-spacing-24); margin-top: var(--s2a-spacing-32); }
+    .testimonial-cta p { margin: 0; }
+
+    /* NEWS — rich dark indigo, per-article accent colors */
+    /* candidate-block: news, variants: quiet */
+    section.news {
+      background: linear-gradient(160deg, #0a0c28 0%, #0e1232 55%, #070b1e 100%);
+      padding: var(--s2a-layout-md) 8.333%;
+    }
+    .news-label { display: flex; align-items: center; gap: var(--s2a-spacing-12); margin-bottom: var(--s2a-spacing-48); }
+    .news-label picture { width: 30px; height: 30px; }
+    .news-label picture img { width: 30px; height: 30px; }
+    .news-label h2 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--s2a-color-blue-500); }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2a-spacing-32); }
+    .news-item { padding-top: var(--s2a-spacing-24); }
+    /* Each article gets its own vivid top border */
+    .news-item:nth-child(1) { border-top: 4px solid var(--col-ff); }
+    .news-item:nth-child(2) { border-top: 4px solid var(--col-biz); }
+    .news-item:nth-child(3) { border-top: 4px solid var(--col-cc); }
+    .news-item h3 { font-family: var(--s2a-font-family-adobe-clean-display); font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: var(--s2a-spacing-12); }
+    .news-item p { font-size: 14px; line-height: 22px; color: rgba(255,255,255,0.55); margin-bottom: var(--s2a-spacing-16); }
+    .news-item a.read-link {
+      font-size: 14px; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 4px;
+      transition: opacity 0.15s;
+    }
+    .news-item:nth-child(1) a.read-link { color: var(--col-ff); }
+    .news-item:nth-child(2) a.read-link { color: var(--col-biz); }
+    .news-item:nth-child(3) a.read-link { color: var(--col-cc); }
+    .news-item a.read-link::after { content: " →"; }
+    .news-item a.read-link:hover { opacity: 0.75; }
+
+    /* TOOLS CTA — full-bleed photo, warm gradient overlay, golden headline */
+    /* candidate-block: rich-content, variants: center, dark, hero */
+    section.tools-cta {
+      position: relative; min-height: 520px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .tools-bg { position: absolute; inset: 0; z-index: 0; }
+    .tools-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .tools-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(14,5,80,0.72) 0%, rgba(0,0,0,0.55) 50%, rgba(30,8,0,0.68) 100%);
+    }
+    .tools-content { position: relative; z-index: 2; padding: var(--s2a-layout-lg) 8.333%; max-width: 860px; }
+    .tools-content h2 {
+      font-family: var(--s2a-font-family-adobe-clean-display);
+      font-size: 64px; font-weight: 900; line-height: 1.0; letter-spacing: -2.88px;
+      /* warm gradient: white → orange → yellow */
+      background: linear-gradient(95deg, #fff 0%, var(--s2a-color-orange-400) 55%, var(--s2a-color-yellow-300) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--s2a-spacing-16);
+    }
+    .tools-content > p { font-size: 20px; line-height: 32px; color: rgba(255,255,255,0.74); margin-bottom: var(--s2a-spacing-40); }
+    .tools-content .cta-wrap { margin: 0; }
+
+    /* PRODUCT EXPLORE GRID — visible color tints, always-on accent bars */
+    /* candidate-block: explore-card, variants: dark, three-up */
+    section.product-grid {
+      background: linear-gradient(160deg, #000 0%, #080820 100%);
+      padding: var(--s2a-layout-md) 8.333%;
+    }
+    .pg-header { margin-bottom: var(--s2a-spacing-48); }
+    .pg-eyebrow { color: var(--s2a-color-blue-600); }
+    .pg-header h2 {
+      font-family: var(--s2a-font-family-adobe-clean-display);
+      font-size: 36px; font-weight: 900; letter-spacing: -1.44px; line-height: 1.1;
+      color: var(--s2a-color-gray-25); margin-top: var(--s2a-spacing-8);
+    }
+    .explore-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--s2a-border-radius-md);
+      overflow: hidden; gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .explore-item {
+      --accent: var(--s2a-color-gray-500);
+      --er: 143; --eg: 143; --eb: 143;
+      /* Visible (subtle) color tint even at rest */
+      background: linear-gradient(155deg, rgba(var(--er),var(--eg),var(--eb),0.08) 0%, #000 55%);
+      padding: var(--s2a-spacing-32) var(--s2a-spacing-24);
+      display: block; text-decoration: none; color: var(--s2a-color-gray-25);
+      position: relative; overflow: hidden;
+      transition: background 0.22s ease;
+    }
+    /* Always-visible accent bar at 55% opacity, brightens on hover */
+    .explore-item::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent);
+      opacity: 0.55; transition: opacity 0.22s ease;
+    }
+    .explore-item:hover::before { opacity: 1; }
+    .explore-item:hover {
+      background: linear-gradient(155deg, rgba(var(--er),var(--eg),var(--eb),0.16) 0%, #000 55%);
+    }
+    .explore-item picture { width: 40px; height: 40px; margin-bottom: var(--s2a-spacing-16); }
+    .explore-item picture img { width: 40px; height: 40px; }
+    .explore-item h3 { font-family: var(--s2a-font-family-adobe-clean-display); font-size: 18px; font-weight: 700; margin-bottom: var(--s2a-spacing-8); }
+    .explore-item p { font-size: 14px; line-height: 22px; color: rgba(255,255,255,0.5); }
+    .ei-ff  { --accent: var(--col-ff);  --er: 153; --eg: 232; --eb: 63;  }
+    .ei-acr { --accent: var(--col-acr); --er: 235; --eg:  16; --eb: 0;   }
+    .ei-ps  { --accent: var(--col-ps);  --er:  58; --eg:  24; --eb: 255; }
+    .ei-ppr { --accent: var(--col-edu); --er: 153; --eg: 153; --eb: 255; }
+    .ei-cc  { --accent: var(--col-cc);  --er: 255; --eg: 154; --eb: 0;   }
+    .ei-gs  { --accent: var(--col-biz); --er:  93; --eg: 137; --eb: 255; }
+    .ei-biz { --accent: var(--s2a-color-blue-800); --er: 75; --eg: 117; --eb: 255; }
+    .ei-ai  { --accent: var(--col-ora); --er: 255; --eg: 162; --eb: 19;  }
+    .ei-all { --accent: var(--s2a-color-gray-500); --er: 143; --eg: 143; --eb: 143; }
+
+    /* CLOSING CTA — bold deep purple-to-crimson gradient, gradient headline */
+    section.closing-cta {
+      background: linear-gradient(140deg, #1a0048 0%, #0a0078 22%, #000d50 48%, #200010 75%, #000 100%);
+      padding: var(--s2a-layout-lg) 8.333%;
+      text-align: center;
+    }
+    section.closing-cta .section-eyebrow { color: var(--col-edu); margin-bottom: var(--s2a-spacing-16); }
+    section.closing-cta h2 {
+      font-family: var(--s2a-font-family-adobe-clean-display);
+      font-size: 64px; font-weight: 900; letter-spacing: -2.88px; line-height: 1.0;
+      /* purple → white → blue → hint of red */
+      background: linear-gradient(95deg, var(--col-edu) 0%, #fff 35%, var(--s2a-color-blue-500) 68%, var(--s2a-color-red-600) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--s2a-spacing-20);
+    }
+    section.closing-cta > p {
+      font-size: 20px; line-height: 32px; color: rgba(255,255,255,0.66);
+      max-width: 560px; margin: 0 auto var(--s2a-spacing-40);
+    }
+    section.closing-cta .cta-wrap { margin: 0; }
+
+    /* FOOTER — rainbow top strip */
+    .site-footer {
+      background: var(--s2a-color-gray-1000);
+      position: relative;
+      padding: var(--s2a-spacing-40) 8.333%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: var(--s2a-spacing-20);
+    }
+    /* Rainbow strip at top of footer */
+    .site-footer::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--rainbow);
+    }
+    .site-footer picture { height: 24px; width: auto; }
+    .site-footer picture img { height: 24px; }
+    .footer-links { display: flex; gap: var(--s2a-spacing-24); }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.45); transition: color 0.15s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.75); }
+    .footer-legal { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .hero-content h1 { font-size: 52px; letter-spacing: -1.68px; }
+      section.intro h2, section.features-header h2 { font-size: 36px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .fc-row.fc-featured { grid-template-columns: 1fr; }
+      .fc-row.fc-three-up { grid-template-columns: 1fr 1fr; }
+      .news-grid { grid-template-columns: 1fr; gap: var(--s2a-spacing-24); }
+      .explore-grid { grid-template-columns: 1fr 1fr; }
+      .tools-content h2, section.closing-cta h2 { font-size: 44px; letter-spacing: -1.44px; }
+      .testimonial-content blockquote { font-size: 28px; }
+      .site-header nav { display: none; }
+    }
+    @media (max-width: 600px) {
+      section.hero { padding-bottom: calc(var(--s2a-layout-sm) + 80px); }
+      .hero-content h1 { font-size: 40px; letter-spacing: -1.2px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .fc-row.fc-three-up { grid-template-columns: 1fr; }
+      .explore-grid { grid-template-columns: 1fr; }
+      .tools-content h2 { font-size: 36px; }
+      section.closing-cta h2 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <a href="https://www.adobe.com/" aria-label="Adobe">
+    <picture>
+      <img class="brand-logo"
+           src="https://main--federal--adobecom.aem.live/federal/ace1201/assets/adobe-logo-white.svg"
+           alt="Adobe, Inc.">
+    </picture>
+  </a>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="https://www.adobe.com/products/catalog.html">Products</a></li>
+      <li><a href="https://www.adobe.com/creativecloud.html">Creative Cloud</a></li>
+      <li><a href="https://business.adobe.com/">Business</a></li>
+      <li><a href="https://www.adobe.com/creativecloud/buy/students.html">Students</a></li>
+    </ul>
+  </nav>
+  <div class="header-cta">
+    <a href="https://www.adobe.com/creativecloud.html" class="con-button button-l">Free trial</a>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- candidate-block: router-marquee, variants: large, dark -->
+  <section class="hero dark">
+    <div class="hero-bg" aria-hidden="true">
+      <picture>
+        <source type="image/webp"
+                srcset="https://main--da-playground--adobecom.aem.live/media_178b5587738511a769c0512bd18117bf1b8c8c190.jpg?width=2000&format=webply&optimize=medium"
+                media="(min-width: 600px)">
+        <img alt=""
+             src="https://main--da-playground--adobecom.aem.live/media_178b5587738511a769c0512bd18117bf1b8c8c190.jpg?width=750&format=jpg&optimize=medium">
+      </picture>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="rm-eyebrow">Creative Cloud</p>
+      <h1>Create at the highest level.</h1>
+      <p class="rm-body">Photoshop, Illustrator, Premiere, and much more. Work with the tools behind the world's most iconic creative content. Save 50% on Creative Cloud Pro for the first three months.</p>
+      <div class="hero-ctas">
+        <p><strong><a href="https://www.adobe.com/creativecloud.html" class="con-button button-xl fill">Free trial</a></strong></p>
+        <p><em><a href="https://www.adobe.com/creativecloud.html" class="con-button button-xl">View plans</a></em></p>
+      </div>
+    </div>
+
+    <nav class="rm-product-tabs" aria-label="Product categories">
+      <a href="https://www.adobe.com/creativecloud.html" class="rm-tab tab-cc">
+        <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="" loading="lazy">
+        Creativity &amp; design
+      </a>
+      <a href="https://www.adobe.com/products/firefly.html" class="rm-tab tab-ff">
+        <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="" loading="lazy">
+        Content creation
+      </a>
+      <a href="https://www.adobe.com/acrobat.html" class="rm-tab tab-acr">
+        <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/acrobat-pro.svg" alt="" loading="lazy">
+        PDF &amp; productivity
+      </a>
+      <a href="https://business.adobe.com/" class="rm-tab tab-biz">
+        <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/experience-cloud-logo.svg" alt="" loading="lazy">
+        Adobe for Business
+      </a>
+      <a href="https://www.adobe.com/creativecloud/buy/students.html" class="rm-tab tab-edu">
+        <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="" loading="lazy">
+        Students &amp; teachers
+      </a>
+    </nav>
+  </section>
+
+  <!-- candidate-block: rich-content, variants: center, dark -->
+  <section class="intro dark">
+    <h2>Everything you need to make anything.</h2>
+    <p>Whether you're a student, social influencer, creative professional, performance marketer, or global brand, Adobe has the apps you need to make it happen.</p>
+  </section>
+
+  <!-- candidate-block: columns, variants: 5-up, dark -->
+  <section class="products dark">
+    <div class="products-grid">
+      <a href="https://www.adobe.com/creativecloud.html" class="product-card pc-cc">
+        <picture>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="" loading="lazy">
+        </picture>
+        <p class="pc-eyebrow">Creativity &amp; Design</p>
+        <h3>Create at the highest level.</h3>
+        <p>Industry-leading apps for design, photo, video, and creative AI.</p>
+      </a>
+      <a href="https://www.adobe.com/products/firefly.html" class="product-card pc-ff">
+        <picture>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="" loading="lazy">
+        </picture>
+        <p class="pc-eyebrow">Content Creation</p>
+        <h3>Generate stunning content easily.</h3>
+        <p>Create and edit images, video, and audio with creative AI.</p>
+      </a>
+      <a href="https://www.adobe.com/acrobat.html" class="product-card pc-acr">
+        <picture>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/acrobat-pro.svg" alt="" loading="lazy">
+        </picture>
+        <p class="pc-eyebrow">PDF &amp; Productivity</p>
+        <h3>Get work done faster.</h3>
+        <p>Create, edit, and share PDFs with AI-powered insights.</p>
+      </a>
+      <a href="https://business.adobe.com/" class="product-card pc-biz">
+        <picture>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/experience-cloud-logo.svg" alt="" loading="lazy">
+        </picture>
+        <p class="pc-eyebrow">Adobe for Business</p>
+        <h3>Orchestrate customer experiences.</h3>
+        <p>Move faster, personalize at scale, and show business impact.</p>
+      </a>
+      <a href="https://www.adobe.com/creativecloud/buy/students.html" class="product-card pc-edu">
+        <picture>
+          <img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="" loading="lazy">
+        </picture>
+        <p class="pc-eyebrow">Education</p>
+        <h3>Students &amp; teachers save 71%.</h3>
+        <p>Save big on industry-standard creative tools.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="features-header dark">
+    <span class="section-eyebrow">Features &amp; Releases</span>
+    <h2>Explore what's new.</h2>
+    <p>Discover the latest product features from Adobe.</p>
+  </section>
+
+  <!-- candidate-block: base-card, variants: dark, featured, three-up -->
+  <section class="feature-cards dark">
+
+    <div class="fc-row fc-featured">
+      <a href="https://www.adobe.com/products/firefly/features/image-upscaler.html" class="feature-card fc-green">
+        <div class="card-media">
+          <picture>
+            <source type="image/webp"
+                    srcset="https://main--da-playground--adobecom.aem.live/media_1077c0a1df7b976f84d3cfb16c5d1592785dade38.png?width=2000&format=webply&optimize=medium"
+                    media="(min-width: 600px)">
+            <img loading="lazy" alt="Upscale images with AI"
+                 src="https://main--da-playground--adobecom.aem.live/media_1077c0a1df7b976f84d3cfb16c5d1592785dade38.png?width=750&format=png&optimize=medium">
+          </picture>
+          <picture class="app-badge">
+            <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="">
+          </picture>
+        </div>
+        <div class="card-fg">
+          <h3>Upscale images instantly with AI.</h3>
+          <p class="card-body">Improve resolution, clarity, and sharpness while preserving detail—perfect for photos, designs, and creatives.</p>
+          <span class="card-link">Explore Firefly</span>
+        </div>
+      </a>
+
+      <a href="https://www.adobe.com/acrobat.html" class="feature-card fc-red">
+        <div class="card-media">
+          <picture>
+            <source type="image/webp"
+                    srcset="https://main--da-playground--adobecom.aem.live/media_11baea9af9d1d1306f14797ab9e4566c1620ecc11.png?width=2000&format=webply&optimize=medium"
+                    media="(min-width: 600px)">
+            <img loading="lazy" alt="Acrobat AI tools"
+                 src="https://main--da-playground--adobecom.aem.live/media_11baea9af9d1d1306f14797ab9e4566c1620ecc11.png?width=750&format=png&optimize=medium">
+          </picture>
+          <picture class="app-badge">
+            <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/acrobat-pro.svg" alt="">
+          </picture>
+        </div>
+        <div class="card-fg">
+          <h3>Work smarter than ever with documents.</h3>
+          <p class="card-body">Trusted PDF tools, now with AI for editing, insights, and content creation.</p>
+          <span class="card-link">Explore Acrobat</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="fc-row fc-three-up">
+      <a href="https://www.adobe.com/products/firefly/partner-models.html" class="feature-card fc-orange">
+        <div class="card-media">
+          <picture>
+            <source type="image/webp"
+                    srcset="https://main--da-playground--adobecom.aem.live/media_1843f7a14f7fa382f536bd71aed82c74f7674725c.png?width=2000&format=webply&optimize=medium"
+                    media="(min-width: 600px)">
+            <img loading="lazy" alt="AI models"
+                 src="https://main--da-playground--adobecom.aem.live/media_1843f7a14f7fa382f536bd71aed82c74f7674725c.png?width=750&format=png&optimize=medium">
+          </picture>
+          <picture class="app-badge">
+            <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="">
+          </picture>
+        </div>
+        <div class="card-fg">
+          <h3>Generate with top AI models in one place.</h3>
+          <p class="card-body">Access Gemini, GPT Image, Runway, FLUX models, Luma AI, and more.</p>
+          <span class="card-link">Get started</span>
+        </div>
+      </a>
+
+      <a href="https://www.adobe.com/products/photoshop/harmonize-image-blender.html" class="feature-card fc-blue">
+        <div class="card-media">
+          <picture>
+            <source type="image/webp"
+                    srcset="https://main--da-playground--adobecom.aem.live/media_1805d203313e9cd166f23e32b27517d7ce05612b7.png?width=2000&format=webply&optimize=medium"
+                    media="(min-width: 600px)">
+            <img loading="lazy" alt="Harmonize"
+                 src="https://main--da-playground--adobecom.aem.live/media_1805d203313e9cd166f23e32b27517d7ce05612b7.png?width=750&format=png&optimize=medium">
+          </picture>
+          <picture class="app-badge">
+            <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/photoshop.svg" alt="">
+          </picture>
+        </div>
+        <div class="card-fg">
+          <h3>Blend images seamlessly with Harmonize.</h3>
+          <p class="card-body">Combine people and objects into any background instantly.</p>
+          <span class="card-link">Get started</span>
+        </div>
+      </a>
+
+      <a href="https://www.adobe.com/products/firefly.html" class="feature-card fc-purple">
+        <div class="card-media">
+          <picture>
+            <source type="image/webp"
+                    srcset="https://main--da-playground--adobecom.aem.live/media_1843f7a14f7fa382f536bd71aed82c74f7674725c.png?width=2000&format=webply&optimize=medium"
+                    media="(min-width: 600px)">
+            <img loading="lazy" alt="Firefly AI"
+                 src="https://main--da-playground--adobecom.aem.live/media_1843f7a14f7fa382f536bd71aed82c74f7674725c.png?width=750&format=png&optimize=medium">
+          </picture>
+          <picture class="app-badge">
+            <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="">
+          </picture>
+        </div>
+        <div class="card-fg">
+          <h3>All the best models, all in one place.</h3>
+          <p class="card-body">Quickly create and edit images, video, and audio with unlimited generations and the unbeatable value of Firefly.</p>
+          <span class="card-link">Create with Firefly</span>
+        </div>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- candidate-block: rich-content, variants: dark, hero -->
+  <section class="testimonial dark">
+    <div class="testimonial-bg" aria-hidden="true">
+      <picture>
+        <source type="image/webp"
+                srcset="https://main--da-playground--adobecom.aem.live/media_13a99dc085929c3e6146364540052c4c4e4825f52.png?width=2000&format=webply&optimize=medium"
+                media="(min-width: 600px)">
+        <img loading="lazy" alt=""
+             src="https://main--da-playground--adobecom.aem.live/media_128d15749cdc044f03e508f5758b83a899dc3ea07.png?width=750&format=png&optimize=medium">
+      </picture>
+    </div>
+    <div class="testimonial-overlay" aria-hidden="true"></div>
+    <div class="testimonial-content">
+      <blockquote>"If it wasn't for Creative Cloud, I don't think I'd be here. I feel like I can create anything."</blockquote>
+      <p class="testimonial-attribution">
+        <strong>Michelle Phan</strong>
+        <span>Creator</span>
+      </p>
+      <div class="testimonial-cta">
+        <p><a href="https://www.adobe.com/creativecloud.html" class="con-button button-xl">See all plans</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- candidate-block: news, variants: quiet -->
+  <section class="news dark">
+    <div class="news-label">
+      <picture>
+        <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/b-app-experiencecloud.svg" alt="">
+      </picture>
+      <h2>Adobe News</h2>
+    </div>
+    <div class="news-grid">
+      <article class="news-item">
+        <h3>Adobe apps are top choice for Sundance filmmakers.</h3>
+        <p>85% of Sundance Filmmakers Choose Adobe as Company Releases New AI Video Innovations and $10M in Creator Grants.</p>
+        <a href="https://news.adobe.com/news/2026/01/sundance-filmmakers-choose-adobe" class="read-link">Read story</a>
+      </article>
+      <article class="news-item">
+        <h3>Adobe's new Incubator creates the future.</h3>
+        <p>From pioneering digital creativity to reimagining customer engagement, our mission has been to change the world through personalized digital experiences.</p>
+        <a href="https://blog.adobe.com/en/publish/2025/11/17/adobes-new-incubator-creates-future" class="read-link">Read story</a>
+      </article>
+      <article class="news-item">
+        <h3>Adobe partners with OpenAI to test ads in ChatGPT.</h3>
+        <p>Adobe empowers marketing professionals with AI-driven Customer Experience Orchestration to create, deliver, and optimize personalized digital experiences.</p>
+        <a href="https://blog.adobe.com/en/publish/2026/02/09/adobe-partners-openai-test-ads-chatgpt" class="read-link">Read story</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- candidate-block: rich-content, variants: center, dark, hero -->
+  <section class="tools-cta dark">
+    <div class="tools-bg" aria-hidden="true">
+      <picture>
+        <source type="image/webp"
+                srcset="https://main--da-playground--adobecom.aem.live/media_1e479b3bb7044d01f03be72d280b50c484a5bdfd2.png?width=2000&format=webply&optimize=medium"
+                media="(min-width: 600px)">
+        <img loading="lazy" alt=""
+             src="https://main--da-playground--adobecom.aem.live/media_1aa23214867009c08f40db633ce3401b4b773eb47.png?width=750&format=png&optimize=medium">
+      </picture>
+    </div>
+    <div class="tools-overlay" aria-hidden="true"></div>
+    <div class="tools-content">
+      <h2>Tools that work for you.</h2>
+      <p>Bring any idea to life with products for creators, businesses, and beyond.</p>
+      <p class="cta-wrap"><strong><a href="https://www.adobe.com/products/catalog.html" class="con-button button-xxl">See all products</a></strong></p>
+    </div>
+  </section>
+
+  <!-- candidate-block: explore-card, variants: dark, three-up -->
+  <section class="product-grid dark">
+    <div class="pg-header">
+      <span class="section-eyebrow pg-eyebrow">All Products</span>
+      <h2>The full Adobe lineup.</h2>
+    </div>
+    <div class="explore-grid">
+
+      <a href="https://www.adobe.com/products/firefly.html" class="explore-item ei-ff">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/firefly-appicon-256.svg" alt="">
+        </picture>
+        <h3>Firefly</h3>
+        <p>Create and enhance images, video, and audio with AI-powered tools.</p>
+      </a>
+
+      <a href="https://www.adobe.com/acrobat.html" class="explore-item ei-acr">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/acrobat-pro.svg" alt="">
+        </picture>
+        <h3>Adobe Acrobat</h3>
+        <p>The complete AI-powered PDF and design solution for business workflows.</p>
+      </a>
+
+      <a href="https://www.adobe.com/products/photoshop.html" class="explore-item ei-ps">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/photoshop.svg" alt="">
+        </picture>
+        <h3>Photoshop</h3>
+        <p>Create gorgeous images, rich graphics, and incredible art.</p>
+      </a>
+
+      <a href="https://www.adobe.com/products/premiere.html" class="explore-item ei-ppr">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/premiere-pro.svg" alt="">
+        </picture>
+        <h3>Premiere</h3>
+        <p>Create everything from social clips to feature films with the leading video editor.</p>
+      </a>
+
+      <a href="https://www.adobe.com/creativecloud/pro.html" class="explore-item ei-cc">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/creative-cloud.svg" alt="">
+        </picture>
+        <h3>Creative Cloud</h3>
+        <p>Get 20+ apps, including Photoshop, Illustrator, Premiere Pro, and Acrobat Pro.</p>
+      </a>
+
+      <a href="https://business.adobe.com/products/genstudio-for-performance-marketing.html" class="explore-item ei-gs">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/experience-cloud-logo.svg" alt="">
+        </picture>
+        <h3>GenStudio</h3>
+        <p>Scale your content supply chain.</p>
+      </a>
+
+      <a href="https://business.adobe.com/" class="explore-item ei-biz">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/b-app-experiencecloud.svg" alt="">
+        </picture>
+        <h3>Business Products</h3>
+        <p>Adobe solutions help you tackle pressing business challenges with best-in-class products.</p>
+      </a>
+
+      <a href="https://www.adobe.com/products/illustrator.html" class="explore-item ei-ai">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/illustrator.svg" alt="">
+        </picture>
+        <h3>Illustrator</h3>
+        <p>Design precision vector graphics that stay sharp, scalable, and fully editable at any size.</p>
+      </a>
+
+      <a href="https://www.adobe.com/products/catalog.html" class="explore-item ei-all">
+        <picture>
+          <img loading="lazy" src="https://main--federal--adobecom.aem.live/federal/assets/svgs/all-products.svg" alt="">
+        </picture>
+        <h3>All products</h3>
+        <p>See all Adobe products</p>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="closing-cta dark">
+    <span class="section-eyebrow">Get started today</span>
+    <h2>Ready to create?</h2>
+    <p>Start your free trial and discover what's possible with Adobe Creative Cloud.</p>
+    <p class="cta-wrap"><strong><a href="https://www.adobe.com/creativecloud.html" class="con-button button-xxl">Start free trial</a></strong></p>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <a href="https://www.adobe.com/" aria-label="Adobe home">
+    <picture>
+      <img src="https://main--federal--adobecom.aem.live/federal/ace1201/assets/adobe-logo-white.svg"
+           alt="Adobe, Inc." loading="lazy">
+    </picture>
+  </a>
+  <ul class="footer-links">
+    <li><a href="https://www.adobe.com/privacy.html">Privacy</a></li>
+    <li><a href="https://www.adobe.com/legal/terms.html">Terms of use</a></li>
+    <li><a href="https://www.adobe.com/about-adobe/contact.html">Contact</a></li>
+    <li><a href="https://www.adobe.com/accessibility.html">Accessibility</a></li>
+  </ul>
+  <p class="footer-legal">Copyright &copy; 2025 Adobe Inc. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
