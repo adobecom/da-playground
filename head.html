@@ -1,34 +1,9 @@
-<!-- Modifying this file will impact your performance -->
+<meta
+  http-equiv="Content-Security-Policy"
+  content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
+  move-to-http-header="true"
+>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<script src="/scripts/fallback.js" nomodule></script>
-<script>
-  const libs = (() => {
-    const { hostname, search } = window.location;
-    if (!['.aem.', '.stage.', 'local'].some((i) => hostname.includes(i))) return '/libs';
-    const branch = new URLSearchParams(search).get('milolibs') || 'main';
-    if (!/^[a-zA-Z0-9_-]+$/.test(branch)) throw new Error('Invalid branch name.');
-    if (branch === 'local') return 'http://localhost:6456/libs';
-    return branch.includes('--') ? `https://${branch}.aem.live/libs` : `https://${branch}--milo--adobecom.aem.live/libs`;
-  })();
-
-  const miloStyles = document.createElement('link');
-  const miloUtils = document.createElement('link');
-  const miloDecorate = document.createElement('link');
-
-  miloStyles.setAttribute('as', 'style');
-  miloStyles.setAttribute('href', `${libs}/styles/styles.css`);
-
-  [miloUtils, miloDecorate].forEach((tag) => {
-    tag.setAttribute('crossorigin', 'true');
-    tag.setAttribute('as', 'script');
-  })
-
-  miloUtils.setAttribute('href', `${libs}/utils/utils.js`);
-  miloDecorate.setAttribute('href', `${libs}/utils/decorate.js`);
-
-  [miloStyles, miloUtils, miloDecorate].forEach((tag) => tag.setAttribute('rel', 'preload'));
-  document.head.append(miloStyles, miloUtils, miloDecorate);
-</script>
-<script src="/scripts/scripts.js" type="module"></script>
-<style>body { display: none; }</style>
-<link rel="icon" href="data:,">
+<script nonce="aem" src="/scripts/aem.js" type="module"></script>
+<script nonce="aem" src="/scripts/scripts.js" type="module"></script>
+<link rel="stylesheet" href="/styles/styles.css"/>
