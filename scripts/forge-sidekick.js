@@ -3,9 +3,22 @@
 // version. Inlined here so snowflake proto pages on da-playground get the
 // same buttons without depending on Milo being loaded.
 (() => {
+  const resolveAnimatorSrc = () => {
+    if (window.forgeSources?.animator) return window.forgeSources.animator;
+    const h = location.hostname;
+    const p = location.port;
+    const ml = new URLSearchParams(location.search).get('milolibs');
+    if (h === 'localhost' && p === '3000') return 'http://localhost:3000/libs/c2/tools/page-animator/page-animator.js';
+    if ((h === 'localhost' && p === '6456') || ml === 'local') return 'http://localhost:6456/libs/c2/tools/page-animator/page-animator.js';
+    const branch = (ml && ml \!== 'local') ? ml : 'forge-a-panel';
+    const env = h.indexOf('.aem.page') \!== -1 ? 'aem.page' : 'aem.live';
+    return `https://${branch}--milo--adobecom.${env}/libs/c2/tools/page-animator/page-animator.js`;
+  };
+
   const bind = (sk) => {
     const load = (src) => {
       const s = document.createElement('script');
+      s.type = 'module';
       s.src = src;
       document.head.appendChild(s);
     };
@@ -19,6 +32,10 @@
     });
     sk.addEventListener('custom:forge-publish', () => {
       load(window.forgeSources?.publish || 'http://localhost:3001/forge-publish.js');
+    });
+    sk.addEventListener('custom:forge-animator', () => {
+      if (document.getElementById('page-animator-panel')) return;
+      load(resolveAnimatorSrc());
     });
   };
   const existing = document.querySelector('aem-sidekick, helix-sidekick');
