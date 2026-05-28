@@ -29,14 +29,20 @@
       "url": "https://milo.adobe.com/tools/loc/index.html",
       "passReferrer": true,
       "passConfig": true,
-      "excludePaths": [ "/**" ],
-      "includePaths": [ "**/:x**" ]
+      "excludePaths": [
+        "/**"
+      ],
+      "includePaths": [
+        "**/:x**"
+      ]
     },
     {
       "containerId": "tools",
       "title": "Check Schema",
       "id": "checkschema",
-      "environments": ["prod"],
+      "environments": [
+        "prod"
+      ],
       "event": "check-schema",
       "excludePaths": [
         "/tools**",
@@ -58,17 +64,29 @@
       "containerId": "tools",
       "title": "Adjustments",
       "id": "forge-adjustments",
-      "environments": ["dev", "preview", "live"],
+      "environments": [
+        "dev",
+        "preview",
+        "live"
+      ],
       "event": "forge-adjustments",
-      "excludePaths": ["*.json"]
+      "excludePaths": [
+        "*.json"
+      ]
     },
     {
       "containerId": "tools",
       "title": "Annotations",
       "id": "forge-annotations",
-      "environments": ["dev", "preview", "live"],
+      "environments": [
+        "dev",
+        "preview",
+        "live"
+      ],
       "event": "forge-annotations",
-      "excludePaths": ["*.json"]
+      "excludePaths": [
+        "*.json"
+      ]
     },
     {
       "containerId": "tools",
@@ -87,6 +105,20 @@
       "url": "https://milo.adobe.com/tools/locale-nav",
       "includePaths": [
         "**.docx**"
+      ]
+    },
+    {
+      "containerId": "tools",
+      "title": "Publish (Forge)",
+      "id": "forge-publish",
+      "environments": [
+        "dev",
+        "preview",
+        "live"
+      ],
+      "event": "forge-publish",
+      "excludePaths": [
+        "*.json"
       ]
     }
   ]
