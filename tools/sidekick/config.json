@@ -109,6 +109,20 @@
     },
     {
       "containerId": "tools",
+      "title": "Animator",
+      "id": "forge-animator",
+      "environments": [
+        "dev",
+        "preview",
+        "live"
+      ],
+      "event": "forge-animator",
+      "excludePaths": [
+        "*.json"
+      ]
+    },
+    {
+      "containerId": "tools",
       "title": "Publish (Forge)",
       "id": "forge-publish",
       "environments": [
