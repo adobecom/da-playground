@@ -1,0 +1,10 @@
+/*
+ * ace1205-bizpro-hub-718164 — Template CSS
+ *
+ * All visual styles are loaded from CDN (Milo/site-redesign-foundation) via
+ * the <link> tags in the template HTML. This file provides only the
+ * overlay-lifecycle visibility rules needed for the substrate engine.
+ *
+ * The substrate's styles/styles.css already handles body visibility (.appear).
+ * No additional rules are needed here.
+ */

@@ -1,0 +1,15 @@
+{
+  "mapping": {
+    "media_1a602e9005b8611505b2a02f6206dcf0a8ecadf68.png": "https://content.da.live/adobecom/da-playground/ace1205-bizpro-hub-718164/media_1a602e9005b8611505b2a02f6206dcf0a8ecadf68.png"
+  },
+  "results": [
+    {
+      "localPath": ".snowflake/projects/001-ace1205-bizpro-hub/media/media_1a602e9005b8611505b2a02f6206dcf0a8ecadf68.png",
+      "remotePath": "ace1205-bizpro-hub-718164/media_1a602e9005b8611505b2a02f6206dcf0a8ecadf68.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/ace1205-bizpro-hub-718164/media_1a602e9005b8611505b2a02f6206dcf0a8ecadf68.png",
+      "size": 1627136,
+      "mime": "image/png",
+      "ok": true
+    }
+  ]
+}
