@@ -10,8 +10,8 @@
     const ml = new URLSearchParams(location.search).get('milolibs');
     if (h === 'localhost' && p === '3000') return 'http://localhost:3000/libs/c2/tools/page-animator/page-animator.js';
     if ((h === 'localhost' && p === '6456') || ml === 'local') return 'http://localhost:6456/libs/c2/tools/page-animator/page-animator.js';
-    const branch = (ml && ml \!== 'local') ? ml : 'forge-a-panel';
-    const env = h.indexOf('.aem.page') \!== -1 ? 'aem.page' : 'aem.live';
+    const branch = (ml && ml !== 'local') ? ml : 'forge-a-panel';
+    const env = h.indexOf('.aem.page') !== -1 ? 'aem.page' : 'aem.live';
     return `https://${branch}--milo--adobecom.${env}/libs/c2/tools/page-animator/page-animator.js`;
   };
 
