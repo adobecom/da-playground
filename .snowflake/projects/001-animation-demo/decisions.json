@@ -1,0 +1,135 @@
+{
+  "levelParam": "page",
+  "conversionLevel": "page-level",
+  "templateName": "animation-demo-copy-c68beb",
+  "synthesizeMain": false,
+  "assetStrategy": "absolute",
+  "assetBase": "https://main--da-playground--adobecom.aem.live/",
+  "headLinks": [
+    { "rel": "stylesheet", "href": "https://use.typekit.net/hah7vzn.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/styles/styles.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/visually-hidden/visually-hidden.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/router-marquee/router-marquee.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/section-metadata/section-metadata.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/blocks/merch/merch.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/modal/modal.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/blocks/video/video.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/global-navigation/global-navigation.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/deps/lenis.min.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/rich-content/rich-content.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/elastic-carousel/elastic-carousel.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/base-card/base-card.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/carousel-c2/carousel-c2.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/news/news.css" },
+    { "rel": "stylesheet", "href": "https://stage.adobeccstatic.com/unav/1.5/UniversalNav.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/explore-card/explore-card.css" },
+    { "rel": "stylesheet", "href": "https://main--milo--adobecom.aem.live/libs/c2/blocks/global-footer/global-footer.css" }
+  ],
+  "inlineStyleLines": [],
+  "inlineScriptLines": [],
+  "externalLibs": [],
+  "feasibility": {
+    "recommendation": "page-level",
+    "rationale": "Rendered Milo C2 page with complex JS-driven interactive blocks (router-marquee, elastic-carousel, carousel-c2). All blocks already rendered (data-block-status=loaded). Cross-section JS coupling via Milo runtime. Block-level infeasible.",
+    "sections": [
+      { "name": "rm-section", "level": "fragment", "checks": { "structure": "pass", "cssScope": "fail", "contentModel": "fail", "jsIndependence": "fail", "visualIndependence": "pass" } },
+      { "name": "intro-section", "level": "block", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "carousel-section", "level": "fragment", "checks": { "structure": "pass", "cssScope": "fail", "contentModel": "fail", "jsIndependence": "fail", "visualIndependence": "pass" } },
+      { "name": "features-heading-section", "level": "block", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "featured-card-section", "level": "block", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "three-cards-section", "level": "block", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "testimonials-section", "level": "fragment", "checks": { "structure": "pass", "cssScope": "fail", "contentModel": "fail", "jsIndependence": "fail", "visualIndependence": "pass" } },
+      { "name": "spacer-1-section", "level": "fragment", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "news-section", "level": "block", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "hero-bg-section", "level": "block", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "explore-grid-section", "level": "block", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } },
+      { "name": "spacer-2-section", "level": "fragment", "checks": { "structure": "pass", "cssScope": "pass", "contentModel": "pass", "jsIndependence": "pass", "visualIndependence": "pass" } }
+    ]
+  },
+  "sections": [
+    { "firstClass": "rm-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true, "slots": [] },
+    { "firstClass": "intro-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true,
+      "slots": [
+        { "name": "intro.heading", "type": "text", "selector": "h2.title-2" },
+        { "name": "intro.body", "type": "text", "selector": "p.body-lg" }
+      ]
+    },
+    { "firstClass": "carousel-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true, "slots": [] },
+    { "firstClass": "features-heading-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true,
+      "slots": [
+        { "name": "features.eyebrow", "type": "text", "selector": "p.eyebrow" },
+        { "name": "features.heading", "type": "text", "selector": "h2.title-2" },
+        { "name": "features.body", "type": "text", "selector": "p.body-lg" }
+      ]
+    },
+    { "firstClass": "featured-card-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true,
+      "slots": [
+        { "name": "featured.title", "type": "text", "selector": "h3.title-4" },
+        { "name": "featured.body", "type": "text", "selector": "p.body-md:first-of-type" },
+        { "name": "featured.cta", "type": "link", "selector": "a.standalone-link" },
+        { "name": "featured.image", "type": "picture", "selector": "picture.parallax-scale-down" }
+      ]
+    },
+    { "firstClass": "three-cards-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true,
+      "slots": [
+        { "name": "card-1.title", "type": "text", "selector": ".base-card:nth-child(1) h3" },
+        { "name": "card-1.body", "type": "text", "selector": ".base-card:nth-child(1) p.body-md:first-of-type" },
+        { "name": "card-1.cta", "type": "link", "selector": ".base-card:nth-child(1) a.standalone-link" },
+        { "name": "card-1.image", "type": "picture", "selector": ".base-card:nth-child(1) picture.parallax-scale-down" },
+        { "name": "card-2.title", "type": "text", "selector": ".base-card:nth-child(2) h3" },
+        { "name": "card-2.body", "type": "text", "selector": ".base-card:nth-child(2) p.body-md:nth-of-type(2)" },
+        { "name": "card-2.cta", "type": "link", "selector": ".base-card:nth-child(2) a.standalone-link" },
+        { "name": "card-2.image", "type": "picture", "selector": ".base-card:nth-child(2) picture.parallax-scale-down" },
+        { "name": "card-3.title", "type": "text", "selector": ".base-card:nth-child(3) h3" },
+        { "name": "card-3.body", "type": "text", "selector": ".base-card:nth-child(3) p.body-md:first-of-type" },
+        { "name": "card-3.cta", "type": "link", "selector": ".base-card:nth-child(3) a.standalone-link" },
+        { "name": "card-3.image", "type": "picture", "selector": ".base-card:nth-child(3) picture.parallax-scale-down" }
+      ]
+    },
+    { "firstClass": "testimonials-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true, "slots": [] },
+    { "firstClass": "spacer-1-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true, "slots": [] },
+    { "firstClass": "news-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true,
+      "slots": [
+        { "name": "news-1.headline", "type": "text", "selector": ".news-item:nth-child(1) h3" },
+        { "name": "news-1.body", "type": "text", "selector": ".news-item:nth-child(1) p.news-item-body" },
+        { "name": "news-1.link", "type": "link", "selector": ".news-item:nth-child(1) a.standalone-link" },
+        { "name": "news-2.headline", "type": "text", "selector": ".news-item:nth-child(2) h3" },
+        { "name": "news-2.body", "type": "text", "selector": ".news-item:nth-child(2) p.news-item-body" },
+        { "name": "news-2.link", "type": "link", "selector": ".news-item:nth-child(2) a.standalone-link" },
+        { "name": "news-3.headline", "type": "text", "selector": ".news-item:nth-child(3) h3" },
+        { "name": "news-3.body", "type": "text", "selector": ".news-item:nth-child(3) p.news-item-body" },
+        { "name": "news-3.link", "type": "link", "selector": ".news-item:nth-child(3) a.standalone-link" }
+      ]
+    },
+    { "firstClass": "hero-bg-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true,
+      "slots": [
+        { "name": "hero.title", "type": "text", "selector": "h2.title-2" },
+        { "name": "hero.body", "type": "text", "selector": "p.body-lg:first-of-type" },
+        { "name": "hero.cta", "type": "link", "selector": "a.con-button" }
+      ]
+    },
+    { "firstClass": "explore-grid-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true,
+      "slots": [
+        { "name": "explore-1.title", "type": "text", "selector": ".explore-card:nth-child(1) h3" },
+        { "name": "explore-1.body", "type": "text", "selector": ".explore-card:nth-child(1) p.body-md:first-of-type" },
+        { "name": "explore-2.title", "type": "text", "selector": ".explore-card:nth-child(2) h3" },
+        { "name": "explore-2.body", "type": "text", "selector": ".explore-card:nth-child(2) p.body-md:first-of-type" },
+        { "name": "explore-3.title", "type": "text", "selector": ".explore-card:nth-child(3) h3" },
+        { "name": "explore-3.body", "type": "text", "selector": ".explore-card:nth-child(3) p.body-md:first-of-type" },
+        { "name": "explore-4.title", "type": "text", "selector": ".explore-card:nth-child(4) h3" },
+        { "name": "explore-4.body", "type": "text", "selector": ".explore-card:nth-child(4) p.body-md:first-of-type" },
+        { "name": "explore-5.title", "type": "text", "selector": ".explore-card:nth-child(5) h3" },
+        { "name": "explore-5.body", "type": "text", "selector": ".explore-card:nth-child(5) p.body-md:first-of-type" },
+        { "name": "explore-6.title", "type": "text", "selector": ".explore-card:nth-child(6) h3" },
+        { "name": "explore-6.body", "type": "text", "selector": ".explore-card:nth-child(6) p.body-md:first-of-type" },
+        { "name": "explore-7.title", "type": "text", "selector": ".explore-card:nth-child(7) h3" },
+        { "name": "explore-7.body", "type": "text", "selector": ".explore-card:nth-child(7) p.body-md:first-of-type" },
+        { "name": "explore-8.title", "type": "text", "selector": ".explore-card:nth-child(8) h3" },
+        { "name": "explore-8.body", "type": "text", "selector": ".explore-card:nth-child(8) p.body-md:first-of-type" },
+        { "name": "explore-9.title", "type": "text", "selector": ".explore-card:nth-child(9) h3" },
+        { "name": "explore-9.body", "type": "text", "selector": ".explore-card:nth-child(9) p.body-md:first-of-type" }
+      ]
+    },
+    { "firstClass": "spacer-2-section", "originalTag": "div", "originalFirstClass": "section", "rewriteToSection": true, "slots": [] }
+  ]
+}
