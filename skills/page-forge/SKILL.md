@@ -88,7 +88,8 @@ slicc.lick({ action: 'preflight' })
 slicc.lick({ action: 'generate', data: {
   source: 'figma' | 'url' | 'html',
   input:  '<figma url | page url | raw html>',
-  redesign: true | false, intent: '<optional>', slug: '<optional>',
+  redesign: true | false, intent: '<optional>',
+  slug: '<optional — blank means auto-derive>',
   da: { org: 'adobecom', site: 'da-playground' }
 }})
 ```
@@ -99,9 +100,21 @@ The scoop pushes back:
 sprinkle send page-forge '{"action":"check","key":"adobe|figma|github","status":"ok|missing","fix":"…"}'
 sprinkle send page-forge '{"action":"preflight-done","ready":true}'
 sprinkle send page-forge '{"action":"update","phase":"deploy","status":"…"}'
-sprinkle send page-forge '{"action":"done","url":"https://forge-proto-…--da-playground--adobecom.aem.page/<slug>"}'
+# Stream the rendered HTML so the panel shows a LIVE PREVIEW iframe (srcdoc).
+# Send after generate, and again after redesign if it ran.
+sprinkle send page-forge '{"action":"preview","stage":"bespoke|redesigned","html":"<full bespoke HTML>"}'
+# done — the panel swaps the preview iframe to the live URL and shows a report.
+sprinkle send page-forge '{"action":"done","url":"https://forge-proto-…--da-playground--adobecom.aem.page/<slug>","slug":"<slug>","branchUrl":"…","branchName":"forge-proto-…","sha":"<full-sha>"}'
 sprinkle send page-forge '{"action":"error","message":"…"}'
 ```
+
+**Slug:** the panel keeps it auto-derived (hidden under "Advanced"). If `data.slug` is
+blank, the scoop derives one (URL → last path segment; figma → `figma`; html → `page`)
+and **echoes the final slug back in the `done` message**.
+
+**Preview:** the panel's centerpiece is a preview iframe. Emit `action:"preview"` with the
+full HTML right after the bespoke HTML exists (and again after redesign) so the designer
+sees the 1:1 result *before* deploy finishes — then `done` swaps it to the live `.aem.page`.
 
 ## Preflight / onboarding (scoop) — runs before generate
 
@@ -130,12 +143,14 @@ only when **adobe + figma + github** are all ok. The panel keeps Generate disabl
      `input/current.html`. No redesign → that's the bespoke HTML.
    - `source:'figma'` → follow `references/figma-extract.md` (strict 1:1 rules). Read via SLICC's
      native Figma, or `figma-fetch.jsh` REST + `/images`. **Don't relax the fidelity rules.**
-   - Emit `phase:"generate"`.
+   - Emit `phase:"generate"`, then **`action:"preview"` with `stage:"bespoke"` and the full
+     `input/bespoke.html`** so the panel shows the result immediately.
 
 3. **(Optional) Redesign** — only if `redesign:true`. Seed `input/current.html`, follow
    `references/redesign.md` injecting `references/_vendored/{c2-brief,design-knowledge}.md`. Apply
    `intent` as a *modifier* on the C2 baseline. Write `output/redesigned.html` → new
-   `input/bespoke.html`. Emit `phase:"redesign"`.
+   `input/bespoke.html`. Emit `phase:"redesign"`, then **`action:"preview"` with
+   `stage:"redesigned"` and the redesigned HTML**.
 
 4. **Deploy** — follow `references/snowflake-deploy.md`.
    - Fresh git worktree of `<org>/<site>` on `forge-proto-<short>-<ts>`; seed `input/bespoke.html`.
@@ -145,7 +160,9 @@ only when **adobe + figma + github** are all ok. The panel keeps Generate disabl
    - DA content via **`aem put`**; preview via **`aem preview`**.
    - `scripts/deploy.jsh` commits + pushes the branch **as the signed-in GitHub user**
      (isomorphic-git over fetch → the OAuth token authenticates the push; no PAT).
-   - Verify the `.aem.page` URL; emit `phase:"verify"`, then `action:"done"` with the URL.
+   - Verify the `.aem.page` URL; emit `phase:"verify"`, then `action:"done"` with `url`,
+     the final `slug`, `branchUrl`, `branchName`, and `sha` (the panel swaps the preview
+     iframe to the live URL and renders the report).
 
 5. **On failure**, emit `action:"error"` with a one-line reason; clean up the worktree.
 

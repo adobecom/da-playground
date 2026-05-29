@@ -6,8 +6,8 @@
   <title>Page Forge — Figma / URL / HTML → 1:1 DA prototype</title>
   <style>
     :root {
-      --bg: #0f1115; --panel: #181b22; --line: #2a2f3a; --txt: #e6e8ec;
-      --muted: #9aa3b2; --accent: #6aa1ff; --ok: #4ade80; --err: #f87171;
+      --bg: #0f1115; --panel: #181b22; --panel2: #11141a; --line: #2a2f3a;
+      --txt: #e6e8ec; --muted: #9aa3b2; --accent: #6aa1ff; --ok: #4ade80; --err: #f87171;
       --radius: 10px; font-family: system-ui, -apple-system, sans-serif;
     }
     * { box-sizing: border-box; }
@@ -19,10 +19,10 @@
     label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
     .tabs { display: flex; gap: 6px; margin-bottom: 8px; }
     .tab { flex: 1; padding: 8px; text-align: center; font-size: 13px; cursor: pointer;
-           background: #11141a; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
+           background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
     .tab.active { color: var(--txt); border-color: var(--accent); background: #1b2230; }
     input[type=text], textarea {
-      width: 100%; background: #11141a; border: 1px solid var(--line); border-radius: 8px;
+      width: 100%; background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
       color: var(--txt); padding: 9px; font-size: 13px; font-family: inherit; }
     textarea { min-height: 120px; resize: vertical; }
     .row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
@@ -31,10 +31,45 @@
     button.go { width: 100%; margin-top: 14px; padding: 11px; font-size: 14px; font-weight: 600;
       background: var(--accent); color: #0b1020; border: 0; border-radius: 8px; cursor: pointer; }
     button.go:disabled { opacity: .5; cursor: default; }
-    #status { font-size: 12px; white-space: pre-wrap; color: var(--muted); }
-    #status .phase { color: var(--txt); font-weight: 600; }
-    #result a { color: var(--ok); word-break: break-all; }
+
+    /* Advanced disclosure (slug lives here, auto-derived by default) */
+    .adv-toggle { margin-top: 12px; font-size: 12px; color: var(--muted); cursor: pointer;
+      user-select: none; display: inline-flex; align-items: center; gap: 6px; }
+    .adv-toggle .caret { transition: transform .15s; display: inline-block; }
+    .adv-toggle.open .caret { transform: rotate(90deg); }
+    .adv-body { margin-top: 4px; }
+    .url-hint { font-size: 11px; color: var(--muted); margin-top: 6px; word-break: break-all; }
+    .url-hint code { color: var(--accent); }
+
+    /* Preview pane — the centerpiece */
+    .preview-head { display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px; }
+    .preview-head .ttl { font-size: 12px; color: var(--muted); }
+    .preview-head .stage { font-size: 11px; color: var(--accent); }
+    .preview-wrap { position: relative; border: 1px solid var(--line); border-radius: 8px;
+      overflow: hidden; background: #fff; height: 420px; resize: vertical; }
+    iframe.preview { width: 100%; height: 100%; border: 0; background: #fff; display: block; }
+    .preview-placeholder { position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: center; color: var(--muted); font-size: 13px; background: var(--panel2);
+      text-align: center; padding: 20px; }
+    .preview-overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 10px;
+      font-size: 12px; background: rgba(15,17,21,.85); color: var(--txt);
+      border-top: 1px solid var(--line); }
+
+    /* Result report (da.live conversion-report style) */
+    #result { font-size: 12px; }
     #result.err { color: var(--err); }
+    .conv-field { display: flex; gap: 8px; padding: 5px 0; border-top: 1px solid var(--line); }
+    .conv-field:first-child { border-top: 0; }
+    .conv-label { flex: 0 0 84px; color: var(--muted); }
+    .conv-value { color: var(--txt); word-break: break-all; }
+    .conv-value a { color: var(--ok); }
+    .conv-value code { color: var(--txt); background: var(--panel2); padding: 1px 5px; border-radius: 4px; }
+
+    #status { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    #status .phase { color: var(--txt); font-weight: 600; }
+
+    /* Preflight checklist */
     .check { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; margin: 8px 0; }
     .check .ico { width: 16px; flex: 0 0 16px; text-align: center; }
     .check.ok .ico { color: var(--ok); }
@@ -43,6 +78,8 @@
     .check .fix { color: var(--muted); display: block; margin-top: 2px; }
     button.recheck { margin-top: 6px; padding: 7px 10px; font-size: 12px; background: #1b2230;
       color: var(--txt); border: 1px solid var(--line); border-radius: 7px; cursor: pointer; }
+    .preflight-collapsed { display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; }
+    .preflight-collapsed .ico { color: var(--ok); }
   </style>
 </head>
 <body>
@@ -83,22 +120,62 @@
       <input type="text" id="intent" placeholder="more editorial, less marketing-template" />
     </div>
 
-    <label>Slug (optional — auto-derived if empty)</label>
-    <input type="text" id="slug" placeholder="acrobat-hero" />
+    <div class="adv-toggle" id="adv-toggle"><span class="caret">▸</span> Advanced</div>
+    <div class="adv-body hidden" id="adv-body">
+      <label>Slug — auto-derived from your input; override only if needed</label>
+      <input type="text" id="slug" placeholder="(auto)" />
+      <div class="url-hint">Will publish to <code id="url-hint-val">…</code></div>
+    </div>
 
     <button class="go" id="go" disabled>Generate &amp; deploy</button>
   </div>
 
   <div class="card">
-    <div id="status">Idle. Fill an input and hit Generate.</div>
+    <div class="preview-head">
+      <span class="ttl">Preview</span>
+      <span class="stage" id="preview-stage"></span>
+    </div>
+    <div class="preview-wrap" id="preview-wrap">
+      <div class="preview-placeholder" id="preview-placeholder">
+        The 1:1 prototype renders here as it's generated.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="result-card" hidden>
     <div id="result"></div>
   </div>
+
+  <div id="status">Idle. Fill an input and hit Generate.</div>
 
   <script>
     let source = 'figma';
     let ready = false;
     const checks = {};
+    const DA = { org: 'adobecom', site: 'da-playground' };
     const $ = (id) => document.getElementById(id);
+
+    // ── slug helpers (client-side default; scoop finalizes if blank) ───────────
+    function kebab(s) {
+      return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+    }
+    function derivedSlug() {
+      const override = $('slug').value.trim();
+      if (override) return kebab(override);
+      if (source === 'url') {
+        try {
+          const u = new URL($('in-url').value.trim());
+          const tail = u.pathname.split('/').filter(Boolean).pop();
+          return kebab(tail || u.hostname.split('.')[0] || 'page');
+        } catch { return 'page'; }
+      }
+      if (source === 'figma') return 'figma';
+      return 'page';
+    }
+    function urlFor(slug) {
+      return 'https://forge-proto-…--' + DA.site + '--' + DA.org + '.aem.page/' + (slug || 'page');
+    }
+    function refreshUrlHint() { $('url-hint-val').textContent = urlFor(derivedSlug()); }
 
     // ── Preflight / onboarding ────────────────────────────────────────────────
     function runPreflight() {
@@ -108,6 +185,23 @@
     function renderChecks() {
       const order = ['adobe', 'figma', 'github'];
       const labels = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub sign-in (branch push)' };
+      const present = order.filter((k) => checks[k]);
+      const allOk = present.length === order.length && present.every((k) => checks[k].status === 'ok');
+      if (allOk) {
+        // Collapse to a single green line once everything passes.
+        $('preflight').innerHTML = '<div class="preflight-collapsed" id="preflight-expand">' +
+          '<span class="ico">✓</span><span>Access ready — Adobe · Figma · GitHub</span></div>';
+        $('recheck').classList.add('hidden');
+        const exp = $('preflight-expand');
+        if (exp) exp.addEventListener('click', () => { $('recheck').classList.remove('hidden'); renderChecksExpanded(); });
+        return;
+      }
+      renderChecksExpanded();
+    }
+    function renderChecksExpanded() {
+      const order = ['adobe', 'figma', 'github'];
+      const labels = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub sign-in (branch push)' };
+      $('recheck').classList.remove('hidden');
       $('preflight').innerHTML = order.filter((k) => checks[k]).map((k) => {
         const c = checks[k];
         const ok = c.status === 'ok';
@@ -125,16 +219,26 @@
     }
     $('recheck').addEventListener('click', runPreflight);
 
+    // ── Tabs ──────────────────────────────────────────────────────────────────
     document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach((x) => x.classList.remove('active'));
       t.classList.add('active');
       source = t.dataset.source;
       document.querySelectorAll('[data-pane]').forEach((p) =>
         p.classList.toggle('hidden', p.dataset.pane !== source));
+      refreshUrlHint();
     }));
 
     $('redesign').addEventListener('change', (e) =>
       $('intent-wrap').classList.toggle('hidden', !e.target.checked));
+
+    // Advanced disclosure
+    $('adv-toggle').addEventListener('click', () => {
+      const open = $('adv-body').classList.toggle('hidden') === false;
+      $('adv-toggle').classList.toggle('open', open);
+    });
+    $('slug').addEventListener('input', refreshUrlHint);
+    ['in-url', 'in-figma'].forEach((id) => $(id).addEventListener('input', refreshUrlHint));
 
     function inputValue() {
       if (source === 'figma') return $('in-figma').value.trim();
@@ -142,22 +246,50 @@
       return $('in-html').value;
     }
 
+    // ── Preview helpers ─────────────────────────────────────────────────────
+    function showPreviewHtml(html, stageLabel) {
+      $('preview-stage').textContent = stageLabel || '';
+      const wrap = $('preview-wrap');
+      wrap.innerHTML = '';
+      const iframe = document.createElement('iframe');
+      iframe.className = 'preview';
+      iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+      iframe.srcdoc = html;
+      wrap.append(iframe);
+    }
+    function showPreviewUrl(url) {
+      $('preview-stage').textContent = 'live';
+      const wrap = $('preview-wrap');
+      wrap.innerHTML = '';
+      const iframe = document.createElement('iframe');
+      iframe.className = 'preview';
+      iframe.src = url;
+      wrap.append(iframe);
+    }
+    function resetPreview() {
+      $('preview-stage').textContent = '';
+      $('preview-wrap').innerHTML =
+        '<div class="preview-placeholder">Generating the 1:1 prototype…</div>';
+    }
+
+    // ── Generate ──────────────────────────────────────────────────────────────
     $('go').addEventListener('click', () => {
       if (!ready) { setStatus('access', 'Finish sign-in above first.'); return; }
       const input = inputValue();
       if (!input) { setStatus('phase', 'Provide an input first.'); return; }
       $('go').disabled = true;
+      $('result-card').hidden = true;
       $('result').textContent = '';
       $('result').className = '';
+      resetPreview();
       setStatus('start', 'Starting…');
-      // Fire the lick the Cone wakes on.
       slicc.lick({ action: 'generate', data: {
         source,
         input,
         redesign: $('redesign').checked,
         intent: $('intent').value.trim(),
-        slug: $('slug').value.trim(),
-        da: { org: 'adobecom', site: 'da-playground' },
+        slug: $('slug').value.trim(),   // blank → scoop auto-derives
+        da: DA,
       }});
     });
 
@@ -166,28 +298,44 @@
         (msg || '').replace(/</g, '&lt;');
     }
 
-    // Agent → UI updates (via `sprinkle send page-forge '{…}'`).
+    // ── Agent → UI (via `sprinkle send page-forge '{…}'`) ─────────────────────
     slicc.on('update', (d) => {
       if (!d) return;
       if (d.action === 'check') { checks[d.key] = { status: d.status, fix: d.fix }; renderChecks(); }
       if (d.action === 'preflight-done') setReady(!!d.ready);
       if (d.action === 'update') setStatus(d.phase || '…', d.status || '');
+      // NEW: live preview of the generated/redesigned HTML mid-pipeline.
+      if (d.action === 'preview' && d.html) {
+        showPreviewHtml(d.html, d.stage || 'bespoke');
+      }
       if (d.action === 'done') {
         $('go').disabled = false;
         setStatus('done', 'Prototype deployed.');
-        $('result').innerHTML = d.url
-          ? 'Live preview: <a href="' + d.url + '" target="_blank">' + d.url + '</a>'
-          : 'Done (no URL returned).';
+        if (d.url) showPreviewUrl(d.url);
+        // da.live-style conversion report.
+        const rows = [];
+        if (d.slug) rows.push(['Slug', '<code>' + d.slug + '</code>']);
+        if (d.branchUrl) rows.push(['Branch', '<a href="' + d.branchUrl + '" target="_blank">' + (d.branchName || 'branch') + ' ↗</a>']);
+        if (d.sha) rows.push(['Commit', '<code>' + d.sha.slice(0, 7) + '</code>']);
+        if (d.url) rows.push(['DA preview', '<a href="' + d.url + '" target="_blank">' + d.url + '</a>']);
+        $('result-card').hidden = false;
+        $('result').className = '';
+        $('result').innerHTML = rows.length
+          ? rows.map((r) => '<div class="conv-field"><span class="conv-label">' + r[0] +
+              '</span><span class="conv-value">' + r[1] + '</span></div>').join('')
+          : 'Done.';
       }
       if (d.action === 'error') {
         $('go').disabled = false;
         setStatus('error', '');
+        $('result-card').hidden = false;
         $('result').className = 'err';
         $('result').textContent = d.message || 'Failed.';
       }
     });
 
-    // Kick off the access check as soon as the panel opens.
+    // Kick off.
+    refreshUrlHint();
     runPreflight();
   </script>
 </body>
