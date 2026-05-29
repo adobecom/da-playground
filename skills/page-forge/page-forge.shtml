@@ -94,7 +94,7 @@
 </head>
 <body>
   <h1>Page Forge</h1>
-  <p class="sub">Figma frame · page URL · raw HTML → iterate with Stardust → 1:1 prototype on DA</p>
+  <p class="sub">Figma / URL / HTML → read into 1:1 HTML → <b>redesign with Stardust</b> (optional, by intent) → <b>Snowflake</b> 1:1 deploy to DA</p>
 
   <div class="card" id="preflight-card">
     <div id="preflight">Checking access…</div>
@@ -121,6 +121,10 @@
       <textarea id="in-html" rows="6" placeholder="&lt;!doctype html&gt;…"></textarea>
     </div>
     <button class="primary" id="go" disabled>Generate v1 (1:1)</button>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+      Reads your input into a faithful 1:1 HTML version (Figma frames are extracted; a URL/HTML
+      is used as-is). From there you can redesign it with Stardust, or deploy it 1:1.
+    </div>
   </div>
 
   <!-- 2. PREVIEW + VERSIONS (shown once v1 exists) -->
@@ -134,24 +138,28 @@
       <div class="preview-placeholder" id="preview-placeholder">The 1:1 prototype renders here.</div>
     </div>
 
-    <!-- Refine with Stardust -->
+    <!-- PATH A: Redesign with Stardust (optional, repeatable) -->
     <div style="margin-top:14px;">
-      <div class="section-label">Refine with Stardust</div>
+      <div class="section-label">Option A — Redesign with Stardust (optional)</div>
       <div class="refine-row">
         <textarea id="refine-intent" class="refine-intent"
-          placeholder='e.g. "make the hero darker and increase the type scale" — empty = default Consonant 2 redesign'></textarea>
-        <button class="ghost" id="refine-btn">Refine →</button>
+          placeholder='Declare an intent, e.g. "make the hero darker and increase the type scale" — empty = default Consonant 2 + brand redesign'></textarea>
+        <button class="ghost" id="refine-btn">Redesign →</button>
       </div>
       <div style="font-size:11px;color:var(--muted);margin-top:6px;">
-        Each refine is a new version off the one you're viewing. Empty intent applies the
-        Consonant&nbsp;2 + brand baseline.
+        Stardust = Consonant&nbsp;2 + brand knowledge. Each redesign is a new version off the one
+        you're viewing — iterate intents as many times as you like, then deploy the one you pick.
       </div>
     </div>
 
-    <!-- Deploy the viewed version -->
+    <!-- PATH B: Deploy the viewed version 1:1 via Snowflake -->
     <div style="margin-top:16px;border-top:1px solid var(--line);padding-top:14px;">
-      <div class="section-label">Deploy</div>
-      <button class="primary" id="deploy-btn" style="margin-top:0;">Deploy this version to DA</button>
+      <div class="section-label">Option B — Deploy 1:1 to DA (Snowflake)</div>
+      <div style="font-size:11px;color:var(--muted);margin:0 0 8px;">
+        Snowflakes the version you're viewing into an authorable DA page that renders a 1:1 match —
+        whether that's the raw v1 or a Stardust redesign.
+      </div>
+      <button class="primary" id="deploy-btn" style="margin-top:0;">Deploy this version 1:1 to DA</button>
       <div class="adv-toggle" id="adv-toggle"><span class="caret">▸</span> Advanced</div>
       <div class="hidden" id="adv-body">
         <label>Slug — auto-derived; override only if needed</label>
@@ -269,7 +277,7 @@
       iframe.className = 'preview'; iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
       iframe.srcdoc = ver.html; wrap.append(iframe);
       renderVstrip(); refreshUrlHint();
-      $('deploy-btn').textContent = 'Deploy v' + v + ' to DA';
+      $('deploy-btn').textContent = 'Deploy v' + v + ' 1:1 to DA';
     }
     function addVersion(v, stage, intent, html) {
       const existing = versions.find((x) => x.v === v);
