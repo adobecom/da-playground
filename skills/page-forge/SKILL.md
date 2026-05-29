@@ -167,16 +167,19 @@ point at docs.
    repo**:
 
    ```
-   fix: "You need a GitHub token for <org>/<site>. One-time setup (~2 min):
+   fix: "You need a GitHub token for the repo you're prototyping in (this run: <org>/<site>).
+   One-time setup (~2 min):
    1. Open https://github.com/settings/tokens?type=beta
-   2. Token name: slicc-<site>  (e.g. slicc-da-cc)
+   2. Token name: e.g. slicc-prototyping
    3. Resource owner: <org>  (e.g. adobecom)
-   4. Repository access → Only select repositories → <site>
+   4. Repository access → Only select repositories → select ONLY the repo(s) you want to
+      prototype in. <site> is just this run's target — an example; pick whichever repo you'll
+      actually deploy to (your own site, da-cc, da-playground, etc.). Don't grant more than that.
    5. Permissions → Repository permissions → Contents: Read and write
    6. Generate token → copy the value
-   7. Run: secret set GITHUB_PAT <your-token> --domain github.com,*.github.com
+   7. Run here: secret set GITHUB_PAT <your-token> --domain github.com,*.github.com
    Then click 'Check access' again.
-   Tip: scope the token to multiple repos if you work on several sites.
+   Tip: if you prototype in several sites, add just those repos to the one token.
    Note: if adobecom requires PAT approval, an org owner must approve the token first."
    ```
 
