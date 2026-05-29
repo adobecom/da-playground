@@ -26,9 +26,11 @@
       color: var(--txt); padding: 9px; font-size: 13px; font-family: inherit; }
     textarea { resize: vertical; }
     .hidden { display: none; }
+    .hint { font-size: 11px; color: var(--muted); margin-top: 6px; }
     button.primary { width: 100%; margin-top: 12px; padding: 11px; font-size: 14px; font-weight: 600;
       background: var(--accent); color: #0b1020; border: 0; border-radius: 8px; cursor: pointer; }
     button.primary:disabled { opacity: .5; cursor: default; }
+    button.publish { background: var(--ok); }
     button.ghost { padding: 9px 12px; font-size: 13px; font-weight: 600; background: #1b2230;
       color: var(--txt); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
     button.ghost:disabled { opacity: .5; cursor: default; }
@@ -65,6 +67,12 @@
     .url-hint { font-size: 11px; color: var(--muted); margin-top: 6px; word-break: break-all; }
     .url-hint code { color: var(--accent); }
 
+    /* Inline auth gate (shown only when publishing without creds) */
+    .auth-gate { margin-top: 12px; border: 1px solid var(--accent); border-radius: 8px;
+      background: #141a26; padding: 12px; }
+    .auth-gate .ttl { font-size: 12px; font-weight: 600; color: var(--txt); margin-bottom: 6px; }
+    .auth-steps { font-size: 12px; color: var(--muted); white-space: pre-wrap; line-height: 1.45; }
+
     /* Result report */
     #result { font-size: 12px; }
     #result.err { color: var(--err); }
@@ -82,7 +90,7 @@
     .check { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; margin: 8px 0; }
     .check .ico { width: 16px; flex: 0 0 16px; text-align: center; }
     .check.ok .ico { color: var(--ok); }
-    .check.missing .ico { color: var(--err); }
+    .check.missing .ico { color: var(--muted); }
     .check .label { color: var(--txt); }
     .check .fix { color: var(--muted); display: block; margin-top: 2px; }
     button.recheck { margin-top: 6px; padding: 7px 10px; font-size: 12px; background: #1b2230;
@@ -94,14 +102,18 @@
 </head>
 <body>
   <h1>Page Forge</h1>
-  <p class="sub">Figma / URL / HTML → read into 1:1 HTML → <b>redesign with Stardust</b> (optional, by intent) → <b>Snowflake</b> 1:1 deploy to DA</p>
+  <p class="sub">Paste a Figma / URL / HTML → preview a 1:1 → play with <b>Stardust</b> redesigns → <b>publish to DA</b> only when you want.</p>
 
   <div class="card" id="preflight-card">
     <div id="preflight">Checking access…</div>
     <button class="recheck" id="recheck">Check access</button>
+    <div class="hint" style="margin-top:8px;">
+      <b>Playing</b> (preview + Stardust) needs only Figma — and only for Figma input.
+      <b>Publishing</b> to DA needs Adobe + a GitHub token; you'll be prompted right when you create a prototype.
+    </div>
   </div>
 
-  <!-- 1. INPUT (hidden once v1 exists; "New" brings it back) -->
+  <!-- 1. INPUT (hidden once a preview exists; "New" brings it back) -->
   <div class="card" id="input-card">
     <div class="tabs">
       <div class="tab active" data-source="figma">Figma</div>
@@ -120,14 +132,15 @@
       <label>Raw HTML</label>
       <textarea id="in-html" rows="6" placeholder="&lt;!doctype html&gt;…"></textarea>
     </div>
-    <button class="primary" id="go" disabled>Generate v1 (1:1)</button>
-    <div style="font-size:11px;color:var(--muted);margin-top:6px;">
-      Reads your input into a faithful 1:1 HTML version (Figma frames are extracted; a URL/HTML
-      is used as-is). From there you can redesign it with Stardust, or deploy it 1:1.
+    <button class="primary" id="go">Generate preview</button>
+    <div class="hint">
+      Just previews here — reads your input into a faithful 1:1 HTML version (Figma frames are
+      extracted; URL/HTML used as-is). <b>No branch, no DA page, no token.</b> You play first; you
+      publish later only if you want.
     </div>
   </div>
 
-  <!-- 2. PREVIEW + VERSIONS (shown once v1 exists) -->
+  <!-- 2. STUDIO: preview + versions + play + publish (shown once a preview exists) -->
   <div class="card hidden" id="studio-card">
     <div class="vstrip" id="vstrip"></div>
     <div class="preview-head">
@@ -135,31 +148,40 @@
       <span class="stage" id="preview-stage"></span>
     </div>
     <div class="preview-wrap" id="preview-wrap">
-      <div class="preview-placeholder" id="preview-placeholder">The 1:1 prototype renders here.</div>
+      <div class="preview-placeholder" id="preview-placeholder">Your 1:1 preview renders here.</div>
     </div>
 
-    <!-- PATH A: Redesign with Stardust (optional, repeatable) -->
+    <!-- PLAY: Stardust redesign (optional, repeatable, no token) -->
     <div style="margin-top:14px;">
-      <div class="section-label">Option A — Redesign with Stardust (optional)</div>
+      <div class="section-label">Play — redesign with Stardust (optional, no sign-in)</div>
       <div class="refine-row">
         <textarea id="refine-intent" class="refine-intent"
           placeholder='Declare an intent, e.g. "make the hero darker and increase the type scale" — empty = default Consonant 2 + brand redesign'></textarea>
         <button class="ghost" id="refine-btn">Redesign →</button>
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+      <div class="hint">
         Stardust = Consonant&nbsp;2 + brand knowledge. Each redesign is a new version off the one
-        you're viewing — iterate intents as many times as you like, then deploy the one you pick.
+        you're viewing — iterate intents freely, all just in the preview.
       </div>
     </div>
 
-    <!-- PATH B: Deploy the viewed version 1:1 via Snowflake -->
+    <!-- PUBLISH: create the prototype on DA (this is the step that needs a token) -->
     <div style="margin-top:16px;border-top:1px solid var(--line);padding-top:14px;">
-      <div class="section-label">Option B — Deploy 1:1 to DA (Snowflake)</div>
-      <div style="font-size:11px;color:var(--muted);margin:0 0 8px;">
-        Snowflakes the version you're viewing into an authorable DA page that renders a 1:1 match —
-        whether that's the raw v1 or a Stardust redesign.
+      <div class="section-label">Publish — create the prototype on DA</div>
+      <div class="hint" style="margin:0 0 8px;">
+        Only when you're happy. Snowflakes the version you're viewing into a real authorable DA page
+        on a new <code>forge-proto-*</code> branch (a 1:1 match). <b>This is the step that needs your
+        Adobe sign-in + GitHub token.</b>
       </div>
-      <button class="primary" id="deploy-btn" style="margin-top:0;">Deploy this version 1:1 to DA</button>
+      <button class="primary publish" id="deploy-btn">Create prototype</button>
+
+      <!-- Inline auth gate: appears only if you publish without creds; continue is seamless. -->
+      <div class="auth-gate hidden" id="auth-gate">
+        <div class="ttl">One-time setup to publish</div>
+        <div class="auth-steps" id="auth-steps"></div>
+        <button class="ghost" id="auth-continue" style="margin-top:10px;">I've added it — create prototype</button>
+      </div>
+
       <div class="adv-toggle" id="adv-toggle"><span class="caret">▸</span> Advanced</div>
       <div class="hidden" id="adv-body">
         <label>Slug — auto-derived; override only if needed</label>
@@ -171,15 +193,15 @@
   </div>
 
   <div class="card" id="result-card" hidden><div id="result"></div></div>
-  <div id="status">Idle. Fill an input and hit Generate.</div>
+  <div id="status">Paste an input and hit Generate preview.</div>
 
   <script>
     let source = 'figma';
-    let ready = false;
     const checks = {};
     const DA = { org: 'adobecom', site: 'da-playground' };
     const versions = [];      // [{ v, stage, intent, html }]
     let viewedV = null;
+    let pendingDeploy = false; // set when a publish click is waiting on creds
     const $ = (id) => document.getElementById(id);
 
     // ── slug helpers ──────────────────────────────────────────────────────────
@@ -203,16 +225,20 @@
     }
     function refreshUrlHint() { const e = $('url-hint-val'); if (e) e.textContent = urlFor(derivedSlug()); }
 
-    // ── Preflight ─────────────────────────────────────────────────────────────
-    function runPreflight() { $('preflight').textContent = 'Checking access…'; slicc.lick({ action: 'preflight' }); }
-    const PF_ORDER = ['adobe', 'figma', 'github'];
-    const PF_LABELS = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub token (branch push)' };
+    // ── Preflight (informational; does NOT block playing) ──────────────────────
+    function runPreflight() { slicc.lick({ action: 'preflight' }); }
+    const PF_ORDER = ['figma', 'adobe', 'github'];
+    const PF_LABELS = {
+      figma: 'Figma — to read frames (only for Figma input)',
+      adobe: 'Adobe sign-in — to publish to DA',
+      github: 'GitHub token — to publish to DA',
+    };
     function renderChecks() {
       const present = PF_ORDER.filter((k) => checks[k]);
       const allOk = present.length === PF_ORDER.length && present.every((k) => checks[k].status === 'ok');
       if (allOk) {
         $('preflight').innerHTML = '<div class="preflight-collapsed" id="preflight-expand">' +
-          '<span class="ico">✓</span><span>Access ready — Adobe · Figma · GitHub</span></div>';
+          '<span class="ico">✓</span><span>All set — you can preview, play, and publish.</span></div>';
         $('recheck').classList.add('hidden');
         const exp = $('preflight-expand');
         if (exp) exp.addEventListener('click', renderChecksExpanded);
@@ -224,16 +250,20 @@
       $('recheck').classList.remove('hidden');
       $('preflight').innerHTML = PF_ORDER.filter((k) => checks[k]).map((k) => {
         const c = checks[k]; const ok = c.status === 'ok';
-        return '<div class="check ' + (ok ? 'ok' : 'missing') + '"><span class="ico">' + (ok ? '✓' : '✗') +
+        return '<div class="check ' + (ok ? 'ok' : 'missing') + '"><span class="ico">' + (ok ? '✓' : '○') +
           '</span><span class="label">' + (PF_LABELS[k] || k) +
           (ok ? '' : '<span class="fix">' + (c.fix || '').replace(/</g, '&lt;') + '</span>') + '</span></div>';
       }).join('') || 'Checking access…';
     }
-    function setReady(v) {
-      ready = v; $('go').disabled = !v;
-      $('go').textContent = v ? 'Generate v1 (1:1)' : 'Sign in to continue';
+    $('recheck').addEventListener('click', () => { setStatus('access', 'Re-checking…'); runPreflight(); });
+
+    // Generate is gated ONLY by Figma, and only when the source is Figma.
+    function updateGoState() {
+      const figmaOk = checks.figma && checks.figma.status === 'ok';
+      const blocked = source === 'figma' && !figmaOk;
+      $('go').disabled = blocked;
+      $('go').textContent = blocked ? 'Sign into Figma to use a frame' : 'Generate preview';
     }
-    $('recheck').addEventListener('click', runPreflight);
 
     // ── Tabs ──────────────────────────────────────────────────────────────────
     document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => {
@@ -241,7 +271,7 @@
       t.classList.add('active');
       source = t.dataset.source;
       document.querySelectorAll('[data-pane]').forEach((p) => p.classList.toggle('hidden', p.dataset.pane !== source));
-      refreshUrlHint();
+      refreshUrlHint(); updateGoState();
     }));
     $('adv-toggle').addEventListener('click', () => {
       const open = $('adv-body').classList.toggle('hidden') === false;
@@ -263,7 +293,7 @@
         const chip = document.createElement('div');
         chip.className = 'vchip' + (ver.v === viewedV ? ' active' : '');
         chip.innerHTML = 'v' + ver.v + '<span class="tag">' + (ver.stage === 'bespoke' ? '1:1' : 'stardust') + '</span>';
-        chip.title = ver.intent ? 'intent: ' + ver.intent : (ver.stage === 'bespoke' ? '1:1 extract' : 'stardust redesign');
+        chip.title = ver.intent ? 'intent: ' + ver.intent : (ver.stage === 'bespoke' ? '1:1 preview' : 'stardust redesign');
         chip.addEventListener('click', () => showVersion(ver.v));
         strip.append(chip);
       });
@@ -277,7 +307,7 @@
       iframe.className = 'preview'; iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
       iframe.srcdoc = ver.html; wrap.append(iframe);
       renderVstrip(); refreshUrlHint();
-      $('deploy-btn').textContent = 'Deploy v' + v + ' 1:1 to DA';
+      $('deploy-btn').textContent = 'Create prototype from v' + v;
     }
     function addVersion(v, stage, intent, html) {
       const existing = versions.find((x) => x.v === v);
@@ -294,14 +324,39 @@
       $('vstrip').append(g);
     }
 
+    // ── Publish gating (play needs nothing; publish needs adobe + github) ──────
+    function canPublish() {
+      return checks.adobe && checks.adobe.status === 'ok' && checks.github && checks.github.status === 'ok';
+    }
+    function authStepsText() {
+      const parts = [];
+      if (!(checks.adobe && checks.adobe.status === 'ok')) {
+        parts.push('• Adobe sign-in:\n' + ((checks.adobe && checks.adobe.fix) || 'Settings → Providers → Sign in with Adobe.'));
+      }
+      if (!(checks.github && checks.github.status === 'ok')) {
+        parts.push('• GitHub token:\n' + ((checks.github && checks.github.fix) || 'Create a fine-grained PAT for your target repo (Contents: RW) and run: secret set GITHUB_PAT <token> --domain github.com,*.github.com'));
+      }
+      return parts.join('\n\n');
+    }
+    function showAuthGate() { $('auth-steps').textContent = authStepsText(); $('auth-gate').classList.remove('hidden'); }
+    function hideAuthGate() { $('auth-gate').classList.add('hidden'); }
+
+    function fireDeploy() {
+      $('deploy-btn').disabled = true; $('refine-btn').disabled = true; $('result-card').hidden = true;
+      setStatus('publish', 'Creating prototype from v' + viewedV + '… (snowflake → DA → preview URL)');
+      slicc.lick({ action: 'deploy', data: { v: viewedV, slug: $('slug').value.trim(), da: DA } });
+    }
+
     // ── Actions ───────────────────────────────────────────────────────────────
     $('go').addEventListener('click', () => {
-      if (!ready) { setStatus('access', 'Finish sign-in above first.'); return; }
       const input = inputValue();
-      if (!input) { setStatus('phase', 'Provide an input first.'); return; }
+      if (!input) { setStatus('input', 'Paste an input first.'); return; }
+      if (source === 'figma' && !(checks.figma && checks.figma.status === 'ok')) {
+        setStatus('figma', 'Sign into figma.com in this browser to read frames, then re-check access.'); return;
+      }
       $('go').disabled = true;
       $('result-card').hidden = true;
-      setStatus('start', 'Generating v1…');
+      setStatus('generate', 'Generating preview…');
       slicc.lick({ action: 'generate', data: { source, input, da: DA } });
     });
 
@@ -309,27 +364,35 @@
       if (viewedV == null) return;
       const intent = $('refine-intent').value.trim();
       $('refine-btn').disabled = true;
-      setStatus('refine', 'Refining v' + viewedV + ' → v' + nextV() + '…');
+      setStatus('redesign', 'Stardust: redesigning v' + viewedV + ' → v' + nextV() + '…');
       ghostChip('v' + nextV() + ' …');
       slicc.lick({ action: 'refine', data: { intent, fromV: viewedV, da: DA } });
       $('refine-intent').value = '';
     });
 
+    // Publish: if creds are missing, show the inline gate + re-check; deploy the moment they're set.
     $('deploy-btn').addEventListener('click', () => {
       if (viewedV == null) return;
-      $('deploy-btn').disabled = true;
-      $('result-card').hidden = true;
-      setStatus('deploy', 'Deploying v' + viewedV + '…');
-      slicc.lick({ action: 'deploy', data: { v: viewedV, slug: $('slug').value.trim(), da: DA } });
+      if (canPublish()) { hideAuthGate(); fireDeploy(); return; }
+      pendingDeploy = true;
+      showAuthGate();
+      setStatus('setup', 'Add the items below, then continue — it’ll publish automatically.');
+      runPreflight();
+    });
+    $('auth-continue').addEventListener('click', () => {
+      pendingDeploy = true;
+      setStatus('setup', 'Re-checking access…');
+      runPreflight();
     });
 
     $('new-btn').addEventListener('click', () => {
-      versions.length = 0; viewedV = null;
+      versions.length = 0; viewedV = null; pendingDeploy = false;
+      hideAuthGate();
       $('studio-card').classList.add('hidden');
       $('input-card').classList.remove('hidden');
       $('result-card').hidden = true;
-      $('go').disabled = !ready;
-      setStatus('idle', 'Fill an input and hit Generate.');
+      updateGoState();
+      setStatus('idle', 'Paste an input and hit Generate preview.');
     });
 
     function setStatus(phase, msg) {
@@ -339,18 +402,24 @@
     // ── Agent → UI ────────────────────────────────────────────────────────────
     slicc.on('update', (d) => {
       if (!d) return;
-      if (d.action === 'check') { checks[d.key] = { status: d.status, fix: d.fix }; renderChecks(); }
-      if (d.action === 'preflight-done') setReady(!!d.ready);
+      if (d.action === 'check') { checks[d.key] = { status: d.status, fix: d.fix }; renderChecks(); updateGoState(); }
+      if (d.action === 'preflight-done') {
+        updateGoState();
+        if (pendingDeploy) {
+          if (canPublish()) { pendingDeploy = false; hideAuthGate(); fireDeploy(); }
+          else { $('auth-steps').textContent = authStepsText(); setStatus('setup', 'Still missing the items below — add them, then continue.'); }
+        }
+      }
       if (d.action === 'update') setStatus(d.phase || '…', d.status || '');
       if (d.action === 'preview' && d.html) {
         const v = d.v || nextV();
         addVersion(v, d.stage || 'bespoke', d.intent || '', d.html);
-        $('go').disabled = false; $('refine-btn').disabled = false;
-        setStatus('ready', 'v' + v + ' ready — refine, or deploy.');
+        $('refine-btn').disabled = false;
+        setStatus('ready', 'v' + v + ' ready — play with Stardust, or create a prototype.');
       }
       if (d.action === 'done') {
         $('deploy-btn').disabled = false; $('refine-btn').disabled = false;
-        setStatus('done', 'Deployed v' + (viewedV ?? '') + '.');
+        setStatus('done', 'Prototype created from v' + (viewedV == null ? '' : viewedV) + '.');
         const rows = [];
         if (d.slug) rows.push(['Slug', '<code>' + d.slug + '</code>']);
         if (d.branchUrl) rows.push(['Branch', '<a href="' + d.branchUrl + '" target="_blank">' + (d.branchName || 'branch') + ' ↗</a>']);
@@ -363,12 +432,14 @@
           : 'Done.';
       }
       if (d.action === 'error') {
-        $('go').disabled = !ready; $('refine-btn').disabled = false; $('deploy-btn').disabled = false;
+        $('go').disabled = false; $('refine-btn').disabled = false; $('deploy-btn').disabled = false;
+        updateGoState();
         setStatus('error', ''); $('result-card').hidden = false;
         $('result').className = 'err'; $('result').textContent = d.message || 'Failed.';
       }
     });
 
+    updateGoState();
     runPreflight();
   </script>
 </body>
