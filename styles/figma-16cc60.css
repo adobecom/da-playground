@@ -1,0 +1,427 @@
+    /* ─── RESET ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #fff; }
+    body {
+      font-family: "Adobe Clean", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+    img { display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ─── PAGE ───────────────────────────────────────────── */
+    .page { width: 1440px; margin: 0 auto; overflow-x: hidden; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .t-h1 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 80px; line-height: 76px; letter-spacing: -3.2px;
+    }
+    .t-h2 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 56px; line-height: 56px; letter-spacing: -1.68px;
+    }
+    .t-h4 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 24px; line-height: 24px; letter-spacing: -0.48px;
+    }
+    .t-h6 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px; letter-spacing: -0.2px;
+    }
+    .t-eyebrow {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 16px; line-height: 20px; letter-spacing: 0;
+    }
+    .t-body-lg {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 400; font-size: 20px; line-height: 24px;
+    }
+    .t-body-md {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 400; font-size: 16px; line-height: 20px;
+    }
+    .t-body-sm {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 400; font-size: 14px; line-height: 18px; letter-spacing: 0.14px;
+    }
+    .t-label {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 14px; line-height: 18px;
+    }
+    .t-caption {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 12px; line-height: 15.6px; letter-spacing: 0.24px;
+    }
+
+    /* ─── BUTTONS ────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; border-radius: 999px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 18px;
+      white-space: nowrap; border: none; cursor: pointer;
+    }
+    .btn-solid   { background: #000; color: #fff; padding: 14px 24px; }
+    .btn-outlined {
+      background: transparent; color: #000;
+      border: 2px solid #000; padding: 12px 24px;
+    }
+    .btn-accent  { background: #3b63fb; color: #fff; padding: 14px 24px; }
+    .btn-sm      { height: 40px; padding: 0 24px; font-size: 14px; }
+    .btn-ghost {
+      background: transparent; color: #000;
+      border: 1px solid rgba(0,0,0,0.08);
+      height: 40px; padding: 0 24px; min-width: 167.5px;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    .nav-wrap { position: sticky; top: 0; z-index: 100; background: #fff; }
+    .nav-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding: 0 24px;
+    }
+    .nav-left  { display: flex; align-items: center; gap: 24px; height: 64px; }
+    .nav-logo  { height: 16px; width: auto; }
+    .nav-slash { width: 1px; height: 15px; background: rgba(0,0,0,0.16); flex-shrink: 0; }
+    .nav-links { display: flex; height: 100%; }
+    .nav-item {
+      display: flex; align-items: center; gap: 6px; height: 100%;
+      padding: 8px 8px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 18px;
+      color: rgba(0,0,0,0.64); white-space: nowrap;
+    }
+    .nav-item.active { color: #000; border-bottom: 2px solid #000; }
+    .nav-item img.chev { width: 6px; height: 6px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-apps  { width: 18px; height: 18px; }
+    .nav-divider { height: 1px; background: rgba(0,0,0,0.08); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      background: #fff;
+      position: relative; overflow: hidden;
+      height: 1827px;
+    }
+    .hero-copy-col {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 24px; padding-top: 124px;
+      text-align: center; position: relative; z-index: 2;
+    }
+    .hero-appid {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 16px; line-height: 20px; color: #000;
+    }
+    .hero-hl { text-align: center; color: #000; }
+    .hero-body {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 20px; line-height: 24px; color: #000;
+      width: 696px; text-align: center;
+    }
+    /* Promo pill */
+    .hero-promo {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: #000; padding: 12px; border-radius: 16px; cursor: pointer;
+    }
+    .hero-promo-icon {
+      width: 32px; height: 32px; overflow: hidden; flex-shrink: 0;
+    }
+    .hero-promo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+    .hero-promo-label {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 16px; line-height: 20px; color: #fff; white-space: nowrap;
+    }
+    .hero-promo-btn {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.18); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-promo-btn img { width: 20px; height: 20px; }
+
+    /* Mosaic */
+    .hero-mosaic {
+      position: absolute;
+      left: -202px; top: 373px;
+      width: 1845px; height: 1454px;
+    }
+    .mcol {
+      position: absolute;
+      display: flex; flex-direction: column; gap: 100px;
+    }
+    .mcol.c2 { left: 0;       top: 0;   width: 290.843px; }
+    .mcol.c1 { left: 388.48px; top: 176px; width: 290.843px; }
+    .mcol.c3 { left: 777px;   top: 281px; }
+    .mcol.c4 { left: 1165.43px; top: 176px; width: 290.843px; }
+    .mcol.c5 { left: 1553.91px; top: 0;   width: 290.843px; }
+    .mimg { border-radius: 16px; object-fit: cover; display: block; }
+
+    /* Sign card (col1, slot 2) */
+    .sig-card {
+      background: #e5e5e5; border-radius: 16px;
+      width: 292px; height: 292px;
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .sig-label {
+      position: absolute; left: 34.04px; bottom: 24px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 15.65px; color: #000;
+    }
+    .sig-bar {
+      position: absolute; left: 34.04px; bottom: 40px;
+      width: 80%; height: 1px; background: #000; opacity: 0.3;
+    }
+
+    /* ─── AUDIENCE ───────────────────────────────────────── */
+    .audience {
+      background: #fff;
+      border-radius: 0 0 32px 32px;
+      padding: 124px 0 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 40px;
+    }
+    .audience-inner {
+      display: flex; flex-direction: column; align-items: center; gap: 124px;
+      width: 100%;
+    }
+    .carousel-row { display: flex; gap: 8px; align-items: flex-start; justify-content: center; }
+    .cc {
+      background: #f6f6f6; border-radius: 16px;
+      width: 292px; min-width: 277px;
+      overflow: hidden; display: flex; flex-direction: column; flex-shrink: 0;
+    }
+    .cc-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px;
+    }
+    .cc-title {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px;
+      letter-spacing: -0.48px; color: #000;
+    }
+    .cc-img { height: 394px; object-fit: cover; width: 100%; border-radius: 16px; }
+    .cc-ft { padding: 24px; }
+    .cc-lbl {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 16px; line-height: 20px; color: #000;
+    }
+
+    /* Logos ticker */
+    .logos-track { overflow: hidden; width: 100%; display: flex; }
+    .logos-inner {
+      display: flex; align-items: center;
+      animation: ticker 22s linear infinite;
+    }
+    .logos-inner img { height: 36px; display: block; flex-shrink: 0; mix-blend-mode: darken; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── JTBD ───────────────────────────────────────────── */
+    .jtbd-wrap { background: #f6f6f6; }
+    .jtbd {
+      background: #f6f6f6;
+      border-radius: 32px 32px 0 0;
+      padding: 124px 24px 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 40px;
+    }
+    .jtbd-copy {
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .jtbd-body {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 20px; color: #131313;
+      width: 616px; text-align: center;
+    }
+    .jtbd-panels {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      width: 100%; height: 1000px;
+    }
+    .jtbd-left {
+      width: 892px; height: 1000px;
+      border-radius: 32px; overflow: hidden; position: relative; flex-shrink: 0;
+    }
+    .jtbd-left > img { width: 100%; height: 100%; object-fit: cover; }
+    .jtbd-left-text {
+      position: absolute; top: 32px; left: 32px;
+      color: #fff; display: flex; flex-direction: column; gap: 8px;
+      width: 499px;
+    }
+    .jtbd-left-hl {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px; letter-spacing: -0.48px;
+    }
+    .jtbd-left-bd {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 20px; width: 303px;
+    }
+    .jtbd-right { width: 492px; display: flex; flex-direction: column; flex-shrink: 0; }
+    .jtbd-right-img {
+      width: 100%; height: 600px; border-radius: 32px;
+      object-fit: cover;
+      box-shadow: 0px 4px 100px 0px rgba(0,0,0,0.25);
+    }
+    .jtbd-right-copy {
+      padding: 24px 24px 0; display: flex; flex-direction: column; gap: 8px;
+      width: 391px;
+    }
+    .jtbd-right-hl {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px; letter-spacing: -0.48px;
+      color: #000;
+    }
+    .jtbd-right-bd {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 20px; color: rgba(0,0,0,0.64);
+    }
+
+    /* ─── SCREENSHOT SECTIONS ────────────────────────────── */
+    .sec-screenshot { overflow: hidden; }
+    .sec-screenshot img { width: 1440px; display: block; }
+
+    /* ─── PLANS ──────────────────────────────────────────── */
+    .plans-outer { background: #f8f8f8; position: relative; }
+    .plans {
+      background: #fff; border-radius: 32px;
+      padding: 124px 0 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 48px;
+      position: relative; z-index: 2;
+      margin-bottom: -32px;
+    }
+    .plans-hed { text-align: center; color: #000; }
+
+    /* Tabs */
+    .plans-tabs {
+      display: flex; align-items: center;
+      background: rgba(0,0,0,0.04); border-radius: 24px; width: 502px;
+    }
+    .ptab { flex: 1; padding: 4px; }
+    .ptab-btn {
+      width: 100%; height: 32px; border-radius: 50px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 1.2; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ptab-btn.active  { background: #000; color: #fff; }
+    .ptab-btn.inactive { background: transparent; color: rgba(0,0,0,0.64); }
+
+    /* Plan cards grid */
+    .plans-grid {
+      display: flex; gap: 8px; align-items: stretch; width: 1200px;
+    }
+    .plan-card {
+      flex: 1; border-radius: 16px; padding: 4px;
+      display: flex; flex-direction: column;
+    }
+    .plan-light { background: #f8f8f8; border: 4px solid #f8f8f8; }
+    .plan-dark  { background: #000;    border: 4px solid #000; }
+    .plan-top {
+      background: #fff; border-radius: 12px; padding: 24px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .plan-mnem { display: flex; align-items: center; gap: 12px; }
+    .plan-mnem img { width: 24px; height: 24px; }
+    .plan-eyebrow {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 16px; line-height: 20px; color: rgba(0,0,0,0.64);
+    }
+    .plan-name-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .plan-name {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 24px; line-height: 24px; letter-spacing: -0.48px; color: #000;
+    }
+    .plan-desc {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 14px; line-height: 18px; color: #000;
+    }
+    .plan-pricing-block { display: flex; flex-direction: column; gap: 24px; }
+    .plan-price-row { display: flex; flex-direction: column; }
+    .plan-price {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 21px; letter-spacing: -0.48px; color: #000;
+    }
+    .plan-period {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 14px; line-height: 18px; color: rgba(0,0,0,0.64);
+    }
+    .plan-ctas { display: flex; gap: 8px; }
+    .plan-ctas .btn { flex: 1; }
+    .plan-secure { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .plan-secure img { width: 16px; height: 16px; }
+    .plan-secure-txt {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 14px; line-height: 18px; color: rgba(0,0,0,0.64);
+    }
+    .plan-feats { padding: 24px; display: flex; flex-direction: column; gap: 24px; flex: 1; }
+    .feat-group { display: flex; flex-direction: column; gap: 12px; }
+    .feat-group.sep { border-top: 1px solid rgba(0,0,0,0.12); padding-top: 16px; }
+    .feat-group.sep-w { border-top: 1px solid rgba(255,255,255,0.16); padding-top: 16px; }
+    .feat-title { display: flex; align-items: center; gap: 4px; }
+    .feat-title img { width: 20px; height: 20px; }
+    .feat-ttl {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 18px; color: #000;
+    }
+    .feat-ttl-w { color: #fff; }
+    .feat-item { padding: 0 20px; font-family: "Adobe Clean", sans-serif; font-weight: 400; font-size: 14px; line-height: 18px; color: rgba(0,0,0,0.64); }
+    .feat-item-w { padding: 0 20px; font-family: "Adobe Clean", sans-serif; font-weight: 400; font-size: 14px; line-height: 18px; color: #fff; }
+    .plans-cmp { display: flex; justify-content: center; }
+
+    /* ─── FOOTER AREA (black bg) ─────────────────────────── */
+    .footer-area {
+      background: #000; padding-top: 160px;
+      display: flex; flex-direction: column; gap: 124px;
+      position: relative; z-index: 1;
+    }
+
+    /* Agentic Search */
+    .agentic { padding: 0 124px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .agentic-copy { display: flex; flex-direction: column; align-items: center; gap: 8px; padding-bottom: 32px; text-align: center; }
+    .agentic-title {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 56px; line-height: 56px; letter-spacing: -1.68px; color: #fff;
+    }
+    .agentic-body {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 20px; line-height: 1.3; letter-spacing: -0.4px; color: #fff;
+    }
+    .agentic-field {
+      background: rgba(255,255,255,0.1); border: 2px solid rgba(0,0,0,0.1);
+      border-radius: 28px; height: 56px;
+      display: flex; align-items: center; width: 768px;
+    }
+    .agentic-field-icon { padding: 0 0 0 24px; display: flex; align-items: center; }
+    .agentic-field-icon img { width: 14px; height: 14px; filter: invert(1) opacity(0.6); }
+    .agentic-input {
+      flex: 1; padding: 16px; background: transparent; border: none; outline: none;
+      font-family: "Adobe Clean", sans-serif; font-size: 16px; color: rgba(255,255,255,0.6);
+    }
+    .agentic-input::placeholder { color: rgba(255,255,255,0.6); }
+    .agentic-disc {
+      font-family: "Adobe Clean", sans-serif; font-size: 12px; line-height: 1.5;
+      color: rgba(255,255,255,0.6); text-align: center; max-width: 700px;
+    }
+    .agentic-disc a { color: rgba(255,255,255,0.6); text-decoration: underline; }
+
+    /* Footer */
+    .footer { display: flex; flex-direction: column; overflow: hidden; gap: 40px; }
+    .footer-links { display: flex; gap: 8px; padding: 0 124px; }
+    .fcol { flex: 1; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+    .fcol-hed { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 16px; line-height: 20px; color: #fff; }
+    .fcol-list { display: flex; flex-direction: column; gap: 8px; }
+    .fcol-link { font-family: "Adobe Clean", sans-serif; font-weight: 400; font-size: 16px; line-height: 20px; color: rgba(255,255,255,0.64); }
+    .footer-feat { padding: 0 124px; display: flex; flex-direction: column; gap: 24px; }
+    .footer-feat-hed { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 16px; color: #fff; }
+    .footer-prods { display: flex; align-items: center; gap: 24px; }
+    .fprod { display: flex; align-items: center; gap: 8px; }
+    .fprod img { width: 16px; height: auto; }
+    .fprod-nm { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 12px; line-height: 15.6px; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); }
+    .footer-bot { display: flex; align-items: center; justify-content: space-between; padding: 0 124px; }
+    .footer-bot-l { display: flex; align-items: center; gap: 32px; }
+    .footer-bot-item { display: flex; align-items: center; gap: 5px; }
+    .footer-bot-txt { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 12px; line-height: 15.6px; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); white-space: nowrap; }
+    .footer-social { display: flex; align-items: center; gap: 16px; }
+    .footer-social img { width: 18px; height: 18px; object-fit: contain; }
+    .footer-wordmark { width: 1440px; overflow: hidden; }
+    .footer-wordmark img { width: 100%; display: block; }

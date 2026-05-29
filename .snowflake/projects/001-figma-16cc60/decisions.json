@@ -1,0 +1,126 @@
+{
+  "levelParam": "page",
+  "conversionLevel": "page-level",
+  "templateName": "figma-16cc60",
+  "synthesizeMain": false,
+  "assetStrategy": "absolute",
+  "assetBase": "https://www.figma.com/api/mcp/asset/",
+  "headLinks": [],
+  "inlineStyleLines": [7, 435],
+  "inlineScriptLines": [[1034, 1058]],
+  "externalLibs": [],
+  "strip": [],
+  "sections": [
+    {
+      "firstClass": "hero",
+      "originalTag": "section",
+      "rewriteToSection": false,
+      "slots": [
+        { "name": "hero-appid", "type": "text", "selector": ".hero-appid" },
+        { "name": "hero-hl", "type": "text", "selector": ".hero-hl" },
+        { "name": "hero-body", "type": "text", "selector": ".hero-body" },
+        { "name": "hero-promo-label", "type": "text", "selector": ".hero-promo-label" }
+      ]
+    },
+    {
+      "firstClass": "audience",
+      "originalTag": "section",
+      "rewriteToSection": false,
+      "slots": [
+        { "name": "audience-hl", "type": "text", "selector": ".audience > h2" },
+        { "name": "card-1-title", "type": "text", "selector": ".cc:nth-child(1) .cc-title" },
+        { "name": "card-1-img", "type": "image", "selector": ".cc:nth-child(1) .cc-img" },
+        { "name": "card-1-lbl", "type": "text", "selector": ".cc:nth-child(1) .cc-lbl" },
+        { "name": "card-2-title", "type": "text", "selector": ".cc:nth-child(2) .cc-title" },
+        { "name": "card-2-img", "type": "image", "selector": ".cc:nth-child(2) .cc-img" },
+        { "name": "card-2-lbl", "type": "text", "selector": ".cc:nth-child(2) .cc-lbl" },
+        { "name": "card-3-title", "type": "text", "selector": ".cc:nth-child(3) .cc-title" },
+        { "name": "card-3-img", "type": "image", "selector": ".cc:nth-child(3) .cc-img" },
+        { "name": "card-3-lbl", "type": "text", "selector": ".cc:nth-child(3) .cc-lbl" },
+        { "name": "card-4-title", "type": "text", "selector": ".cc:nth-child(4) .cc-title" },
+        { "name": "card-4-img", "type": "image", "selector": ".cc:nth-child(4) .cc-img" },
+        { "name": "card-4-lbl", "type": "text", "selector": ".cc:nth-child(4) .cc-lbl" }
+      ]
+    },
+    {
+      "firstClass": "jtbd",
+      "originalTag": "section",
+      "rewriteToSection": false,
+      "slots": [
+        { "name": "jtbd-hl", "type": "text", "selector": ".jtbd-copy h2" },
+        { "name": "jtbd-body", "type": "text", "selector": ".jtbd-body" },
+        { "name": "jtbd-left-img", "type": "image", "selector": ".jtbd-left > img" },
+        { "name": "jtbd-left-hl", "type": "text", "selector": ".jtbd-left-hl" },
+        { "name": "jtbd-left-bd", "type": "text", "selector": ".jtbd-left-bd" },
+        { "name": "jtbd-right-img", "type": "image", "selector": ".jtbd-right-img" },
+        { "name": "jtbd-right-hl", "type": "text", "selector": ".jtbd-right-hl" },
+        { "name": "jtbd-right-bd", "type": "text", "selector": ".jtbd-right-bd" }
+      ]
+    },
+    {
+      "firstClass": "sec-screenshot-offer",
+      "originalTag": "section",
+      "originalFirstClass": "sec-screenshot",
+      "rewriteToSection": false,
+      "slots": [
+        { "name": "offer-screenshot", "type": "image", "selector": ".sec-screenshot-offer img" }
+      ]
+    },
+    {
+      "firstClass": "sec-screenshot-flow",
+      "originalTag": "section",
+      "originalFirstClass": "sec-screenshot",
+      "rewriteToSection": false,
+      "slots": [
+        { "name": "flow-screenshot", "type": "image", "selector": ".sec-screenshot-flow img" }
+      ]
+    },
+    {
+      "firstClass": "sec-screenshot-whatsnew",
+      "originalTag": "section",
+      "originalFirstClass": "sec-screenshot",
+      "rewriteToSection": false,
+      "slots": [
+        { "name": "whatsnew-screenshot", "type": "image", "selector": ".sec-screenshot-whatsnew img" }
+      ]
+    },
+    {
+      "firstClass": "plans",
+      "originalTag": "section",
+      "rewriteToSection": false,
+      "slots": [
+        { "name": "plans-hl", "type": "text", "selector": ".plans-hed" },
+        { "name": "plan-1-eyebrow", "type": "text", "selector": ".plan-card:nth-child(1) .plan-eyebrow" },
+        { "name": "plan-1-name", "type": "text", "selector": ".plan-card:nth-child(1) .plan-name" },
+        { "name": "plan-1-desc", "type": "text", "selector": ".plan-card:nth-child(1) .plan-desc" },
+        { "name": "plan-1-price", "type": "text", "selector": ".plan-card:nth-child(1) .plan-price" },
+        { "name": "plan-1-period", "type": "text", "selector": ".plan-card:nth-child(1) .plan-period" },
+        { "name": "plan-2-eyebrow", "type": "text", "selector": ".plan-card:nth-child(2) .plan-eyebrow" },
+        { "name": "plan-2-name", "type": "text", "selector": ".plan-card:nth-child(2) .plan-name" },
+        { "name": "plan-2-desc", "type": "text", "selector": ".plan-card:nth-child(2) .plan-desc" },
+        { "name": "plan-2-price", "type": "text", "selector": ".plan-card:nth-child(2) .plan-price" },
+        { "name": "plan-2-period", "type": "text", "selector": ".plan-card:nth-child(2) .plan-period" },
+        { "name": "plan-3-eyebrow", "type": "text", "selector": ".plan-card:nth-child(3) .plan-eyebrow" },
+        { "name": "plan-3-name", "type": "text", "selector": ".plan-card:nth-child(3) .plan-name" },
+        { "name": "plan-3-desc", "type": "text", "selector": ".plan-card:nth-child(3) .plan-desc" },
+        { "name": "plan-3-price", "type": "text", "selector": ".plan-card:nth-child(3) .plan-price" },
+        { "name": "plan-3-period", "type": "text", "selector": ".plan-card:nth-child(3) .plan-period" },
+        { "name": "plan-4-eyebrow", "type": "text", "selector": ".plan-card:nth-child(4) .plan-eyebrow" },
+        { "name": "plan-4-name", "type": "text", "selector": ".plan-card:nth-child(4) .plan-name" },
+        { "name": "plan-4-desc", "type": "text", "selector": ".plan-card:nth-child(4) .plan-desc" },
+        { "name": "plan-4-price", "type": "text", "selector": ".plan-card:nth-child(4) .plan-price" },
+        { "name": "plan-4-period", "type": "text", "selector": ".plan-card:nth-child(4) .plan-period" }
+      ]
+    }
+  ],
+  "notes": [
+    "All images use absolute Figma MCP URLs — no asset vendoring required",
+    "Page uses .page wrapper div (1440px centered) — kept inside template <main>",
+    "audience + jtbd sections are wrapped in <div style=background:#f6f6f6> for bg color continuity",
+    "Three sec-screenshot sections had identical first-class — renamed to sec-screenshot-offer/flow/whatsnew",
+    "footer-area (agentic search + footer nav) kept in template <main> to preserve plans-outer z-index overlap",
+    "footer fragment is empty/minimal — visual footer lives in template",
+    "Hero mosaic is aria-hidden=true — kept as static template content, no image slots",
+    "Plans tab switcher JS extracted to animations JS — static HTML shows Individuals tab active"
+  ]
+}

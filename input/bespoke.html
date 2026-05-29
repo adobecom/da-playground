@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>BizPro Hub — PDF &amp; Productivity | Adobe</title>
+  <style>
+    /* ─── RESET ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #fff; }
+    body {
+      font-family: "Adobe Clean", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+    img { display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ─── PAGE ───────────────────────────────────────────── */
+    .page { width: 1440px; margin: 0 auto; overflow-x: hidden; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .t-h1 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 80px; line-height: 76px; letter-spacing: -3.2px;
+    }
+    .t-h2 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 56px; line-height: 56px; letter-spacing: -1.68px;
+    }
+    .t-h4 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 24px; line-height: 24px; letter-spacing: -0.48px;
+    }
+    .t-h6 {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px; letter-spacing: -0.2px;
+    }
+    .t-eyebrow {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 16px; line-height: 20px; letter-spacing: 0;
+    }
+    .t-body-lg {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 400; font-size: 20px; line-height: 24px;
+    }
+    .t-body-md {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 400; font-size: 16px; line-height: 20px;
+    }
+    .t-body-sm {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 400; font-size: 14px; line-height: 18px; letter-spacing: 0.14px;
+    }
+    .t-label {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 14px; line-height: 18px;
+    }
+    .t-caption {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 12px; line-height: 15.6px; letter-spacing: 0.24px;
+    }
+
+    /* ─── BUTTONS ────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; border-radius: 999px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 18px;
+      white-space: nowrap; border: none; cursor: pointer;
+    }
+    .btn-solid   { background: #000; color: #fff; padding: 14px 24px; }
+    .btn-outlined {
+      background: transparent; color: #000;
+      border: 2px solid #000; padding: 12px 24px;
+    }
+    .btn-accent  { background: #3b63fb; color: #fff; padding: 14px 24px; }
+    .btn-sm      { height: 40px; padding: 0 24px; font-size: 14px; }
+    .btn-ghost {
+      background: transparent; color: #000;
+      border: 1px solid rgba(0,0,0,0.08);
+      height: 40px; padding: 0 24px; min-width: 167.5px;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    .nav-wrap { position: sticky; top: 0; z-index: 100; background: #fff; }
+    .nav-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding: 0 24px;
+    }
+    .nav-left  { display: flex; align-items: center; gap: 24px; height: 64px; }
+    .nav-logo  { height: 16px; width: auto; }
+    .nav-slash { width: 1px; height: 15px; background: rgba(0,0,0,0.16); flex-shrink: 0; }
+    .nav-links { display: flex; height: 100%; }
+    .nav-item {
+      display: flex; align-items: center; gap: 6px; height: 100%;
+      padding: 8px 8px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 18px;
+      color: rgba(0,0,0,0.64); white-space: nowrap;
+    }
+    .nav-item.active { color: #000; border-bottom: 2px solid #000; }
+    .nav-item img.chev { width: 6px; height: 6px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-apps  { width: 18px; height: 18px; }
+    .nav-divider { height: 1px; background: rgba(0,0,0,0.08); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      background: #fff;
+      position: relative; overflow: hidden;
+      height: 1827px;
+    }
+    .hero-copy-col {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 24px; padding-top: 124px;
+      text-align: center; position: relative; z-index: 2;
+    }
+    .hero-appid {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 16px; line-height: 20px; color: #000;
+    }
+    .hero-hl { text-align: center; color: #000; }
+    .hero-body {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 20px; line-height: 24px; color: #000;
+      width: 696px; text-align: center;
+    }
+    /* Promo pill */
+    .hero-promo {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: #000; padding: 12px; border-radius: 16px; cursor: pointer;
+    }
+    .hero-promo-icon {
+      width: 32px; height: 32px; overflow: hidden; flex-shrink: 0;
+    }
+    .hero-promo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+    .hero-promo-label {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 16px; line-height: 20px; color: #fff; white-space: nowrap;
+    }
+    .hero-promo-btn {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.18); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-promo-btn img { width: 20px; height: 20px; }
+
+    /* Mosaic */
+    .hero-mosaic {
+      position: absolute;
+      left: -202px; top: 373px;
+      width: 1845px; height: 1454px;
+    }
+    .mcol {
+      position: absolute;
+      display: flex; flex-direction: column; gap: 100px;
+    }
+    .mcol.c2 { left: 0;       top: 0;   width: 290.843px; }
+    .mcol.c1 { left: 388.48px; top: 176px; width: 290.843px; }
+    .mcol.c3 { left: 777px;   top: 281px; }
+    .mcol.c4 { left: 1165.43px; top: 176px; width: 290.843px; }
+    .mcol.c5 { left: 1553.91px; top: 0;   width: 290.843px; }
+    .mimg { border-radius: 16px; object-fit: cover; display: block; }
+
+    /* Sign card (col1, slot 2) */
+    .sig-card {
+      background: #e5e5e5; border-radius: 16px;
+      width: 292px; height: 292px;
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .sig-label {
+      position: absolute; left: 34.04px; bottom: 24px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 15.65px; color: #000;
+    }
+    .sig-bar {
+      position: absolute; left: 34.04px; bottom: 40px;
+      width: 80%; height: 1px; background: #000; opacity: 0.3;
+    }
+
+    /* ─── AUDIENCE ───────────────────────────────────────── */
+    .audience {
+      background: #fff;
+      border-radius: 0 0 32px 32px;
+      padding: 124px 0 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 40px;
+    }
+    .audience-inner {
+      display: flex; flex-direction: column; align-items: center; gap: 124px;
+      width: 100%;
+    }
+    .carousel-row { display: flex; gap: 8px; align-items: flex-start; justify-content: center; }
+    .cc {
+      background: #f6f6f6; border-radius: 16px;
+      width: 292px; min-width: 277px;
+      overflow: hidden; display: flex; flex-direction: column; flex-shrink: 0;
+    }
+    .cc-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px;
+    }
+    .cc-title {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px;
+      letter-spacing: -0.48px; color: #000;
+    }
+    .cc-img { height: 394px; object-fit: cover; width: 100%; border-radius: 16px; }
+    .cc-ft { padding: 24px; }
+    .cc-lbl {
+      font-family: "Adobe Clean", sans-serif;
+      font-weight: 700; font-size: 16px; line-height: 20px; color: #000;
+    }
+
+    /* Logos ticker */
+    .logos-track { overflow: hidden; width: 100%; display: flex; }
+    .logos-inner {
+      display: flex; align-items: center;
+      animation: ticker 22s linear infinite;
+    }
+    .logos-inner img { height: 36px; display: block; flex-shrink: 0; mix-blend-mode: darken; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── JTBD ───────────────────────────────────────────── */
+    .jtbd-wrap { background: #f6f6f6; }
+    .jtbd {
+      background: #f6f6f6;
+      border-radius: 32px 32px 0 0;
+      padding: 124px 24px 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 40px;
+    }
+    .jtbd-copy {
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .jtbd-body {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 20px; color: #131313;
+      width: 616px; text-align: center;
+    }
+    .jtbd-panels {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      width: 100%; height: 1000px;
+    }
+    .jtbd-left {
+      width: 892px; height: 1000px;
+      border-radius: 32px; overflow: hidden; position: relative; flex-shrink: 0;
+    }
+    .jtbd-left > img { width: 100%; height: 100%; object-fit: cover; }
+    .jtbd-left-text {
+      position: absolute; top: 32px; left: 32px;
+      color: #fff; display: flex; flex-direction: column; gap: 8px;
+      width: 499px;
+    }
+    .jtbd-left-hl {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px; letter-spacing: -0.48px;
+    }
+    .jtbd-left-bd {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 20px; width: 303px;
+    }
+    .jtbd-right { width: 492px; display: flex; flex-direction: column; flex-shrink: 0; }
+    .jtbd-right-img {
+      width: 100%; height: 600px; border-radius: 32px;
+      object-fit: cover;
+      box-shadow: 0px 4px 100px 0px rgba(0,0,0,0.25);
+    }
+    .jtbd-right-copy {
+      padding: 24px 24px 0; display: flex; flex-direction: column; gap: 8px;
+      width: 391px;
+    }
+    .jtbd-right-hl {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 18px; letter-spacing: -0.48px;
+      color: #000;
+    }
+    .jtbd-right-bd {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 20px; color: rgba(0,0,0,0.64);
+    }
+
+    /* ─── SCREENSHOT SECTIONS ────────────────────────────── */
+    .sec-screenshot { overflow: hidden; }
+    .sec-screenshot img { width: 1440px; display: block; }
+
+    /* ─── PLANS ──────────────────────────────────────────── */
+    .plans-outer { background: #f8f8f8; position: relative; }
+    .plans {
+      background: #fff; border-radius: 32px;
+      padding: 124px 0 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 48px;
+      position: relative; z-index: 2;
+      margin-bottom: -32px;
+    }
+    .plans-hed { text-align: center; color: #000; }
+
+    /* Tabs */
+    .plans-tabs {
+      display: flex; align-items: center;
+      background: rgba(0,0,0,0.04); border-radius: 24px; width: 502px;
+    }
+    .ptab { flex: 1; padding: 4px; }
+    .ptab-btn {
+      width: 100%; height: 32px; border-radius: 50px;
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 1.2; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ptab-btn.active  { background: #000; color: #fff; }
+    .ptab-btn.inactive { background: transparent; color: rgba(0,0,0,0.64); }
+
+    /* Plan cards grid */
+    .plans-grid {
+      display: flex; gap: 8px; align-items: stretch; width: 1200px;
+    }
+    .plan-card {
+      flex: 1; border-radius: 16px; padding: 4px;
+      display: flex; flex-direction: column;
+    }
+    .plan-light { background: #f8f8f8; border: 4px solid #f8f8f8; }
+    .plan-dark  { background: #000;    border: 4px solid #000; }
+    .plan-top {
+      background: #fff; border-radius: 12px; padding: 24px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .plan-mnem { display: flex; align-items: center; gap: 12px; }
+    .plan-mnem img { width: 24px; height: 24px; }
+    .plan-eyebrow {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 16px; line-height: 20px; color: rgba(0,0,0,0.64);
+    }
+    .plan-name-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .plan-name {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 24px; line-height: 24px; letter-spacing: -0.48px; color: #000;
+    }
+    .plan-desc {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 14px; line-height: 18px; color: #000;
+    }
+    .plan-pricing-block { display: flex; flex-direction: column; gap: 24px; }
+    .plan-price-row { display: flex; flex-direction: column; }
+    .plan-price {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 18px; line-height: 21px; letter-spacing: -0.48px; color: #000;
+    }
+    .plan-period {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 14px; line-height: 18px; color: rgba(0,0,0,0.64);
+    }
+    .plan-ctas { display: flex; gap: 8px; }
+    .plan-ctas .btn { flex: 1; }
+    .plan-secure { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .plan-secure img { width: 16px; height: 16px; }
+    .plan-secure-txt {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 14px; line-height: 18px; color: rgba(0,0,0,0.64);
+    }
+    .plan-feats { padding: 24px; display: flex; flex-direction: column; gap: 24px; flex: 1; }
+    .feat-group { display: flex; flex-direction: column; gap: 12px; }
+    .feat-group.sep { border-top: 1px solid rgba(0,0,0,0.12); padding-top: 16px; }
+    .feat-group.sep-w { border-top: 1px solid rgba(255,255,255,0.16); padding-top: 16px; }
+    .feat-title { display: flex; align-items: center; gap: 4px; }
+    .feat-title img { width: 20px; height: 20px; }
+    .feat-ttl {
+      font-family: "Adobe Clean", sans-serif; font-weight: 700;
+      font-size: 14px; line-height: 18px; color: #000;
+    }
+    .feat-ttl-w { color: #fff; }
+    .feat-item { padding: 0 20px; font-family: "Adobe Clean", sans-serif; font-weight: 400; font-size: 14px; line-height: 18px; color: rgba(0,0,0,0.64); }
+    .feat-item-w { padding: 0 20px; font-family: "Adobe Clean", sans-serif; font-weight: 400; font-size: 14px; line-height: 18px; color: #fff; }
+    .plans-cmp { display: flex; justify-content: center; }
+
+    /* ─── FOOTER AREA (black bg) ─────────────────────────── */
+    .footer-area {
+      background: #000; padding-top: 160px;
+      display: flex; flex-direction: column; gap: 124px;
+      position: relative; z-index: 1;
+    }
+
+    /* Agentic Search */
+    .agentic { padding: 0 124px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .agentic-copy { display: flex; flex-direction: column; align-items: center; gap: 8px; padding-bottom: 32px; text-align: center; }
+    .agentic-title {
+      font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+      font-weight: 900; font-size: 56px; line-height: 56px; letter-spacing: -1.68px; color: #fff;
+    }
+    .agentic-body {
+      font-family: "Adobe Clean", sans-serif; font-weight: 400;
+      font-size: 20px; line-height: 1.3; letter-spacing: -0.4px; color: #fff;
+    }
+    .agentic-field {
+      background: rgba(255,255,255,0.1); border: 2px solid rgba(0,0,0,0.1);
+      border-radius: 28px; height: 56px;
+      display: flex; align-items: center; width: 768px;
+    }
+    .agentic-field-icon { padding: 0 0 0 24px; display: flex; align-items: center; }
+    .agentic-field-icon img { width: 14px; height: 14px; filter: invert(1) opacity(0.6); }
+    .agentic-input {
+      flex: 1; padding: 16px; background: transparent; border: none; outline: none;
+      font-family: "Adobe Clean", sans-serif; font-size: 16px; color: rgba(255,255,255,0.6);
+    }
+    .agentic-input::placeholder { color: rgba(255,255,255,0.6); }
+    .agentic-disc {
+      font-family: "Adobe Clean", sans-serif; font-size: 12px; line-height: 1.5;
+      color: rgba(255,255,255,0.6); text-align: center; max-width: 700px;
+    }
+    .agentic-disc a { color: rgba(255,255,255,0.6); text-decoration: underline; }
+
+    /* Footer */
+    .footer { display: flex; flex-direction: column; overflow: hidden; gap: 40px; }
+    .footer-links { display: flex; gap: 8px; padding: 0 124px; }
+    .fcol { flex: 1; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+    .fcol-hed { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 16px; line-height: 20px; color: #fff; }
+    .fcol-list { display: flex; flex-direction: column; gap: 8px; }
+    .fcol-link { font-family: "Adobe Clean", sans-serif; font-weight: 400; font-size: 16px; line-height: 20px; color: rgba(255,255,255,0.64); }
+    .footer-feat { padding: 0 124px; display: flex; flex-direction: column; gap: 24px; }
+    .footer-feat-hed { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 16px; color: #fff; }
+    .footer-prods { display: flex; align-items: center; gap: 24px; }
+    .fprod { display: flex; align-items: center; gap: 8px; }
+    .fprod img { width: 16px; height: auto; }
+    .fprod-nm { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 12px; line-height: 15.6px; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); }
+    .footer-bot { display: flex; align-items: center; justify-content: space-between; padding: 0 124px; }
+    .footer-bot-l { display: flex; align-items: center; gap: 32px; }
+    .footer-bot-item { display: flex; align-items: center; gap: 5px; }
+    .footer-bot-txt { font-family: "Adobe Clean", sans-serif; font-weight: 700; font-size: 12px; line-height: 15.6px; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); white-space: nowrap; }
+    .footer-social { display: flex; align-items: center; gap: 16px; }
+    .footer-social img { width: 18px; height: 18px; object-fit: contain; }
+    .footer-wordmark { width: 1440px; overflow: hidden; }
+    .footer-wordmark img { width: 100%; display: block; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ════════════════════════════════════════
+       NAV
+  ════════════════════════════════════════ -->
+  <header class="nav-wrap">
+    <nav class="nav-bar" aria-label="Main navigation">
+      <div class="nav-left">
+        <a href="#" aria-label="Adobe home">
+          <img class="nav-logo" src="https://www.figma.com/api/mcp/asset/311e2990-05cd-41cf-bf77-6c56496e3573" alt="Adobe">
+        </a>
+        <div class="nav-links">
+          <a href="#" class="nav-item">
+            Use Cases
+            <img class="chev" src="https://www.figma.com/api/mcp/asset/31aae2cf-9842-4471-96db-bd47405f7a1f" alt="">
+          </a>
+        </div>
+        <div class="nav-slash"></div>
+        <div class="nav-links">
+          <a href="#" class="nav-item active">PDF &amp; Productivity</a>
+          <a href="#" class="nav-item">Acrobat</a>
+          <a href="#" class="nav-item">Express</a>
+          <a href="#" class="nav-item">Sign</a>
+          <a href="#" class="nav-item">Scan</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <img class="nav-apps" src="https://www.figma.com/api/mcp/asset/5c9d3bc1-1773-424f-92c1-d5b32132feb5" alt="">
+        <a href="#" class="btn btn-outlined btn-sm">Sign In</a>
+        <a href="#" class="btn btn-solid btn-sm">View Pricing</a>
+      </div>
+    </nav>
+    <div class="nav-divider"></div>
+  </header>
+
+  <main>
+
+    <!-- ════════════════════════════════════════
+         HERO
+    ════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-copy-col">
+        <span class="hero-appid">PDF &amp; Productivity</span>
+        <h1 class="hero-hl t-h1">With great power<br>comes great productivity.</h1>
+        <p class="hero-body">Do your best work faster with trusted PDF tools, AI-powered document insights, secure collaboration, and professional content creation — all in one place.</p>
+        <a href="#" class="hero-promo">
+          <div class="hero-promo-icon">
+            <img src="https://www.figma.com/api/mcp/asset/2be8b6e2-2ff5-4a71-ad5d-78aaca44e06e" alt="Acrobat">
+          </div>
+          <span class="hero-promo-label">Start an Acrobat free trial</span>
+          <div class="hero-promo-btn">
+            <img src="https://www.figma.com/api/mcp/asset/fe8df57f-f204-4de4-b832-ececcd2bc051" alt="">
+          </div>
+        </a>
+      </div>
+
+      <!-- Mosaic of 5 image columns -->
+      <div class="hero-mosaic" aria-hidden="true">
+        <!-- Column 2 (leftmost, partially clipped) -->
+        <div class="mcol c2">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/bbc7ce74-7e9d-44eb-a30a-6951de600240"
+               width="290" height="394" alt="">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/4f3d80c5-901b-4130-8f06-934dcd215ace"
+               width="296" height="292" alt="">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/7d41bd10-cdde-43cf-a30f-ea1a71db8db2"
+               width="290" height="393" alt="">
+        </div>
+        <!-- Column 1 -->
+        <div class="mcol c1">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/28fe530e-2af6-40d7-8ede-8656401124f5"
+               width="290" height="290" alt="">
+          <!-- Signature card -->
+          <div class="sig-card">
+            <img src="https://www.figma.com/api/mcp/asset/485b19dc-43f9-4359-8fe3-9e1a69d4906d"
+                 alt="Signature" style="position:absolute;left:79px;top:95px;width:213px;height:102px;mix-blend-mode:multiply">
+            <div class="sig-bar"></div>
+            <span class="sig-label">Signature</span>
+          </div>
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/bb418079-3694-4821-813f-f02956c82b4b"
+               width="290" height="394" alt="">
+        </div>
+        <!-- Column 3 (center) -->
+        <div class="mcol c3">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/8389c45c-ef3a-4afe-a164-d260b2b614da"
+               width="291" height="291" alt="">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/b290eebf-a89c-45ab-a5c2-bc03623019a9"
+               width="291" height="394" alt="">
+        </div>
+        <!-- Column 4 -->
+        <div class="mcol c4">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/3a3499cb-90b4-4066-b298-0dad5de01c70"
+               width="290" height="290" alt="">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/5dea72ac-14e1-4299-bf81-b7d12a5d8905"
+               width="292" height="394" alt="">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/109fa936-0f2a-4d23-b915-0fd18e7aded0"
+               width="290" height="393" alt="">
+        </div>
+        <!-- Column 5 (rightmost, partially clipped) -->
+        <div class="mcol c5">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/1a12812e-3009-48ae-8502-c26a5d6a37a4"
+               width="290" height="290" alt="">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/dc7000bd-2ca5-4c56-a8cd-f5bcac6b2941"
+               width="293" height="292" alt="">
+          <img class="mimg" src="https://www.figma.com/api/mcp/asset/213e2207-fdbf-4cab-ace9-fdc57734fdf9"
+               width="290" height="392" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         AUDIENCE — RESTING  (white → gray transition)
+    ════════════════════════════════════════ -->
+    <div style="background:#f6f6f6">
+      <section class="audience">
+        <h2 class="t-h2" style="text-align:center">Work faster.<br>No matter the work.</h2>
+        <div class="audience-inner">
+          <!-- 4 cards -->
+          <div class="carousel-row">
+            <div class="cc">
+              <div class="cc-hd">
+                <span class="cc-title">Sales</span>
+                <img src="https://www.figma.com/api/mcp/asset/50113f72-9d5d-4282-857f-2ff3aa407a65"
+                     style="width:3px;height:6px;transform:scaleY(-1)" alt="">
+              </div>
+              <img class="cc-img" src="https://www.figma.com/api/mcp/asset/f0e9147b-1f49-43ee-8bb7-2b05f9e8854b" alt="Sales">
+              <div class="cc-ft"><span class="cc-lbl">Close more deals.</span></div>
+            </div>
+            <div class="cc">
+              <div class="cc-hd">
+                <span class="cc-title">Marketing</span>
+                <img src="https://www.figma.com/api/mcp/asset/50113f72-9d5d-4282-857f-2ff3aa407a65"
+                     style="width:3px;height:6px;transform:scaleY(-1)" alt="">
+              </div>
+              <img class="cc-img" src="https://www.figma.com/api/mcp/asset/88075995-a687-40b9-92df-901a534a93db" alt="Marketing">
+              <div class="cc-ft"><span class="cc-lbl">Take the pain out of campaigns.</span></div>
+            </div>
+            <div class="cc">
+              <div class="cc-hd">
+                <span class="cc-title">Legal</span>
+                <img src="https://www.figma.com/api/mcp/asset/50113f72-9d5d-4282-857f-2ff3aa407a65"
+                     style="width:3px;height:6px;transform:scaleY(-1)" alt="">
+              </div>
+              <img class="cc-img" src="https://www.figma.com/api/mcp/asset/4ab55d49-e275-4eee-b905-98bdac3017d9" alt="Legal">
+              <div class="cc-ft"><span class="cc-lbl">Move the fine print faster.</span></div>
+            </div>
+            <div class="cc">
+              <div class="cc-hd">
+                <span class="cc-title">Human Resources</span>
+                <img src="https://www.figma.com/api/mcp/asset/50113f72-9d5d-4282-857f-2ff3aa407a65"
+                     style="width:3px;height:6px;transform:scaleY(-1)" alt="">
+              </div>
+              <img class="cc-img" src="https://www.figma.com/api/mcp/asset/6094c9f5-8bf0-4400-b851-9d91f33f8beb" alt="Human Resources">
+              <div class="cc-ft"><span class="cc-lbl">Make policy more personal.</span></div>
+            </div>
+          </div>
+          <!-- Logos marquee -->
+          <div class="logos-track" aria-hidden="true">
+            <div class="logos-inner">
+              <img src="https://www.figma.com/api/mcp/asset/258f5cad-ab23-4a51-a786-150825f69590" alt="Company logos">
+              <img src="https://www.figma.com/api/mcp/asset/258f5cad-ab23-4a51-a786-150825f69590" alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════
+           SECTION — JTBD
+      ════════════════════════════════════════ -->
+      <section class="jtbd">
+        <div class="jtbd-copy">
+          <h2 class="t-h2" style="width:540px;text-align:center">There's more to<br>Acrobat than Acrobat.</h2>
+          <p class="jtbd-body">Create, edit, sign, and more with 70+ professional tools. Use AI to generate a presentation from your files and documents. And that's just the beginning.</p>
+        </div>
+        <div class="jtbd-panels">
+          <div class="jtbd-left">
+            <img src="https://www.figma.com/api/mcp/asset/6a46da97-5f62-43ff-8f6c-258a31584e03"
+                 alt="Woman working with AI Assistant on laptop">
+            <div class="jtbd-left-text">
+              <p class="jtbd-left-hl">Understand quickly.</p>
+              <p class="jtbd-left-bd">Ask your AI Assistant to quickly summarize, analyze, provide insights, turn docs into decks, and more.</p>
+            </div>
+          </div>
+          <div class="jtbd-right">
+            <img class="jtbd-right-img"
+                 src="https://www.figma.com/api/mcp/asset/0a137a28-315f-43e1-956d-96593e250333"
+                 alt="PDF Space sharing UI">
+            <div class="jtbd-right-copy">
+              <p class="jtbd-right-hl">Share effortlessly.</p>
+              <p class="jtbd-right-bd">Share a secure PDF Space with teammates, where everyone can ask AI Assistant to help with research, strategy, planning, or quick learning.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         OFFER — document scatter (screenshot section)
+    ════════════════════════════════════════ -->
+    <section class="sec-screenshot" style="background:#fff" aria-label="Document examples and templates">
+      <img src="https://www.figma.com/api/mcp/asset/6fa75363-5742-430c-9ae8-eaa177f81017"
+           alt="Scattered document examples including invoices, reports, white papers, and media mix charts">
+    </section>
+
+    <!-- ════════════════════════════════════════
+         FLOW — Grid to UI + Test drive (screenshot section)
+    ════════════════════════════════════════ -->
+    <section class="sec-screenshot" style="background:#f2f2f2" aria-label="PDF Space test drive">
+      <img src="https://www.figma.com/api/mcp/asset/6c92b8eb-b1ef-43d9-b6a4-ca3c3b005198"
+           alt="PDF Space document grid and Test drive experience with AI Assistant panel">
+    </section>
+
+    <!-- ════════════════════════════════════════
+         WHAT'S NEW (screenshot section)
+    ════════════════════════════════════════ -->
+    <section class="sec-screenshot" style="background:#f8f8f8" aria-label="Features and Releases">
+      <img src="https://www.figma.com/api/mcp/asset/766283dd-a610-41b8-ad52-43754f26285c"
+           alt="There's always something new with Acrobat — PDF to Podcast, One-click Brand Kit Setup, AI-Powered Video Highlights">
+    </section>
+
+    <!-- ════════════════════════════════════════
+         PLANS
+    ════════════════════════════════════════ -->
+    <div class="plans-outer">
+      <section class="plans">
+        <h2 class="t-h2 plans-hed">Plans that work for you.</h2>
+
+        <!-- Tabs -->
+        <div class="plans-tabs" role="tablist" aria-label="Plan audience">
+          <div class="ptab">
+            <button class="ptab-btn active" role="tab" aria-selected="true" data-tab="0">Individuals</button>
+          </div>
+          <div class="ptab">
+            <button class="ptab-btn inactive" role="tab" aria-selected="false" data-tab="1">Businesses</button>
+          </div>
+          <div class="ptab">
+            <button class="ptab-btn inactive" role="tab" aria-selected="false" data-tab="2">Students &amp; Teachers</button>
+          </div>
+        </div>
+
+        <!-- Four plan cards -->
+        <div class="plans-grid">
+
+          <!-- Acrobat Reader -->
+          <div class="plan-card plan-light">
+            <div class="plan-top">
+              <div class="plan-mnem">
+                <img src="https://www.figma.com/api/mcp/asset/47ccb973-7e5f-443e-81d0-2259c6ecea17" alt="Acrobat">
+                <span class="plan-eyebrow">PDF viewing</span>
+              </div>
+              <div class="plan-name-wrap">
+                <p class="plan-name">Acrobat Reader</p>
+                <p class="plan-desc">Get started with the trusted standard for viewing and sharing PDFs.</p>
+              </div>
+              <div class="plan-pricing-block">
+                <div class="plan-price-row">
+                  <span class="plan-price">Free</span>
+                  <span class="plan-period">Download today</span>
+                </div>
+                <div class="plan-ctas">
+                  <a href="#" class="btn btn-outlined btn-sm">Get free app</a>
+                </div>
+                <div class="plan-secure">
+                  <img src="https://www.figma.com/api/mcp/asset/76e03a5c-9772-4067-a306-d68c6146bdaa" alt="">
+                  <span class="plan-secure-txt">Secure transaction</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-feats">
+              <div class="feat-group">
+                <div class="feat-title">
+                  <img src="https://www.figma.com/api/mcp/asset/76e03a5c-9772-4067-a306-d68c6146bdaa" alt="">
+                  <span class="feat-ttl">Basic PDF tools</span>
+                </div>
+                <div class="feat-item">View, Print, Share PDFs</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Acrobat Express -->
+          <div class="plan-card plan-light">
+            <div class="plan-top">
+              <div class="plan-mnem">
+                <img src="https://www.figma.com/api/mcp/asset/47ccb973-7e5f-443e-81d0-2259c6ecea17" alt="Acrobat">
+                <span class="plan-eyebrow">AI Insights and creation</span>
+              </div>
+              <div class="plan-name-wrap">
+                <p class="plan-name">Acrobat Express</p>
+                <p class="plan-desc">Get document insights with AI-powered tools, and quickly create on-brand content.</p>
+              </div>
+              <div class="plan-pricing-block">
+                <div class="plan-price-row">
+                  <span class="plan-price">US$9.99/mo</span>
+                  <span class="plan-period">Annual, billed monthly</span>
+                </div>
+                <div class="plan-ctas">
+                  <a href="#" class="btn btn-accent btn-sm">Free trial</a>
+                  <a href="#" class="btn btn-outlined btn-sm">Learn more</a>
+                </div>
+                <div class="plan-secure">
+                  <img src="https://www.figma.com/api/mcp/asset/76e03a5c-9772-4067-a306-d68c6146bdaa" alt="">
+                  <span class="plan-secure-txt">Secure transaction</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-feats">
+              <div class="feat-group">
+                <div class="feat-title">
+                  <img src="https://www.figma.com/api/mcp/asset/d26ec1a4-6fa0-41d3-a88f-26833e0a67de"
+                       style="width:16px;height:16px" alt="">
+                  <span class="feat-ttl">AI Assistant</span>
+                </div>
+                <div class="feat-item">Get AI summaries, insights, and answers</div>
+                <div class="feat-item">Organize, share, and share with PDF Spaces</div>
+              </div>
+              <div class="feat-group sep">
+                <div class="feat-title">
+                  <img src="https://www.figma.com/api/mcp/asset/857f7a6e-2189-48e4-a831-509e8ee7d289"
+                       style="width:16px;height:16px" alt="">
+                  <span class="feat-ttl">Creation tools</span>
+                </div>
+                <div class="feat-item">Create flyers, social content, and presentations from documents</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Acrobat Pro -->
+          <div class="plan-card plan-light">
+            <div class="plan-top">
+              <div class="plan-mnem">
+                <img src="https://www.figma.com/api/mcp/asset/47ccb973-7e5f-443e-81d0-2259c6ecea17" alt="Acrobat">
+                <span class="plan-eyebrow">Full PDF toolset</span>
+              </div>
+              <div class="plan-name-wrap">
+                <p class="plan-name">Acrobat Pro</p>
+                <p class="plan-desc">Create, edit, and sign PDFs with secure document and e-signature workflows.</p>
+              </div>
+              <div class="plan-pricing-block">
+                <div class="plan-price-row">
+                  <span class="plan-price">US$19.99/mo</span>
+                  <span class="plan-period">Annual, billed monthly</span>
+                </div>
+                <div class="plan-ctas">
+                  <a href="#" class="btn btn-accent btn-sm">Free trial</a>
+                  <a href="#" class="btn btn-outlined btn-sm">Learn more</a>
+                </div>
+                <div class="plan-secure">
+                  <img src="https://www.figma.com/api/mcp/asset/76e03a5c-9772-4067-a306-d68c6146bdaa" alt="">
+                  <span class="plan-secure-txt">Secure transaction</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-feats">
+              <div class="feat-group">
+                <div class="feat-title">
+                  <img src="https://www.figma.com/api/mcp/asset/76e03a5c-9772-4067-a306-d68c6146bdaa" alt="">
+                  <span class="feat-ttl">70+ PDF tools</span>
+                </div>
+                <div class="feat-item">Create, edit, convert, export, compare, and organize PDFs</div>
+                <div class="feat-item">Collect e-signatures and track responses</div>
+                <div class="feat-item">Password-protect and redact PDFs</div>
+                <div class="feat-item">Create, fill, sign, and send forms</div>
+                <div class="feat-item">Create web forms, turn scans into editable PDFs, and access 70+ features</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Acrobat Studio (dark) -->
+          <div class="plan-card plan-dark">
+            <div class="plan-top">
+              <div class="plan-mnem">
+                <img src="https://www.figma.com/api/mcp/asset/47ccb973-7e5f-443e-81d0-2259c6ecea17" alt="Acrobat">
+                <span class="plan-eyebrow" style="color:#000">All-in-one solution</span>
+              </div>
+              <div class="plan-name-wrap">
+                <p class="plan-name">Acrobat Studio</p>
+                <p class="plan-desc">Do it all with the complete AI-powered PDF and design solution for document workflows.</p>
+              </div>
+              <div class="plan-pricing-block">
+                <div class="plan-price-row">
+                  <span class="plan-price">US$24.99/mo</span>
+                  <span class="plan-period">Annual, billed monthly</span>
+                </div>
+                <div class="plan-ctas">
+                  <a href="#" class="btn btn-accent btn-sm">Free trial</a>
+                  <a href="#" class="btn btn-outlined btn-sm">Learn more</a>
+                </div>
+                <div class="plan-secure">
+                  <img src="https://www.figma.com/api/mcp/asset/76e03a5c-9772-4067-a306-d68c6146bdaa" alt="">
+                  <span class="plan-secure-txt">Secure transaction</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-feats">
+              <div class="feat-group">
+                <div class="feat-title">
+                  <img src="https://www.figma.com/api/mcp/asset/055a8bf9-1e92-4477-a8aa-859729bee2ec" alt="">
+                  <span class="feat-ttl feat-ttl-w">70+ PDF tools</span>
+                </div>
+                <div class="feat-item-w">Get all the PDF tools in Acrobat Pro</div>
+              </div>
+              <div class="feat-group sep-w">
+                <div class="feat-title">
+                  <img src="https://www.figma.com/api/mcp/asset/d26ec1a4-6fa0-41d3-a88f-26833e0a67de"
+                       style="width:16px;height:16px;filter:invert(1)" alt="">
+                  <span class="feat-ttl feat-ttl-w">AI Assistant</span>
+                </div>
+                <div class="feat-item-w">Ask AI to edit, convert, or compress PDFs</div>
+                <div class="feat-item-w">Get AI summaries, insights, and answers</div>
+                <div class="feat-item-w">Organize, share, and share with PDF Spaces</div>
+              </div>
+              <div class="feat-group sep-w">
+                <div class="feat-title">
+                  <img src="https://www.figma.com/api/mcp/asset/862dbdb9-3c5e-4b39-b51f-a4fc1cb6d13f"
+                       style="width:16px;height:16px;filter:invert(1)" alt="">
+                  <span class="feat-ttl feat-ttl-w">Creation tools</span>
+                </div>
+                <div class="feat-item-w">Create flyers, social content, and presentations from documents</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compare Plans -->
+        <div class="plans-cmp">
+          <a href="#" class="btn btn-ghost">Compare Plans</a>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════
+           FOOTER AREA
+      ════════════════════════════════════════ -->
+      <div class="footer-area">
+
+        <!-- Agentic Search -->
+        <div class="agentic">
+          <div class="agentic-copy">
+            <h2 class="agentic-title">Find what you're looking for.</h2>
+            <p class="agentic-body">Get answers from our agent about Adobe products and solutions.</p>
+          </div>
+          <div class="agentic-field">
+            <div class="agentic-field-icon">
+              <img src="https://www.figma.com/api/mcp/asset/42dd3a44-61f4-4b23-9e0a-0838a59ca147" alt="">
+            </div>
+            <input class="agentic-input" type="text" placeholder="Ask anything" aria-label="Ask anything">
+          </div>
+          <p class="agentic-disc">
+            Use of this beta AI chatbot is subject to Adobe's <a href="#">Privacy Policy</a>. Don't share sensitive data.<br>
+            AI responses are not your Content, may be inaccurate and any offers provided are non-binding. <a href="#">Generative AI Terms</a>.
+          </p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <div class="footer-links">
+            <div class="fcol">
+              <p class="fcol-hed">For individuals<br>&amp; small business</p>
+              <div class="fcol-list">
+                <a href="#" class="fcol-link">Creative AI</a>
+                <a href="#" class="fcol-link">Photography</a>
+                <a href="#" class="fcol-link">Design &amp; Illustration</a>
+                <a href="#" class="fcol-link">Video &amp; animation</a>
+                <a href="#" class="fcol-link">PDF</a>
+                <a href="#" class="fcol-link">3D</a>
+                <a href="#" class="fcol-link">Elements Family</a>
+                <a href="#" class="fcol-link">Stock images &amp; video</a>
+                <a href="#" class="fcol-link">View all products</a>
+              </div>
+            </div>
+            <div class="fcol">
+              <p class="fcol-hed">For medium<br>&amp; large business</p>
+              <div class="fcol-list">
+                <a href="#" class="fcol-link">Personalization at scale</a>
+                <a href="#" class="fcol-link">Content supply chain</a>
+                <a href="#" class="fcol-link">Unified customer experience</a>
+                <a href="#" class="fcol-link">Creativity and production</a>
+                <a href="#" class="fcol-link">B2B GTM orchestration</a>
+                <a href="#" class="fcol-link">View all products</a>
+              </div>
+            </div>
+            <div class="fcol">
+              <p class="fcol-hed">For<br>Organizations</p>
+              <div class="fcol-list">
+                <a href="#" class="fcol-link">Education</a>
+                <a href="#" class="fcol-link">Nonprofits</a>
+                <a href="#" class="fcol-link">Government</a>
+              </div>
+            </div>
+            <div class="fcol">
+              <p class="fcol-hed"><br>Support</p>
+              <div class="fcol-list">
+                <a href="#" class="fcol-link">Help Center</a>
+                <a href="#" class="fcol-link">Download and install</a>
+                <a href="#" class="fcol-link">Adobe Community</a>
+                <a href="#" class="fcol-link">Adobe Learn</a>
+                <a href="#" class="fcol-link">Medium &amp; large business support</a>
+              </div>
+            </div>
+            <div class="fcol">
+              <p class="fcol-hed"><br>Contact</p>
+              <div class="fcol-list">
+                <a href="#" class="fcol-link">Chat with sales</a>
+                <a href="#" class="fcol-link">Request information</a>
+              </div>
+            </div>
+            <div class="fcol">
+              <p class="fcol-hed"><br>Adobe</p>
+              <div class="fcol-list">
+                <a href="#" class="fcol-link">Log into your account</a>
+                <a href="#" class="fcol-link">About</a>
+                <a href="#" class="fcol-link">Careers</a>
+                <a href="#" class="fcol-link">Events</a>
+                <a href="#" class="fcol-link">Newsroom</a>
+                <a href="#" class="fcol-link">Corporate Responsibility</a>
+                <a href="#" class="fcol-link">Investor Relations</a>
+                <a href="#" class="fcol-link">Supply Chain</a>
+                <a href="#" class="fcol-link">Trust Center</a>
+                <a href="#" class="fcol-link">Integrity</a>
+                <a href="#" class="fcol-link">Adobe for All</a>
+                <a href="#" class="fcol-link">Adobe Blog</a>
+                <a href="#" class="fcol-link">Terms</a>
+                <a href="#" class="fcol-link">Privacy</a>
+                <a href="#" class="fcol-link" style="color:rgba(255,255,255,0.6)">Cookie preferences</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-feat">
+            <p class="footer-feat-hed">Featured Products</p>
+            <div class="footer-prods">
+              <div class="fprod">
+                <img src="https://www.figma.com/api/mcp/asset/ec85ad85-765c-4b53-96de-141311c92a39" alt="Acrobat Reader icon">
+                <span class="fprod-nm">Acrobat Reader</span>
+              </div>
+              <div class="fprod">
+                <img src="https://www.figma.com/api/mcp/asset/cc4dc4dc-f4f7-4b2d-9b2a-c639b40814b9" alt="Firefly icon">
+                <span class="fprod-nm">Firefly</span>
+              </div>
+              <div class="fprod">
+                <img src="https://www.figma.com/api/mcp/asset/ce5394fb-6d76-4866-a6e0-de5e09d57ee1" alt="Adobe Express icon">
+                <span class="fprod-nm">Adobe Express</span>
+              </div>
+              <div class="fprod">
+                <img src="https://www.figma.com/api/mcp/asset/76958223-27f0-486b-8045-b2491c2e5ca0" alt="Photoshop icon">
+                <span class="fprod-nm">Photoshop</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bot">
+            <div class="footer-bot-l">
+              <div class="footer-bot-item">
+                <a href="#" class="footer-bot-txt">Change region</a>
+                <img src="https://www.figma.com/api/mcp/asset/90278a33-f127-4635-b7fa-3b7d838206e8"
+                     style="width:6px;height:3px" alt="">
+              </div>
+              <div class="footer-bot-item">
+                <span class="footer-bot-txt">© 2026 Adobe Inc. All rights reserved.</span>
+              </div>
+              <div class="footer-bot-item">
+                <a href="#" class="footer-bot-txt">Do not sell or share my personal information</a>
+              </div>
+              <div class="footer-bot-item">
+                <img src="https://www.figma.com/api/mcp/asset/d33a11a8-f031-4d2c-861d-8ab37fad5cb3"
+                     style="width:7px;height:8px" alt="">
+                <span class="footer-bot-txt">AdChoices</span>
+              </div>
+              <img src="https://www.figma.com/api/mcp/asset/e06345d8-0147-4e26-95ff-07b56ce76b7a"
+                   style="height:13px;width:auto" alt="CCPA">
+            </div>
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook">
+                <img src="https://www.figma.com/api/mcp/asset/ddf317be-8337-4e13-9b83-95c4a2722d74" alt="Facebook">
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <img src="https://www.figma.com/api/mcp/asset/a46038a4-56b2-4860-9e73-53a53ab1201e" alt="LinkedIn">
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="https://www.figma.com/api/mcp/asset/7b9a8b2d-60d9-420c-93a6-0f1fe938ba5b" alt="Instagram">
+              </a>
+              <a href="#" aria-label="X (Twitter)">
+                <img src="https://www.figma.com/api/mcp/asset/6ff9f1f7-9487-4e5e-a8c1-ac541f9e50a2" alt="X">
+              </a>
+            </div>
+          </div>
+
+          <!-- Large Adobe wordmark -->
+          <div class="footer-wordmark" aria-hidden="true">
+            <img src="https://www.figma.com/api/mcp/asset/8f95ba10-499c-4ac7-814f-17a75c970ce2" alt="Adobe">
+          </div>
+        </footer>
+      </div>
+    </div><!-- /plans-outer -->
+
+  </main>
+</div><!-- /page -->
+
+<script>
+(function() {
+  // Prevent default on all placeholder links
+  document.querySelectorAll('a[href="#"]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+    });
+  });
+
+  // Plans tab switcher
+  var tabBtns = document.querySelectorAll('.ptab-btn');
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      tabBtns.forEach(function(b) {
+        b.classList.remove('active');
+        b.classList.add('inactive');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.remove('inactive');
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    });
+  });
+})();
+</script>
+</body>
+</html>
