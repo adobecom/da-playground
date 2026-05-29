@@ -1,0 +1,20 @@
+/*
+ * Snowflake overlay CSS — untitled-f78947
+ *
+ * Milo hides every main > div by default (progressive section appearance):
+ *   main > div { display: none }
+ *
+ * This attribute-selector rule outranks Milo's rule and reveals all injected
+ * sections as soon as snowflake.js sets main.dataset.overlay = "untitled-f78947".
+ * Must be the first rule so it wins the specificity race.
+ */
+main[data-overlay="untitled-f78947"] > div { display: block; }
+
+/*
+ * C2 section and block resets — the bespoke page uses site-redesign-foundation
+ * C2 blocks whose CSS is loaded via <link> tags in the template. All that CSS is
+ * already scoped by its own selectors; no additional scoping is required here.
+ *
+ * If layout collisions arise between Milo's base main/section rules and the
+ * C2 block rules, add scoped overrides here, keyed to the [data-overlay] attribute.
+ */
