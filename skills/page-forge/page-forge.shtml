@@ -344,19 +344,29 @@
     function fireDeploy() {
       $('deploy-btn').disabled = true; $('refine-btn').disabled = true; $('result-card').hidden = true;
       setStatus('publish', 'Creating prototype from v' + viewedV + '… (snowflake → DA → preview URL)');
-      slicc.lick({ action: 'deploy', data: { v: viewedV, slug: $('slug').value.trim(), da: DA } });
+      const ver = versions.find((x) => x.v === viewedV);
+      // Hand the scoop the exact previewed HTML to snowflake — no regeneration, no drift.
+      slicc.lick({ action: 'deploy', data: { v: viewedV, html: ver ? ver.html : '', slug: $('slug').value.trim(), da: DA } });
     }
 
     // ── Actions ───────────────────────────────────────────────────────────────
     $('go').addEventListener('click', () => {
       const input = inputValue();
       if (!input) { setStatus('input', 'Paste an input first.'); return; }
+      $('result-card').hidden = true;
+      // HTML source: render it ourselves — fully client-side, the scoop is never
+      // involved, so a preview can NEVER trigger snowflake/deploy.
+      if (source === 'html') {
+        addVersion(1, 'bespoke', '', input);
+        setStatus('ready', 'Preview ready (pasted HTML) — redesign with Stardust, or create a prototype.');
+        return;
+      }
       if (source === 'figma' && !(checks.figma && checks.figma.status === 'ok')) {
         setStatus('figma', 'Sign into figma.com in this browser to read frames, then re-check access.'); return;
       }
       $('go').disabled = true;
-      $('result-card').hidden = true;
-      setStatus('generate', 'Generating preview…');
+      setStatus('generate', 'Generating preview… (no deploy — this only renders)');
+      // url → SLICC renders the page; figma → agent extracts. Both PREVIEW ONLY.
       slicc.lick({ action: 'generate', data: { source, input, da: DA } });
     });
 
@@ -366,7 +376,9 @@
       $('refine-btn').disabled = true;
       setStatus('redesign', 'Stardust: redesigning v' + viewedV + ' → v' + nextV() + '…');
       ghostChip('v' + nextV() + ' …');
-      slicc.lick({ action: 'refine', data: { intent, fromV: viewedV, da: DA } });
+      const base = versions.find((x) => x.v === viewedV);
+      // Hand the scoop the exact HTML it must redesign — it's a pure transform.
+      slicc.lick({ action: 'refine', data: { intent, fromV: viewedV, fromHtml: base ? base.html : '', da: DA } });
       $('refine-intent').value = '';
     });
 
