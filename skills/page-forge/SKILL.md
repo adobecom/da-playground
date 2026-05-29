@@ -3,10 +3,11 @@ name: page-forge
 description: >-
   Turn a Figma frame, a live page URL, or raw HTML into a pixel-faithful 1:1 prototype
   published to Adobe DA and rendered on a real Helix URL — with an optional Stardust
-  (Consonant 2 + brand-knowledge) redesign pass in between. Opens a side-panel sprinkle
-  (page-forge.shtml) with three inputs (Figma URL / page URL / HTML), a "redesign" toggle,
-  and a Generate button; runs the extract → optional redesign → snowflake-deploy pipeline
-  and streams progress + the final preview URL back to the panel.
+  (Consonant 2 + brand-knowledge) redesign loop in between. Opens a side-panel sprinkle
+  (page-forge.shtml) with three inputs (Figma URL / page URL / HTML), a live preview iframe,
+  and a generate → refine (Stardust, versioned) → deploy flow; each refine adds a version the
+  designer can compare, then deploy the chosen one. Streams every version's HTML + the final
+  preview URL back to the panel.
   Use when the user wants to: build a page from a Figma design, prototype a redesign of an
   existing page, snowflake an HTML page into an authorable DA page, or "ship this design to
   DA / Milo / da-playground". Triggers on "page forge", "figma to page", "figma to da",
@@ -42,20 +43,27 @@ upskill adobe/skills --path plugins/aem/edge-delivery-services --all --branch fe
 Both land in `/workspace/skills/<name>/`. Regenerate `references/_vendored/` for the redesign
 step (see `references/README.md`) before publishing the skill.
 
-## The pipeline
+## The pipeline — generate → refine* → deploy (iterative)
+
+Three separate actions, mirroring the da.live Page Forge tool. Each produces a **version**;
+the designer flips between versions in the panel and deploys whichever one they pick.
 
 ```
 input (figma | url | html)
         │
         ▼
-   [generate]  ──►  bespoke 1:1 HTML            (Figma extract  /  URL+HTML passthrough)
+   [generate]  ──►  v1  =  bespoke 1:1 HTML      (Figma extract  /  URL+HTML passthrough)
         │
-        ▼
-   [redesign]  ──►  redesigned HTML  (OPTIONAL — Stardust: Consonant 2 + brand knowledge)
+        ▼  (repeatable — each refine = a new version off the viewed one)
+   [refine]    ──►  v2, v3 …  Stardust redesign  (Consonant 2 + brand; `intent` is a modifier)
         │
-        ▼
+        ▼  (on the version the designer chose)
    [deploy]    ──►  snowflake skill → git push forge-proto-* → aem preview → preview URL
 ```
+
+Keep every version's HTML in the working dir (`output/v<N>.html`) so refine can base off any
+version and deploy can ship the chosen one. Emit an `action:"preview"` (with the version
+number) after **every** generate/refine so the panel updates live.
 
 The **generate** step is a **pluggable seam** — its Figma-extraction internals are owned by the
 parallel fidelity thread (REST-based motion/static-fidelity work). This skill calls whatever
@@ -85,10 +93,21 @@ The sprinkle fires:
 
 ```js
 slicc.lick({ action: 'preflight' })
+// 1. generate v1 (NO deploy) — produces the 1:1 bespoke HTML
 slicc.lick({ action: 'generate', data: {
   source: 'figma' | 'url' | 'html',
   input:  '<figma url | page url | raw html>',
-  redesign: true | false, intent: '<optional>',
+  da: { org: 'adobecom', site: 'da-playground' }
+}})
+// 2. refine (repeatable) — Stardust pass off the viewed version → a new version
+slicc.lick({ action: 'refine', data: {
+  intent: '<optional — empty = default Consonant 2 redesign>',
+  fromV: <version number being viewed>,
+  da: { org: 'adobecom', site: 'da-playground' }
+}})
+// 3. deploy the chosen version
+slicc.lick({ action: 'deploy', data: {
+  v: <version number to ship>,
   slug: '<optional — blank means auto-derive>',
   da: { org: 'adobecom', site: 'da-playground' }
 }})
@@ -99,22 +118,28 @@ The scoop pushes back:
 ```bash
 sprinkle send page-forge '{"action":"check","key":"adobe|figma|github","status":"ok|missing","fix":"…"}'
 sprinkle send page-forge '{"action":"preflight-done","ready":true}'
-sprinkle send page-forge '{"action":"update","phase":"deploy","status":"…"}'
-# Stream the rendered HTML so the panel shows a LIVE PREVIEW iframe (srcdoc).
-# Send after generate, and again after redesign if it ran.
-sprinkle send page-forge '{"action":"preview","stage":"bespoke|redesigned","html":"<full bespoke HTML>"}'
-# done — the panel swaps the preview iframe to the live URL and shows a report.
+sprinkle send page-forge '{"action":"update","phase":"generate|refine|deploy","status":"…"}'
+# After EVERY generate/refine: stream the version's HTML so the panel shows it in the
+# preview iframe and adds a version chip. stage: "bespoke" (v1) | "redesigned" (refines).
+sprinkle send page-forge '{"action":"preview","v":1,"stage":"bespoke","intent":"","html":"<full HTML>"}'
+sprinkle send page-forge '{"action":"preview","v":2,"stage":"redesigned","intent":"<the intent>","html":"<full HTML>"}'
+# done — only after DEPLOY. The panel swaps the preview to the live URL and shows a report.
 sprinkle send page-forge '{"action":"done","url":"https://forge-proto-…--da-playground--adobecom.aem.page/<slug>","slug":"<slug>","branchUrl":"…","branchName":"forge-proto-…","sha":"<full-sha>"}'
 sprinkle send page-forge '{"action":"error","message":"…"}'
 ```
+
+**Versions:** keep each version's HTML as `output/v<N>.html`. `generate` makes v1.
+Each `refine` reads `output/v<fromV>.html`, applies the Stardust redesign with `intent` as a
+modifier, writes `output/v<N+1>.html`, and emits a `preview` for the new version. `deploy`
+ships `output/v<v>.html`.
 
 **Slug:** the panel keeps it auto-derived (hidden under "Advanced"). If `data.slug` is
 blank, the scoop derives one (URL → last path segment; figma → `figma`; html → `page`)
 and **echoes the final slug back in the `done` message**.
 
-**Preview:** the panel's centerpiece is a preview iframe. Emit `action:"preview"` with the
-full HTML right after the bespoke HTML exists (and again after redesign) so the designer
-sees the 1:1 result *before* deploy finishes — then `done` swaps it to the live `.aem.page`.
+**Preview:** the panel's centerpiece is a preview iframe. A `preview` after every
+generate/refine is **mandatory** — it's how the designer sees and compares versions before
+deploying. `done` (deploy only) swaps it to the live `.aem.page`.
 
 ## Preflight / onboarding (scoop) — runs before generate
 
@@ -135,36 +160,43 @@ only when **adobe + figma + github** are all ok. The panel keeps Generate disabl
 
 ## Pipeline (scoop)
 
-1. **On `generate`,** make a working dir with `input/`, `output/`; emit `phase:"start"`.
+Keep a working dir per session with `input/`, `output/`. Versions live as `output/v<N>.html`.
+Three lick handlers — **generate**, **refine**, **deploy** — plus **preflight**.
 
-2. **Generate the bespoke HTML** → `input/bespoke.html`.
-   - `source:'html'`, no redesign → pasted HTML *is* the bespoke HTML (passthrough). Skip to 4.
-   - `source:'url'` → fetch the rendered page (SLICC `playwright` / tab control) to
-     `input/current.html`. No redesign → that's the bespoke HTML.
+### `generate` → v1 (no deploy)
+
+1. Make/clear the working dir; emit `phase:"generate"`.
+2. Produce the bespoke 1:1 HTML → `output/v1.html`:
+   - `source:'html'` → pasted HTML *is* v1 (passthrough).
+   - `source:'url'` → fetch the rendered page (SLICC `playwright` / tab control) → v1.
    - `source:'figma'` → follow `references/figma-extract.md` (strict 1:1 rules). Read via SLICC's
      native Figma, or `figma-fetch.jsh` REST + `/images`. **Don't relax the fidelity rules.**
-   - Emit `phase:"generate"`, then **`action:"preview"` with `stage:"bespoke"` and the full
-     `input/bespoke.html`** so the panel shows the result immediately.
+3. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML. **Do not deploy.**
 
-3. **(Optional) Redesign** — only if `redesign:true`. Seed `input/current.html`, follow
-   `references/redesign.md` injecting `references/_vendored/{c2-brief,design-knowledge}.md`. Apply
-   `intent` as a *modifier* on the C2 baseline. Write `output/redesigned.html` → new
-   `input/bespoke.html`. Emit `phase:"redesign"`, then **`action:"preview"` with
-   `stage:"redesigned"` and the redesigned HTML**.
+### `refine` → v(N+1) (repeatable, no deploy)
 
-4. **Deploy** — follow `references/snowflake-deploy.md`.
-   - Fresh git worktree of `<org>/<site>` on `forge-proto-<short>-<ts>`; seed `input/bespoke.html`.
-   - Run the snowflake skill (`/workspace/skills/snowflake`) methodology. On a **Milo** repo
-     (da-playground) it auto-selects the **Milo flavor** — preserves live gnav/footer, no static
-     chrome fragments (avoids the expanded-gnav blob).
-   - DA content via **`aem put`**; preview via **`aem preview`**.
-   - `scripts/deploy.jsh` commits + pushes the branch **as the signed-in GitHub user**
-     (isomorphic-git over fetch → the OAuth token authenticates the push; no PAT).
-   - Verify the `.aem.page` URL; emit `phase:"verify"`, then `action:"done"` with `url`,
-     the final `slug`, `branchUrl`, `branchName`, and `sha` (the panel swaps the preview
-     iframe to the live URL and renders the report).
+1. Read `output/v<fromV>.html` as the base; emit `phase:"refine"`.
+2. Follow `references/redesign.md`, injecting `references/_vendored/{c2-brief,design-knowledge}.md`.
+   Apply `data.intent` as a *modifier* on the Consonant 2 baseline (empty intent = default C2
+   redesign). Write the result to `output/v<N+1>.html` (N = current max version).
+3. Emit **`action:"preview"` with `v:<N+1>, stage:"redesigned", intent:<the intent>`** and the
+   HTML. **Do not deploy** — the designer keeps refining until they pick a version.
 
-5. **On failure**, emit `action:"error"` with a one-line reason; clean up the worktree.
+### `deploy` → ship the chosen version
+
+Follow `references/snowflake-deploy.md` against `output/v<data.v>.html`:
+- Fresh git worktree of `<org>/<site>` on `forge-proto-<short>-<ts>`; seed the chosen version
+  as the bespoke HTML. Emit `phase:"deploy"`.
+- Run the snowflake skill (`/workspace/skills/snowflake`) methodology. On a **Milo** repo
+  (da-playground) it auto-selects the **Milo flavor** — preserves live gnav/footer, no static
+  chrome fragments (avoids the expanded-gnav blob).
+- DA content via **`aem put`**; preview via **`aem preview`**.
+- `scripts/deploy.jsh` commits + pushes the branch **as the signed-in GitHub user**
+  (isomorphic-git over fetch → the OAuth token authenticates the push; no PAT).
+- Verify the `.aem.page` URL; emit `phase:"verify"`, then `action:"done"` with `url`, the final
+  `slug`, `branchUrl`, `branchName`, and `sha` (panel swaps the preview to the live URL + report).
+
+**On any failure**, emit `action:"error"` with a one-line reason; clean up the worktree.
 
 ## Notes / footguns
 

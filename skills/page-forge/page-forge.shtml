@@ -24,26 +24,25 @@
     input[type=text], textarea {
       width: 100%; background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
       color: var(--txt); padding: 9px; font-size: 13px; font-family: inherit; }
-    textarea { min-height: 120px; resize: vertical; }
-    .row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-    .row input[type=checkbox] { width: 16px; height: 16px; }
+    textarea { resize: vertical; }
     .hidden { display: none; }
-    button.go { width: 100%; margin-top: 14px; padding: 11px; font-size: 14px; font-weight: 600;
+    button.primary { width: 100%; margin-top: 12px; padding: 11px; font-size: 14px; font-weight: 600;
       background: var(--accent); color: #0b1020; border: 0; border-radius: 8px; cursor: pointer; }
-    button.go:disabled { opacity: .5; cursor: default; }
+    button.primary:disabled { opacity: .5; cursor: default; }
+    button.ghost { padding: 9px 12px; font-size: 13px; font-weight: 600; background: #1b2230;
+      color: var(--txt); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+    button.ghost:disabled { opacity: .5; cursor: default; }
 
-    /* Advanced disclosure (slug lives here, auto-derived by default) */
-    .adv-toggle { margin-top: 12px; font-size: 12px; color: var(--muted); cursor: pointer;
-      user-select: none; display: inline-flex; align-items: center; gap: 6px; }
-    .adv-toggle .caret { transition: transform .15s; display: inline-block; }
-    .adv-toggle.open .caret { transform: rotate(90deg); }
-    .adv-body { margin-top: 4px; }
-    .url-hint { font-size: 11px; color: var(--muted); margin-top: 6px; word-break: break-all; }
-    .url-hint code { color: var(--accent); }
+    /* Version chips */
+    .vstrip { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .vchip { padding: 4px 10px; font-size: 12px; border-radius: 999px; cursor: pointer;
+      background: var(--panel2); border: 1px solid var(--line); color: var(--muted); }
+    .vchip.active { color: var(--txt); border-color: var(--accent); background: #1b2230; }
+    .vchip.ghost { color: var(--accent); border-style: dashed; cursor: default; }
+    .vchip .tag { color: var(--muted); font-size: 10px; margin-left: 4px; }
 
     /* Preview pane — the centerpiece */
-    .preview-head { display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 8px; }
+    .preview-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
     .preview-head .ttl { font-size: 12px; color: var(--muted); }
     .preview-head .stage { font-size: 11px; color: var(--accent); }
     .preview-wrap { position: relative; border: 1px solid var(--line); border-radius: 8px;
@@ -52,11 +51,21 @@
     .preview-placeholder { position: absolute; inset: 0; display: flex; align-items: center;
       justify-content: center; color: var(--muted); font-size: 13px; background: var(--panel2);
       text-align: center; padding: 20px; }
-    .preview-overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 10px;
-      font-size: 12px; background: rgba(15,17,21,.85); color: var(--txt);
-      border-top: 1px solid var(--line); }
 
-    /* Result report (da.live conversion-report style) */
+    /* Refine row */
+    .refine-intent { min-height: 56px; }
+    .refine-row { display: flex; gap: 8px; align-items: flex-end; }
+    .refine-row textarea { flex: 1; }
+
+    /* Advanced / slug */
+    .adv-toggle { margin-top: 10px; font-size: 12px; color: var(--muted); cursor: pointer;
+      user-select: none; display: inline-flex; align-items: center; gap: 6px; }
+    .adv-toggle .caret { transition: transform .15s; display: inline-block; }
+    .adv-toggle.open .caret { transform: rotate(90deg); }
+    .url-hint { font-size: 11px; color: var(--muted); margin-top: 6px; word-break: break-all; }
+    .url-hint code { color: var(--accent); }
+
+    /* Result report */
     #result { font-size: 12px; }
     #result.err { color: var(--err); }
     .conv-field { display: flex; gap: 8px; padding: 5px 0; border-top: 1px solid var(--line); }
@@ -69,7 +78,7 @@
     #status { font-size: 12px; color: var(--muted); margin-top: 8px; }
     #status .phase { color: var(--txt); font-weight: 600; }
 
-    /* Preflight checklist */
+    /* Preflight */
     .check { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; margin: 8px 0; }
     .check .ico { width: 16px; flex: 0 0 16px; text-align: center; }
     .check.ok .ico { color: var(--ok); }
@@ -80,24 +89,25 @@
       color: var(--txt); border: 1px solid var(--line); border-radius: 7px; cursor: pointer; }
     .preflight-collapsed { display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; }
     .preflight-collapsed .ico { color: var(--ok); }
+    .section-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
   </style>
 </head>
 <body>
   <h1>Page Forge</h1>
-  <p class="sub">Figma frame · page URL · raw HTML → 1:1 prototype on DA</p>
+  <p class="sub">Figma frame · page URL · raw HTML → iterate with Stardust → 1:1 prototype on DA</p>
 
   <div class="card" id="preflight-card">
     <div id="preflight">Checking access…</div>
     <button class="recheck" id="recheck">Check access</button>
   </div>
 
-  <div class="card">
+  <!-- 1. INPUT (hidden once v1 exists; "New" brings it back) -->
+  <div class="card" id="input-card">
     <div class="tabs">
       <div class="tab active" data-source="figma">Figma</div>
       <div class="tab" data-source="url">URL</div>
       <div class="tab" data-source="html">HTML</div>
     </div>
-
     <div data-pane="figma">
       <label>Figma frame URL</label>
       <input type="text" id="in-figma" placeholder="https://www.figma.com/design/…?node-id=…" />
@@ -108,44 +118,51 @@
     </div>
     <div data-pane="html" class="hidden">
       <label>Raw HTML</label>
-      <textarea id="in-html" placeholder="&lt;!doctype html&gt;…"></textarea>
+      <textarea id="in-html" rows="6" placeholder="&lt;!doctype html&gt;…"></textarea>
     </div>
-
-    <div class="row">
-      <input type="checkbox" id="redesign" />
-      <label for="redesign" style="margin:0;">Stardust redesign (Consonant 2 + brand)</label>
-    </div>
-    <div id="intent-wrap" class="hidden">
-      <label>Redesign intent (optional)</label>
-      <input type="text" id="intent" placeholder="more editorial, less marketing-template" />
-    </div>
-
-    <div class="adv-toggle" id="adv-toggle"><span class="caret">▸</span> Advanced</div>
-    <div class="adv-body hidden" id="adv-body">
-      <label>Slug — auto-derived from your input; override only if needed</label>
-      <input type="text" id="slug" placeholder="(auto)" />
-      <div class="url-hint">Will publish to <code id="url-hint-val">…</code></div>
-    </div>
-
-    <button class="go" id="go" disabled>Generate &amp; deploy</button>
+    <button class="primary" id="go" disabled>Generate v1 (1:1)</button>
   </div>
 
-  <div class="card">
+  <!-- 2. PREVIEW + VERSIONS (shown once v1 exists) -->
+  <div class="card hidden" id="studio-card">
+    <div class="vstrip" id="vstrip"></div>
     <div class="preview-head">
       <span class="ttl">Preview</span>
       <span class="stage" id="preview-stage"></span>
     </div>
     <div class="preview-wrap" id="preview-wrap">
-      <div class="preview-placeholder" id="preview-placeholder">
-        The 1:1 prototype renders here as it's generated.
+      <div class="preview-placeholder" id="preview-placeholder">The 1:1 prototype renders here.</div>
+    </div>
+
+    <!-- Refine with Stardust -->
+    <div style="margin-top:14px;">
+      <div class="section-label">Refine with Stardust</div>
+      <div class="refine-row">
+        <textarea id="refine-intent" class="refine-intent"
+          placeholder='e.g. "make the hero darker and increase the type scale" — empty = default Consonant 2 redesign'></textarea>
+        <button class="ghost" id="refine-btn">Refine →</button>
       </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+        Each refine is a new version off the one you're viewing. Empty intent applies the
+        Consonant&nbsp;2 + brand baseline.
+      </div>
+    </div>
+
+    <!-- Deploy the viewed version -->
+    <div style="margin-top:16px;border-top:1px solid var(--line);padding-top:14px;">
+      <div class="section-label">Deploy</div>
+      <button class="primary" id="deploy-btn" style="margin-top:0;">Deploy this version to DA</button>
+      <div class="adv-toggle" id="adv-toggle"><span class="caret">▸</span> Advanced</div>
+      <div class="hidden" id="adv-body">
+        <label>Slug — auto-derived; override only if needed</label>
+        <input type="text" id="slug" placeholder="(auto)" />
+        <div class="url-hint">Will publish to <code id="url-hint-val">…</code></div>
+      </div>
+      <button class="recheck" id="new-btn" style="margin-top:10px;">＋ New (different input)</button>
     </div>
   </div>
 
-  <div class="card" id="result-card" hidden>
-    <div id="result"></div>
-  </div>
-
+  <div class="card" id="result-card" hidden><div id="result"></div></div>
   <div id="status">Idle. Fill an input and hit Generate.</div>
 
   <script>
@@ -153,9 +170,11 @@
     let ready = false;
     const checks = {};
     const DA = { org: 'adobecom', site: 'da-playground' };
+    const versions = [];      // [{ v, stage, intent, html }]
+    let viewedV = null;
     const $ = (id) => document.getElementById(id);
 
-    // ── slug helpers (client-side default; scoop finalizes if blank) ───────────
+    // ── slug helpers ──────────────────────────────────────────────────────────
     function kebab(s) {
       return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
     }
@@ -169,53 +188,42 @@
           return kebab(tail || u.hostname.split('.')[0] || 'page');
         } catch { return 'page'; }
       }
-      if (source === 'figma') return 'figma';
-      return 'page';
+      return source === 'figma' ? 'figma' : 'page';
     }
     function urlFor(slug) {
       return 'https://forge-proto-…--' + DA.site + '--' + DA.org + '.aem.page/' + (slug || 'page');
     }
-    function refreshUrlHint() { $('url-hint-val').textContent = urlFor(derivedSlug()); }
+    function refreshUrlHint() { const e = $('url-hint-val'); if (e) e.textContent = urlFor(derivedSlug()); }
 
-    // ── Preflight / onboarding ────────────────────────────────────────────────
-    function runPreflight() {
-      $('preflight').textContent = 'Checking access…';
-      slicc.lick({ action: 'preflight' });
-    }
+    // ── Preflight ─────────────────────────────────────────────────────────────
+    function runPreflight() { $('preflight').textContent = 'Checking access…'; slicc.lick({ action: 'preflight' }); }
+    const PF_ORDER = ['adobe', 'figma', 'github'];
+    const PF_LABELS = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub sign-in (branch push)' };
     function renderChecks() {
-      const order = ['adobe', 'figma', 'github'];
-      const labels = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub sign-in (branch push)' };
-      const present = order.filter((k) => checks[k]);
-      const allOk = present.length === order.length && present.every((k) => checks[k].status === 'ok');
+      const present = PF_ORDER.filter((k) => checks[k]);
+      const allOk = present.length === PF_ORDER.length && present.every((k) => checks[k].status === 'ok');
       if (allOk) {
-        // Collapse to a single green line once everything passes.
         $('preflight').innerHTML = '<div class="preflight-collapsed" id="preflight-expand">' +
           '<span class="ico">✓</span><span>Access ready — Adobe · Figma · GitHub</span></div>';
         $('recheck').classList.add('hidden');
         const exp = $('preflight-expand');
-        if (exp) exp.addEventListener('click', () => { $('recheck').classList.remove('hidden'); renderChecksExpanded(); });
+        if (exp) exp.addEventListener('click', renderChecksExpanded);
         return;
       }
       renderChecksExpanded();
     }
     function renderChecksExpanded() {
-      const order = ['adobe', 'figma', 'github'];
-      const labels = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub sign-in (branch push)' };
       $('recheck').classList.remove('hidden');
-      $('preflight').innerHTML = order.filter((k) => checks[k]).map((k) => {
-        const c = checks[k];
-        const ok = c.status === 'ok';
-        return '<div class="check ' + (ok ? 'ok' : 'missing') + '">' +
-          '<span class="ico">' + (ok ? '✓' : '✗') + '</span>' +
-          '<span class="label">' + (labels[k] || k) +
-          (ok ? '' : '<span class="fix">' + (c.fix || '').replace(/</g, '&lt;') + '</span>') +
-          '</span></div>';
+      $('preflight').innerHTML = PF_ORDER.filter((k) => checks[k]).map((k) => {
+        const c = checks[k]; const ok = c.status === 'ok';
+        return '<div class="check ' + (ok ? 'ok' : 'missing') + '"><span class="ico">' + (ok ? '✓' : '✗') +
+          '</span><span class="label">' + (PF_LABELS[k] || k) +
+          (ok ? '' : '<span class="fix">' + (c.fix || '').replace(/</g, '&lt;') + '</span>') + '</span></div>';
       }).join('') || 'Checking access…';
     }
     function setReady(v) {
-      ready = v;
-      $('go').disabled = !v;
-      $('go').textContent = v ? 'Generate & deploy' : 'Sign in to continue';
+      ready = v; $('go').disabled = !v;
+      $('go').textContent = v ? 'Generate v1 (1:1)' : 'Sign in to continue';
     }
     $('recheck').addEventListener('click', runPreflight);
 
@@ -224,15 +232,9 @@
       document.querySelectorAll('.tab').forEach((x) => x.classList.remove('active'));
       t.classList.add('active');
       source = t.dataset.source;
-      document.querySelectorAll('[data-pane]').forEach((p) =>
-        p.classList.toggle('hidden', p.dataset.pane !== source));
+      document.querySelectorAll('[data-pane]').forEach((p) => p.classList.toggle('hidden', p.dataset.pane !== source));
       refreshUrlHint();
     }));
-
-    $('redesign').addEventListener('change', (e) =>
-      $('intent-wrap').classList.toggle('hidden', !e.target.checked));
-
-    // Advanced disclosure
     $('adv-toggle').addEventListener('click', () => {
       const open = $('adv-body').classList.toggle('hidden') === false;
       $('adv-toggle').classList.toggle('open', open);
@@ -246,96 +248,119 @@
       return $('in-html').value;
     }
 
-    // ── Preview helpers ─────────────────────────────────────────────────────
-    function showPreviewHtml(html, stageLabel) {
-      $('preview-stage').textContent = stageLabel || '';
-      const wrap = $('preview-wrap');
-      wrap.innerHTML = '';
-      const iframe = document.createElement('iframe');
-      iframe.className = 'preview';
-      iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
-      iframe.srcdoc = html;
-      wrap.append(iframe);
+    // ── Versions + preview ────────────────────────────────────────────────────
+    function renderVstrip() {
+      const strip = $('vstrip'); strip.innerHTML = '';
+      versions.forEach((ver) => {
+        const chip = document.createElement('div');
+        chip.className = 'vchip' + (ver.v === viewedV ? ' active' : '');
+        chip.innerHTML = 'v' + ver.v + '<span class="tag">' + (ver.stage === 'bespoke' ? '1:1' : 'stardust') + '</span>';
+        chip.title = ver.intent ? 'intent: ' + ver.intent : (ver.stage === 'bespoke' ? '1:1 extract' : 'stardust redesign');
+        chip.addEventListener('click', () => showVersion(ver.v));
+        strip.append(chip);
+      });
     }
-    function showPreviewUrl(url) {
-      $('preview-stage').textContent = 'live';
-      const wrap = $('preview-wrap');
-      wrap.innerHTML = '';
+    function showVersion(v) {
+      const ver = versions.find((x) => x.v === v); if (!ver) return;
+      viewedV = v;
+      $('preview-stage').textContent = 'v' + v + (ver.stage === 'bespoke' ? ' · 1:1' : ' · stardust');
+      const wrap = $('preview-wrap'); wrap.innerHTML = '';
       const iframe = document.createElement('iframe');
-      iframe.className = 'preview';
-      iframe.src = url;
-      wrap.append(iframe);
+      iframe.className = 'preview'; iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+      iframe.srcdoc = ver.html; wrap.append(iframe);
+      renderVstrip(); refreshUrlHint();
+      $('deploy-btn').textContent = 'Deploy v' + v + ' to DA';
     }
-    function resetPreview() {
-      $('preview-stage').textContent = '';
-      $('preview-wrap').innerHTML =
-        '<div class="preview-placeholder">Generating the 1:1 prototype…</div>';
+    function addVersion(v, stage, intent, html) {
+      const existing = versions.find((x) => x.v === v);
+      if (existing) { existing.stage = stage; existing.intent = intent; existing.html = html; }
+      else versions.push({ v, stage, intent, html });
+      $('studio-card').classList.remove('hidden');
+      $('input-card').classList.add('hidden');
+      showVersion(v);
+    }
+    function nextV() { return versions.length ? Math.max(...versions.map((x) => x.v)) + 1 : 1; }
+    function ghostChip(label) {
+      renderVstrip();
+      const g = document.createElement('div'); g.className = 'vchip ghost'; g.textContent = label;
+      $('vstrip').append(g);
     }
 
-    // ── Generate ──────────────────────────────────────────────────────────────
+    // ── Actions ───────────────────────────────────────────────────────────────
     $('go').addEventListener('click', () => {
       if (!ready) { setStatus('access', 'Finish sign-in above first.'); return; }
       const input = inputValue();
       if (!input) { setStatus('phase', 'Provide an input first.'); return; }
       $('go').disabled = true;
       $('result-card').hidden = true;
-      $('result').textContent = '';
-      $('result').className = '';
-      resetPreview();
-      setStatus('start', 'Starting…');
-      slicc.lick({ action: 'generate', data: {
-        source,
-        input,
-        redesign: $('redesign').checked,
-        intent: $('intent').value.trim(),
-        slug: $('slug').value.trim(),   // blank → scoop auto-derives
-        da: DA,
-      }});
+      setStatus('start', 'Generating v1…');
+      slicc.lick({ action: 'generate', data: { source, input, da: DA } });
+    });
+
+    $('refine-btn').addEventListener('click', () => {
+      if (viewedV == null) return;
+      const intent = $('refine-intent').value.trim();
+      $('refine-btn').disabled = true;
+      setStatus('refine', 'Refining v' + viewedV + ' → v' + nextV() + '…');
+      ghostChip('v' + nextV() + ' …');
+      slicc.lick({ action: 'refine', data: { intent, fromV: viewedV, da: DA } });
+      $('refine-intent').value = '';
+    });
+
+    $('deploy-btn').addEventListener('click', () => {
+      if (viewedV == null) return;
+      $('deploy-btn').disabled = true;
+      $('result-card').hidden = true;
+      setStatus('deploy', 'Deploying v' + viewedV + '…');
+      slicc.lick({ action: 'deploy', data: { v: viewedV, slug: $('slug').value.trim(), da: DA } });
+    });
+
+    $('new-btn').addEventListener('click', () => {
+      versions.length = 0; viewedV = null;
+      $('studio-card').classList.add('hidden');
+      $('input-card').classList.remove('hidden');
+      $('result-card').hidden = true;
+      $('go').disabled = !ready;
+      setStatus('idle', 'Fill an input and hit Generate.');
     });
 
     function setStatus(phase, msg) {
-      $('status').innerHTML = '<span class="phase">[' + phase + ']</span> ' +
-        (msg || '').replace(/</g, '&lt;');
+      $('status').innerHTML = '<span class="phase">[' + phase + ']</span> ' + (msg || '').replace(/</g, '&lt;');
     }
 
-    // ── Agent → UI (via `sprinkle send page-forge '{…}'`) ─────────────────────
+    // ── Agent → UI ────────────────────────────────────────────────────────────
     slicc.on('update', (d) => {
       if (!d) return;
       if (d.action === 'check') { checks[d.key] = { status: d.status, fix: d.fix }; renderChecks(); }
       if (d.action === 'preflight-done') setReady(!!d.ready);
       if (d.action === 'update') setStatus(d.phase || '…', d.status || '');
-      // NEW: live preview of the generated/redesigned HTML mid-pipeline.
       if (d.action === 'preview' && d.html) {
-        showPreviewHtml(d.html, d.stage || 'bespoke');
+        const v = d.v || nextV();
+        addVersion(v, d.stage || 'bespoke', d.intent || '', d.html);
+        $('go').disabled = false; $('refine-btn').disabled = false;
+        setStatus('ready', 'v' + v + ' ready — refine, or deploy.');
       }
       if (d.action === 'done') {
-        $('go').disabled = false;
-        setStatus('done', 'Prototype deployed.');
-        if (d.url) showPreviewUrl(d.url);
-        // da.live-style conversion report.
+        $('deploy-btn').disabled = false; $('refine-btn').disabled = false;
+        setStatus('done', 'Deployed v' + (viewedV ?? '') + '.');
         const rows = [];
         if (d.slug) rows.push(['Slug', '<code>' + d.slug + '</code>']);
         if (d.branchUrl) rows.push(['Branch', '<a href="' + d.branchUrl + '" target="_blank">' + (d.branchName || 'branch') + ' ↗</a>']);
         if (d.sha) rows.push(['Commit', '<code>' + d.sha.slice(0, 7) + '</code>']);
         if (d.url) rows.push(['DA preview', '<a href="' + d.url + '" target="_blank">' + d.url + '</a>']);
-        $('result-card').hidden = false;
-        $('result').className = '';
+        $('result-card').hidden = false; $('result').className = '';
         $('result').innerHTML = rows.length
           ? rows.map((r) => '<div class="conv-field"><span class="conv-label">' + r[0] +
               '</span><span class="conv-value">' + r[1] + '</span></div>').join('')
           : 'Done.';
       }
       if (d.action === 'error') {
-        $('go').disabled = false;
-        setStatus('error', '');
-        $('result-card').hidden = false;
-        $('result').className = 'err';
-        $('result').textContent = d.message || 'Failed.';
+        $('go').disabled = !ready; $('refine-btn').disabled = false; $('deploy-btn').disabled = false;
+        setStatus('error', ''); $('result-card').hidden = false;
+        $('result').className = 'err'; $('result').textContent = d.message || 'Failed.';
       }
     });
 
-    // Kick off.
-    refreshUrlHint();
     runPreflight();
   </script>
 </body>
