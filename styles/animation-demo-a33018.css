@@ -1,0 +1,19 @@
+/*
+ * animation-demo-a33018 — snowflake overlay page CSS
+ *
+ * IMPORTANT: the first rule MUST be the overlay reveal.
+ * Milo's progressive section appearance hides `main > div` by default.
+ * The attribute selector has higher specificity and overrides that rule
+ * as soon as snowflake.js sets main.dataset.overlay.
+ */
+
+/* 1. Reveal injected sections */
+main[data-overlay="animation-demo-a33018"] > div {
+  display: block;
+}
+
+/*
+ * No additional custom rules needed for this page — all block styles
+ * are loaded from Milo's C2 CDN via the <link> tags in the template.
+ * The bespoke.html source contained no inline <style> blocks.
+ */

@@ -1,0 +1,10 @@
+/*
+ * Snowflake block — hide the block wrapper itself.
+ * The injected template content replaces <main> entirely;
+ * this block element is discarded once decorate() runs.
+ */
+.snowflake-wrapper,
+.snowflake-container,
+.snowflake {
+  display: none;
+}
