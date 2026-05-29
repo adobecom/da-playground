@@ -6,10 +6,11 @@
 //
 // Usage:  deploy.jsh <worktree-dir> <branch> "<commit message>"
 //
-// Auth: none needed here. SLICC's git is isomorphic-git (HTTP over the fetch-proxy); the
-// designer's "Sign in with GitHub" OAuth token is auto-injected into github.com requests.
-// Plain `git push` works — the pusher is the signed-in designer (who has Write via the
-// milo-contributors team). No PAT, no credential helper.
+// Auth: SLICC's git is isomorphic-git (HTTP over the fetch-proxy). The designer's GITHUB_PAT
+// secret (set via `secret set GITHUB_PAT … --domain github.com,*.github.com`) is injected into
+// github.com requests, so plain `git push` authenticates as the designer. The OAuth-app
+// "Sign in with GitHub" path is org-blocked on adobecom, hence the scoped PAT. The pusher must
+// have Write on the target repo (via the milo-contributors team). No credential helper needed.
 
 const wt = process.argv[2];
 const branch = process.argv[3];

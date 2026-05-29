@@ -81,9 +81,9 @@ Read `/workspace/skills/snowflake/SKILL.md`, then walk `phases/0-prereq.md` →
 - `scripts/deploy.jsh` commits all changes and pushes the branch. If there's no diff, that's a
   failure (substrate/templates missing).
 - **git push auth:** SLICC's git is **isomorphic-git** (HTTP over `fetch`), so the designer's
-  **"Sign in with GitHub"** OAuth token authenticates the push — no PAT. The push happens **as
-  the signed-in user**, so their account must have **Write** on the repo (granted via the
-  `milo-contributors` team); `main`/`stage`/`forge-poc` are ruleset-protected.
+  scoped **`GITHUB_PAT`** secret authenticates the push (the OAuth-app sign-in is org-blocked on
+  adobecom). The push happens **as the designer**, so their account must have **Write** on the
+  repo (granted via the `milo-contributors` team); `main`/`stage`/`forge-poc` are ruleset-protected.
 - Verify `https://<branch>--<site>--<org>.aem.page/<slug>` resolves (retry ~12× / 5s — a new
   branch needs ~20–60s for the edge to learn it). A non-resolving URL after retries is a soft
   warning, not a hard failure, if the DA upload was confirmed.
