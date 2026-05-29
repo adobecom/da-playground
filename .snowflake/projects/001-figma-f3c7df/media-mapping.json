@@ -1,0 +1,24 @@
+{
+  "mapping": {
+    "hero-bg.png": "https://content.da.live/adobecom/da-playground/media/figma-f3c7df/hero-bg.png",
+    "hero-vector.png": "https://content.da.live/adobecom/da-playground/media/figma-f3c7df/hero-vector.png"
+  },
+  "results": [
+    {
+      "localPath": ".snowflake/projects/001-figma-f3c7df/assets/hero-bg.png",
+      "remotePath": "media/figma-f3c7df/hero-bg.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/figma-f3c7df/hero-bg.png",
+      "size": 2566547,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": ".snowflake/projects/001-figma-f3c7df/assets/hero-vector.png",
+      "remotePath": "media/figma-f3c7df/hero-vector.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/figma-f3c7df/hero-vector.png",
+      "size": 631091,
+      "mime": "image/png",
+      "ok": true
+    }
+  ]
+}

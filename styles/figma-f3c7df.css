@@ -1,0 +1,434 @@
+:root {
+      --color-white: #ffffff;
+      --color-black: #000000;
+      --color-red: #eb1000;
+      --color-hero-bg: #dddddd;
+      --font-clean: "Adobe Clean", sans-serif;
+      --font-display: "Adobe Clean Display", sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--color-hero-bg);
+      font-family: var(--font-clean);
+    }
+
+    .page-wrapper {
+      width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* ================================================
+       HERO SECTION
+       ================================================ */
+    .hero {
+      position: relative;
+      width: 1440px;
+      height: 810px;
+      overflow: hidden;
+      background-color: var(--color-hero-bg);
+    }
+
+    /* Background photo — wider than viewport, centered */
+    .hero-bg {
+      position: absolute;
+      left: -425px;
+      top: 0;
+      width: 2163px;
+      height: 850px;
+      display: block;
+      object-fit: fill;
+      z-index: 0;
+    }
+
+    /* Device / screen UI overlay (Vector 118) */
+    .hero-vector {
+      position: absolute;
+      left: 790px;
+      top: 222px;
+      width: 565px;
+      height: 448px;
+      border-radius: 4px;
+      display: block;
+      object-fit: fill;
+      z-index: 1;
+    }
+
+    /* Dark gradient scrim — top-left dark (60%) to bottom-right light (20%) */
+    .hero-scrim {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1440px;
+      height: 850px;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.20) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ================================================
+       NAVIGATION — absolute over hero, z-index 30
+       ================================================ */
+    .nav-main {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1440px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px 0 24px;
+      z-index: 30;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      height: 64px;
+    }
+
+    /* Adobe wordmark */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      width: 67px;
+      height: 16px;
+    }
+
+    .nav-logo svg {
+      display: block;
+    }
+
+    /* Primary nav list */
+    .nav-primary {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-primary li > a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-white);
+      text-decoration: none;
+      font-family: var(--font-clean);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    /* Right side utility bar */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 40px;
+    }
+
+    .nav-apps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      text-decoration: none;
+    }
+
+    /* Anmelden button */
+    .nav-signin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 24px;
+      background: var(--color-white);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 75px;
+      color: var(--color-black);
+      text-decoration: none;
+      font-family: var(--font-clean);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      backdrop-filter: blur(33px);
+      -webkit-backdrop-filter: blur(33px);
+    }
+
+    /* ================================================
+       HERO COPY — absolute inside hero
+       x=64, y=152, w=667
+       ================================================ */
+    .hero-copy {
+      position: absolute;
+      left: 64px;
+      top: 152px;
+      width: 667px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .hero-text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .eyebrow {
+      color: var(--color-white);
+      font-family: var(--font-clean);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0;
+    }
+
+    .hero-h1 {
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-size: 80px;
+      font-weight: 900;
+      line-height: 76px;
+      letter-spacing: -3.2px;
+    }
+
+    /* Body copy fixed to 522px width per Figma */
+    .hero-body {
+      width: 522px;
+      color: var(--color-white);
+      font-family: var(--font-clean);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0;
+    }
+
+    /* CTA row */
+    .hero-ctas {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* White-filled CTA button (Mehr erfahren) */
+    .cta-white {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 24px;
+      background: var(--color-white);
+      border: none;
+      border-radius: 75px;
+      color: var(--color-black);
+      text-decoration: none;
+      font-family: var(--font-clean);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      backdrop-filter: blur(33px);
+      -webkit-backdrop-filter: blur(33px);
+    }
+
+    /* Outlined CTA button (Pläne erkunden) */
+    .cta-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 24px;
+      background: transparent;
+      border: 1px solid var(--color-white);
+      border-radius: 75px;
+      color: var(--color-white);
+      text-decoration: none;
+      font-family: var(--font-clean);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      backdrop-filter: blur(33px);
+      -webkit-backdrop-filter: blur(33px);
+    }
+
+    /* ================================================
+       ROUTER NAVIGATION — bottom 232px of hero
+       Starts at y=578 in hero.
+       ================================================ */
+    .router-nav {
+      position: absolute;
+      left: 0;
+      top: 578px;
+      width: 1440px;
+      height: 232px;
+      z-index: 20;
+    }
+
+    /* Play/Pause button — at top-left of router nav area */
+    .pp-btn {
+      position: absolute;
+      top: 0;
+      left: 64px;
+      width: 40px;
+      height: 40px;
+      border-radius: 100px;
+      background: rgba(0,0,0,0.44);
+      border: 1px solid rgba(255,255,255,0.11);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    /* Cards row — paddingTop=64 within router nav */
+    .cards-row {
+      position: absolute;
+      top: 64px;
+      left: 64px;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    /* Individual product category card — 220×64px */
+    .rcard {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 220px;
+      height: 64px;
+      border-radius: 8px;
+      padding: 12px 12px 16px;
+      background: rgba(0,0,0,0.44);
+      border: 1px solid rgba(255,255,255,0.11);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Active / selected card (PDF und Produktivität) — white bg */
+    .rcard--active {
+      background: var(--color-white);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(312.5px);
+      -webkit-backdrop-filter: blur(312.5px);
+    }
+
+    .rcard-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .rcard-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .rcard-label {
+      font-family: var(--font-clean);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0;
+      color: var(--color-white);
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rcard--active .rcard-label {
+      color: var(--color-black);
+    }
+
+    .rcard-arrow {
+      flex-shrink: 0;
+    }
+
+    /* Red active indicator bar at bottom of active card */
+    .active-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 96px;
+      height: 3.66px;
+      background: var(--color-red);
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* ================================================
+       SECTION HEADING — white panel below hero
+       w=1440, h=298, padding 96/124, br=24
+       ================================================ */
+    .section-heading {
+      width: 1440px;
+      min-height: 298px;
+      background: var(--color-white);
+      border-radius: 24px;
+      padding: 96px 124px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Content column, centered at 1192px wide */
+    .section-copy {
+      width: 1192px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-h2 {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 48px;
+      letter-spacing: -1.44px;
+      text-align: center;
+      color: var(--color-black);
+    }
+
+    /* Body limited to 592px, opacity 56% */
+    .section-body {
+      max-width: 592px;
+      font-family: var(--font-clean);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20.8px;
+      letter-spacing: 0.16px;
+      text-align: center;
+      color: rgba(0,0,0,0.56);
+    }
