@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Forge — Figma / URL / HTML → 1:1 DA prototype</title>
+  <style>
+    :root {
+      --bg: #0f1115; --panel: #181b22; --line: #2a2f3a; --txt: #e6e8ec;
+      --muted: #9aa3b2; --accent: #6aa1ff; --ok: #4ade80; --err: #f87171;
+      --radius: 10px; font-family: system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--txt); padding: 16px; }
+    h1 { font-size: 16px; margin: 0 0 4px; }
+    .sub { color: var(--muted); font-size: 12px; margin: 0 0 16px; }
+    .card { background: var(--panel); border: 1px solid var(--line);
+            border-radius: var(--radius); padding: 14px; margin-bottom: 12px; }
+    label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+    .tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+    .tab { flex: 1; padding: 8px; text-align: center; font-size: 13px; cursor: pointer;
+           background: #11141a; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
+    .tab.active { color: var(--txt); border-color: var(--accent); background: #1b2230; }
+    input[type=text], textarea {
+      width: 100%; background: #11141a; border: 1px solid var(--line); border-radius: 8px;
+      color: var(--txt); padding: 9px; font-size: 13px; font-family: inherit; }
+    textarea { min-height: 120px; resize: vertical; }
+    .row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+    .row input[type=checkbox] { width: 16px; height: 16px; }
+    .hidden { display: none; }
+    button.go { width: 100%; margin-top: 14px; padding: 11px; font-size: 14px; font-weight: 600;
+      background: var(--accent); color: #0b1020; border: 0; border-radius: 8px; cursor: pointer; }
+    button.go:disabled { opacity: .5; cursor: default; }
+    #status { font-size: 12px; white-space: pre-wrap; color: var(--muted); }
+    #status .phase { color: var(--txt); font-weight: 600; }
+    #result a { color: var(--ok); word-break: break-all; }
+    #result.err { color: var(--err); }
+    .check { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; margin: 8px 0; }
+    .check .ico { width: 16px; flex: 0 0 16px; text-align: center; }
+    .check.ok .ico { color: var(--ok); }
+    .check.missing .ico { color: var(--err); }
+    .check .label { color: var(--txt); }
+    .check .fix { color: var(--muted); display: block; margin-top: 2px; }
+    button.recheck { margin-top: 6px; padding: 7px 10px; font-size: 12px; background: #1b2230;
+      color: var(--txt); border: 1px solid var(--line); border-radius: 7px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Page Forge</h1>
+  <p class="sub">Figma frame · page URL · raw HTML → 1:1 prototype on DA</p>
+
+  <div class="card" id="preflight-card">
+    <div id="preflight">Checking access…</div>
+    <button class="recheck" id="recheck">Check access</button>
+  </div>
+
+  <div class="card">
+    <div class="tabs">
+      <div class="tab active" data-source="figma">Figma</div>
+      <div class="tab" data-source="url">URL</div>
+      <div class="tab" data-source="html">HTML</div>
+    </div>
+
+    <div data-pane="figma">
+      <label>Figma frame URL</label>
+      <input type="text" id="in-figma" placeholder="https://www.figma.com/design/…?node-id=…" />
+    </div>
+    <div data-pane="url" class="hidden">
+      <label>Live page URL</label>
+      <input type="text" id="in-url" placeholder="https://www.adobe.com/…" />
+    </div>
+    <div data-pane="html" class="hidden">
+      <label>Raw HTML</label>
+      <textarea id="in-html" placeholder="&lt;!doctype html&gt;…"></textarea>
+    </div>
+
+    <div class="row">
+      <input type="checkbox" id="redesign" />
+      <label for="redesign" style="margin:0;">Stardust redesign (Consonant 2 + brand)</label>
+    </div>
+    <div id="intent-wrap" class="hidden">
+      <label>Redesign intent (optional)</label>
+      <input type="text" id="intent" placeholder="more editorial, less marketing-template" />
+    </div>
+
+    <label>Slug (optional — auto-derived if empty)</label>
+    <input type="text" id="slug" placeholder="acrobat-hero" />
+
+    <button class="go" id="go" disabled>Generate &amp; deploy</button>
+  </div>
+
+  <div class="card">
+    <div id="status">Idle. Fill an input and hit Generate.</div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    let source = 'figma';
+    let ready = false;
+    const checks = {};
+    const $ = (id) => document.getElementById(id);
+
+    // ── Preflight / onboarding ────────────────────────────────────────────────
+    function runPreflight() {
+      $('preflight').textContent = 'Checking access…';
+      slicc.lick({ action: 'preflight' });
+    }
+    function renderChecks() {
+      const order = ['adobe', 'figma', 'github'];
+      const labels = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub sign-in (branch push)' };
+      $('preflight').innerHTML = order.filter((k) => checks[k]).map((k) => {
+        const c = checks[k];
+        const ok = c.status === 'ok';
+        return '<div class="check ' + (ok ? 'ok' : 'missing') + '">' +
+          '<span class="ico">' + (ok ? '✓' : '✗') + '</span>' +
+          '<span class="label">' + (labels[k] || k) +
+          (ok ? '' : '<span class="fix">' + (c.fix || '').replace(/</g, '&lt;') + '</span>') +
+          '</span></div>';
+      }).join('') || 'Checking access…';
+    }
+    function setReady(v) {
+      ready = v;
+      $('go').disabled = !v;
+      $('go').textContent = v ? 'Generate & deploy' : 'Sign in to continue';
+    }
+    $('recheck').addEventListener('click', runPreflight);
+
+    document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach((x) => x.classList.remove('active'));
+      t.classList.add('active');
+      source = t.dataset.source;
+      document.querySelectorAll('[data-pane]').forEach((p) =>
+        p.classList.toggle('hidden', p.dataset.pane !== source));
+    }));
+
+    $('redesign').addEventListener('change', (e) =>
+      $('intent-wrap').classList.toggle('hidden', !e.target.checked));
+
+    function inputValue() {
+      if (source === 'figma') return $('in-figma').value.trim();
+      if (source === 'url') return $('in-url').value.trim();
+      return $('in-html').value;
+    }
+
+    $('go').addEventListener('click', () => {
+      if (!ready) { setStatus('access', 'Finish sign-in above first.'); return; }
+      const input = inputValue();
+      if (!input) { setStatus('phase', 'Provide an input first.'); return; }
+      $('go').disabled = true;
+      $('result').textContent = '';
+      $('result').className = '';
+      setStatus('start', 'Starting…');
+      // Fire the lick the Cone wakes on.
+      slicc.lick({ action: 'generate', data: {
+        source,
+        input,
+        redesign: $('redesign').checked,
+        intent: $('intent').value.trim(),
+        slug: $('slug').value.trim(),
+        da: { org: 'adobecom', site: 'da-playground' },
+      }});
+    });
+
+    function setStatus(phase, msg) {
+      $('status').innerHTML = '<span class="phase">[' + phase + ']</span> ' +
+        (msg || '').replace(/</g, '&lt;');
+    }
+
+    // Agent → UI updates (via `sprinkle send page-forge '{…}'`).
+    slicc.on('update', (d) => {
+      if (!d) return;
+      if (d.action === 'check') { checks[d.key] = { status: d.status, fix: d.fix }; renderChecks(); }
+      if (d.action === 'preflight-done') setReady(!!d.ready);
+      if (d.action === 'update') setStatus(d.phase || '…', d.status || '');
+      if (d.action === 'done') {
+        $('go').disabled = false;
+        setStatus('done', 'Prototype deployed.');
+        $('result').innerHTML = d.url
+          ? 'Live preview: <a href="' + d.url + '" target="_blank">' + d.url + '</a>'
+          : 'Done (no URL returned).';
+      }
+      if (d.action === 'error') {
+        $('go').disabled = false;
+        setStatus('error', '');
+        $('result').className = 'err';
+        $('result').textContent = d.message || 'Failed.';
+      }
+    });
+
+    // Kick off the access check as soon as the panel opens.
+    runPreflight();
+  </script>
+</body>
+</html>
