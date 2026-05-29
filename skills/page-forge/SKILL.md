@@ -1,16 +1,13 @@
 ---
 name: page-forge
 description: >-
-  Turn a Figma frame, a live page URL, or raw HTML into a pixel-faithful 1:1 prototype
-  published to Adobe DA and rendered on a real Helix URL — with an optional Stardust
-  (Consonant 2 + brand-knowledge) redesign loop in between. Opens a side-panel sprinkle
-  (page-forge.shtml) with three inputs (Figma URL / page URL / HTML), a live preview iframe,
-  and a generate → refine (Stardust, versioned) → deploy flow; each refine adds a version the
-  designer can compare, then deploy the chosen one. Streams every version's HTML + the final
-  preview URL back to the panel.
-  Use when the user wants to: build a page from a Figma design, prototype a redesign of an
-  existing page, snowflake an HTML page into an authorable DA page, or "ship this design to
-  DA / Milo / da-playground". Triggers on "page forge", "figma to page", "figma to da",
+  Side-panel tool that turns a Figma frame / page URL / raw HTML into a 1:1 prototype, with an
+  optional Stardust (Consonant 2) redesign, and — only on explicit request — publishes it to Adobe
+  DA. The panel drives FOUR separate actions (preflight, generate, refine, deploy); the scoop
+  handles EXACTLY ONE per event. generate = preview only, refine = Stardust preview only, deploy =
+  the only action that snowflakes/pushes/publishes. generate and refine MUST NOT deploy.
+  Use when the user wants to: preview a page from Figma/URL/HTML, play with Stardust redesigns, or
+  (separately) publish a prototype to DA. Triggers on "page forge", "figma to page", "figma to da",
   "snowflake this", "make a prototype", "1:1 prototype", "redesign this page", "deploy to da".
 allowed-tools: bash
 ---
@@ -26,9 +23,26 @@ Figma / page URL / raw HTML → 1:1 prototype on Adobe DA, with an optional Star
   `scoop_scoop("page-forge")` — and feeds it the job — `feed_scoop("page-forge", "…")`. The
   cone does **not** write the UI or call sprinkle commands; it just spawns and routes.
 - The **`page-forge` scoop** owns the **`page-forge.shtml` sprinkle** (the side-panel UI). It
-  handles `preflight` / `generate` lick events (routed from the sprinkle via the cone) and
-  pushes updates back with `sprinkle send page-forge '{…}'`.
+  handles `preflight` / `generate` / `refine` / `deploy` lick events (routed from the sprinkle via
+  the cone) and pushes updates back with `sprinkle send page-forge '{…}'`.
 - Everything in "Preflight" and "Pipeline" below is the **scoop's** behavior.
+
+## ⛔ Action dispatch — the single most important rule
+
+Every lick carries `data.action`. The scoop handles **exactly that one action and then stops.**
+**Do NOT chain actions. Do NOT "finish the job."** The designer drives the steps from the panel.
+
+| `data.action` | Do | NEVER do |
+|---|---|---|
+| `preflight` | probe creds, emit `check`s | anything else |
+| `generate` | make the 1:1 HTML, emit `action:"preview"`, **STOP** | ❌ no git, no snowflake, no `aem`, no deploy |
+| `refine` | Stardust-redesign the viewed version, emit `action:"preview"`, **STOP** | ❌ no git, no snowflake, no `aem`, no deploy |
+| `deploy` | snowflake → git push → `aem` → emit `action:"done"` | — (this is the ONLY action allowed to publish) |
+
+**`generate` and `refine` produce a PREVIEW and nothing else.** They never create a branch, never
+run the snowflake skill, never call `aem`, never touch GitHub. Publishing happens **only** when a
+separate `deploy` lick arrives (the panel's "Create prototype" button). If you find yourself
+running `git`, the snowflake skill, or `aem` during a `generate`/`refine`, you have a bug — stop.
 
 ## Install
 
@@ -98,23 +112,29 @@ so "only people with repo Write can push" still holds. The agent only ever sees 
 
 The sprinkle fires:
 
+**The scoop is a STATELESS transform.** The panel owns the version HTML and hands the scoop the
+exact HTML to work on. The scoop never keeps version state and never "continues" past its action.
+
 ```js
 slicc.lick({ action: 'preflight' })
-// 1. generate v1 (NO deploy) — produces the 1:1 bespoke HTML
+// 1. generate v1 — PREVIEW ONLY. (html source never reaches the scoop — the panel renders pasted
+//    HTML itself. So the scoop only sees source 'url' or 'figma'.)
 slicc.lick({ action: 'generate', data: {
-  source: 'figma' | 'url' | 'html',
-  input:  '<figma url | page url | raw html>',
+  source: 'url' | 'figma',
+  input:  '<page url | figma url>',
   da: { org: 'adobecom', site: 'da-playground' }
 }})
-// 2. refine (repeatable) — Stardust pass off the viewed version → a new version
+// 2. refine — PREVIEW ONLY. Redesign the EXACT html handed in (not a stored file).
 slicc.lick({ action: 'refine', data: {
   intent: '<optional — empty = default Consonant 2 redesign>',
-  fromV: <version number being viewed>,
+  fromV: <version being viewed>,
+  fromHtml: '<the full HTML of that version — redesign THIS>',
   da: { org: 'adobecom', site: 'da-playground' }
 }})
-// 3. deploy the chosen version
+// 3. deploy — the ONLY publishing action. Snowflake the EXACT html handed in.
 slicc.lick({ action: 'deploy', data: {
-  v: <version number to ship>,
+  v: <version number being shipped>,
+  html: '<the full HTML to snowflake — publish THIS, do not regenerate>',
   slug: '<optional — blank means auto-derive>',
   da: { org: 'adobecom', site: 'da-playground' }
 }})
@@ -203,35 +223,38 @@ so keep the `fix` strings tight and actionable.
 Keep a working dir per session with `input/`, `output/`. Versions live as `output/v<N>.html`.
 Three lick handlers — **generate**, **refine**, **deploy** — plus **preflight**.
 
-### `generate` → v1 (no deploy)
+### `generate` → preview only (NEVER deploy)
 
-1. Make/clear the working dir; emit `phase:"generate"`.
-2. Produce the bespoke 1:1 HTML → `output/v1.html`:
-   - `source:'html'` → pasted HTML *is* v1 (passthrough).
-   - `source:'url'` → fetch the rendered page (SLICC `playwright` / tab control) → v1.
+Only `source:'url'` and `source:'figma'` reach the scoop (the panel renders pasted HTML itself).
+1. Emit `phase:"generate"`.
+2. Produce the bespoke 1:1 HTML:
+   - `source:'url'` → render the page with SLICC's browser/tab control and capture its HTML.
    - `source:'figma'` → follow `references/figma-extract.md` (strict 1:1 rules). Read via SLICC's
      native Figma, or `figma-fetch.jsh` REST + `/images`. **Don't relax the fidelity rules.**
-3. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML. **Do not deploy.**
+3. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML. **Then STOP.**
+   No git, no snowflake, no `aem`, no deploy. The designer decides what happens next from the panel.
 
-### `refine` → v(N+1) (repeatable, no deploy)
+### `refine` → preview only (repeatable, NEVER deploy)
 
-1. Read `output/v<fromV>.html` as the base; emit `phase:"refine"`.
+1. Take `data.fromHtml` as the base (it's handed to you — do not look for a stored file);
+   emit `phase:"refine"`.
 2. Follow `references/redesign.md`, injecting `references/_vendored/{c2-brief,design-knowledge}.md`.
    Apply `data.intent` as a *modifier* on the Consonant 2 baseline (empty intent = default C2
-   redesign). Write the result to `output/v<N+1>.html` (N = current max version).
-3. Emit **`action:"preview"` with `v:<N+1>, stage:"redesigned", intent:<the intent>`** and the
-   HTML. **Do not deploy** — the designer keeps refining until they pick a version.
+   redesign).
+3. Emit **`action:"preview"` with `v:<fromV+1>, stage:"redesigned", intent:<the intent>`** and the
+   redesigned HTML. **Then STOP.** No deploy — the designer keeps refining until they pick a version.
 
-### `deploy` → ship the chosen version (the only step needing creds)
+### `deploy` → publish (the ONLY action that snowflakes/pushes)
 
 **First re-verify publish creds.** Probe Adobe and the GitHub PAT (against `data.da`'s repo) and
 emit a fresh `check` for each. If **either** is missing, emit those checks and **stop without
 deploying** — the panel shows the inline setup and will re-fire `deploy` once they pass. Only when
-both are ok, proceed:
+both are ok, proceed.
 
-Follow `references/snowflake-deploy.md` against `output/v<data.v>.html`:
-- Fresh git worktree of `<org>/<site>` on `forge-proto-<short>-<ts>`; seed the chosen version
-  as the bespoke HTML. Emit `phase:"deploy"`.
+Snowflake **`data.html`** exactly as handed in (do **not** regenerate from the source), following
+`references/snowflake-deploy.md`:
+- Write `data.html` into a fresh git worktree of `<org>/<site>` on `forge-proto-<short>-<ts>` as
+  the bespoke HTML. Emit `phase:"deploy"`.
 - Run the snowflake skill (`/workspace/skills/snowflake`) methodology. On a **Milo** repo
   (da-playground) it auto-selects the **Milo flavor** — preserves live gnav/footer, no static
   chrome fragments (avoids the expanded-gnav blob).
