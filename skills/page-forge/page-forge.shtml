@@ -198,7 +198,7 @@
     // ── Preflight ─────────────────────────────────────────────────────────────
     function runPreflight() { $('preflight').textContent = 'Checking access…'; slicc.lick({ action: 'preflight' }); }
     const PF_ORDER = ['adobe', 'figma', 'github'];
-    const PF_LABELS = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub sign-in (branch push)' };
+    const PF_LABELS = { adobe: 'Adobe sign-in (DA access)', figma: 'Figma access', github: 'GitHub token (branch push)' };
     function renderChecks() {
       const present = PF_ORDER.filter((k) => checks[k]);
       const allOk = present.length === PF_ORDER.length && present.every((k) => checks[k].status === 'ok');

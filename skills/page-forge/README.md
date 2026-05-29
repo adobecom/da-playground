@@ -38,11 +38,14 @@ that has the forge checkout), not a runtime script.
 upskill adobecom/da-playground --path skills/page-forge
 upskill vhargrave/skills --path plugins/aem/edge-delivery-services --all --branch feat/snowflake-milo-substrate
 
-# 2. access — three per-designer click-throughs, no tokens:
+# 2. access — per designer:
 #    - Settings → Providers → Sign in with Adobe   (covers DA + aem)
-#    - Click "Sign in with GitHub" (device flow)    (branch push, as the designer)
 #    - be logged into figma.com in this browser
-#    GitHub push needs Write on da-playground — granted org-wide via the milo-contributors team.
+#    - GitHub: a fine-grained PAT scoped to the target repo (Contents: RW), stored via
+#      `secret set GITHUB_PAT <token> --domain github.com,*.github.com`. The preflight
+#      detects the target repo and walks you through creating it (~2 min). OAuth "Sign in
+#      with GitHub" is org-blocked on adobecom, hence the PAT.
+#    GitHub push needs Write on the target repo — granted via the milo-contributors team.
 ```
 
 Then open the skill — the preflight checklist runs and gates Generate until access is green.

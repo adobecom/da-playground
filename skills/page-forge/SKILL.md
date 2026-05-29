@@ -69,15 +69,22 @@ The **generate** step is a **pluggable seam** — its Figma-extraction internals
 parallel fidelity thread (REST-based motion/static-fidelity work). This skill calls whatever
 extract logic is current; everything downstream is unaffected.
 
-## Access model — three per-designer sign-ins, no tokens to paste
+## Access model — per-designer, scoped credentials
 
 | Capability | How it's provided | Who does it |
 |---|---|---|
 | **DA + AEM preview/publish** | the connected **Adobe IMS** session (`oauth-token adobe`) — used by `mount --source da://…` and the **`aem`** command. **No separate DA token.** | the designer: Settings → Providers → Sign in with Adobe (one click) |
 | **Figma read** | the designer's **logged-in figma.com browser session** (SLICC drives real Chrome); `FIGMA_TOKEN` secret only as a REST/raster fallback | the designer (just be logged in) |
-| **GitHub push** | the designer's own **"Sign in with GitHub"** (SLICC device flow). Git is **isomorphic-git over fetch**, so that OAuth token authenticates the push — **no PAT**. Pushes happen **as the designer**, so their account needs **Write** on `adobecom/da-playground` (granted org-wide via the `milo-contributors` team). `main`/`stage`/`forge-poc` are ruleset-protected → only `forge-proto-*` / personal branches are pushable. | the designer (one click) + org grants team Write once |
+| **GitHub push** | a **fine-grained PAT** the designer creates, scoped to **the target repo(s) they work with** (e.g. `da-playground`, `da-cc`) with **Contents: Read and Write**. Stored via `secret set GITHUB_PAT --domain "github.com,*.github.com"`. SLICC's git is isomorphic-git over the fetch-proxy → the secret authenticates the push. Pushes **as the designer**, so their account needs **Write** on the target repo (via team membership, e.g. `milo-contributors`). Protected branches are ruleset-locked → only `forge-proto-*` / personal branches are pushable. One-time ~2-min setup; the preflight detects the target repo and walks them through it; multiple repos can share one token. | the designer (one-time, guided by preflight) + org grants team Write once |
 
-All three are click-through sign-ins. The agent only ever sees masked credentials.
+Why a PAT, not "Sign in with GitHub": the OAuth-app path is **org-blocked on adobecom**, so the
+device-flow sign-in can't authorize against adobecom repos. A per-user fine-grained PAT is the
+tightest credential GitHub allows (one repo, one permission) and still pushes **as the designer** —
+so "only people with repo Write can push" still holds. The agent only ever sees masked secrets.
+
+> **Org gotcha to verify once:** adobecom must allow fine-grained PATs (org setting). If the org
+> requires per-token *approval*, each designer's token needs an org-owner approval before the first
+> push works — that adds a step to onboarding. Confirm with an org admin before broad rollout.
 
 ## SLICC commands this skill relies on (don't reinvent)
 
@@ -151,11 +158,33 @@ point at docs.
    `aem list /` / a `da://` read). Missing → `fix: "Settings → Providers → Sign in with Adobe (also enables DA)."`
 2. **Figma.** Try a lightweight read of the user's Figma URL (or a known file). Fail →
    `fix: "Open figma.com and sign in in this browser, then re-check."`
-3. **GitHub (per designer).** Run **`oauth-token github`** — exit 0 = signed in, non-zero =
-   not. Missing →
-   `fix: "Click Sign in with GitHub (device flow). Your account needs Write on da-playground — ask to be added to the milo-contributors team."`
+3. **GitHub push (per designer, scoped PAT).** Check
+   `secret test GITHUB_PAT https://api.github.com/repos/<org>/<site>` where `<org>/<site>` is the
+   **target repo from the panel** (`data.da` — e.g. `adobecom/da-playground`, `adobecom/da-cc`).
+   Read the target from the sprinkle's `da` config; don't hardcode it.
 
-Emit the gate. The deploy pushes a branch **as the signed-in designer**, so `ready` is true
+   If missing or failing, walk the designer through creating a fine-grained PAT **for their target
+   repo**:
+
+   ```
+   fix: "You need a GitHub token for <org>/<site>. One-time setup (~2 min):
+   1. Open https://github.com/settings/tokens?type=beta
+   2. Token name: slicc-<site>  (e.g. slicc-da-cc)
+   3. Resource owner: <org>  (e.g. adobecom)
+   4. Repository access → Only select repositories → <site>
+   5. Permissions → Repository permissions → Contents: Read and write
+   6. Generate token → copy the value
+   7. Run: secret set GITHUB_PAT <your-token> --domain github.com,*.github.com
+   Then click 'Check access' again.
+   Tip: scope the token to multiple repos if you work on several sites.
+   Note: if adobecom requires PAT approval, an org owner must approve the token first."
+   ```
+
+   The PAT is personal (pushes as the designer), scoped to only the repos they choose, and can't
+   touch protected branches. **If the designer switches target repos**, re-check whether the
+   existing PAT covers the new repo; if not, they edit the token to add it (no need to recreate).
+
+Emit the gate. The deploy pushes a branch **as the designer (via their PAT)**, so `ready` is true
 only when **adobe + figma + github** are all ok. The panel keeps Generate disabled until then.
 
 ## Pipeline (scoop)
@@ -191,8 +220,8 @@ Follow `references/snowflake-deploy.md` against `output/v<data.v>.html`:
   (da-playground) it auto-selects the **Milo flavor** — preserves live gnav/footer, no static
   chrome fragments (avoids the expanded-gnav blob).
 - DA content via **`aem put`**; preview via **`aem preview`**.
-- `scripts/deploy.jsh` commits + pushes the branch **as the signed-in GitHub user**
-  (isomorphic-git over fetch → the OAuth token authenticates the push; no PAT).
+- `scripts/deploy.jsh` commits + pushes the branch **as the designer** (isomorphic-git over the
+  fetch-proxy → the `GITHUB_PAT` secret authenticates the push).
 - Verify the `.aem.page` URL; emit `phase:"verify"`, then `action:"done"` with `url`, the final
   `slug`, `branchUrl`, `branchName`, and `sha` (panel swaps the preview to the live URL + report).
 
