@@ -226,7 +226,7 @@
     function refreshUrlHint() { const e = $('url-hint-val'); if (e) e.textContent = urlFor(derivedSlug()); }
 
     // ── Preflight (informational; does NOT block playing) ──────────────────────
-    function runPreflight() { slicc.lick({ action: 'preflight' }); }
+    function runPreflight() { slicc.lick({ action: 'preflight', data: { da: DA } }); }
     const PF_ORDER = ['figma', 'adobe', 'github'];
     const PF_LABELS = {
       figma: 'Figma — to read frames (only for Figma input)',
@@ -345,8 +345,11 @@
       $('deploy-btn').disabled = true; $('refine-btn').disabled = true; $('result-card').hidden = true;
       setStatus('publish', 'Creating prototype from v' + viewedV + '… (snowflake → DA → preview URL)');
       const ver = versions.find((x) => x.v === viewedV);
-      // Hand the scoop the exact previewed HTML to snowflake — no regeneration, no drift.
-      slicc.lick({ action: 'deploy', data: { v: viewedV, html: ver ? ver.html : '', slug: $('slug').value.trim(), da: DA } });
+      // Deploy is the ONLY lick carrying `da` (repo/site) — i.e. the only one that CAN publish.
+      slicc.lick({ action: 'deploy', data: {
+        v: viewedV, html: ver ? ver.html : '', slug: $('slug').value.trim(), da: DA,
+        _rule: 'PUBLISH: re-verify Adobe+GitHub; snowflake THIS html exactly (no regeneration); push forge-proto-* branch; aem preview; emit action:"done".',
+      } });
     }
 
     // ── Actions ───────────────────────────────────────────────────────────────
@@ -367,7 +370,11 @@
       $('go').disabled = true;
       setStatus('generate', 'Generating preview… (no deploy — this only renders)');
       // url → SLICC renders the page; figma → agent extracts. Both PREVIEW ONLY.
-      slicc.lick({ action: 'generate', data: { source, input, da: DA } });
+      // NOTE: no `da` (repo/site) on purpose — the scoop literally can't deploy without it.
+      slicc.lick({ action: 'generate', data: {
+        source, input,
+        _rule: 'PREVIEW ONLY: produce the 1:1 HTML, emit action:"preview", then STOP. You were given NO repo/slug — you cannot and must not run git/snowflake/aem or deploy.',
+      } });
     });
 
     $('refine-btn').addEventListener('click', () => {
@@ -378,7 +385,11 @@
       ghostChip('v' + nextV() + ' …');
       const base = versions.find((x) => x.v === viewedV);
       // Hand the scoop the exact HTML it must redesign — it's a pure transform.
-      slicc.lick({ action: 'refine', data: { intent, fromV: viewedV, fromHtml: base ? base.html : '', da: DA } });
+      // NOTE: no `da` on purpose — redesign is preview-only and must not deploy.
+      slicc.lick({ action: 'refine', data: {
+        intent, fromV: viewedV, fromHtml: base ? base.html : '',
+        _rule: 'PREVIEW ONLY: redesign fromHtml, emit action:"preview", then STOP. You were given NO repo/slug — no git/snowflake/aem/deploy.',
+      } });
       $('refine-intent').value = '';
     });
 

@@ -44,6 +44,11 @@ run the snowflake skill, never call `aem`, never touch GitHub. Publishing happen
 separate `deploy` lick arrives (the panel's "Create prototype" button). If you find yourself
 running `git`, the snowflake skill, or `aem` during a `generate`/`refine`, you have a bug — stop.
 
+**Structural guard (the panel enforces this for you):** `generate` and `refine` licks **omit the
+repo/site (`data.da`)** entirely — only `deploy` (and read-only `preflight`) carry it. So if a lick
+has no `data.da`, you have neither the repo nor the slug and **cannot deploy even if you wanted to —
+emit the preview and stop.** Each lick also carries `data._rule` restating its constraint; obey it.
+
 ## Install
 
 ```
@@ -116,27 +121,29 @@ The sprinkle fires:
 exact HTML to work on. The scoop never keeps version state and never "continues" past its action.
 
 ```js
-slicc.lick({ action: 'preflight' })
-// 1. generate v1 — PREVIEW ONLY. (html source never reaches the scoop — the panel renders pasted
-//    HTML itself. So the scoop only sees source 'url' or 'figma'.)
+// preflight carries da (read-only) so the GitHub PAT check targets the right repo.
+slicc.lick({ action: 'preflight', data: { da: { org: 'adobecom', site: 'da-playground' } } })
+// 1. generate — PREVIEW ONLY. NO da (can't deploy). html source never reaches the scoop (the
+//    panel renders pasted HTML itself), so the scoop only sees source 'url' or 'figma'.
 slicc.lick({ action: 'generate', data: {
   source: 'url' | 'figma',
   input:  '<page url | figma url>',
-  da: { org: 'adobecom', site: 'da-playground' }
+  _rule:  'PREVIEW ONLY — emit action:"preview" then STOP; no repo/slug given; no deploy.'
 }})
-// 2. refine — PREVIEW ONLY. Redesign the EXACT html handed in (not a stored file).
+// 2. refine — PREVIEW ONLY. NO da. Redesign the EXACT html handed in (not a stored file).
 slicc.lick({ action: 'refine', data: {
   intent: '<optional — empty = default Consonant 2 redesign>',
   fromV: <version being viewed>,
   fromHtml: '<the full HTML of that version — redesign THIS>',
-  da: { org: 'adobecom', site: 'da-playground' }
+  _rule:  'PREVIEW ONLY — redesign fromHtml, emit action:"preview", STOP; no repo/slug; no deploy.'
 }})
-// 3. deploy — the ONLY publishing action. Snowflake the EXACT html handed in.
+// 3. deploy — the ONLY publishing action (and the ONLY lick with da). Snowflake the EXACT html.
 slicc.lick({ action: 'deploy', data: {
   v: <version number being shipped>,
   html: '<the full HTML to snowflake — publish THIS, do not regenerate>',
   slug: '<optional — blank means auto-derive>',
-  da: { org: 'adobecom', site: 'da-playground' }
+  da: { org: 'adobecom', site: 'da-playground' },
+  _rule:  'PUBLISH — verify Adobe+GitHub; snowflake THIS html; push forge-proto-*; aem preview; emit done.'
 }})
 ```
 
