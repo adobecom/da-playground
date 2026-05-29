@@ -148,17 +148,23 @@ and **echoes the final slug back in the `done` message**.
 generate/refine is **mandatory** — it's how the designer sees and compares versions before
 deploying. `done` (deploy only) swaps it to the live `.aem.page`.
 
-## Preflight / onboarding (scoop) — runs before generate
+## Preflight / onboarding (scoop) — play vs publish
 
-Designers won't know what to set up. On the `preflight` lick (fired when the panel opens and by
-"Check access"), **probe each prerequisite and report a checklist** — detect and instruct, don't
-point at docs.
+**Playing (generate + Stardust redesign + preview) requires NO GitHub and NO Adobe** — it's all
+local to the panel. Only **Figma** is needed, and only when the input is a Figma frame.
+**Publishing to DA** (the `deploy`/"Create prototype" action) is the *only* step that needs
+**Adobe + a GitHub token** — the panel prompts for those inline at publish time and continues
+automatically once set. So **never block generate/refine on Adobe or GitHub.**
 
-1. **Adobe (DA access).** Check the connected Adobe provider (`oauth-token adobe`, or probe
-   `aem list /` / a `da://` read). Missing → `fix: "Settings → Providers → Sign in with Adobe (also enables DA)."`
-2. **Figma.** Try a lightweight read of the user's Figma URL (or a known file). Fail →
-   `fix: "Open figma.com and sign in in this browser, then re-check."`
-3. **GitHub push (per designer, scoped PAT).** Check
+On the `preflight` lick (fired when the panel opens, by "Check access", and re-fired by the panel
+right before publishing), **probe each prerequisite and report a checklist** — detect and instruct,
+don't point at docs. Emit a `check` for each; the panel decides what gates what.
+
+1. **Figma (play — only for Figma input).** Try a lightweight read of the user's Figma URL (or a
+   known file). Fail → `fix: "Open figma.com and sign in in this browser, then re-check."`
+2. **Adobe (publish — DA access).** Check the connected Adobe provider (`oauth-token adobe`, or
+   probe `aem list /` / a `da://` read). Missing → `fix: "Settings → Providers → Sign in with Adobe (also enables DA)."`
+3. **GitHub push (publish — per designer, scoped PAT).** Check
    `secret test GITHUB_PAT https://api.github.com/repos/<org>/<site>` where `<org>/<site>` is the
    **target repo from the panel** (`data.da` — e.g. `adobecom/da-playground`, `adobecom/da-cc`).
    Read the target from the sprinkle's `da` config; don't hardcode it.
@@ -187,8 +193,10 @@ point at docs.
    touch protected branches. **If the designer switches target repos**, re-check whether the
    existing PAT covers the new repo; if not, they edit the token to add it (no need to recreate).
 
-Emit the gate. The deploy pushes a branch **as the designer (via their PAT)**, so `ready` is true
-only when **adobe + figma + github** are all ok. The panel keeps Generate disabled until then.
+Emit one `check` per item + `preflight-done`. The panel uses them like this:
+**Figma** gates only Figma-input generate; **Adobe + GitHub** gate only publish. The publish button
+re-fires `preflight`, shows the missing items inline, and deploys automatically the moment they pass —
+so keep the `fix` strings tight and actionable.
 
 ## Pipeline (scoop)
 
@@ -214,7 +222,12 @@ Three lick handlers — **generate**, **refine**, **deploy** — plus **prefligh
 3. Emit **`action:"preview"` with `v:<N+1>, stage:"redesigned", intent:<the intent>`** and the
    HTML. **Do not deploy** — the designer keeps refining until they pick a version.
 
-### `deploy` → ship the chosen version
+### `deploy` → ship the chosen version (the only step needing creds)
+
+**First re-verify publish creds.** Probe Adobe and the GitHub PAT (against `data.da`'s repo) and
+emit a fresh `check` for each. If **either** is missing, emit those checks and **stop without
+deploying** — the panel shows the inline setup and will re-fire `deploy` once they pass. Only when
+both are ok, proceed:
 
 Follow `references/snowflake-deploy.md` against `output/v<data.v>.html`:
 - Fresh git worktree of `<org>/<site>` on `forge-proto-<short>-<ts>`; seed the chosen version
