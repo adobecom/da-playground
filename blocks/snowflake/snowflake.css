@@ -1,0 +1,10 @@
+/*
+ * Snowflake overlay block — Milo flavor.
+ *
+ * The block table is structural scaffolding only; it must not be visible.
+ * The overlay replaces <main> contents, so by the time the user sees the
+ * page the snowflake block element is gone.
+ */
+.snowflake {
+  display: none;
+}

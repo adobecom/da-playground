@@ -1,0 +1,45 @@
+/*
+ * animation-demo-cba644 — snowflake overlay template styles.
+ *
+ * This file is loaded dynamically by blocks/snowflake/snowflake.js
+ * once the template name resolves. It is NOT loaded by head.html.
+ *
+ * CRITICAL: The first rule MUST override Milo's progressive section hiding
+ * (main > div { display: none }) so the pre-decorated overlay DOM is visible.
+ * Using the data-overlay attribute selector gives us enough specificity to
+ * win without !important.
+ */
+
+/* 1. Reveal all sections as soon as the overlay attribute is stamped. */
+main[data-overlay="animation-demo-cba644"] > div {
+  display: block;
+}
+
+/*
+ * 2. Scope: keep body/html styles from leaking.
+ *    The bespoke source set styles on <body>; remap them here.
+ */
+main[data-overlay="animation-demo-cba644"] {
+  /* Ensure the overlay root participates in normal flow. */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+/*
+ * 3. Section background helpers — the source page uses inline
+ *    style="background: rgb(...)" on .section-background children.
+ *    Those are already in the pre-decorated DOM and need no extra rules.
+ *
+ *    The .has-background sections use .section-background > div for
+ *    the colour swatch; that's also already wired in the frozen DOM.
+ */
+
+/*
+ * 4. mas-commerce-service custom element used for pricing.
+ *    Needs display:block to participate in layout (browsers default
+ *    unknown custom elements to inline).
+ */
+main[data-overlay="animation-demo-cba644"] mas-commerce-service {
+  display: block;
+}

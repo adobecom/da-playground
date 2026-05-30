@@ -1,0 +1,6 @@
+{
+  "substrateVersion": "milo-1.0.0",
+  "flavor": "milo",
+  "installedAt": "2026-05-30T00:00:00.000Z",
+  "_note": "Milo-flavor substrate: only blocks/snowflake/{js,css} installed. Milo head.html/scripts.js/styles.css left untouched."
+}
