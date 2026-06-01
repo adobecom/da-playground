@@ -12,11 +12,15 @@
 //   stardust/prototypes/ has no *-proposed.html, stardust did NOT run — exit non-zero so the
 //   scoop emits action:"error" instead of fabricating variants.
 //
-// DELIVERY: each prototype is split into small chunks and pushed with
+// DELIVERY: each prototype is split into small chunks and pushed to the panel with
 //   `sprinkle send page-forge '{"action":"preview-chunk",...}'` (the panel reassembles by id).
-//   Chunking keeps every send well under any message-frame/arg limit; shell-escaping makes any
-//   HTML byte safe. This relies on `exec('sprinkle send …')` reaching the panel from a .jsh —
-//   the same trust deploy.jsh places in `exec('git …')`. Fails loud if a send errors.
+//   Verified against SLICC source (packages/webapp): `sprinkle` is a registered supplemental
+//   command, and a .jsh's exec/exec.spawn routes through the same shell context that owns it —
+//   so a .jsh CAN deliver to the panel. We use **exec.spawn(argv[])**, which bypasses shell
+//   parsing/quoting entirely (the SLICC-intended way to build commands programmatically — it
+//   "kills the quoting-trap class of bugs", i.e. exactly the awk/JSON-escaping hacks the scoop
+//   kept reinventing). Falls back to shell-escaped exec() on older builds. Chunking keeps every
+//   message small regardless of transport. Fails loud if a send errors.
 //
 // SLICC .jsh runtime: async fs API ONLY (fs.exists/readFile/writeFile/readDir — NO *Sync), exec()
 // is async → { stdout, stderr, exitCode }, NO shebang (the file is wrapped in an AsyncFunction).
@@ -37,8 +41,13 @@ const baseV = Number.isFinite(meta.baseV) ? meta.baseV : 1;
 const protoDir = `${workdir}/stardust/prototypes`;
 const CHUNK = 6000; // chars of raw HTML per message — safely under any plausible frame/arg cap.
 
-// ── shell-safe single-quoted arg (handles apostrophes inside the JSON/HTML) ──
+// ── deliver one sprinkle message: prefer exec.spawn (no shell quoting); fall back to escaped exec ──
 function shArg(s) { return "'" + String(s).replace(/'/g, "'\\''") + "'"; }
+async function sprinkleSend(name, payload) {
+  const json = JSON.stringify(payload);
+  if (typeof exec.spawn === 'function') return exec.spawn(['sprinkle', 'send', name, json]);
+  return exec('sprinkle send ' + name + ' ' + shArg(json));
+}
 function dirname(p) { return (p || '').replace(/\/[^/]*$/, '') || '.'; }
 
 // ── classify a prototype filename → { label, order } ──
@@ -104,7 +113,7 @@ async function sendVariant(html, info, v) {
       v, stage, intent, label: info.label,
       data: html.slice(seq * CHUNK, (seq + 1) * CHUNK),
     };
-    const r = await exec('sprinkle send page-forge ' + shArg(JSON.stringify(payload)));
+    const r = await sprinkleSend('page-forge', payload);
     if (r.exitCode !== 0) {
       throw new Error(`sprinkle send failed (variant ${info.label}, chunk ${seq + 1}/${total}, exit ${r.exitCode}): `
         + (r.stderr || r.stdout || '').slice(-300));
@@ -115,8 +124,9 @@ async function sendVariant(html, info, v) {
 
 // ── main: discover → guard → prep → send ──
 if (!(await fs.exists(protoDir))) {
-  console.error(`ERROR: ${protoDir} does not exist — stardust produced no prototypes. Stardust did NOT run. `
-    + 'The scoop must invoke stardust:uplift/direct/prototype; it must NOT hand-author HTML. Emit action:"error".');
+  console.error(`ERROR: ${protoDir} does not exist — no prototypes were written. Follow the stardust `
+    + 'methodology (you ARE the engine) and WRITE each variant to stardust/prototypes/<slug>-*-proposed.html '
+    + 'designed to the injected C2 brand, then re-run this. Do NOT stream HTML inline or improvise. Emit action:"error".');
   process.exit(2);
 }
 
@@ -130,9 +140,9 @@ let entries = (await fs.readDir(protoDir))
 entries = entries.filter((e) => !/\.forge\.html$/i.test(e.name));
 
 if (!entries.length) {
-  console.error(`ERROR: no *-proposed.html in ${protoDir} — stardust did NOT run (or wrote nothing). `
-    + 'The scoop must NOT hand-author prototype HTML. Emit action:"error" so the user can install/'
-    + 'verify stardust (upskill adobe/skills --path plugins/stardust --all; upskill pbakaus/impeccable).');
+  console.error(`ERROR: no *-proposed.html in ${protoDir} — nothing was written there. You (the scoop) `
+    + 'ARE the stardust engine: follow the methodology and WRITE each variant to stardust/prototypes/'
+    + '<slug>-*-proposed.html (designed to the injected C2 brand surface), then re-run. Emit action:"error".');
   process.exit(3);
 }
 
