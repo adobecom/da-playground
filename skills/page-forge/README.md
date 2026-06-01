@@ -15,9 +15,10 @@ page-forge/
 ├── SKILL.md            # scoop/sprinkle architecture + pipeline + sprinkle⇄scoop protocol
 ├── page-forge.shtml    # side-panel sprinkle: preflight checklist + Figma/URL/HTML + Generate
 ├── scripts/
-│   ├── figma-fetch.jsh     # Figma REST: structure + /images raster export (FIGMA_TOKEN)
-│   ├── inject-c2-brand.jsh # Reimagine: copy vendored C2 brand over stardust/current/ (fail-loud)
-│   ├── deploy.jsh          # commit + push forge-proto-* branch
+│   ├── figma-fetch.jsh       # Figma REST: structure + /images raster export (FIGMA_TOKEN)
+│   ├── inject-c2-brand.jsh   # Reimagine: copy vendored C2 brand over stardust/current/ (fail-loud)
+│   ├── collect-prototype.jsh # Reimagine: rewrite local image refs → live URLs + inline lenis
+│   ├── deploy.jsh            # commit + push forge-proto-* branch
 │   └── sync-references.mjs # build-time (host node) vendoring of C2 brief/brand/knowledge/catalog
 └── references/
     ├── figma-extract.md      # strict 1:1 Figma extract prompt (Match · Figma)

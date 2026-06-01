@@ -122,10 +122,22 @@ The prototypes land under `stardust/prototypes/`:
   `<slug>-C-cinematic.html` → variants labelled `Variant A` / `Variant B` / `Variant C` /
   `Variant C — cinematic`.
 
-For the cinematic file, inline its sibling `lenis.min.js` / `lenis.min.css` into the HTML
-(replace the `<script src=…lenis.min.js>` / `<link …lenis.min.css>` with inline `<script>` /
-`<style>`) so the panel's `srcdoc` iframe renders it self-contained.
+### Prepare each prototype for the preview (MANDATORY — run the script)
 
-Read each prototype's HTML and emit one `preview` lick per variant (stage `redesigned`, with the
+stardust prototypes reference the **downloaded local** images (`../current/assets/media/<name>`),
+which **never render in the panel's `srcdoc` iframe** (no base URL — and extract sometimes skips the
+media download entirely). Run, **per prototype**:
+
+```
+scripts/collect-prototype.jsh <prototype-html-path> <workdir>
+```
+
+It (a) rewrites every local `assets/media/` ref to the **original absolute source URL** (from the
+page capture's media map) so images load over the network, and (b) inlines `lenis.min.{js,css}` into
+the cinematic prototype so it's self-contained. It writes a sibling `<name>.forge.html` and prints
+`{ out, rewritten, lenisInlined }`. **Don't hand-rewrite the URLs** — string-rewriting is exactly
+what the script does deterministically.
+
+Read the `out` file and emit one `preview` lick per variant (stage `redesigned`, with the
 `variant`/`label`). After all variants are emitted, **STOP** — Reimagine is preview-only; never
 deploy (no `data.da` is present, by design).

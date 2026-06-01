@@ -1,790 +1,550 @@
 {
   "_provenance": {
     "writtenBy": "stardust:extract",
-    "writtenAt": "2026-05-27T17:39:29.894Z",
+    "writtenAt": "2026-06-01T12:23:10.526Z",
     "readArtifacts": [
-      "https://main--da-dc--adobecom.aem.page/dc-shared/fragments/tests/2026/q2/ace1205/fragments/ace1205-plans?milolibs=srf-preview&mep=%2Fdc-shared%2Ffragments%2Ftests%2F2026%2Fq2%2Face1205%2Fdc1205-base-page-dc.json--all",
-      "https://main--da-dc--adobecom.aem.page/dc-shared/fragments/tests/2026/q2/ace1205/fragments/ace1205-offer?milolibs=srf-preview&mep=%2Fdc-shared%2Ffragments%2Ftests%2F2026%2Fq2%2Face1205%2Fdc1205-base-page-dc.json--all",
-      "https://main--da-dc--adobecom.aem.page/dc-shared/fragments/tests/2026/q2/ace1205/fragments/ace1205-product?milolibs=srf-preview&mep=%2Fdc-shared%2Ffragments%2Ftests%2F2026%2Fq2%2Face1205%2Fdc1205-base-page-dc.json--all",
-      "https://main--da-dc--adobecom.aem.page/dc-shared/fragments/tests/2026/q2/ace1205/fragments/ace1205-bizpro-hub?milolibs=srf-preview&mep=%2Fdc-shared%2Ffragments%2Ftests%2F2026%2Fq2%2Face1205%2Fdc1205-base-page-dc.json--all",
-      "https://main--da-dc--adobecom.aem.page/drafts/vhargrave/homepage"
+      "file:///Users/victor/Downloads/bizpro-hub-prototype/bizpro-hub.html",
+      "stardust/current/pages/home.json"
     ],
     "synthesizedInputs": [],
-    "stardustVersion": "0.2.0",
-    "notes": "Cross-page aggregation from 5 pages: dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans, dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer, dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product, dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub, drafts__vhargrave__homepage"
+    "stardustVersion": "0.10.0",
+    "notes": "Single-page (--single) extract; cross-page aggregation degenerates to one page. Home hero is a scroll-scaled <video>, not a static image -> heroImage:null. System-component detection skipped (requires >=3 pages); header + footer captured as structural context only. Dark/light split: top half of page is white/warm-gray surfaces, lower half (studio-banner -> footer) is pure-black sections with white text. Palette dropped white-tint text colors rgba(255,255,255,.48/.6/.72/.8) used on dark sections."
   },
   "site": {
-    "name": "Adobe Acrobat",
-    "tagline": "Photoshop, Illustrator, Premiere, and much more. Work with the tools behind the world's most iconic creative content. Save 50% on Creative Cloud Pro for the ...",
-    "originUrl": "https://main--da-dc--adobecom.aem.page"
+    "name": "BizPro Hub",
+    "tagline": "PDF & Productivity",
+    "originUrl": "file:///Users/victor/Downloads/bizpro-hub-prototype/bizpro-hub.html"
   },
   "logo": {
-    "source": "apple-touch-icon",
-    "sourceSelector": "link[rel=\"apple-touch-icon\"]",
-    "localPath": "stardust/current/assets/logo.png",
-    "format": "png",
-    "intrinsicWidth": null,
-    "intrinsicHeight": null,
+    "source": "img",
+    "sourceSelector": "nav .nav__logo img[alt=\"Adobe\"]",
+    "localPath": "stardust/current/assets/logo.svg",
+    "format": "svg",
+    "intrinsicWidth": 67,
+    "intrinsicHeight": 16,
     "synthesized": false,
-    "synthesizedBasis": null
+    "synthesizedBasis": null,
+    "_provenance": {
+      "notes": "Adobe corporate wordmark, served as SVG <img> from assets/figma-svg/, rendered at height 16px in the nav pill. SVG paths carry the Adobe red fill."
+    }
   },
   "palette": [
     {
       "role": "background",
-      "value": "rgb(0, 0, 0)",
-      "occurrences": 1006,
-      "sourceSelectors": [],
+      "value": "#ffffff",
+      "occurrences": 8729328,
+      "sourceSelectors": [
+        ".hero-sticky",
+        ".stories",
+        ".acrobat-feature",
+        ".tutorial",
+        ".solutions"
+      ],
       "usedAs": [
+        "background",
         "text",
-        "background"
+        "border"
       ]
     },
     {
-      "role": "text-primary",
-      "value": "rgb(255, 255, 255)",
-      "occurrences": 546,
-      "sourceSelectors": [],
+      "role": "background-inverse",
+      "value": "#000000",
+      "occurrences": 4000000,
+      "sourceSelectors": [
+        "body",
+        ".studio-banner",
+        ".product-section",
+        ".search-section",
+        ".footer"
+      ],
       "usedAs": [
-        "text",
-        "background"
+        "background",
+        "text"
       ]
     },
     {
       "role": "primary",
-      "value": "rgba(0, 0, 0, 0.04)",
-      "occurrences": 90,
-      "sourceSelectors": [],
+      "value": "#3b63fb",
+      "occurrences": 29045,
+      "sourceSelectors": [
+        ".btn--primary",
+        "a"
+      ],
+      "sources": [
+        "home"
+      ],
       "usedAs": [
         "background"
-      ]
+      ],
+      "note": "Spectrum blue-900; hover -> #274dea (blue-1000)"
     },
     {
       "role": "surface",
-      "value": "rgb(19, 19, 19)",
-      "occurrences": 48,
-      "sourceSelectors": [],
+      "value": "#eceae7",
+      "occurrences": 6175167,
+      "sourceSelectors": [
+        ".acrobat-card__asset",
+        ".tutorial__slide"
+      ],
       "usedAs": [
-        "text"
+        "background"
+      ],
+      "note": "warm neutral card/asset ground"
+    },
+    {
+      "role": "surface-subtle",
+      "value": "#f8f8f8",
+      "occurrences": 1551143,
+      "sourceSelectors": [
+        ".story-card",
+        ".price-card",
+        ".price-card__inner"
+      ],
+      "usedAs": [
+        "background",
+        "border"
       ]
     },
     {
-      "role": "secondary",
-      "value": "rgb(238, 238, 238)",
-      "occurrences": 28,
-      "sourceSelectors": [],
+      "role": "text-secondary",
+      "value": "rgba(0,0,0,0.64)",
+      "occurrences": 39137,
+      "sourceSelectors": [
+        "p.body-md",
+        ".acrobat-card__body",
+        "a"
+      ],
       "usedAs": [
         "text"
-      ]
+      ],
+      "note": "--s2a-color-content-subtle"
     },
     {
-      "role": "accent-1",
-      "value": "rgb(44, 44, 44)",
-      "occurrences": 18,
-      "sourceSelectors": [],
+      "role": "text-subtle",
+      "value": "#505050",
+      "occurrences": 10674,
+      "sourceSelectors": [
+        ".eyebrow"
+      ],
       "usedAs": [
         "text"
-      ]
+      ],
+      "note": "--s2a-color-gray-700 / content-background-subtle"
     },
     {
-      "role": "accent-2",
-      "value": "rgba(0, 0, 0, 0.64)",
-      "occurrences": 1,
-      "sourceSelectors": [],
+      "role": "accent",
+      "value": "#eb1000",
+      "occurrences": 0,
+      "sourceSelectors": [
+        "nav .nav__logo svg"
+      ],
       "usedAs": [
-        "text"
-      ]
+        "fill"
+      ],
+      "note": "Adobe brand red (--s2a-color-brand-adobe-red). Token-defined and carried by the Adobe wordmark logo; not used as a UI surface color. Reserve to brand lockups."
     }
   ],
   "type": {
     "headingFamily": {
-      "name": "Adobe Clean Display Black",
-      "stack": "\"Adobe Clean Display Black\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+      "name": "Adobe Clean Display",
+      "stack": "'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif",
       "weights": [
-        900,
+        900
+      ],
+      "weightsDefined": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
         700,
-        600
+        800,
+        900
       ],
       "sizes": [
-        "16px",
+        "clamp(40px, 6.25vw, 80px)",
         "56px",
         "48px",
-        "36px",
-        "24px",
-        "80px"
+        "24px"
       ],
-      "lineHeights": [],
-      "letterSpacing": [],
+      "lineHeights": [
+        0.95,
+        1,
+        1.05,
+        1
+      ],
+      "letterSpacing": [
+        "-1.5px → -3.2px",
+        "-0.8px → -1.68px",
+        "-0.8px → -1.2px",
+        "-0.48px"
+      ],
       "sourceSelectors": [
-        "h1",
-        "h2",
-        "h3"
+        ".title-1",
+        ".title-2",
+        ".title-3",
+        ".title-4"
       ]
     },
     "bodyFamily": {
       "name": "Adobe Clean",
-      "stack": "\"Adobe Clean\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+      "stack": "'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif",
       "weights": [
         400,
-        500
+        700
+      ],
+      "weightsDefined": [
+        300,
+        400,
+        500,
+        700,
+        800
       ],
       "sizes": [
-        "1rem",
-        "0.875rem"
+        "20px",
+        "16px",
+        "14px"
       ],
       "lineHeights": [
-        1.5
+        1.2,
+        1.25,
+        1.29
       ],
       "letterSpacing": [
-        "normal"
+        "0px",
+        "0.16px"
       ],
       "sourceSelectors": [
-        "p",
-        "li"
+        ".body-lg",
+        ".body-md",
+        ".body-sm",
+        ".eyebrow",
+        ".label"
       ]
     },
     "monoFamily": null,
     "scaleRatio": null,
     "scaleAudit": {
       "kind": "ad-hoc",
-      "ratios": [],
-      "matchedScale": null
+      "ratios": [
+        1.43,
+        1.17,
+        2
+      ],
+      "matchedScale": null,
+      "note": "Spectrum-2 discrete type ramp (title-1..4 = 80/56/48/24px), not a single modular scale."
     },
-    "loadStrategy": "swap",
-    "files": []
+    "loadStrategy": "auto",
+    "files": [
+      {
+        "url": "assets/fonts/AdobeClean/AdobeClean-Regular.otf",
+        "family": "Adobe Clean",
+        "weight": 400,
+        "style": "normal",
+        "unicodeRange": null,
+        "localPath": "stardust/current/assets/fonts/AdobeClean/AdobeClean-Regular.otf",
+        "sourceCssRule": "@font-face { font-family: 'adobe-clean'; src: url('assets/fonts/AdobeClean/AdobeClean-Regular.otf') format('opentype'); font-weight: 400; }",
+        "licensingFlag": "private"
+      },
+      {
+        "url": "assets/fonts/AdobeClean/AdobeClean-Bold.otf",
+        "family": "Adobe Clean",
+        "weight": 700,
+        "style": "normal",
+        "unicodeRange": null,
+        "localPath": "stardust/current/assets/fonts/AdobeClean/AdobeClean-Bold.otf",
+        "sourceCssRule": "@font-face { font-family: 'adobe-clean'; src: url('assets/fonts/AdobeClean/AdobeClean-Bold.otf') format('opentype'); font-weight: 700; }",
+        "licensingFlag": "private"
+      },
+      {
+        "url": "assets/fonts/Adobe Clean Display/AdobeCleanDisplay-Black.otf",
+        "family": "Adobe Clean Display",
+        "weight": 900,
+        "style": "normal",
+        "unicodeRange": null,
+        "localPath": "stardust/current/assets/fonts/Adobe Clean Display/AdobeCleanDisplay-Black.otf",
+        "sourceCssRule": "@font-face { font-family: 'adobe-clean-display'; src: url('assets/fonts/Adobe Clean Display/AdobeCleanDisplay-Black.otf') format('opentype'); font-weight: 900; }",
+        "licensingFlag": "private"
+      }
+    ],
+    "_provenance": {
+      "notes": "Adobe Clean / Adobe Clean Display are proprietary Adobe typefaces (licensingFlag: private). 9 display weights + 5 text weights declared via local @font-face; the live render only fetched Regular, Bold (text) and Black (display) because those are the weights the visible copy uses. Titles are uniformly weight 900 with tight negative tracking and sub-1.0 line-height."
+    }
   },
   "spacing": {
     "baseUnit": 8,
     "scale": [
-      4,
       8,
       12,
       16,
       24,
       32,
+      40,
       48,
       64,
+      80,
       96
     ],
-    "sectionPadding": null,
-    "containerMaxWidth": null,
-    "gridGap": null
+    "sectionPadding": "96px",
+    "containerMaxWidth": "1920px",
+    "gridGap": "8px",
+    "_provenance": {
+      "notes": "Spectrum-2 spacing tokens xs..6xl (8→96). Section padding-block mode is 96px (stories/acrobat/solutions/product); tutorial uses 80px, search 124px. Grid gutter 8px, side margin 8.333vw ≥768px."
+    }
   },
   "motifs": {
     "borderRadius": {
       "primary": "16px",
-      "secondary": "999px",
-      "pill": null,
+      "secondary": "12px",
+      "pill": "999px",
       "primarySources": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
+        "home"
       ],
       "occurrences": {
-        "2": 1,
-        "6": 2,
-        "8": 2,
-        "12": 1,
-        "16": 10,
-        "32": 1,
-        "75": 1,
-        "999": 9
-      }
+        "16px": 19,
+        "8px": 2,
+        "999px": 13,
+        "32px": 1,
+        "50%": 5,
+        "24px": 1,
+        "50px": 3,
+        "12px": 9
+      },
+      "note": "16px = nav pill + cards (--border-radius-md). 12px = inner cards. 999px = buttons/chips/tabs(50px). 32px = stories section top corners. 50% = circular carousel arrows + dots."
     },
-    "shadows": [],
-    "gradients": [],
-    "patterns": []
+    "shadows": [
+      {
+        "value": "0 2px 12px rgba(0,0,0,0.08)",
+        "uses": "sticky nav on scroll (.nav.scrolled)"
+      },
+      {
+        "value": "0 1px 8px rgba(0,0,0,0.14)",
+        "uses": "elevated controls (carousel arrows / floating buttons)"
+      },
+      {
+        "value": "0 -45px 45px rgba(0,0,0,0.1), 0 -11px 25px rgba(0,0,0,0.1) (stacked upward)",
+        "uses": "large upward ambient lift on sticky/overlay elements"
+      }
+    ],
+    "gradients": [
+      {
+        "value": "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 31%, transparent)",
+        "uses": "hero video scrim / image overlays for white text legibility"
+      },
+      {
+        "value": "linear-gradient(rgba(0,0,0,0) 50.5%, rgb(0,0,0) 101%)",
+        "uses": "product-tile image bottom fade into black section (x4 tiles)"
+      },
+      {
+        "value": "linear-gradient(rgb(0,0,0) 0%, rgba(0,0,0,0) 45%, transparent)",
+        "uses": "studio-banner top fade"
+      }
+    ],
+    "patterns": [
+      {
+        "name": "hero-with-scroll-video",
+        "evidence": "home hero is a <video> that scales bounded→full-viewport on scroll, with text parallax and a late-fade product overlay (Buy now / Learn more)"
+      },
+      {
+        "name": "card-carousel",
+        "evidence": "Customer Stories = 4-card horizontal carousel with full-bleed background photos and category labels"
+      },
+      {
+        "name": "feature-3up",
+        "evidence": "Acrobat feature section uses a wide hero image + 3-up image cards (collaboration / Express / security)"
+      },
+      {
+        "name": "tutorial-carousel",
+        "evidence": "Tutorial section: slide deck with prev/next circular arrows + dot pagination"
+      },
+      {
+        "name": "pricing-tabs",
+        "evidence": "Solutions section toggles Individuals / Businesses / Students & Teachers pill tabs over price cards"
+      },
+      {
+        "name": "product-mnemonic-grid",
+        "evidence": "3×3 grid of Adobe product tiles (Firefly, Acrobat, Photoshop, Premiere, Creative Cloud, GenStudio, Business Products, Illustrator, All products) on black"
+      },
+      {
+        "name": "ai-search-bar",
+        "evidence": "Search section = full-width AI chat input (\"Ask anything\") with Send + beta disclaimer"
+      },
+      {
+        "name": "footer-mega",
+        "evidence": "6-column mega footer + Featured Products row, on black"
+      }
+    ]
   },
   "componentStyle": {
     "buttons": {
       "primary": {
-        "backgroundColor": "rgb(0, 0, 0)",
-        "color": "rgb(255, 255, 255)",
-        "fontFamily": "\"Adobe Clean\", adobe-clean, \"Trebuchet MS\", sans-serif",
-        "fontWeight": "700",
-        "borderRadius": "75px",
-        "padding": "16px 24px 16px 24px",
-        "boxShadow": "none"
+        "background": "#3b63fb",
+        "color": "#ffffff",
+        "borderRadius": "999px",
+        "padding": "0 24px (height 40px)",
+        "fontWeight": 700,
+        "shadow": null,
+        "hoverDelta": "background → #274dea (blue-1000)"
       },
-      "secondary": {
-        "backgroundColor": "rgba(0, 0, 0, 0.04)",
-        "color": "rgb(0, 0, 0)",
-        "fontFamily": "\"Adobe Clean\", adobe-clean, \"Trebuchet MS\", sans-serif",
-        "fontWeight": "700",
-        "borderRadius": "75px",
-        "padding": "16px 24px 16px 24px",
-        "boxShadow": "none"
+      "dark": {
+        "background": "#000000",
+        "color": "#ffffff",
+        "borderRadius": "999px",
+        "padding": "0 24px (height 40px)",
+        "fontWeight": 700,
+        "hoverDelta": "background → #1a1a1a"
+      },
+      "outline": {
+        "background": "transparent",
+        "color": "#000000",
+        "borderRadius": "999px",
+        "border": "1.5px solid #000000",
+        "fontWeight": 700,
+        "hoverDelta": "background → rgba(0,0,0,0.04)"
+      },
+      "ghostWhite": {
+        "background": "transparent",
+        "color": "#ffffff",
+        "borderRadius": "999px",
+        "border": "1.5px solid #ffffff",
+        "backdropFilter": "blur(16px)",
+        "fontWeight": 700,
+        "hoverDelta": "background → rgba(255,255,255,0.08)"
       }
     },
-    "cards": {},
-    "inputs": {}
-  },
-  "systemComponents": [
-    {
-      "type": "repeated-heading",
-      "text": "Create quickly and easily with AI models.",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
+    "dualCTAPattern": "primary-then-outline",
+    "cards": {
+      "background": "#eceae7 / #f8f8f8",
+      "borderRadius": "16px",
+      "padding": "24px",
+      "shadow": null,
+      "border": "1px solid #f8f8f8 (subtle)"
     },
-    {
-      "type": "repeated-heading",
-      "text": "Transform PDFs to insights, content, and action.",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
+    "inputs": {
+      "borderRadius": "0px",
+      "padding": "16px",
+      "border": "none",
+      "background": "transparent (on dark) / rgba(255,255,255,0.1) search bar",
+      "placeholder": "Ask anything",
+      "focusRing": null,
+      "note": "Only input is the AI chat search bar; borderless, large 16px padding, on a translucent dark bar."
     },
-    {
-      "type": "repeated-heading",
-      "text": "Craft at the highest level of creative.",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
+    "nav": {
+      "container": "fixed translucent pill — bg rgba(255,255,255,0.64), backdrop-blur 128px, radius 16px, height 64px, 8px outer padding",
+      "scrolledShadow": "0 2px 12px rgba(0,0,0,0.08)"
     },
-    {
-      "type": "repeated-heading",
-      "text": "Unify content, data and work with AI.",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Students save big on the top tools.",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Organizations",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Industries",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Acrobat for Business",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Help",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Learn",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Community",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "More resources",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Frequently Asked Questions",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "How much does Creative Cloud cost?",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Is there a free version of Photoshop?",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Is there a free online version of Photoshop?",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Is there student pricing for Photoshop?",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Are there generative AI features for Photoshop?",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Do my external clients need to have an account?",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "How do I install Photoshop (beta) with the new generative AI features?",
-      "pageCount": 2,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Manifests",
-      "pageCount": 4,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Toggles\n      \n    \n    \n    \n    \n    \n      Fragment Color Key\n      \n        \n        MEP Manifest\n         \n        Lingo Regional\n        \n        Lingo Fallback\n        \n        Other",
-      "pageCount": 4,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Fragment Color Key",
-      "pageCount": 4,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Page",
-      "pageCount": 4,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Consent",
-      "pageCount": 4,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Lingo",
-      "pageCount": 4,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "M@S",
-      "pageCount": 4,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Diese Adobe-Site passt nicht zu deinem Standort",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Ce site Adobe ne correspond pas à votre zone géographique",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Questo sito Adobe non corrisponde alla tua posizione geografica",
-      "pageCount": 5,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-        "drafts__vhargrave__homepage"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Find what you’re looking for.",
-      "pageCount": 3,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
-    },
-    {
-      "type": "repeated-heading",
-      "text": "Explore what you can do with Adobe apps.",
-      "pageCount": 3,
-      "pages": [
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-        "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-      ]
+    "_provenance": {
+      "notes": "Button system is fully pill-shaped (999px), height 40px (sm 32px), weight 700, 200ms cubic-bezier(0.42,0,0,1) transitions. Four variants: primary(blue), dark(black), outline(black 1.5px), ghost-white(white 1.5px + blur)."
     }
-  ],
+  },
+  "systemComponents": [],
   "iconFont": null,
   "voice": {
-    "heroHeadline": "DA Playground",
-    "heroSubcopy": "Photoshop, Illustrator, Premiere, and much more. Work with the tools behind the world's most iconic creative content. Save 50% on Creative Cloud Pro for the first three months. See terms.",
+    "heroHeadline": "Work faster, smarter, and more securely with Adobe.",
+    "heroSubcopy": "Streamline the way you work, communicate, and transact business. Plus, get AI-powered assistance, APIs and integrations, and built-in security tools.",
     "heroImage": null,
-    "primaryCTALabel": "Featured",
+    "heroVideo": {
+      "src": "assets/section-1/section-1-video.mp4",
+      "behavior": "scroll-scaled bounded→full-viewport, autoplay muted loop",
+      "note": "The home hero is a video, not a static image; heroImage is null by design."
+    },
+    "primaryCTALabel": "Buy now",
     "ctaSamples": [
-      "Featured",
-      "Content Creation",
-      "Acrobat & PDF",
-      "Photography",
-      "Video",
-      "Design",
-      "Marketing & Data",
-      "GenStudio\n        Scale your content supply chain."
+      "View Pricing",
+      "Buy now",
+      "Learn more",
+      "Free trial",
+      "Download now",
+      "Sign In"
     ],
     "navItems": [
-      "Skip to main content",
-      "Products",
       "Use Cases",
-      "Solutions",
-      "Learn & Support",
-      "Plans",
-      "Sign in"
+      "PDF & Productivity",
+      "Acrobat",
+      "Express",
+      "Sign",
+      "Scan"
     ],
     "footerHeadings": [
       "For individuals & small business",
-      "Creative AI",
-      "Photography",
-      "Design and illustration",
-      "Video and animation",
-      "PDF"
+      "For medium & large business",
+      "For Organizations",
+      "Support",
+      "Contact",
+      "Adobe",
+      "Featured Products"
     ],
-    "firstParagraph": "Photoshop, Illustrator, Premiere, and much more. Work with the tools behind the world's most iconic creative content. Save 50% on Creative Cloud Pro for the first three months. See terms.",
+    "firstParagraph": "From small businesses to the world's largest enterprises, our customers use Acrobat to unleash their creativity, accelerate document productivity, and power their digital businesses.",
     "tone": {
-      "guess": "professional",
-      "evidence": "Document Cloud / Acrobat: productivity-focused, professional register"
+      "guess": "professional-warm",
+      "evidence": "Short benefit-led imperative headlines (\"Work faster, smarter…\", \"Do it all with the power of Acrobat.\"), second-person address, SMB-to-enterprise framing, AI/security emphasis. Aspirational without jargon."
     }
   },
   "voiceTable": {
     "ctaFrequency": [
       {
-        "label": "Featured",
-        "total": 5,
-        "pageCount": 5,
+        "label": "Buy now",
+        "total": 3,
+        "pageCount": 1,
         "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
+          "home"
         ]
       },
       {
-        "label": "Content Creation",
-        "total": 5,
-        "pageCount": 5,
+        "label": "Learn more",
+        "total": 2,
+        "pageCount": 1,
         "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
+          "home"
         ]
       },
       {
-        "label": "Acrobat & PDF",
-        "total": 5,
-        "pageCount": 5,
+        "label": "View Pricing",
+        "total": 1,
+        "pageCount": 1,
         "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
+          "home"
         ]
       },
       {
-        "label": "Photography",
-        "total": 5,
-        "pageCount": 5,
+        "label": "Free trial",
+        "total": 1,
+        "pageCount": 1,
         "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
+          "home"
         ]
       },
       {
-        "label": "Video",
-        "total": 5,
-        "pageCount": 5,
+        "label": "Download now",
+        "total": 1,
+        "pageCount": 1,
         "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
+          "home"
         ]
       },
       {
-        "label": "Design",
-        "total": 5,
-        "pageCount": 5,
+        "label": "Sign In",
+        "total": 1,
+        "pageCount": 1,
         "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "label": "Marketing & Data",
-        "total": 5,
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "label": "GenStudio\n        Scale your content supply chain.",
-        "total": 5,
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
+          "home"
         ]
       }
     ],
-    "headingFrequency": [
-      {
-        "text": "Create quickly and easily with AI models.",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Transform PDFs to insights, content, and action.",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Craft at the highest level of creative.",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Unify content, data and work with AI.",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Students save big on the top tools.",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Organizations",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Industries",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Acrobat for Business",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Help",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      },
-      {
-        "text": "Learn",
-        "total": 5,
-        "pageCount": 5,
-        "level": 2
-      }
-    ],
+    "headingFrequency": [],
     "toneMetrics": {
-      "headingsTotal": 237,
-      "headingsUppercasePercent": 3,
-      "distinctHeadings": 132,
-      "distinctCtaLabels": 28
+      "headingsTotal": 15,
+      "headingsUppercasePercent": 0,
+      "distinctHeadings": 15,
+      "distinctCtaLabels": 19
+    },
+    "_provenance": {
+      "notes": "Single page → headingFrequency requires pageCount>=3 and is empty. Headings are sentence-case (0% uppercase); CTA vocabulary is small and benefit-led."
     }
   },
   "crossPromo": {
-    "detected": false,
-    "anchorHeading": null,
-    "cluster": [],
-    "pages": [],
-    "pageCount": 0,
-    "totalPages": 5
+    "detected": false
   },
   "register": "brand"
 }

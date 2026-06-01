@@ -1,455 +1,163 @@
 {
   "_provenance": {
     "writtenBy": "stardust:extract",
-    "writtenAt": "2026-05-27T17:39:29.906Z",
-    "stardustVersion": "0.2.0"
+    "writtenAt": "2026-06-01",
+    "readArtifacts": [
+      "file:///Users/victor/Downloads/bizpro-hub-prototype/bizpro-hub.html",
+      "stardust/current/_brand-extraction.json",
+      "stardust/current/DESIGN.md"
+    ],
+    "synthesizedInputs": [],
+    "stardustVersion": "0.10.0",
+    "note": "Descriptive sidecar for the EXISTING prototype. extensions.componentStyle/motifs/voice carry the v1 brand-surface arrays so nothing is lost."
   },
-  "colors": {
-    "background": "rgb(0, 0, 0)",
-    "text-primary": "rgb(255, 255, 255)",
-    "primary": "rgba(0, 0, 0, 0.04)",
-    "surface": "rgb(19, 19, 19)",
-    "secondary": "rgb(238, 238, 238)",
-    "accent-1": "rgb(44, 44, 44)"
-  },
-  "typography": {
-    "display": "Adobe Clean Display Black",
-    "body": "Adobe Clean"
-  },
-  "rounded": "16px",
-  "spacing": {
-    "base": 8
-  },
-  "components": [],
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-01",
+  "title": "Design System: BizPro Hub",
   "extensions": {
+    "colorMeta": {
+      "adobe-blue": { "role": "primary", "displayName": "Adobe Blue", "canonical": "#3b63fb", "tonalRamp": ["#0a1a6b", "#16299e", "#1f3bca", "#274dea", "#3b63fb", "#6a8bfc", "#9db3fd", "#cdd9fe"] },
+      "blue-deep": { "role": "primary", "displayName": "Blue Deep", "canonical": "#274dea", "tonalRamp": ["#08134d", "#102291", "#1a35c0", "#274dea", "#5675f0", "#869ef5", "#b5c4f9", "#dde5fd"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#000000", "tonalRamp": ["#000000", "#131313", "#292929", "#505050", "#717171", "#8f8f8f", "#c6c6c6", "#e9e9e9"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#ffffff", "tonalRamp": ["#dadada", "#e1e1e1", "#e9e9e9", "#f3f3f3", "#f8f8f8", "#fbfbfb", "#fdfdfd", "#ffffff"] },
+      "warm-stone": { "role": "neutral", "displayName": "Warm Stone", "canonical": "#eceae7", "tonalRamp": ["#3a3733", "#5c5852", "#85807a", "#aaa49c", "#cac4bb", "#eceae7", "#f4f2ef", "#fbfaf8"] },
+      "cloud": { "role": "neutral", "displayName": "Cloud", "canonical": "#f8f8f8", "tonalRamp": ["#8f8f8f", "#c6c6c6", "#dadada", "#e9e9e9", "#f3f3f3", "#f8f8f8", "#fcfcfc", "#ffffff"] },
+      "gray-700": { "role": "neutral", "displayName": "Gray 700", "canonical": "#505050", "tonalRamp": ["#131313", "#292929", "#505050", "#717171", "#8f8f8f", "#c6c6c6", "#e1e1e1", "#f3f3f3"] },
+      "adobe-red": { "role": "secondary", "displayName": "Adobe Red", "canonical": "#eb1000", "tonalRamp": ["#4d0500", "#7a0900", "#b00c00", "#eb1000", "#ff4a3d", "#ff7d73", "#ffb0a9", "#ffe0dc"], "note": "Reserved to the Adobe corporate wordmark; not a UI surface color." }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Title-1)", "purpose": "Hero headline only. Adobe Clean Display 900, tight negative tracking." },
+      "headline": { "displayName": "Headline (Title-2)", "purpose": "Section titles. 56px / 900." },
+      "title": { "displayName": "Title-4", "purpose": "Product-tile names and small headings. 24px / 900." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy; ink@64% on light, white tints on dark." },
+      "eyebrow": { "displayName": "Eyebrow", "purpose": "Section kickers; 700, sentence case." },
+      "label": { "displayName": "Label", "purpose": "Button/UI text; 700." }
+    },
+    "shadows": [
+      { "name": "nav-lift", "value": "0 2px 12px rgba(0,0,0,0.08)", "purpose": "Fixed nav pill after scroll (.nav.scrolled)." },
+      { "name": "control-lift", "value": "0 1px 8px rgba(0,0,0,0.14)", "purpose": "Floating carousel arrows." },
+      { "name": "ambient-upward", "value": "0 -45px 45px rgba(0,0,0,0.1), 0 -11px 25px rgba(0,0,0,0.1)", "purpose": "Soft upward glow under sticky/overlay scroll elements." }
+    ],
+    "motion": [
+      { "name": "duration-fast", "value": "200ms", "purpose": "Button/state transitions." },
+      { "name": "duration-base", "value": "400ms", "purpose": "Larger transitions." },
+      { "name": "easing-default", "value": "cubic-bezier(0.42, 0, 0, 1)", "purpose": "Default easing across the system." },
+      { "name": "scroll-runtime", "value": "Lenis smooth scroll (assets/lenis.min.js)", "purpose": "Drives hero video scale, parallax, and scroll choreography." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px", "note": "container side margin switches to 8.333vw" },
+      { "name": "xl", "value": "1441px", "note": "container max-width 1920px, centered" }
+    ],
     "componentStyle": {
       "buttons": {
-        "primary": {
-          "backgroundColor": "rgb(0, 0, 0)",
-          "color": "rgb(255, 255, 255)",
-          "fontFamily": "\"Adobe Clean\", adobe-clean, \"Trebuchet MS\", sans-serif",
-          "fontWeight": "700",
-          "borderRadius": "75px",
-          "padding": "16px 24px 16px 24px",
-          "boxShadow": "none"
-        },
-        "secondary": {
-          "backgroundColor": "rgba(0, 0, 0, 0.04)",
-          "color": "rgb(0, 0, 0)",
-          "fontFamily": "\"Adobe Clean\", adobe-clean, \"Trebuchet MS\", sans-serif",
-          "fontWeight": "700",
-          "borderRadius": "75px",
-          "padding": "16px 24px 16px 24px",
-          "boxShadow": "none"
-        }
+        "primary": { "background": "#3b63fb", "color": "#ffffff", "borderRadius": "999px", "padding": "0 24px", "height": "40px", "fontWeight": 700, "shadow": null, "hoverDelta": "background → #274dea" },
+        "dark": { "background": "#000000", "color": "#ffffff", "borderRadius": "999px", "padding": "0 24px", "height": "40px", "fontWeight": 700, "hoverDelta": "background → #1a1a1a" },
+        "outline": { "background": "transparent", "color": "#000000", "borderRadius": "999px", "border": "1.5px solid #000000", "fontWeight": 700, "hoverDelta": "background → rgba(0,0,0,0.04)" },
+        "ghostWhite": { "background": "transparent", "color": "#ffffff", "borderRadius": "999px", "border": "1.5px solid #ffffff", "backdropFilter": "blur(16px)", "fontWeight": 700, "hoverDelta": "background → rgba(255,255,255,0.08)" }
       },
-      "cards": {},
-      "inputs": {}
+      "dualCTAPattern": "primary-then-outline",
+      "cards": { "background": "#eceae7 / #f8f8f8", "borderRadius": "16px", "padding": "24px", "shadow": null, "border": "subtle / none" },
+      "inputs": { "borderRadius": "0px", "padding": "16px", "border": "none", "background": "rgba(255,255,255,0.1)", "placeholder": "Ask anything", "focusRing": null, "note": "Only field is the AI search bar on the dark act." },
+      "nav": { "container": "fixed pill, rgba(255,255,255,0.64) + backdrop-filter blur(128px), radius 16px, height 64px", "scrolledShadow": "0 2px 12px rgba(0,0,0,0.08)" }
     },
     "motifs": {
-      "borderRadius": {
-        "primary": "16px",
-        "secondary": "999px",
-        "pill": null,
-        "primarySources": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ],
-        "occurrences": {
-          "2": 1,
-          "6": 2,
-          "8": 2,
-          "12": 1,
-          "16": 10,
-          "32": 1,
-          "75": 1,
-          "999": 9
-        }
-      },
-      "shadows": [],
-      "gradients": [],
-      "patterns": []
+      "borderRadius": { "primary": "16px", "secondary": "12px", "pill": "999px", "section-top": "32px", "circular": "50%" },
+      "shadows": ["0 2px 12px rgba(0,0,0,0.08)", "0 1px 8px rgba(0,0,0,0.14)", "0 -45px 45px rgba(0,0,0,0.1)"],
+      "gradients": [
+        "linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2) 31%, transparent)",
+        "linear-gradient(rgba(0,0,0,0) 50.5%, rgb(0,0,0) 101%)",
+        "linear-gradient(rgb(0,0,0), rgba(0,0,0,0) 45%, transparent)"
+      ],
+      "patterns": ["hero-with-scroll-video", "card-carousel", "feature-3up", "tutorial-carousel", "pricing-tabs", "product-mnemonic-grid", "ai-search-bar", "footer-mega"]
     },
     "voice": {
-      "register": "brand",
-      "heroHeadline": "DA Playground",
-      "tone": {
-        "guess": "professional",
-        "evidence": "Document Cloud / Acrobat: productivity-focused, professional register"
-      },
-      "ctaSamples": [
-        "Featured",
-        "Content Creation",
-        "Acrobat & PDF",
-        "Photography",
-        "Video",
-        "Design",
-        "Marketing & Data",
-        "GenStudio\n        Scale your content supply chain."
-      ],
+      "heroHeadline": "Work faster, smarter, and more securely with Adobe.",
+      "heroSubcopy": "Streamline the way you work, communicate, and transact business. Plus, get AI-powered assistance, APIs and integrations, and built-in security tools.",
+      "primaryCTALabel": "Buy now",
+      "ctaSamples": ["View Pricing", "Buy now", "Learn more", "Free trial", "Download now", "Sign In"],
+      "navItems": ["Use Cases", "PDF & Productivity", "Acrobat", "Express", "Sign", "Scan"],
+      "footerHeadings": ["For individuals & small business", "For medium & large business", "For Organizations", "Support", "Contact", "Adobe", "Featured Products"],
+      "tone": "professional-warm",
       "examples": {
-        "do": [],
-        "dont": []
+        "do": ["Work faster, smarter, and more securely with Adobe.", "Do it all with the power of Acrobat.", "Real teams. Real work. Real impact."],
+        "dont": ["UNLOCK YOUR PRODUCTIVITY TODAY!!!", "The #1 AI-powered all-in-one synergy platform"]
       }
-    },
-    "systemComponents": [
-      {
-        "type": "repeated-heading",
-        "text": "Create quickly and easily with AI models.",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Transform PDFs to insights, content, and action.",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Craft at the highest level of creative.",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Unify content, data and work with AI.",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Students save big on the top tools.",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Organizations",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Industries",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Acrobat for Business",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Help",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Learn",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Community",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "More resources",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Frequently Asked Questions",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "How much does Creative Cloud cost?",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Is there a free version of Photoshop?",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Is there a free online version of Photoshop?",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Is there student pricing for Photoshop?",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Are there generative AI features for Photoshop?",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Do my external clients need to have an account?",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "How do I install Photoshop (beta) with the new generative AI features?",
-        "pageCount": 2,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Manifests",
-        "pageCount": 4,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Toggles\n      \n    \n    \n    \n    \n    \n      Fragment Color Key\n      \n        \n        MEP Manifest\n         \n        Lingo Regional\n        \n        Lingo Fallback\n        \n        Other",
-        "pageCount": 4,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Fragment Color Key",
-        "pageCount": 4,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Page",
-        "pageCount": 4,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Consent",
-        "pageCount": 4,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Lingo",
-        "pageCount": 4,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "M@S",
-        "pageCount": 4,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Diese Adobe-Site passt nicht zu deinem Standort",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Ce site Adobe ne correspond pas à votre zone géographique",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Questo sito Adobe non corrisponde alla tua posizione geografica",
-        "pageCount": 5,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-plans",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub",
-          "drafts__vhargrave__homepage"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Find what you’re looking for.",
-        "pageCount": 3,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      },
-      {
-        "type": "repeated-heading",
-        "text": "Explore what you can do with Adobe apps.",
-        "pageCount": 3,
-        "pages": [
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-offer",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-product",
-          "dc-shared__fragments__tests__2026__q2__ace1205__fragments__ace1205-bizpro-hub"
-        ]
-      }
-    ],
-    "scaleAudit": {
-      "kind": "ad-hoc",
-      "ratios": [],
-      "matchedScale": null
     }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill primary action; the only saturated element in the system.",
+      "html": "<button class=\"ds-btn-primary\">View Pricing</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:6px; height:40px; padding-inline:24px; border:1.5px solid transparent; border-radius:999px; background:#3b63fb; color:#fff; font-family:'adobe-clean',sans-serif; font-size:14px; font-weight:700; letter-spacing:0; transition:background 200ms cubic-bezier(0.42,0,0,1); cursor:pointer; } .ds-btn-primary:hover { background:#274dea; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action; 1.5px black hairline pill.",
+      "html": "<button class=\"ds-btn-outline\">Sign In</button>",
+      "css": ".ds-btn-outline { display:inline-flex; align-items:center; justify-content:center; height:40px; padding-inline:24px; border:1.5px solid #000; border-radius:999px; background:transparent; color:#000; font-family:'adobe-clean',sans-serif; font-size:14px; font-weight:700; transition:background 200ms cubic-bezier(0.42,0,0,1); cursor:pointer; } .ds-btn-outline:hover { background:rgba(0,0,0,0.04); }"
+    },
+    {
+      "name": "Ghost-White Button",
+      "kind": "button",
+      "refersTo": "button-ghost-white",
+      "description": "Action over imagery / dark act; translucent white hairline with backdrop blur.",
+      "html": "<button class=\"ds-btn-ghost\">Learn more</button>",
+      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; justify-content:center; height:40px; padding-inline:24px; border:1.5px solid #fff; border-radius:999px; background:transparent; color:#fff; backdrop-filter:blur(16px); font-family:'adobe-clean',sans-serif; font-size:14px; font-weight:700; transition:background 200ms cubic-bezier(0.42,0,0,1); cursor:pointer; } .ds-btn-ghost:hover { background:rgba(255,255,255,0.08); }"
+    },
+    {
+      "name": "Translucent Nav Pill",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Fixed, blurred, translucent top nav pill that gains a shadow on scroll.",
+      "html": "<nav class=\"ds-nav\"><img src=\"logo.svg\" alt=\"Adobe\" height=\"16\"><span>PDF &amp; Productivity</span></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:24px; height:64px; padding-inline:16px; border-radius:16px; background:rgba(255,255,255,0.64); backdrop-filter:blur(128px); box-shadow:0 2px 12px rgba(0,0,0,0.08); font-family:'adobe-clean',sans-serif; font-weight:700; }"
+    },
+    {
+      "name": "Stone Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat warm-stone content/asset card; no resting shadow.",
+      "html": "<div class=\"ds-card\"><h3>Adobe Acrobat</h3><p>The complete AI-powered PDF and design solution for business workflows.</p></div>",
+      "css": ".ds-card { background:#eceae7; border-radius:16px; padding:24px; } .ds-card h3 { font-family:'adobe-clean-display',sans-serif; font-weight:900; font-size:24px; line-height:1; letter-spacing:-0.48px; margin:0 0 8px; } .ds-card p { font-family:'adobe-clean',sans-serif; font-size:16px; line-height:1.25; color:rgba(0,0,0,0.64); margin:0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Spectrum Showroom",
+    "overview": "BizPro Hub is an Adobe marketing landing page rendered with the Adobe Spectrum 2 token system and the proprietary Adobe Clean / Adobe Clean Display typefaces. Corporate-premium and product-forward, it runs a deliberate two-act structure: a bright upper half on white and warm-stone surfaces handing off to a black lower half where full-bleed imagery and white type carry the weight. Depth comes from layering, scrim gradients, and the act change — not drop shadows.",
+    "keyCharacteristics": [
+      "Spectrum-2 token vocabulary (--s2a-*): discrete color, type, spacing, radius scales.",
+      "Adobe Clean Display 900 for every heading; Adobe Clean 400/700 for body.",
+      "Two-act light→dark page structure; white type over imagery on the dark act.",
+      "Fully pill-shaped (999px) button system in four variants.",
+      "Motion-aware: scroll-scaled hero video, parallax, carousels (Lenis smooth scroll)."
+    ],
+    "rules": [
+      { "name": "The Single-Voice Blue Rule", "body": "Exactly one chroma: #3b63fb is the sole saturated color, on primary actions and links only — never as a section ground.", "section": "colors" },
+      { "name": "The Two-Act Rule", "body": "White above, black below; the handoff happens once at the Acrobat Studio banner and the lower act commits fully to white-on-black.", "section": "colors" },
+      { "name": "The Black-Display Rule", "body": "Every heading is Adobe Clean Display weight 900; there is no light or regular display cut in use.", "section": "typography" },
+      { "name": "The Sentence-Case Rule", "body": "Headings and eyebrows are sentence case, never uppercased.", "section": "typography" },
+      { "name": "The Flat-Surface Rule", "body": "Cards and sections are flat at rest; the only resting elevation is the translucent blurred nav.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Adobe Blue (#3b63fb) as the only saturated color — primary actions and links exclusively.",
+      "Do set every heading in Adobe Clean Display weight 900 with negative tracking and sub-1.0 line-height.",
+      "Do respect the two-act structure: white/warm-stone upper act, pure-black lower act with white type.",
+      "Do keep buttons fully pill-shaped (999px) across all four variants.",
+      "Do use scrim gradients (not box-shadows) for white-text-over-image legibility.",
+      "Do reserve Adobe Red (#eb1000) to the corporate wordmark."
+    ],
+    "donts": [
+      "Don't introduce a second accent hue or use blue as a section background.",
+      "Don't uppercase headings or eyebrows — the system is sentence-case.",
+      "Don't add resting drop-shadows to cards or sections; surfaces are flat.",
+      "Don't ship the AI search input without a visible focus ring (current a11y gap).",
+      "Don't substitute generic system fonts for Adobe Clean; the cuts are proprietary.",
+      "Don't swap the hero video for a static image without re-checking the scroll choreography."
+    ]
   }
 }

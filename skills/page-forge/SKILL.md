@@ -121,6 +121,10 @@ so "only people with repo Write can push" still holds. The agent only ever sees 
   `aem publish <path>`. Wraps the DA/AEM admin API with Adobe OAuth. Use instead of curl.
 - **`mount --source da://adobecom/da-playground /mnt/da`** — DA as a filesystem (Adobe OAuth).
 - **`scripts/figma-fetch.jsh`** — optional Figma REST structure + `/images` raster export.
+- **`scripts/inject-c2-brand.jsh`** — Reimagine: overwrite the stardust capture's brand with the
+  canonical C2 surface (mandatory, fail-loud). See `references/redesign.md`.
+- **`scripts/collect-prototype.jsh`** — Reimagine: prepare a stardust prototype for the preview
+  iframe (rewrite local `assets/media/` refs → live URLs so images render; inline lenis for cinematic).
 - **`scripts/deploy.jsh`** — commit + push the `forge-proto-*` substrate branch.
 
 ## Sprinkle ⇄ scoop protocol
@@ -266,8 +270,11 @@ renders pasted HTML for Match itself). Emit `phase:"generate"`.
    non-zero exit as a hard `error`)** → then `data.intent` present → `stardust:direct "<intent>"` →
    `stardust:prototype` (1 variant); blank → `stardust:uplift` against the existing capture
    (do NOT re-extract / overwrite the injected brand) → 3–4 variants.
-2. Emit **one `action:"preview"` per variant** — `stage:"redesigned"`, with `label`
-   (`"Redesign"`, or `"Variant A/B/C"`, `"Variant C — cinematic"`), `v` incrementing. **Then STOP.**
+2. For **each** prototype, run **`scripts/collect-prototype.jsh <prototype> <workdir>`** (rewrites
+   local `assets/media/` refs → live URLs so images render in the `srcdoc` iframe; inlines lenis for
+   the cinematic), then emit **one `action:"preview"` per variant** from its `out` file —
+   `stage:"redesigned"`, with `label` (`"Redesign"`, or `"Variant A/B/C"`, `"Variant C — cinematic"`),
+   `v` incrementing. **Then STOP.**
 
 Either way: no git, no snowflake, no `aem`, no deploy. The designer decides next from the panel.
 
