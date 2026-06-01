@@ -1,7 +1,7 @@
 ## Adobe.com brand language (Consonant 2 / C2)
 
 You are redesigning a page for adobe.com. Adobe.com uses the **Consonant 2**
-design system. Source: milo at /Users/victor/dev/milo. **This is the most important section
+design system. Source: live Milo C2 checkout (libs/c2). **This is the most important section
 of your brief — read it carefully.** Output that ignores these patterns
 won't look like Adobe.com, full stop.
 
