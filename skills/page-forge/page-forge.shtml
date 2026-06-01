@@ -8,7 +8,17 @@
     :root {
       --bg: #0f1115; --panel: #181b22; --panel2: #11141a; --line: #2a2f3a;
       --txt: #e6e8ec; --muted: #9aa3b2; --accent: #6aa1ff; --ok: #4ade80; --err: #f87171;
+      --soft: #1b2230; --accent-fg: #0b1020;
       --radius: 10px; font-family: system-ui, -apple-system, sans-serif;
+      color-scheme: dark;
+    }
+    /* Light mode: SLICC toggles `.theme-light` on this iframe's <html> when the
+       window theme is light (see sprinkle-renderer's `slicc-theme` bridge). */
+    :root.theme-light {
+      --bg: #f6f7f9; --panel: #ffffff; --panel2: #f1f3f6; --line: #d8dce4;
+      --txt: #14171c; --muted: #5a6473; --accent: #2563eb; --ok: #15803d; --err: #dc2626;
+      --soft: #eef2ff; --accent-fg: #ffffff;
+      color-scheme: light;
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--bg); color: var(--txt); padding: 16px; }
@@ -20,7 +30,7 @@
     .tabs { display: flex; gap: 6px; margin-bottom: 8px; }
     .tab { flex: 1; padding: 8px; text-align: center; font-size: 13px; cursor: pointer;
            background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
-    .tab.active { color: var(--txt); border-color: var(--accent); background: #1b2230; }
+    .tab.active { color: var(--txt); border-color: var(--accent); background: var(--soft); }
     input[type=text], textarea {
       width: 100%; background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
       color: var(--txt); padding: 9px; font-size: 13px; font-family: inherit; }
@@ -28,10 +38,10 @@
     .hidden { display: none; }
     .hint { font-size: 11px; color: var(--muted); margin-top: 6px; }
     button.primary { width: 100%; margin-top: 12px; padding: 11px; font-size: 14px; font-weight: 600;
-      background: var(--accent); color: #0b1020; border: 0; border-radius: 8px; cursor: pointer; }
+      background: var(--accent); color: var(--accent-fg); border: 0; border-radius: 8px; cursor: pointer; }
     button.primary:disabled { opacity: .5; cursor: default; }
     button.publish { background: var(--ok); }
-    button.ghost { padding: 9px 12px; font-size: 13px; font-weight: 600; background: #1b2230;
+    button.ghost { padding: 9px 12px; font-size: 13px; font-weight: 600; background: var(--soft);
       color: var(--txt); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
     button.ghost:disabled { opacity: .5; cursor: default; }
 
@@ -39,13 +49,13 @@
     .segmented { display: flex; gap: 6px; }
     .seg { flex: 1; padding: 8px; text-align: center; font-size: 13px; cursor: pointer;
       background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
-    .seg.active { color: var(--txt); border-color: var(--accent); background: #1b2230; }
+    .seg.active { color: var(--txt); border-color: var(--accent); background: var(--soft); }
 
     /* Version chips */
     .vstrip { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
     .vchip { padding: 4px 10px; font-size: 12px; border-radius: 999px; cursor: pointer;
       background: var(--panel2); border: 1px solid var(--line); color: var(--muted); }
-    .vchip.active { color: var(--txt); border-color: var(--accent); background: #1b2230; }
+    .vchip.active { color: var(--txt); border-color: var(--accent); background: var(--soft); }
     .vchip.ghost { color: var(--accent); border-style: dashed; cursor: default; }
     .vchip .tag { color: var(--muted); font-size: 10px; margin-left: 4px; }
 
@@ -109,7 +119,7 @@
     .check.missing .ico { color: var(--muted); }
     .check .label { color: var(--txt); }
     .check .fix { color: var(--muted); display: block; margin-top: 2px; }
-    button.recheck { margin-top: 6px; padding: 7px 10px; font-size: 12px; background: #1b2230;
+    button.recheck { margin-top: 6px; padding: 7px 10px; font-size: 12px; background: var(--soft);
       color: var(--txt); border: 1px solid var(--line); border-radius: 7px; cursor: pointer; }
     .preflight-collapsed { display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; }
     .preflight-collapsed .ico { color: var(--ok); }
