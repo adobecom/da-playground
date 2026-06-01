@@ -134,6 +134,20 @@ look.)*
 `<slug>` is the page slug extract wrote (read it from `stardust/state.json` `pages[].slug`, or the
 basename of the `*.json` under `stardust/current/pages/`).
 
+### ⚠️ Output-budget rule for uplift — write ONE variant per turn
+
+A full prototype is ~6–10KB of HTML, and **writing it to a file still spends your output budget**
+(the file content is your output). Producing all four variants (A/B/C + cinematic) in a **single
+turn** overruns the ceiling — that's what truncated the early runs after two variants. So:
+
+- **Write and save ONE variant at a time.** Finish variant A → `fs.writeFile` it to
+  `stardust/prototypes/<slug>-A-proposed.html` → then continue to B in the **next** turn, etc. Do
+  not try to emit all four in one reply.
+- **Do not stream HTML in chat** between variants; the file IS the deliverable.
+- Only after all expected files exist, run `emit-prototypes.jsh` **once** to deliver them all.
+- If a session's budget is tight, **prefer `mode: intent` (one variant)** — it always fits one turn
+  and exercises the whole pipeline. Blank-intent (4 variants) is the heavy path.
+
 ## Collect + deliver the prototypes → ONE script (do not do this by hand)
 
 Stardust writes its prototypes to `stardust/prototypes/`:

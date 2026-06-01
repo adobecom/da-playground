@@ -300,7 +300,9 @@ idea of "Adobe-ish"** (that produced the off-brand variants the first time).
    **run `scripts/inject-c2-brand.jsh <workdir>` (MANDATORY — the C2 brand injection; treat a
    non-zero exit as a hard `error`)** → then `data.intent` present → `stardust:direct "<intent>"` →
    `stardust:prototype` (1 variant); blank → `stardust:uplift` against the existing capture
-   (do NOT re-extract / overwrite the injected brand) → 3–4 variants.
+   (do NOT re-extract / overwrite the injected brand) → 3–4 variants. **Write ONE variant per turn**
+   to `stardust/prototypes/<slug>-*-proposed.html` (writing all four in one turn overruns your output
+   budget — that truncated the early runs). Tight budget → prefer intent-mode (1 variant).
 2. Run **one** command to collect + deliver — **never read prototype HTML into your own output:**
    ```
    scripts/emit-prototypes.jsh <workdir> '{"stage":"redesigned","intent":"<intent or empty>","baseV":1}'
