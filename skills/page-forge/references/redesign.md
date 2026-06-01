@@ -19,19 +19,34 @@ still be an older **C1** design. So the two halves come from two places, deliber
 That split isn't stardust's default (it assumes one site gives both look + content), so the
 scoop runs it in **two phases with a deterministic injection in between.**
 
-## Prerequisites (once per workspace)
+## ⛔ The one rule that makes this work: you ORCHESTRATE, you do NOT generate
 
-Stardust + its hard dependency impeccable must be installed so the agent finds them:
+**The prototype HTML must come out of the stardust engine as files on disk. You (the scoop) must
+NEVER hand-author, hand-write, or "fill in" prototype HTML yourself.** Hand-authored HTML (a) does
+not use the trained Adobe **C2** brand surface (`stardust/current/_brand-extraction.json` +
+`DESIGN.json`) — so it comes out as your generic idea of "Adobe-ish", not the trained look — and
+(b) blows your output token budget. If you find yourself writing `<html>`/`<section>` markup, or
+JSON-escaping HTML to send it, **stop — you are doing stardust's job.** Your job is: run the
+stardust sub-skills, then run `scripts/emit-prototypes.jsh` (which reads the files stardust wrote
+and delivers them). If stardust produced no prototype files, that is a hard **error**, not a cue
+to improvise.
+
+## ⛔ Prerequisites — verify BEFORE Phase 1 (hard gate, do not skip)
+
+Stardust + its hard dependency impeccable must be installed and reachable, or there is no engine and
+the whole pipeline degrades to you faking it. **Check first:** `stardust` and `impeccable` must be
+reachable as `.claude/skills/stardust` and `.claude/skills/impeccable` from the **working
+directory** (symlink the installed skills into `<workdir>/.claude/skills/` if needed, mirroring the
+snowflake-deploy skill-loading pattern). If they are NOT reachable, **do not proceed and do not
+improvise** — emit `action:"error"` telling the user to install them:
 
 ```
 upskill adobe/skills --path plugins/stardust --all
 upskill pbakaus/impeccable
 ```
 
-They must be reachable as `.claude/skills/stardust` and `.claude/skills/impeccable` from the
-**working directory** (symlink the installed skills into `<workdir>/.claude/skills/` if needed,
-mirroring the snowflake-deploy skill-loading pattern). Stardust runs best on **Opus + extended
-thinking** (flagged by Karl Pauls) — use that model for both phases.
+Stardust runs best on **Opus + extended thinking** (flagged by Karl Pauls) — use that model for both
+phases.
 
 ## Inputs in the working directory
 
@@ -114,30 +129,35 @@ look.)*
 `<slug>` is the page slug extract wrote (read it from `stardust/state.json` `pages[].slug`, or the
 basename of the `*.json` under `stardust/current/pages/`).
 
-## Collect the prototypes → emit a preview per variant
+## Collect + deliver the prototypes → ONE script (do not do this by hand)
 
-The prototypes land under `stardust/prototypes/`:
-- intent flow → `<slug>-proposed.html` → one version, label `Redesign`.
-- uplift flow → `<slug>-A-proposed.html`, `<slug>-B-proposed.html`, `<slug>-C-proposed.html`,
-  `<slug>-C-cinematic.html` → variants labelled `Variant A` / `Variant B` / `Variant C` /
-  `Variant C — cinematic`.
+Stardust writes its prototypes to `stardust/prototypes/`:
+- intent flow → `<slug>-proposed.html` (one variant, labelled `Redesign`).
+- uplift flow → `<slug>-A-proposed.html` / `-B-` / `-C-` + `<slug>-C-cinematic.html`
+  (`Variant A` / `B` / `C` / `Variant C — cinematic`).
 
-### Prepare each prototype for the preview (MANDATORY — run the script)
-
-stardust prototypes reference the **downloaded local** images (`../current/assets/media/<name>`),
-which **never render in the panel's `srcdoc` iframe** (no base URL — and extract sometimes skips the
-media download entirely). Run, **per prototype**:
+**Do NOT read these files into your context and emit preview licks yourself** — that is what blew
+the output budget (4 × 6-9KB of HTML through your output) and tempted hand-authoring. Instead run
+**one** deterministic script that discovers the files, prepares them, and delivers them as chunked
+`preview-chunk` messages straight to the panel — **without any HTML passing through you:**
 
 ```
-scripts/collect-prototype.jsh <prototype-html-path> <workdir>
+scripts/emit-prototypes.jsh <workdir> '{"stage":"redesigned","intent":"<intent or empty>","baseV":1}'
 ```
 
-It (a) rewrites every local `assets/media/` ref to the **original absolute source URL** (from the
-page capture's media map) so images load over the network, and (b) inlines `lenis.min.{js,css}` into
-the cinematic prototype so it's self-contained. It writes a sibling `<name>.forge.html` and prints
-`{ out, rewritten, lenisInlined }`. **Don't hand-rewrite the URLs** — string-rewriting is exactly
-what the script does deterministically.
+(`baseV` = the first variant's version number: `1` for a fresh Reimagine, `fromV+1` for a refine.)
 
-Read the `out` file and emit one `preview` lick per variant (stage `redesigned`, with the
-`variant`/`label`). After all variants are emitted, **STOP** — Reimagine is preview-only; never
+It (a) **fails loud (non-zero exit) if `stardust/prototypes/` has no `*-proposed.html`** — that means
+stardust did NOT run, so emit `action:"error"` and **do not fabricate variants**; (b) rewrites local
+`assets/media/` refs → absolute source URLs so images render in the `srcdoc` iframe; (c) inlines
+`lenis.min.{js,css}` for the cinematic; (d) sends each variant in chunks (the panel reassembles by
+`id`). It prints `{ emitted, variants:[{v,label,chunks,bytes}] }`.
+
+If `emit-prototypes.jsh` exits non-zero with "stardust did NOT run", the engine isn't installed/
+reachable or the design phase produced nothing — **emit `action:"error"` with that reason. Never
+substitute hand-written HTML.** After a successful emit, **STOP** — Reimagine is preview-only; never
 deploy (no `data.da` is present, by design).
+
+*(`scripts/collect-prototype.jsh` remains for one-off single-file prep, but the normal path is
+`emit-prototypes.jsh`, which handles discovery, the postcondition guard, prep, and delivery in one
+deterministic pass.)*

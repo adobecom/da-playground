@@ -172,13 +172,15 @@ The scoop pushes back:
 sprinkle send page-forge '{"action":"check","key":"adobe|figma|github","status":"ok|missing","fix":"…"}'
 sprinkle send page-forge '{"action":"preflight-done","ready":true}'
 sprinkle send page-forge '{"action":"update","phase":"generate|refine|deploy","status":"…"}'
-# After EVERY generate variant / refine: stream the version's HTML so the panel shows it in the
-# preview iframe and adds a version chip. stage: "bespoke" (Match 1:1) | "redesigned" (Reimagine).
-# For Reimagine, include `label` ("Redesign", or "Variant A/B/C", "Variant C — cinematic") so the
-# panel labels the chip; emit one preview PER variant.
+# MATCH / Figma (1:1): stream the version's HTML inline so the panel shows it + adds a chip.
+# stage "bespoke". Match payloads are produced by you, so the inline form is fine here.
 sprinkle send page-forge '{"action":"preview","v":1,"stage":"bespoke","intent":"","html":"<full HTML>"}'
-sprinkle send page-forge '{"action":"preview","v":1,"stage":"redesigned","intent":"<intent>","label":"Variant A","html":"<full HTML>"}'
-sprinkle send page-forge '{"action":"preview","v":2,"stage":"redesigned","intent":"<intent>","label":"Variant B","html":"<full HTML>"}'
+# REIMAGINE / refine: do NOT emit preview yourself — run scripts/emit-prototypes.jsh, which sends
+# the stardust prototype files as chunked `preview-chunk` messages (panel reassembles by `id`). This
+# keeps HTML OUT of your output budget and forbids hand-authoring. The script emits, per chunk:
+#   {"action":"preview-chunk","id":"v1-Variant_A","seq":0,"total":2,"v":1,"stage":"redesigned",
+#    "intent":"<intent>","label":"Variant A","data":"<≤6KB slice of the HTML>"}
+# (label ∈ "Redesign" | "Variant A/B/C" | "Variant C — cinematic"). You never build these by hand.
 # done — only after DEPLOY. The panel swaps the preview to the live URL and shows a report.
 sprinkle send page-forge '{"action":"done","url":"https://forge-proto-…--da-playground--adobecom.aem.page/<slug>","slug":"<slug>","branchUrl":"…","branchName":"forge-proto-…","sha":"<full-sha>"}'
 sprinkle send page-forge '{"action":"error","message":"…"}'
@@ -285,29 +287,48 @@ renders pasted HTML for Match itself). Emit `phase:"generate"`.
    `output/v<finalVersion>.html`. **Then STOP.**
 
 **`mode:'reimagine'` (url only) — two-phase Stardust, several minutes:**
+
+⛔ **You ORCHESTRATE stardust; you do NOT generate HTML.** The prototype HTML must come from the
+stardust engine as files under `stardust/prototypes/`. **Never hand-author, "fill in", or
+JSON-escape prototype HTML yourself** — hand-authored HTML ignores the trained C2 brand surface (so
+it looks generically "Adobe-ish", not like the trained brand) and exhausts your output budget. If
+you catch yourself writing markup, stop: that is stardust's job.
+
+0. **Gate:** verify `.claude/skills/stardust` **and** `.claude/skills/impeccable` are reachable
+   (impeccable is stardust's hard dependency). If either is missing, emit `action:"error"` telling
+   the user to `upskill adobe/skills --path plugins/stardust --all` and `upskill pbakaus/impeccable`
+   — **do not improvise a redesign.**
 1. Follow **`references/redesign.md`** exactly: `stardust:extract <url> --single` (content) →
    **run `scripts/inject-c2-brand.jsh <workdir>` (MANDATORY — the C2 brand injection; treat a
    non-zero exit as a hard `error`)** → then `data.intent` present → `stardust:direct "<intent>"` →
    `stardust:prototype` (1 variant); blank → `stardust:uplift` against the existing capture
    (do NOT re-extract / overwrite the injected brand) → 3–4 variants.
-2. For **each** prototype, run **`scripts/collect-prototype.jsh <prototype> <workdir>`** (rewrites
-   local `assets/media/` refs → live URLs so images render in the `srcdoc` iframe; inlines lenis for
-   the cinematic), then emit **one `action:"preview"` per variant** from its `out` file —
-   `stage:"redesigned"`, with `label` (`"Redesign"`, or `"Variant A/B/C"`, `"Variant C — cinematic"`),
-   `v` incrementing. **Then STOP.**
+2. Run **one** command to collect + deliver — **never read prototype HTML into your own output:**
+   ```
+   scripts/emit-prototypes.jsh <workdir> '{"stage":"redesigned","intent":"<intent or empty>","baseV":1}'
+   ```
+   It discovers `stardust/prototypes/<slug>-*-proposed.html` (+ cinematic), prepares them (media
+   URLs + lenis), and sends each as chunked `preview-chunk` messages the panel reassembles — so **no
+   HTML passes through you.** **If it exits non-zero ("stardust did NOT run"), stardust produced no
+   files: emit `action:"error"` with that reason — do NOT fabricate variants.** **Then STOP.**
 
 Either way: no git, no snowflake, no `aem`, no deploy. The designer decides next from the panel.
 
 ### `refine` → preview only (repeatable, NEVER deploy)
 
 1. Take `data.fromHtml` as the base (it's handed to you — do not look for a stored file);
-   emit `phase:"refine"`.
+   emit `phase:"refine"`. Same gate as reimagine: stardust **and** impeccable must be reachable, or
+   emit `action:"error"` — never hand-author the redesign.
 2. Follow `references/redesign.md` in **intent mode** (one variant): write `fromHtml` to
    `input/current.html`, `stardust:extract file://… --single`, **`scripts/inject-c2-brand.jsh`
    (MANDATORY)**, `stardust:direct "<intent>"` → `stardust:prototype`. Empty intent = default C2
    redesign. (Never inject the C2 brief into a Figma *extract* — redesign only.)
-3. Emit **`action:"preview"` with `v:<fromV+1>, stage:"redesigned", intent:<the intent>`** and the
-   redesigned HTML. **Then STOP.** No deploy — the designer keeps refining until they pick a version.
+3. Deliver with the same script (no HTML through your output):
+   ```
+   scripts/emit-prototypes.jsh <workdir> '{"stage":"redesigned","intent":"<the intent>","baseV":<fromV+1>}'
+   ```
+   Non-zero exit ("stardust did NOT run") → emit `action:"error"`, never fabricate. **Then STOP.**
+   No deploy — the designer keeps refining until they pick a version.
 
 ### `deploy` → publish (the ONLY action that snowflakes/pushes)
 
