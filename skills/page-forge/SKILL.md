@@ -288,16 +288,14 @@ renders pasted HTML for Match itself). Emit `phase:"generate"`.
 
 **`mode:'reimagine'` (url only) — two-phase Stardust, several minutes:**
 
-⛔ **You ORCHESTRATE stardust; you do NOT generate HTML.** The prototype HTML must come from the
-stardust engine as files under `stardust/prototypes/`. **Never hand-author, "fill in", or
-JSON-escape prototype HTML yourself** — hand-authored HTML ignores the trained C2 brand surface (so
-it looks generically "Adobe-ish", not like the trained brand) and exhausts your output budget. If
-you catch yourself writing markup, stop: that is stardust's job.
+⛔ **YOU are the stardust engine.** stardust + impeccable are **markdown methodologies, not programs** —
+you read their `SKILL.md` and do the design yourself. **Do NOT `exec()` their `.mjs` scripts** (the
+only one mentioned, impeccable's `load-context.mjs`, just checks whether `PRODUCT.md`/`DESIGN.md`
+exist — read those with `fs` instead). **An ESM/`import` error from a `.mjs` is NOT a platform
+limit and NOT a reason to stop or punt to the DA tool — read the inputs directly and continue.** The
+one script you DO run is the `.jsh` brand injection. **Design to the injected C2 tokens, not your own
+idea of "Adobe-ish"** (that produced the off-brand variants the first time).
 
-0. **Gate:** verify `.claude/skills/stardust` **and** `.claude/skills/impeccable` are reachable
-   (impeccable is stardust's hard dependency). If either is missing, emit `action:"error"` telling
-   the user to `upskill adobe/skills --path plugins/stardust --all` and `upskill pbakaus/impeccable`
-   — **do not improvise a redesign.**
 1. Follow **`references/redesign.md`** exactly: `stardust:extract <url> --single` (content) →
    **run `scripts/inject-c2-brand.jsh <workdir>` (MANDATORY — the C2 brand injection; treat a
    non-zero exit as a hard `error`)** → then `data.intent` present → `stardust:direct "<intent>"` →

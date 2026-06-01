@@ -19,34 +19,39 @@ still be an older **C1** design. So the two halves come from two places, deliber
 That split isn't stardust's default (it assumes one site gives both look + content), so the
 scoop runs it in **two phases with a deterministic injection in between.**
 
-## ⛔ The one rule that makes this work: you ORCHESTRATE, you do NOT generate
+## ⛔ The one rule that makes this work: YOU are the stardust engine
 
-**The prototype HTML must come out of the stardust engine as files on disk. You (the scoop) must
-NEVER hand-author, hand-write, or "fill in" prototype HTML yourself.** Hand-authored HTML (a) does
-not use the trained Adobe **C2** brand surface (`stardust/current/_brand-extraction.json` +
-`DESIGN.json`) — so it comes out as your generic idea of "Adobe-ish", not the trained look — and
-(b) blows your output token budget. If you find yourself writing `<html>`/`<section>` markup, or
-JSON-escaping HTML to send it, **stop — you are doing stardust's job.** Your job is: run the
-stardust sub-skills, then run `scripts/emit-prototypes.jsh` (which reads the files stardust wrote
-and delivers them). If stardust produced no prototype files, that is a hard **error**, not a cue
-to improvise.
+stardust and impeccable are **markdown methodologies, not programs.** There is no separate engine to
+run — **you (the scoop) ARE the engine.** You read their `SKILL.md` procedures and produce the
+prototypes yourself, applying impeccable's craft principles and the **injected C2 brand surface**.
 
-## ⛔ Prerequisites — verify BEFORE Phase 1 (hard gate, do not skip)
+- **Do NOT `exec()` stardust/impeccable `.mjs` scripts.** The only script the methodology mentions is
+  impeccable's `scripts/load-context.mjs`, and it merely *reports whether* `PRODUCT.md`/`DESIGN.md`
+  exist at the project root. SLICC's runtime can't run ESM `.mjs` — **that is expected and harmless:**
+  just check those files yourself with `fs.exists`/`fs.readFile`. `command-metadata.json` is likewise
+  **read** (`fs.readFile` + `JSON.parse`), never executed.
+- **An `import`/ESM error from a `.mjs` is NOT a platform limitation and NOT a reason to stop.** Do
+  **not** claim stardust "can't run here", do **not** suggest a "tray runtime", do **not** punt to the
+  DA tool — that is fabricating an excuse instead of doing the work. Read the file's inputs directly
+  and continue the methodology.
+- **The ONE real script you DO run is `scripts/inject-c2-brand.jsh`** — it's a `.jsh` (works fine) and
+  it's mandatory (below).
+- **Produce real C2, not your generic idea of "Adobe-ish".** Read the injected brand surface
+  (`stardust/current/_brand-extraction.json` + `DESIGN.json`) and design to *those exact tokens*
+  (palette, type, spacing, motifs). Improvising from your own notion of Adobe styling — ignoring the
+  injected brand — is exactly what produced the off-brand variants the first time. Don't.
+- **Write each prototype to a file** at `stardust/prototypes/<slug>-*-proposed.html` (the names the
+  prototype/uplift methodology defines), then deliver with `scripts/emit-prototypes.jsh` — never
+  stream prototype HTML through your own output (it blows your token budget).
 
-Stardust + its hard dependency impeccable must be installed and reachable, or there is no engine and
-the whole pipeline degrades to you faking it. **Check first:** `stardust` and `impeccable` must be
-reachable as `.claude/skills/stardust` and `.claude/skills/impeccable` from the **working
-directory** (symlink the installed skills into `<workdir>/.claude/skills/` if needed, mirroring the
-snowflake-deploy skill-loading pattern). If they are NOT reachable, **do not proceed and do not
-improvise** — emit `action:"error"` telling the user to install them:
+## Prerequisites
 
-```
-upskill adobe/skills --path plugins/stardust --all
-upskill pbakaus/impeccable
-```
-
-Stardust runs best on **Opus + extended thinking** (flagged by Karl Pauls) — use that model for both
-phases.
+stardust + impeccable must be **installed** (reachable as `.claude/skills/stardust` and
+`.claude/skills/impeccable` from the working dir — symlink if needed). "Installed" just means the
+**markdown** `SKILL.md` files are present for you to read — nothing executes. If a skill is genuinely
+absent, emit `action:"error"` telling the user to `upskill adobe/skills --path plugins/stardust --all`
+and `upskill pbakaus/impeccable`. Do the design work on **Opus + extended thinking** (flagged by Karl
+Pauls).
 
 ## Inputs in the working directory
 
