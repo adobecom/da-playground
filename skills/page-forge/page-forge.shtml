@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Forge — Figma / URL / HTML → 1:1 DA prototype</title>
+  <title>Page Forge — Figma / URL / HTML → 1:1 DA prototype, or Stardust redesign</title>
   <style>
     :root {
       --bg: #0f1115; --panel: #181b22; --panel2: #11141a; --line: #2a2f3a;
@@ -34,6 +34,12 @@
     button.ghost { padding: 9px 12px; font-size: 13px; font-weight: 600; background: #1b2230;
       color: var(--txt); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
     button.ghost:disabled { opacity: .5; cursor: default; }
+
+    /* Segmented control (Match / Reimagine) */
+    .segmented { display: flex; gap: 6px; }
+    .seg { flex: 1; padding: 8px; text-align: center; font-size: 13px; cursor: pointer;
+      background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
+    .seg.active { color: var(--txt); border-color: var(--accent); background: #1b2230; }
 
     /* Version chips */
     .vstrip { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
@@ -86,6 +92,16 @@
     #status { font-size: 12px; color: var(--muted); margin-top: 8px; }
     #status .phase { color: var(--txt); font-weight: 600; }
 
+    /* Activity log — scrollback for the long two-phase Stardust runs */
+    .actlog { margin-top: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel2); }
+    .actlog summary { cursor: pointer; padding: 7px 10px; font-size: 12px; color: var(--muted); user-select: none; }
+    .actlog summary:hover { color: var(--txt); }
+    .actlog .lines { max-height: 200px; overflow-y: auto; border-top: 1px solid var(--line); padding: 8px 10px;
+      display: flex; flex-direction: column; gap: 3px; }
+    .actlog .line { font-family: ui-monospace, monospace; font-size: 11px; line-height: 1.5; color: var(--muted);
+      white-space: pre-wrap; word-break: break-word; }
+    .actlog .line:last-child { color: var(--txt); }
+
     /* Preflight */
     .check { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; margin: 8px 0; }
     .check .ico { width: 16px; flex: 0 0 16px; text-align: center; }
@@ -102,13 +118,14 @@
 </head>
 <body>
   <h1>Page Forge</h1>
-  <p class="sub">Paste a Figma / URL / HTML → preview a 1:1 → play with <b>Stardust</b> redesigns → <b>publish to DA</b> only when you want.</p>
+  <p class="sub">Figma / URL / HTML → a <b>1:1</b> match on DA (<b>Match</b>), or a beautiful Adobe
+    <b>Consonant&nbsp;2</b> redesign (<b>Reimagine</b> via Stardust). Preview & play freely; <b>publish to DA</b> only when you want.</p>
 
   <div class="card" id="preflight-card">
     <div id="preflight">Checking access…</div>
     <button class="recheck" id="recheck">Check access</button>
     <div class="hint" style="margin-top:8px;">
-      <b>Playing</b> (preview + Stardust) needs only Figma — and only for Figma input.
+      <b>Playing</b> (preview + Reimagine) needs only Figma — and only for Figma input.
       <b>Publishing</b> to DA needs Adobe + a GitHub token; you'll be prompted right when you create a prototype.
     </div>
   </div>
@@ -125,15 +142,33 @@
       <input type="text" id="in-figma" placeholder="https://www.figma.com/design/…?node-id=…" />
     </div>
     <div data-pane="url" class="hidden">
-      <label>Live page URL</label>
+      <label>Live page URL <span style="opacity:.7">(public — C1 or C2)</span></label>
       <input type="text" id="in-url" placeholder="https://www.adobe.com/…" />
     </div>
     <div data-pane="html" class="hidden">
       <label>Raw HTML</label>
       <textarea id="in-html" rows="6" placeholder="&lt;!doctype html&gt;…"></textarea>
     </div>
+
+    <!-- Mode (URL/HTML only — Figma is always 1:1) -->
+    <div id="mode-field" class="hidden">
+      <label>Mode</label>
+      <div class="segmented" id="mode-toggle">
+        <div class="seg active" data-mode="match">Match · 1:1</div>
+        <div class="seg" data-mode="reimagine">Reimagine</div>
+      </div>
+      <div class="hint" id="mode-hint"></div>
+    </div>
+
+    <!-- Intent (Reimagine only) -->
+    <div id="intent-field" class="hidden">
+      <label>Intent <span style="opacity:.7">(optional)</span></label>
+      <textarea id="gen-intent" rows="3"
+        placeholder='Leave blank for 3 auto variants, or describe a direction (e.g. "more editorial") for one targeted redesign'></textarea>
+    </div>
+
     <button class="primary" id="go">Generate preview</button>
-    <div class="hint">
+    <div class="hint" id="go-hint">
       Just previews here — reads your input into a faithful 1:1 HTML version (Figma frames are
       extracted; URL/HTML used as-is). <b>No branch, no DA page, no token.</b> You play first; you
       publish later only if you want.
@@ -148,19 +183,19 @@
       <span class="stage" id="preview-stage"></span>
     </div>
     <div class="preview-wrap" id="preview-wrap">
-      <div class="preview-placeholder" id="preview-placeholder">Your 1:1 preview renders here.</div>
+      <div class="preview-placeholder" id="preview-placeholder">Your preview renders here.</div>
     </div>
 
     <!-- PLAY: Stardust redesign (optional, repeatable, no token) -->
     <div style="margin-top:14px;">
-      <div class="section-label">Play — redesign with Stardust (optional, no sign-in)</div>
+      <div class="section-label">Play — Reimagine with Stardust (optional, no sign-in)</div>
       <div class="refine-row">
         <textarea id="refine-intent" class="refine-intent"
-          placeholder='Declare an intent, e.g. "make the hero darker and increase the type scale" — empty = default Consonant 2 + brand redesign'></textarea>
-        <button class="ghost" id="refine-btn">Redesign →</button>
+          placeholder='Declare an intent, e.g. "make the hero darker and increase the type scale" — empty = default Consonant 2 redesign'></textarea>
+        <button class="ghost" id="refine-btn">Reimagine →</button>
       </div>
       <div class="hint">
-        Stardust = Consonant&nbsp;2 + brand knowledge. Each redesign is a new version off the one
+        Stardust = Consonant&nbsp;2 + brand knowledge. Each Reimagine is a new version off the one
         you're viewing — iterate intents freely, all just in the preview.
       </div>
     </div>
@@ -194,14 +229,17 @@
 
   <div class="card" id="result-card" hidden><div id="result"></div></div>
   <div id="status">Paste an input and hit Generate preview.</div>
+  <details class="actlog hidden" id="actlog"><summary id="actlog-sum">Activity log</summary><div class="lines" id="actlog-lines"></div></details>
 
   <script>
     let source = 'figma';
+    let mode = 'match';        // 'match' (1:1) | 'reimagine' (stardust). url/html only.
     const checks = {};
     const DA = { org: 'adobecom', site: 'da-playground' };
-    const versions = [];      // [{ v, stage, intent, html }]
+    const versions = [];      // [{ v, stage, intent, html, label }]
     let viewedV = null;
     let pendingDeploy = false; // set when a publish click is waiting on creds
+    const actLog = [];         // accumulated run messages
     const $ = (id) => document.getElementById(id);
 
     // ── slug helpers ──────────────────────────────────────────────────────────
@@ -262,7 +300,27 @@
       const figmaOk = checks.figma && checks.figma.status === 'ok';
       const blocked = source === 'figma' && !figmaOk;
       $('go').disabled = blocked;
-      $('go').textContent = blocked ? 'Sign into Figma to use a frame' : 'Generate preview';
+      $('go').textContent = blocked ? 'Sign into Figma to use a frame' : goLabel();
+    }
+    function goLabel() {
+      if (source === 'figma') return 'Generate preview';
+      return mode === 'reimagine' ? 'Reimagine' : 'Generate · 1:1';
+    }
+
+    // Show/hide the mode toggle + intent field per source & mode.
+    function renderInputControls() {
+      const isFigma = source === 'figma';
+      const reimagine = !isFigma && mode === 'reimagine';
+      $('mode-field').classList.toggle('hidden', isFigma);
+      $('intent-field').classList.toggle('hidden', !reimagine);
+      // mode toggle active state
+      document.querySelectorAll('#mode-toggle .seg').forEach((s) =>
+        s.classList.toggle('active', s.dataset.mode === mode));
+      $('mode-hint').innerHTML = reimagine
+        ? 'Reimagine — redesign with Stardust (Consonant&nbsp;2 + brand). Runs several minutes. Blank intent → 3 auto variants; an intent → one targeted redesign.'
+        : 'Match — recreate the page 1:1 on DA via snowflake (fast). Switch to Reimagine to redesign instead.';
+      $('go-hint').classList.toggle('hidden', reimagine);
+      updateGoState();
     }
 
     // ── Tabs ──────────────────────────────────────────────────────────────────
@@ -271,7 +329,10 @@
       t.classList.add('active');
       source = t.dataset.source;
       document.querySelectorAll('[data-pane]').forEach((p) => p.classList.toggle('hidden', p.dataset.pane !== source));
-      refreshUrlHint(); updateGoState();
+      renderInputControls(); refreshUrlHint();
+    }));
+    document.querySelectorAll('#mode-toggle .seg').forEach((s) => s.addEventListener('click', () => {
+      mode = s.dataset.mode; renderInputControls();
     }));
     $('adv-toggle').addEventListener('click', () => {
       const open = $('adv-body').classList.toggle('hidden') === false;
@@ -287,13 +348,20 @@
     }
 
     // ── Versions + preview ────────────────────────────────────────────────────
+    // Short chip tag from stage/label: bespoke→"1:1"; variants→"A"/"B"/"C"/"cine"; else "stardust".
+    function chipTag(ver) {
+      if (ver.stage === 'bespoke') return '1:1';
+      const m = (ver.label || '').match(/Variant\s+([ABC])(\s*—\s*cinematic)?/i);
+      if (m) return m[2] ? 'cine' : m[1].toUpperCase();
+      return 'stardust';
+    }
     function renderVstrip() {
       const strip = $('vstrip'); strip.innerHTML = '';
       versions.forEach((ver) => {
         const chip = document.createElement('div');
         chip.className = 'vchip' + (ver.v === viewedV ? ' active' : '');
-        chip.innerHTML = 'v' + ver.v + '<span class="tag">' + (ver.stage === 'bespoke' ? '1:1' : 'stardust') + '</span>';
-        chip.title = ver.intent ? 'intent: ' + ver.intent : (ver.stage === 'bespoke' ? '1:1 preview' : 'stardust redesign');
+        chip.innerHTML = 'v' + ver.v + '<span class="tag">' + chipTag(ver) + '</span>';
+        chip.title = ver.label || (ver.intent ? 'intent: ' + ver.intent : (ver.stage === 'bespoke' ? '1:1 preview' : 'stardust redesign'));
         chip.addEventListener('click', () => showVersion(ver.v));
         strip.append(chip);
       });
@@ -301,7 +369,8 @@
     function showVersion(v) {
       const ver = versions.find((x) => x.v === v); if (!ver) return;
       viewedV = v;
-      $('preview-stage').textContent = 'v' + v + (ver.stage === 'bespoke' ? ' · 1:1' : ' · stardust');
+      const tag = ver.stage === 'bespoke' ? ' · 1:1' : (ver.label ? ' · ' + ver.label : ' · stardust');
+      $('preview-stage').textContent = 'v' + v + tag;
       const wrap = $('preview-wrap'); wrap.innerHTML = '';
       const iframe = document.createElement('iframe');
       iframe.className = 'preview'; iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
@@ -309,13 +378,15 @@
       renderVstrip(); refreshUrlHint();
       $('deploy-btn').textContent = 'Create prototype from v' + v;
     }
-    function addVersion(v, stage, intent, html) {
+    function addVersion(v, stage, intent, html, label) {
       const existing = versions.find((x) => x.v === v);
-      if (existing) { existing.stage = stage; existing.intent = intent; existing.html = html; }
-      else versions.push({ v, stage, intent, html });
+      if (existing) { existing.stage = stage; existing.intent = intent; existing.html = html; existing.label = label; }
+      else versions.push({ v, stage, intent, html, label });
       $('studio-card').classList.remove('hidden');
       $('input-card').classList.add('hidden');
-      showVersion(v);
+      // Auto-view the first variant of a batch; keep the user's pick otherwise.
+      if (viewedV == null || !versions.find((x) => x.v === viewedV)) showVersion(v);
+      else renderVstrip();
     }
     function nextV() { return versions.length ? Math.max(...versions.map((x) => x.v)) + 1 : 1; }
     function ghostChip(label) {
@@ -357,23 +428,43 @@
       const input = inputValue();
       if (!input) { setStatus('input', 'Paste an input first.'); return; }
       $('result-card').hidden = true;
-      // HTML source: render it ourselves — fully client-side, the scoop is never
-      // involved, so a preview can NEVER trigger snowflake/deploy.
-      if (source === 'html') {
-        addVersion(1, 'bespoke', '', input);
-        setStatus('ready', 'Preview ready (pasted HTML) — redesign with Stardust, or create a prototype.');
+      const reimagine = source !== 'figma' && mode === 'reimagine';
+      const intent = $('gen-intent').value.trim();
+
+      // MATCH path (and Figma) = preview only, 1:1.
+      if (!reimagine) {
+        // HTML + Match: render it ourselves — fully client-side, the scoop is never
+        // involved, so a preview can NEVER trigger snowflake/deploy.
+        if (source === 'html') {
+          addVersion(1, 'bespoke', '', input, '1:1');
+          setStatus('ready', 'Preview ready (pasted HTML) — Reimagine with Stardust, or create a prototype.');
+          return;
+        }
+        if (source === 'figma' && !(checks.figma && checks.figma.status === 'ok')) {
+          setStatus('figma', 'Sign into figma.com in this browser to read frames, then re-check access.'); return;
+        }
+        $('go').disabled = true;
+        setStatus('generate', 'Generating 1:1 preview… (no deploy — this only renders)');
+        // url → SLICC renders the page; figma → agent extracts. Both PREVIEW ONLY.
+        // NOTE: no `da` (repo/site) on purpose — the scoop literally can't deploy without it.
+        slicc.lick({ action: 'generate', data: {
+          source, input, mode: 'match',
+          _rule: 'PREVIEW ONLY (Match, 1:1): produce the 1:1 HTML, emit action:"preview", then STOP. You were given NO repo/slug — you cannot and must not run git/snowflake/aem or deploy.',
+        } });
         return;
       }
-      if (source === 'figma' && !(checks.figma && checks.figma.status === 'ok')) {
-        setStatus('figma', 'Sign into figma.com in this browser to read frames, then re-check access.'); return;
-      }
+
+      // REIMAGINE path = two-phase Stardust → 1 (intent) or 3 (blank) variant previews.
       $('go').disabled = true;
-      setStatus('generate', 'Generating preview… (no deploy — this only renders)');
-      // url → SLICC renders the page; figma → agent extracts. Both PREVIEW ONLY.
-      // NOTE: no `da` (repo/site) on purpose — the scoop literally can't deploy without it.
+      const variants = !intent;
+      setStatus('reimagine', 'Stardust Reimagine — extract content → inject C2 brand → '
+        + (variants ? '3 variants' : 'direct → prototype') + '… (several minutes; no deploy)');
+      ghostChip(variants ? 'generating variants…' : 'v' + nextV() + ' …');
       slicc.lick({ action: 'generate', data: {
-        source, input,
-        _rule: 'PREVIEW ONLY: produce the 1:1 HTML, emit action:"preview", then STOP. You were given NO repo/slug — you cannot and must not run git/snowflake/aem or deploy.',
+        source, input, mode: 'reimagine', intent,
+        _rule: 'REIMAGINE PREVIEW ONLY: follow references/redesign.md — stardust:extract (content) → run scripts/inject-c2-brand.jsh (MANDATORY) → '
+          + (variants ? 'stardust:uplift (3 variants A/B/C+cinematic) against the existing capture, do NOT re-extract' : 'stardust:direct "<intent>" → stardust:prototype')
+          + '; emit one action:"preview" per variant, then STOP. NO repo/slug given — no git/snowflake/aem/deploy.',
       } });
     });
 
@@ -381,14 +472,14 @@
       if (viewedV == null) return;
       const intent = $('refine-intent').value.trim();
       $('refine-btn').disabled = true;
-      setStatus('redesign', 'Stardust: redesigning v' + viewedV + ' → v' + nextV() + '…');
+      setStatus('reimagine', 'Stardust: redesigning v' + viewedV + ' → v' + nextV() + '…');
       ghostChip('v' + nextV() + ' …');
       const base = versions.find((x) => x.v === viewedV);
       // Hand the scoop the exact HTML it must redesign — it's a pure transform.
-      // NOTE: no `da` on purpose — redesign is preview-only and must not deploy.
+      // NOTE: no `da` on purpose — Reimagine is preview-only and must not deploy.
       slicc.lick({ action: 'refine', data: {
         intent, fromV: viewedV, fromHtml: base ? base.html : '',
-        _rule: 'PREVIEW ONLY: redesign fromHtml, emit action:"preview", then STOP. You were given NO repo/slug — no git/snowflake/aem/deploy.',
+        _rule: 'REIMAGINE PREVIEW ONLY: follow references/redesign.md on fromHtml — extract (file://) → inject-c2-brand.jsh (MANDATORY) → stardust:direct "<intent>" → prototype; emit action:"preview", then STOP. NO repo/slug — no git/snowflake/aem/deploy.',
       } });
       $('refine-intent').value = '';
     });
@@ -410,16 +501,34 @@
 
     $('new-btn').addEventListener('click', () => {
       versions.length = 0; viewedV = null; pendingDeploy = false;
+      actLog.length = 0; renderActLog();
       hideAuthGate();
       $('studio-card').classList.add('hidden');
       $('input-card').classList.remove('hidden');
       $('result-card').hidden = true;
-      updateGoState();
+      renderInputControls();
       setStatus('idle', 'Paste an input and hit Generate preview.');
     });
 
     function setStatus(phase, msg) {
       $('status').innerHTML = '<span class="phase">[' + phase + ']</span> ' + (msg || '').replace(/</g, '&lt;');
+      logLine('[' + phase + '] ' + (msg || ''));
+    }
+    // ── Activity log ────────────────────────────────────────────────────────────
+    function logLine(text) {
+      if (!text) return;
+      if (actLog[actLog.length - 1] === text) return; // dedupe consecutive
+      actLog.push(text);
+      if (actLog.length > 200) actLog.shift();
+      renderActLog();
+    }
+    function renderActLog() {
+      const box = $('actlog'); const lines = $('actlog-lines');
+      if (!actLog.length) { box.classList.add('hidden'); return; }
+      box.classList.remove('hidden');
+      $('actlog-sum').textContent = 'Activity log (' + actLog.length + ')';
+      lines.innerHTML = actLog.map((l) => '<div class="line">' + l.replace(/</g, '&lt;') + '</div>').join('');
+      lines.scrollTop = lines.scrollHeight;
     }
 
     // ── Agent → UI ────────────────────────────────────────────────────────────
@@ -436,9 +545,9 @@
       if (d.action === 'update') setStatus(d.phase || '…', d.status || '');
       if (d.action === 'preview' && d.html) {
         const v = d.v || nextV();
-        addVersion(v, d.stage || 'bespoke', d.intent || '', d.html);
+        addVersion(v, d.stage || 'bespoke', d.intent || '', d.html, d.label || d.variant || '');
         $('refine-btn').disabled = false;
-        setStatus('ready', 'v' + v + ' ready — play with Stardust, or create a prototype.');
+        setStatus('ready', 'v' + v + (d.label ? ' (' + d.label + ')' : '') + ' ready — play with Stardust, or create a prototype.');
       }
       if (d.action === 'done') {
         $('deploy-btn').disabled = false; $('refine-btn').disabled = false;
@@ -462,7 +571,7 @@
       }
     });
 
-    updateGoState();
+    renderInputControls();
     runPreflight();
   </script>
 </body>

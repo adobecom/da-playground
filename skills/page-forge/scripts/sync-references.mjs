@@ -12,7 +12,7 @@
 // MILO_PATH is optional — c2Refs falls back to inline tokens if milo isn't present.
 // design-knowledge.md is written only if the forge checkout has committed extractions.
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, copyFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -67,6 +67,27 @@ try {
   wrote.push(`block-catalog.md (${idx.library.size} blocks)`);
 } catch (e) {
   console.error('warn: block-catalog sync failed —', e.message);
+}
+
+// 4. Canonical C2 brand surface — the Reimagine engine injects this over each stardust
+//    capture (see scripts/inject-c2-brand.jsh + references/redesign.md). It lives in the
+//    forge server's design-knowledge dir; ship a copy so the skill is self-contained.
+try {
+  const srcDir = join(pf, 'server', 'design-knowledge', 'acom-c2-brand-extraction');
+  const dstDir = join(vendored, 'acom-c2-brand-extraction');
+  const brand = join(srcDir, '_brand-extraction.json');
+  if (existsSync(brand)) {
+    mkdirSync(dstDir, { recursive: true });
+    copyFileSync(brand, join(dstDir, '_brand-extraction.json'));
+    let extra = '';
+    const design = join(srcDir, 'DESIGN.json');
+    if (existsSync(design)) { copyFileSync(design, join(dstDir, 'DESIGN.json')); extra = ' + DESIGN.json'; }
+    wrote.push(`acom-c2-brand-extraction/_brand-extraction.json${extra}`);
+  } else {
+    console.error(`warn: C2 brand surface not found at ${srcDir} — Reimagine injection will fail until vendored`);
+  }
+} catch (e) {
+  console.error('warn: C2 brand sync failed —', e.message);
 }
 
 console.log('synced:', wrote.length ? wrote.join(', ') : '(nothing)');

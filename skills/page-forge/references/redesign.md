@@ -1,71 +1,131 @@
-# Stardust redesign (optional)
+# Stardust redesign (Reimagine) — two-phase, C2 brand injection
 
-Ported from `page-forge/server/server.js` `buildRedesignPrompt`. Runs only when the user
-toggles **redesign** on. Produces a clean handcrafted prototype that deploys 1:1 (no block
-conversion downstream) — write the design you want shipped.
+This is the **Reimagine** engine: the published **stardust** redesign skill (built on
+**impeccable**), run from the scoop, producing a beautiful Adobe **Consonant 2 (C2)**
+prototype. It is the SLICC port of `page-forge/server/stardust/redesignStardust.js` (the DA
+tool). **Stardust itself is never modified** — the scoop only *composes* its published
+sub-skills (`extract` / `direct` / `prototype` / `uplift`).
 
-## Input
+## The brand split (the whole point — do not skip)
 
-A rendered version of the source has been saved at `input/current.html`.
-Source: `{{SOURCE}}` (a URL, raw HTML, or "(refinement of vN)").
+The canonical Adobe C2 brand lives on **auth-walled** pages the agent can't reach, so it was
+pre-extracted offline and **vendored** into `references/_vendored/acom-c2-brand-extraction/`
+(`_brand-extraction.json` + `DESIGN.json`). The page the user redesigns is **public** and may
+still be an older **C1** design. So the two halves come from two places, deliberately:
 
-## User intent
+- **CONTENT** (words, sections, images) → from the public page, read live.
+- **LOOK** (palette, type, motifs) → from the pre-trained **C2** brand surface.
 
-`{{INTENT}}` — if empty, apply tasteful modernization only.
+That split isn't stardust's default (it assumes one site gives both look + content), so the
+scoop runs it in **two phases with a deterministic injection in between.**
 
-## Task
+## Prerequisites (once per workspace)
 
-Read `input/current.html`. Produce a redesigned prototype at `output/redesigned.html`.
+Stardust + its hard dependency impeccable must be installed so the agent finds them:
 
-### Hard requirements
+```
+upskill adobe/skills --path plugins/stardust --all
+upskill pbakaus/impeccable
+```
 
-1. Self-contained HTML5 — doctype + `<html>` + `<head>` + `<body>`.
-2. All CSS inline in one `<style>` in `<head>`. No external stylesheets, no `@import`, no
-   `<link rel="stylesheet">`.
-3. `:root` tokens — colors, fonts, spacing, weights as CSS custom properties.
-4. Top-level `<section>` elements in `<main>`, one per logical content area (hero, features,
-   testimonials, footer-cta, …). Free shape — no required data attributes.
-5. Semantic HTML — `<header> <main> <section> <footer>`.
-6. Images — reference by their existing URLs from `input/current.html`. Do **not** re-host or
-   use placeholder URLs.
-7. No scripts, no `<noscript>`, no third-party embeds, no `<iframe>`.
-8. Reasonable size — under ~50KB output. Strip verbose framework markup; keep visible content
-   (headlines, copy, CTAs, image refs) and the new design direction.
-9. CTAs — regular `<a>` with descriptive button styling in your `<style>`. Don't assume any
-   external button decoration.
+They must be reachable as `.claude/skills/stardust` and `.claude/skills/impeccable` from the
+**working directory** (symlink the installed skills into `<workdir>/.claude/skills/` if needed,
+mirroring the snowflake-deploy skill-loading pattern). Stardust runs best on **Opus + extended
+thinking** (flagged by Karl Pauls) — use that model for both phases.
 
-## Consonant 2 baseline (vendored)
+## Inputs in the working directory
 
-Inject the Consonant 2 design brief from `references/_vendored/c2-brief.md` as the design
-baseline. **Every output must read as Adobe.com first.**
+- `input/current.html` — the source HTML (the page's content). Written by the scoop from the
+  `refine` lick's `fromHtml`, or from a fetched URL. Used as the `file://` target when no live
+  URL is available.
+- `mode` — `intent` (one targeted variant) or `uplift` (three auto variants). Derived by the
+  panel: a non-empty intent → `intent`; blank intent → `uplift`.
+- `intent` — the redesign direction (only for `mode:intent`).
+- `sourceUrl` — the live public URL when the source was `url` (preferred extract target).
 
-## Brand knowledge (Stardust — vendored, if present)
+## Phase 1 — extract the target page for CONTENT only
 
-If `references/_vendored/design-knowledge.md` exists, apply its extracted brand tokens
-(palette, type, spacing) as additional ground truth.
+Prompt the stardust skill (read `.claude/skills/stardust/SKILL.md` Setup first — verify
+impeccable, run its context loader), then run a **single-page** extract of the target:
 
-## Intent modifier
+```
+stardust:extract <target> --single
+```
 
-The Consonant 2 brief is the baseline; apply `intent` as a MODIFIER on top, never an
-override. Examples:
+`<target>` = the live `sourceUrl` when present (better extraction, live assets); else
+`file://<workdir>/input/current.html`. Only this page's **content and structure** matters
+(headings, sections, copy, CTAs, images) — the brand surface this writes **will be replaced**,
+so don't worry about how on-brand the captured colors/fonts are. Run every phase without
+stopping; do **not** ask clarifying questions; do **not** run any "open in browser" step
+(headless). Wait until `stardust/current/` and `stardust/state.json` exist.
 
-- "more poppy" → up one step on the s2a font-size scale for the hero display; contrast the
-  hero on `--s2a-color-gray-1000`; use `--s2a-color-brand-adobe-red` ONCE as a single accent
-  (eyebrow or underline); don't saturate the whole palette.
-- "more editorial" → light surface (`--s2a-color-gray-25`), generous vertical rhythm at
-  `--s2a-layout-lg`, restrained eyebrow, centered narrative.
-- "darker / brutalist" → push surfaces to `--s2a-color-gray-1000`, card radius 0, drop card
-  shadows, monospace eyebrow labels — still Adobe Clean for headlines.
-- (none) → straight Consonant 2 baseline; modernize what's clearly dated without inventing
-  new directions.
+## ⛔ Injection (MANDATORY — run the script, do not improvise)
 
-## Workflow
+The moment extract is done, **run the injection script** to overwrite the captured (possibly C1)
+brand surface with the canonical C2 one:
 
-1. Read `input/current.html`.
-2. Survey the sections; pick 3–6 to redesign.
-3. Lift the page's brand identity (logo, hero image, key copy).
-4. Write `output/redesigned.html` in ONE pass. Don't iterate.
+```
+scripts/inject-c2-brand.jsh <workdir>
+```
 
-## Done
+It copies the vendored C2 `_brand-extraction.json` (+ `DESIGN.json`) over
+`<workdir>/stardust/current/` and **fails loud** (non-zero exit) if the capture is missing or the
+copy didn't land. **Do NOT hand-edit the brand files, do NOT skip this, do NOT let a later phase
+re-extract or overwrite them.** This is the step that makes a C1 page come out as C2; in DA it
+runs outside the agent and cannot be skipped — here it is your responsibility, so treat a
+non-zero exit as a hard stop (emit `action:"error"`).
 
-Confirm `output/redesigned.html` was written and report its path.
+## Phase 2 — design against the existing capture + the injected C2 brand
+
+A stardust capture now exists under `stardust/current/` and its
+`_brand-extraction.json` + `DESIGN.json` are the **canonical Adobe C2** brand — the authoritative
+*target*. Tell the design phase, explicitly:
+
+- Do **NOT** re-run extract. Do **NOT** re-read the live page.
+- Do **NOT** modify or overwrite `stardust/current/_brand-extraction.json` or `DESIGN.json`.
+- Treat the captured brand as C2 and stay **brand-faithful (Mode A)** to it. The page being
+  redesigned may itself be an older (C1) design — that's expected; the job is to bring its
+  content into the C2 look.
+
+### `mode: intent` → one targeted variant
+
+```
+1. stardust:direct "<intent>"     # author the direction from the intent, against the C2 brand
+                                   # already in stardust/current/_brand-extraction.json.
+                                   # Brand-faithful (Mode A) to C2 unless the intent clearly
+                                   # calls for a rebrand.
+2. stardust:prototype <slug>       # render the proposed prototype.
+```
+
+### `mode: uplift` → three brand-faithful variants
+
+```
+stardust:uplift <target> --page <slug>
+```
+
+**Render against the EXISTING capture** — uplift's documented mode for when a capture already
+exists. **Skip uplift's Phase 1 (extract) entirely: do NOT re-read the live URL, do NOT overwrite
+`stardust/current/_brand-extraction.json`.** Begin at uplift Phase 2 (tension/trait
+identification) using the C2 brand already in `stardust/current/`. Produce variants A / B / C
+(plus the cinematic C). Mode A is pinned to the injected C2 palette + type. *(This guard is
+load-bearing — without it uplift re-crawls the public page and clobbers C2 with the source's C1
+look.)*
+
+`<slug>` is the page slug extract wrote (read it from `stardust/state.json` `pages[].slug`, or the
+basename of the `*.json` under `stardust/current/pages/`).
+
+## Collect the prototypes → emit a preview per variant
+
+The prototypes land under `stardust/prototypes/`:
+- intent flow → `<slug>-proposed.html` → one version, label `Redesign`.
+- uplift flow → `<slug>-A-proposed.html`, `<slug>-B-proposed.html`, `<slug>-C-proposed.html`,
+  `<slug>-C-cinematic.html` → variants labelled `Variant A` / `Variant B` / `Variant C` /
+  `Variant C — cinematic`.
+
+For the cinematic file, inline its sibling `lenis.min.js` / `lenis.min.css` into the HTML
+(replace the `<script src=…lenis.min.js>` / `<link …lenis.min.css>` with inline `<script>` /
+`<style>`) so the panel's `srcdoc` iframe renders it self-contained.
+
+Read each prototype's HTML and emit one `preview` lick per variant (stage `redesigned`, with the
+`variant`/`label`). After all variants are emitted, **STOP** — Reimagine is preview-only; never
+deploy (no `data.da` is present, by design).
