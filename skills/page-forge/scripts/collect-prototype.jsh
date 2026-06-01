@@ -1,4 +1,3 @@
-#!/usr/bin/env jsh
 // collect-prototype.jsh — prepare a stardust prototype's HTML for the preview iframe.
 // SLICC port of redesignStardust.js collectVariants()'s per-file processing:
 //   1. Rewrite local `assets/media/<name>` refs to the original ABSOLUTE source URL
@@ -11,25 +10,28 @@
 // Writes the processed HTML next to the original as <name>.forge.html and prints JSON
 // { out, rewritten, lenisInlined } so the scoop reads `out` and emits it as the preview.
 //
+// SLICC .jsh runtime: async fs API ONLY (fs.exists/readFile/writeFile/readDir — there is NO
+// fs.existsSync/readdirSync/etc) and NO shebang (the file is wrapped in an AsyncFunction).
+//
 // Usage:  collect-prototype.jsh <prototype-html-path> <workdir>
 
 const protoPath = process.argv[2];
 const workdir = process.argv[3];
 if (!protoPath || !workdir) { console.error('usage: collect-prototype.jsh <prototype-html> <workdir>'); process.exit(1); }
-if (!fs.existsSync(protoPath)) { console.error(`ERROR: prototype not found: ${protoPath}`); process.exit(2); }
+if (!(await fs.exists(protoPath))) { console.error(`ERROR: prototype not found: ${protoPath}`); process.exit(2); }
 
 function dirname(p) { return (p || '').replace(/\/[^/]*$/, '') || '.'; }
 
 // Build basename(localPath) -> absolute src from every page capture's `media` list.
-function buildAssetUrlMap() {
+async function buildAssetUrlMap() {
   const map = new Map();
   const pagesDir = `${workdir}/stardust/current/pages`;
-  if (!fs.existsSync(pagesDir)) return map;
+  if (!(await fs.exists(pagesDir))) return map;
   let files = [];
-  try { files = fs.readdirSync(pagesDir).filter((f) => f.endsWith('.json')); } catch { return map; }
+  try { files = (await fs.readDir(pagesDir)).filter((f) => f.endsWith('.json')); } catch { return map; }
   for (const f of files) {
     let page;
-    try { page = JSON.parse(fs.readFileSync(`${pagesDir}/${f}`, 'utf8')); } catch { continue; }
+    try { page = JSON.parse(await fs.readFile(`${pagesDir}/${f}`)); } catch { continue; }
     const media = page && page.media;
     if (!media || typeof media !== 'object') continue;
     // `media` is a dict of typed arrays (images/icons/…) or, defensively, a flat array.
@@ -51,7 +53,7 @@ function buildAssetUrlMap() {
 }
 
 // Rewrite local assets/media refs → absolute src. Unmapped refs left untouched (nothing
-// silently disappears). Covers src= and href=.
+// silently disappears). Covers src= and href=. Pure string op — no fs.
 function rewriteAssetUrls(html, urlMap) {
   if (!urlMap.size) return { html, rewritten: 0 };
   let rewritten = 0;
@@ -67,24 +69,24 @@ function rewriteAssetUrls(html, urlMap) {
 }
 
 // Inline lenis.min.{js,css} (siblings of the prototype) into a cinematic prototype.
-function inlineLenis(html, protoDir) {
+async function inlineLenis(html, protoDir) {
   let out = html;
-  try {
-    const js = fs.readFileSync(`${protoDir}/lenis.min.js`, 'utf8');
+  if (await fs.exists(`${protoDir}/lenis.min.js`)) {
+    const js = await fs.readFile(`${protoDir}/lenis.min.js`);
     out = out.replace(/<script[^>]*src=["'][^"']*lenis\.min\.js["'][^>]*>\s*<\/script>/i, `<script>${js}</script>`);
-  } catch { /* no lenis js — leave as-is */ }
-  try {
-    const css = fs.readFileSync(`${protoDir}/lenis.min.css`, 'utf8');
+  }
+  if (await fs.exists(`${protoDir}/lenis.min.css`)) {
+    const css = await fs.readFile(`${protoDir}/lenis.min.css`);
     out = out.replace(/<link[^>]*href=["'][^"']*lenis\.min\.css["'][^>]*>/i, `<style>${css}</style>`);
-  } catch { /* no lenis css */ }
+  }
   return out;
 }
 
-let html = fs.readFileSync(protoPath, 'utf8');
+let html = await fs.readFile(protoPath);
 let lenisInlined = false;
-if (/cinematic/.test(protoPath)) { const before = html; html = inlineLenis(html, dirname(protoPath)); lenisInlined = (html !== before); }
-const r = rewriteAssetUrls(html, buildAssetUrlMap());
+if (/cinematic/.test(protoPath)) { const before = html; html = await inlineLenis(html, dirname(protoPath)); lenisInlined = (html !== before); }
+const r = rewriteAssetUrls(html, await buildAssetUrlMap());
 
 const out = protoPath.replace(/\.html$/i, '') + '.forge.html';
-fs.writeFileSync(out, r.html);
+await fs.writeFile(out, r.html);
 console.log(JSON.stringify({ out, rewritten: r.rewritten, lenisInlined }));
