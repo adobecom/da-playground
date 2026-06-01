@@ -209,6 +209,20 @@ On the `preflight` lick (fired when the panel opens, by "Check access", and re-f
 right before publishing), **probe each prerequisite and report a checklist** — detect and instruct,
 don't point at docs. Emit a `check` for each; the panel decides what gates what.
 
+0. **Dependent skills (auto-install — the "SLICC sets it up for you" step).** The user only
+   `upskill`s *this* skill; the scoop bootstraps the rest. Check `/workspace/skills/` for the three
+   dependencies and **install any that are missing** by running the `upskill` command yourself
+   (don't make the user do it):
+   - `snowflake` (deploy) → `upskill adobe/skills --path plugins/aem/edge-delivery-services --all --branch feat/eds-snowflake-da-content`
+   - `stardust` (Reimagine) → `upskill adobe/skills --path plugins/stardust --all`
+   - `impeccable` (stardust dep) → `upskill pbakaus/impeccable`
+
+   Then symlink stardust + impeccable into the working dir's `.claude/skills/` (so the agent finds
+   them at runtime). Emit a single `check` (`key:"skills"`): `ok` once all three resolve; `missing`
+   only if an auto-install fails — and then put the **exact failing `upskill` command** in `fix` so
+   the user can run it. This makes setup one step (`upskill … skills/page-forge`) + sign-ins; the
+   skill installs its own toolchain.
+
 1. **Figma (play — only for Figma input).** Try a lightweight read of the user's Figma URL (or a
    known file). Fail → `fix: "Open figma.com and sign in in this browser, then re-check."`
 2. **Adobe (publish — DA access).** Check the connected Adobe provider (`oauth-token adobe`, or
@@ -243,9 +257,10 @@ don't point at docs. Emit a `check` for each; the panel decides what gates what.
    existing PAT covers the new repo; if not, they edit the token to add it (no need to recreate).
 
 Emit one `check` per item + `preflight-done`. The panel uses them like this:
-**Figma** gates only Figma-input generate; **Adobe + GitHub** gate only publish. The publish button
-re-fires `preflight`, shows the missing items inline, and deploys automatically the moment they pass —
-so keep the `fix` strings tight and actionable.
+**Skills** is informational (auto-installed — only shows if an install failed); **Figma** gates only
+Figma-input generate; **Adobe + GitHub** gate only publish. The publish button re-fires `preflight`,
+shows the missing items inline, and deploys automatically the moment they pass — so keep the `fix`
+strings tight and actionable.
 
 ## Pipeline (scoop)
 

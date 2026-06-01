@@ -265,8 +265,9 @@
 
     // ── Preflight (informational; does NOT block playing) ──────────────────────
     function runPreflight() { slicc.lick({ action: 'preflight', data: { da: DA } }); }
-    const PF_ORDER = ['figma', 'adobe', 'github'];
+    const PF_ORDER = ['skills', 'figma', 'adobe', 'github'];
     const PF_LABELS = {
+      skills: 'Skills — snowflake + Stardust + impeccable (auto-installed)',
       figma: 'Figma — to read frames (only for Figma input)',
       adobe: 'Adobe sign-in — to publish to DA',
       github: 'GitHub token — to publish to DA',
