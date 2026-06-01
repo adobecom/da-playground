@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:uplift/prototype
+  variant:          C (two-act signature extension) — CINEMATIC (arrival register)
+  writtenAt:        2026-06-01T18:30:00Z
+  page:             express
+  pageUrl:          https://main--da-express-milo--adobecom.aem.live/express/
+  againstDirection: stardust/direction.md (Active 2026-06-01T18:15:00Z)
+  mode:             render-against-existing-capture (brand = injected C2, Mode A)
+  note:             "Static reference for variant C. The cinematic surface is express-C-cinematic.html (arrival register). IA identical to A; the bet is the full two-act substrate + (in cinematic) motion."
+  readArtifacts:
+    - stardust/current/pages/express.json
+    - DESIGN.md
+    - DESIGN.json
+    - DESIGN-C.json
+  paletteSource:    injected C2 (Adobe Consonant 2 / Spectrum-2)
+  fontDeck:         pinned Adobe Clean / Adobe Clean Display (Mode A; reflex-reject bypass)
+  unsourcedContent: []
+  motion:
+    register:        arrival
+    registerSource:  direct
+    runtimeVersion:  v1
+    lenisAssets:     { js: lenis.min.js, css: lenis.min.css }
+    attributesEmitted: [data-anim, data-parallax]
+    choreographies:  [hero-parallax, post-hero-riser, scroll-stagger-entrances, footer-wordmark-wipe-up]
+  stardustVersion:  0.10.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Design, Photo, and Video Tool – The quick and easy app to create on-brand content | Adobe Express</title>
+<style>/* Minimal Lenis-compatible stylesheet (self-contained shim for offline prototypes). */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto\!important}
+.lenis.lenis-stopped{overflow:hidden}
+</style>
+<noscript><style>
+  [data-anim],[data-tile-anim],[data-split] span{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+  .word{clip-path:none!important;transform:none!important}
+  [data-parallax]{transform:none!important}.hero-marquee{transform:none!important}.post-hero{transform:none!important}
+  .hero__copy>*{opacity:1!important;transform:none!important}
+  /* ── Arrival motion layer ── */
+  .hero-marquee { will-change: transform; }
+  .post-hero { will-change: transform; }
+  /* hero load entrance (above-the-fold; never JS-hidden) */
+  @keyframes enterUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+  .hero__copy > * { opacity:0; animation: enterUp var(--enter-duration) var(--ease-out-cubic) forwards; }
+  .hero__copy > .eyebrow { animation-delay: 40ms; }
+  .hero__copy > h1 { animation-delay: 130ms; }
+  .hero__copy > p.lede { animation-delay: 220ms; }
+  .hero__copy > .hero__cta { animation-delay: 310ms; }
+  /* scrim deepens as you scroll past the hero into the dark act */
+  .hero::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom, transparent 60%, rgba(0,0,0,calc(var(--parallax-progress) * 0.18))); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__copy > * { opacity:1 !important; animation:none !important; transform:none !important; }
+    .hero-marquee, .post-hero { transform:none !important; }
+    .hero::after { background:none !important; }
+  }
+</style></noscript>
+<style>
+  :root {
+    --heading-font-family: 'adobe-clean-display','Adobe Clean Display','Adobe Clean','Trebuchet MS',-apple-system,'Helvetica Neue',Arial,sans-serif;
+    --body-font-family:    'adobe-clean','Adobe Clean','Trebuchet MS',-apple-system,'Helvetica Neue',Arial,sans-serif;
+    --heading-xxl: clamp(40px, 6vw, 80px);
+    --heading-xl:  clamp(32px, 4vw, 56px);
+    --heading-lg:  40px;
+    --heading-md:  28px;
+    --body:        18px;
+    --body-sm:     15px;
+    --line-height-heading: 0.98;
+    --line-height-body:    1.55;
+    --color-bg:           #FFFFFF;
+    --color-bg-inverse:   #000000;
+    --color-surface:      #F8F8F8;
+    --color-surface-warm: #ECEAE7;
+    --color-fg:           #131313;
+    --color-body:         rgba(0,0,0,0.64);
+    --color-muted:        #505050;
+    --color-on-dark:      #FFFFFF;
+    --color-on-dark-muted:rgba(255,255,255,0.72);
+    --color-accent:       #3B63FB;
+    --color-accent-strong:#274DEA;
+    --color-border:       rgba(0,0,0,0.10);
+    --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px; --spacing-lg:24px; --spacing-xl:48px; --spacing-2xl:96px;
+    --section-padding: 64px;
+    --max-width: 1200px;
+    --radius: 16px;
+    --pill: 999px;
+
+    /* Motion (cinematic — arrival register) */
+    --ease-out-cubic: cubic-bezier(0.25,0.46,0.45,0.94);
+    --ease-out-quart: cubic-bezier(0.42,0,0,1);
+    --enter-duration: 700ms;
+    --enter-stagger:  90ms;
+    --parallax-translate: 35;
+    --parallax-fade: 0.55;
+    --parallax-progress: 0;
+  }
+  *,*::before,*::after { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; font-family:var(--body-font-family); font-size:var(--body); line-height:var(--line-height-body); color:var(--color-fg); background:var(--color-bg); -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4 { font-family:var(--heading-font-family); font-weight:900; line-height:var(--line-height-heading); letter-spacing:-0.02em; color:var(--color-fg); margin:0; text-wrap:balance; }
+  h1 { font-size:var(--heading-xxl); letter-spacing:-0.03em; }
+  h2 { font-size:var(--heading-xl); }
+  h3 { font-size:var(--heading-md); letter-spacing:-0.01em; }
+  p { margin:0; color:var(--color-body); }
+  a { color:var(--color-accent); text-decoration:none; }
+  a:hover { color:var(--color-accent-strong); }
+  img { max-width:100%; display:block; }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+  .wrap { width:100%; max-width:var(--max-width); margin:0 auto; padding-inline:var(--spacing-lg); }
+  .eyebrow { font-family:var(--body-font-family); font-size:var(--body-sm); font-weight:700; letter-spacing:0.04em; color:var(--color-muted); margin-bottom:var(--spacing-md); }
+
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; height:48px; padding-inline:28px; border:1.5px solid transparent; border-radius:var(--pill); font-family:var(--body-font-family); font-size:var(--body-sm); font-weight:700; cursor:pointer; transition:background 200ms cubic-bezier(0.42,0,0,1),color 200ms,border-color 200ms; }
+  .btn--primary { background:var(--color-accent); color:#fff; }
+  .btn--primary:hover { background:var(--color-accent-strong); color:#fff; }
+  .btn--dark { background:var(--color-fg); color:#fff; }
+  .btn--dark:hover { background:#000; }
+  .btn--outline { background:transparent; color:var(--color-fg); border-color:var(--color-fg); }
+  .btn--outline:hover { background:rgba(0,0,0,0.04); }
+  .btn--ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,0.7); backdrop-filter:blur(16px); }
+  .btn--ghost:hover { background:rgba(255,255,255,0.08); }
+  .btn--sm { height:40px; padding-inline:20px; }
+
+  .nav-shell { position:fixed; inset:8px 0 auto 0; z-index:50; display:flex; justify-content:center; padding-inline:8px; }
+  .nav { display:flex; align-items:center; gap:var(--spacing-lg); width:100%; max-width:var(--max-width); height:64px; padding-inline:var(--spacing-md); border-radius:var(--radius); background:rgba(255,255,255,0.7); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); transition:box-shadow 200ms; }
+  .nav.scrolled { box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+  .nav__brand { display:flex; align-items:center; gap:8px; font-weight:900; font-family:var(--heading-font-family); font-size:18px; letter-spacing:-0.01em; color:var(--color-fg); }
+  .nav__brand img { height:22px; width:auto; }
+  .nav__links { display:flex; align-items:center; gap:var(--spacing-lg); margin-left:var(--spacing-md); }
+  .nav__links a { color:var(--color-fg); font-weight:700; font-size:var(--body-sm); }
+  .nav__links a:hover { color:var(--color-accent); }
+  .nav__spacer { flex:1; }
+  .nav__actions { display:flex; align-items:center; gap:var(--spacing-md); }
+  .nav__actions a.signin { color:var(--color-fg); font-weight:700; font-size:var(--body-sm); padding-left:var(--spacing-md); border-left:1.5px solid var(--color-border); }
+  .nav__burger { display:none; flex-direction:column; gap:5px; width:44px; height:44px; align-items:center; justify-content:center; border:none; background:transparent; cursor:pointer; }
+  .nav__burger span { width:22px; height:2px; background:var(--color-fg); }
+
+  section { padding-block:var(--section-padding); }
+  .section-head { max-width:760px; margin-bottom:var(--spacing-xl); }
+  .section-head h2 { margin-bottom:var(--spacing-md); }
+  .section-head p { font-size:20px; }
+
+  /* Hero */
+  .hero { padding-top:128px; position:relative; overflow:hidden; }
+  .hero__grid { display:grid; grid-template-columns:1.05fr 0.95fr; gap:var(--spacing-2xl); align-items:center; }
+  .hero h1 { margin-bottom:var(--spacing-lg); }
+  .hero p.lede { font-size:22px; max-width:34ch; margin-bottom:var(--spacing-xl); }
+  .hero__cta { display:flex; flex-wrap:wrap; gap:var(--spacing-md); }
+  .hero__media { border-radius:var(--radius); overflow:hidden; background:var(--color-surface-warm); aspect-ratio:4/3.2; }
+  .hero__media img { width:100%; height:100%; object-fit:cover; }
+
+  .caps { background:var(--color-surface-warm); }
+  .caps__row { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--spacing-xl); }
+  .cap__n { font-family:var(--heading-font-family); font-weight:900; font-size:14px; color:var(--color-accent); margin-bottom:10px; }
+  .cap h3 { font-size:22px; letter-spacing:-0.01em; }
+
+  .aud__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--spacing-lg); }
+  .card { background:var(--color-surface-warm); border-radius:var(--radius); padding:var(--spacing-lg); display:flex; flex-direction:column; }
+  .card__media { border-radius:12px; overflow:hidden; aspect-ratio:16/10; margin-bottom:var(--spacing-md); background:var(--color-surface); }
+  .card__media img { width:100%; height:100%; object-fit:cover; }
+  .card h3 { margin-bottom:8px; font-size:24px; }
+  .card p { margin-bottom:var(--spacing-md); flex:1; font-size:var(--body-sm); }
+  .card a.more { font-weight:700; font-size:var(--body-sm); }
+  .card a.more::after { content:" →"; }
+
+  /* ── The dramatic two-act handoff begins here ── */
+  .act-dark { background:var(--color-bg-inverse); color:var(--color-on-dark); position:relative; }
+  /* post-hero "rising plate": dark act starts with a rounded top edge that lifts over the light act */
+  .post-hero { border-radius:32px 32px 0 0; margin-top:calc(-1 * var(--spacing-xl)); padding-top:calc(var(--section-padding) + var(--spacing-xl)); }
+  .act-dark h2, .act-dark h3 { color:var(--color-on-dark); }
+  .act-dark .section-head p, .act-dark p { color:var(--color-on-dark-muted); }
+  .act-dark a { color:#fff; }
+  .act-dark a:hover { color:#fff; }
+
+  .feat__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--spacing-lg); }
+  .feat { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius); padding:var(--spacing-lg); display:flex; flex-direction:column; }
+  .feat__media { border-radius:12px; overflow:hidden; aspect-ratio:16/10; margin-bottom:var(--spacing-md); background:rgba(255,255,255,0.08); }
+  .feat__media img { width:100%; height:100%; object-fit:cover; }
+  .feat h3 { font-size:22px; margin-bottom:8px; }
+  .feat p { font-size:var(--body-sm); margin-bottom:var(--spacing-md); flex:1; }
+  .feat a.more { font-weight:700; font-size:var(--body-sm); color:#fff; }
+  .feat a.more::after { content:" →"; }
+  .chip { display:inline-flex; align-items:center; height:24px; padding-inline:10px; border-radius:var(--pill); background:var(--color-accent); color:#fff; font-size:12px; font-weight:700; margin-bottom:12px; }
+  .feat--lead { grid-column:span 3; flex-direction:row; gap:var(--spacing-xl); align-items:center; background:rgba(255,255,255,0.07); }
+  .feat--lead .feat__media { flex:1; aspect-ratio:16/9; margin:0; }
+  .feat--lead .feat__body { flex:1; }
+  .feat--lead h3 { font-size:var(--heading-lg); }
+  .feat--lead p { font-size:18px; }
+
+  .plans__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--spacing-lg); margin-top:var(--spacing-xl); }
+  .plan { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.14); border-radius:var(--radius); padding:var(--spacing-xl); }
+  .plan h3 { font-size:24px; margin-bottom:8px; }
+  .plan p { font-size:var(--body-sm); margin-bottom:var(--spacing-lg); color:var(--color-on-dark-muted); }
+  .plan .btn { width:100%; }
+
+  .closing { text-align:center; padding-block:120px; }
+  .closing h2 { margin-bottom:var(--spacing-xl); }
+  .closing p { font-size:20px; max-width:48ch; margin:0 auto var(--spacing-xl); }
+
+  .site-footer { background:var(--color-bg-inverse); color:var(--color-on-dark-muted); padding-block:var(--spacing-2xl) var(--spacing-xl); }
+  .footer__cols { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--spacing-xl); margin-bottom:var(--spacing-2xl); }
+  .footer__cols h4 { color:var(--color-on-dark); font-size:14px; font-weight:700; font-family:var(--body-font-family); margin-bottom:var(--spacing-md); }
+  .footer__cols ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .footer__cols a { color:var(--color-on-dark-muted); font-size:var(--body-sm); }
+  .footer__cols a:hover { color:#fff; }
+  .footer__bar { display:flex; justify-content:space-between; gap:var(--spacing-md); padding-top:var(--spacing-lg); border-top:1px solid rgba(255,255,255,0.14); font-size:13px; }
+  .site-footer__wordmark { font-family:var(--heading-font-family); font-weight:900; color:#fff; font-size:clamp(40px,10vw,140px); letter-spacing:-0.04em; line-height:0.9; margin-top:var(--spacing-2xl); }
+
+  @media (max-width:1024px){ .hero__grid{ gap:var(--spacing-xl); } .feat__grid,.aud__grid,.plans__grid,.caps__row{ gap:var(--spacing-md); } }
+  @media (max-width:900px){
+    .nav__links{ display:none; } .nav__burger{ display:flex; }
+    .nav__menu{ position:absolute; top:72px; left:8px; right:8px; background:#fff; border-radius:var(--radius); box-shadow:0 12px 40px rgba(0,0,0,0.14); padding:var(--spacing-md); flex-direction:column; gap:4px; display:none; }
+    .nav__menu.open{ display:flex; } .nav__menu a{ padding:12px; border-radius:10px; color:var(--color-fg); font-weight:700; } .nav__menu a:hover{ background:var(--color-surface); }
+    .caps__row{ grid-template-columns:repeat(2,1fr); } .feat--lead{ flex-direction:column; } .feat--lead .feat__media{ width:100%; }
+    .nav__actions a.signin { border-left:none; padding-left:0; }
+  }
+  @media (max-width:768px){
+    :root{ --section-padding:48px; }
+    .hero{ padding-top:104px; } .hero__grid{ grid-template-columns:1fr; } .hero p.lede{ font-size:19px; }
+    .aud__grid,.feat__grid,.plans__grid{ grid-template-columns:1fr; } .feat--lead{ grid-column:span 1; }
+    .footer__cols{ grid-template-columns:repeat(2,1fr); } .footer__bar{ flex-direction:column; }
+  }
+  @media (max-width:480px){ .caps__row{ grid-template-columns:1fr; } .hero__cta .btn{ width:100%; } }
+  @media (prefers-reduced-motion: reduce){ *{ scroll-behavior:auto !important; } }
+</style>
+</head>
+<body>
+<header class="nav-shell" data-section="header" data-intent="brand + primary navigation" data-layout="contained" data-nav-collapse="hamburger">
+  <nav class="nav" id="nav" aria-label="Primary">
+    <a class="nav__brand" href="#"><img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/express.svg" alt="Adobe Express">Adobe Express</a>
+    <div class="nav__links"><a href="#features">Create</a><a href="#plans">Plans</a></div>
+    <span class="nav__spacer"></span>
+    <div class="nav__actions"><a class="signin" href="#">Sign in</a><a class="btn btn--primary btn--sm" href="https://adobesparkpost.app.link/GJrBPFUWBBb">Get Adobe Express Free</a></div>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu"><span></span><span></span><span></span></button>
+    <div class="nav__menu" id="navmenu"><a href="#features">Create</a><a href="#plans">Plans</a><a href="#">Sign in</a></div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" data-section="hero" data-intent="emotional hook + value proposition" data-layout="split-media" data-media="image">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Adobe Express</p>
+          <h1>The quick and easy create-anything app.</h1>
+          <p class="lede">Make stunning social posts, images, videos, flyers, and more — with AI that's designed to be commercially safe.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="https://adobesparkpost.app.link/GJrBPFUWBBb">Get Adobe Express Free</a>
+            <a class="btn btn--outline" href="#plans">Start 30-day free trial</a>
+          </div>
+        </div>
+        <div class="hero__media hero-marquee" data-parallax><img src="https://main--da-express-milo--adobecom.aem.live/express/media_11a6d037c34b18552b0501aae71a97271609274b2.png?width=2000&format=webply&optimize=medium" alt="Adobe Express editor with a social post in progress" loading="eager" fetchpriority="high"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="caps" data-section="capability-strip" data-intent="value proposition" data-layout="grid" data-items="4">
+    <div class="wrap">
+      <h2 class="sr-only">What you can do with Adobe Express</h2>
+      <div class="caps__row">
+        <div class="cap" data-anim><div class="cap__n">01</div><h3>Create anything, quickly and easily</h3></div>
+        <div class="cap" data-anim><div class="cap__n">02</div><h3>Edit with one click</h3></div>
+        <div class="cap" data-anim><div class="cap__n">03</div><h3>Create fast with generative AI</h3></div>
+        <div class="cap" data-anim><div class="cap__n">04</div><h3>Start from standout content</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="audience" data-section="audience" data-intent="audience routing" data-layout="grid" data-items="3">
+    <div class="wrap">
+      <div class="section-head" data-anim><h2>Adobe Express works for Teams, Enterprise, and Students.</h2></div>
+      <div class="aud__grid">
+        <article class="card" data-anim><div class="card__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1b1796a6b1fda9c1a2bef0758423c47350aad666c.png?width=2000&format=webply&optimize=medium" alt="A team collaborating in Adobe Express"></div><h3>Teams</h3><p>Keep projects on brand and streamline workflows with real-time collaboration and Creative Cloud integration.</p><a class="more" href="/express/business/teams">Learn more</a></article>
+        <article class="card" data-anim><div class="card__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_15ea6288d986ec2719a0ca2fd834b25d0842a4050.png?width=2000&format=webply&optimize=medium" alt="Enterprise brand controls in Adobe Express"></div><h3>Enterprise</h3><p>Create on-brand content with easy collaboration, security, and admin features built for large organizations.</p><a class="more" href="/express/business">Learn more</a></article>
+        <article class="card" data-anim><div class="card__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_12de83e22be8b19c2071f4a88335b05fa69238cb3.png?width=2000&format=webply&optimize=medium" alt="A student designing a project in Adobe Express"></div><h3>Students</h3><p>Go from basic to bold content for your classes, clubs, and career with professional templates and generative AI.</p><a class="more" href="/express/learn/students">Learn more</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="act-dark post-hero" data-section="feature-showcase" data-intent="explain capability" data-layout="grid" data-items="6">
+    <div class="wrap">
+      <div class="section-head" data-anim><h2>Discover the top features that everyone loves.</h2></div>
+      <div class="feat__grid">
+        <article class="feat feat--lead" data-anim>
+          <div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1c173e61b26b4c5c2fb07f4279d54f6e6ab5ebfd7.png?width=2000&format=webply&optimize=medium" alt="The All-new AI Assistant in Adobe Express"></div>
+          <div class="feat__body"><span class="chip">Beta</span><h3>All-new AI Assistant.</h3><p>Describe what you want and let the AI Assistant build, edit, and refine your design — generative AI designed to be commercially safe.</p><a class="more" href="https://adobesparkpost.app.link/XyUY6j9ZwWb">Try AI Assistant</a></div>
+        </article>
+        <article class="feat" data-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1f3dbf1cd874e05650134b32c41874f353b57ef46.png?width=2000&format=webply&optimize=medium" alt="Adobe Express working alongside Photoshop and Firefly"></div><h3>Works with Photoshop, Firefly, and more.</h3><p>Bring assets and edits across your favorite Adobe apps without leaving your flow.</p><a class="more" href="https://adobesparkpost.app.link/MpnN0Ue0wWb">Get started</a></article>
+        <article class="feat" data-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_139d77ad751257a6445dc504fd7fad609339d181d.png?width=2000&format=webply&optimize=medium" alt="Editing a video in Adobe Express"></div><h3>Video made easy.</h3><p>Trim, caption, and resize video in a few clicks — no editing experience required.</p><a class="more" href="https://adobesparkpost.app.link/K7QlvIv7FDb">Get started</a></article>
+        <article class="feat" data-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_15dcf06bef71e56b6959aabd2708a9457244e0968.png?width=2000&format=webply&optimize=medium" alt="Resizing an asset to multiple formats in Adobe Express"></div><h3>Resize any asset.</h3><p>Reformat one design for every channel instantly, keeping it pixel-perfect.</p><a class="more" href="https://adobesparkpost.app.link/K7QlvIv7FDb">Resize now</a></article>
+        <article class="feat" data-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_17cf7f6474fe12727dc188525b547cbce53115d4f.png?width=2000&format=webply&optimize=medium" alt="Creating on mobile and desktop with Adobe Express"></div><h3>Create anytime, anywhere.</h3><p>Start on your phone, finish on your laptop — your work follows you everywhere.</p><a class="more" href="https://adobesparkpost.app.link/K7QlvIv7FDb">Create now</a></article>
+        <article class="feat" data-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1e3e46ed6d2e261925bdc9d516ebe3d20e182e609.png?width=2000&format=webply&optimize=medium" alt="Brand kit colors and fonts in Adobe Express"></div><h3>Easily stay on brand.</h3><p>Lock in logos, colors, and fonts with brand kits so everything you make stays consistent.</p><a class="more" href="https://adobesparkpost.app.link/NlWkfRp7FDb">Discover brand kits</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" class="act-dark" data-section="compare-plans" data-intent="drive action" data-layout="grid" data-items="3">
+    <div class="wrap">
+      <div class="section-head" data-anim><h2>Compare Plans</h2></div>
+      <div class="plans__grid">
+        <div class="plan" data-anim><h3>For Individuals</h3><p>Everything you need to create standout social posts, images, and videos — free to start.</p><a class="btn btn--primary" href="https://adobesparkpost.app.link/GJrBPFUWBBb">Get Adobe Express Free</a></div>
+        <div class="plan" data-anim><h3>For Business</h3><p>Brand control, collaboration, and Creative Cloud integration for teams and organizations.</p><a class="btn btn--ghost" href="/creativecloud/plans">View plans and pricing</a></div>
+        <div class="plan" data-anim><h3>For Students</h3><p>Professional templates and generative AI for classes, clubs, and your career.</p><a class="btn btn--ghost" href="/express/learn/students">Learn more</a></div>
+      </div>
+      <p style="margin-top:var(--spacing-xl)"><a href="/express/pricing" style="font-weight:700">Compare all plans →</a></p>
+    </div>
+  </section>
+
+  <section class="act-dark closing" data-section="closing-cta" data-intent="drive action" data-layout="full-bleed">
+    <div class="wrap" data-anim>
+      <h2>Content creation made easy.</h2>
+      <p>Join millions who make standout content with Adobe Express — free to start.</p>
+      <a class="btn btn--primary" href="https://adobesparkpost.app.link/GJrBPFUWBBb">Get Adobe Express Free</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-section="footer" data-intent="global navigation" data-layout="grid">
+  <div class="wrap">
+    <div class="footer__cols">
+      <div><h4>Adobe Express</h4><ul><li><a href="#features">Features</a></li><li><a href="#plans">Plans</a></li><li><a href="#audience">For business</a></li><li><a href="#audience">For students</a></li></ul></div>
+      <div><h4>Create</h4><ul><li><a href="#">Social media</a></li><li><a href="#">Marketing</a></li><li><a href="#">Documents</a></li><li><a href="#">Design with AI</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a href="#">Help center</a></li><li><a href="#">Learn</a></li><li><a href="#">Community</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h4>Adobe</h4><ul><li><a href="#">About Adobe</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms of use</a></li><li><a href="#">Cookies</a></li></ul></div>
+    </div>
+    <div class="footer__bar"><span>© 2026 Adobe. All rights reserved.</span><span>Adobe Express</span></div>
+    <div class="site-footer__wordmark" aria-hidden="true">Express</div>
+  </div>
+</footer>
+
+<script>
+  (function(){var b=document.getElementById('burger'),m=document.getElementById('navmenu');if(!b||!m)return;
+   b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu');});
+   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open')){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.focus();}});})();
+</script>
+<script>/* Minimal Lenis-compatible shim. Implements the subset the stardust motion runtime
+   uses: new Lenis({...}), .raf(t), .on('scroll', cb) -> {scroll}, and .scroll getter.
+   Uses native scrolling (no wheel hijack) so the page degrades gracefully and the
+   rAF-driven parallax/reveal loop reads a real scroll position. Not the upstream
+   library; sufficient for a self-contained prototype. */
+(function (g) {
+  function Lenis(opts) {
+    opts = opts || {};
+    this._cbs = [];
+    var self = this;
+    this._onScroll = function () {
+      var s = self.scroll;
+      for (var i = 0; i < self._cbs.length; i++) self._cbs[i]({ scroll: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    document.documentElement.classList.add('lenis', 'lenis-smooth');
+  }
+  Object.defineProperty(Lenis.prototype, 'scroll', {
+    get: function () { return window.scrollY || window.pageYOffset || 0; }
+  });
+  Lenis.prototype.raf = function () { /* native scroll drives position; no-op */ };
+  Lenis.prototype.on = function (ev, cb) { if (ev === 'scroll') this._cbs.push(cb); };
+  Lenis.prototype.stop = function () {};
+  Lenis.prototype.start = function () {};
+  Lenis.prototype.destroy = function () { window.removeEventListener('scroll', this._onScroll); };
+  g.Lenis = Lenis;
+})(window);
+</script>
+<script>
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lenis = new Lenis({ lerp: 0.1, smoothWheel: !prefersReducedMotion });
+  window.__lenis = lenis;
+  (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+  const nav = document.getElementById('nav');
+  if (nav) lenis.on('scroll', ({ scroll }) => { nav.classList.toggle('scrolled', scroll > 40); });
+  const clamp = (v,lo,hi)=> v<lo?lo:v>hi?hi:v;
+  const easeOut3 = t => 1 - Math.pow(1 - t, 3);
+  const getDocTop = el => el.getBoundingClientRect().top + (window.__lenis ? window.__lenis.scroll : window.scrollY);
+  // arrival token defaults
+  const animConfig = {
+    parallax:      { translate: 35, fade: 0.55, rangeStart: 0, range: 80 },
+    plansParallax: { translate: 16, rangeStart: 0, range: 80 },
+    cards:         { trigger: 0.85, range: 0.32, slide: 40, stagger: 0.12 },
+    wordmark:      { range: 0.6, clip: 80 },
+  };
+  const animList = [];
+  let wordmarkEl = null, wordmarkTop = 0;
+  function measure(){
+    if (prefersReducedMotion) return;
+    const postHeroEl = document.querySelector('.post-hero');
+    const saved = postHeroEl ? postHeroEl.style.transform : '';
+    if (postHeroEl) postHeroEl.style.transform = '';
+    animList.forEach(({el})=>{ el.style.opacity=el.style.transform=el.style.willChange=''; });
+    animList.length = 0;
+    document.querySelectorAll('[data-anim]').forEach((el)=>{
+      const parent = el.closest('section');
+      let stagger = 0;
+      if (parent) { const peers = parent.querySelectorAll('[data-anim]'); const idx = [].indexOf.call(peers, el); stagger = (idx % 8) * animConfig.cards.stagger; }
+      el.style.opacity = '0';
+      el.style.transform = 'translateY('+animConfig.cards.slide+'px)';
+      el.style.willChange = 'opacity, transform';
+      animList.push({ el, triggerTop: getDocTop(el), staggerDelay: stagger });
+    });
+    wordmarkEl = document.querySelector('.site-footer__wordmark');
+    if (wordmarkEl){ wordmarkTop = getDocTop(wordmarkEl); wordmarkEl.style.clipPath = 'inset('+animConfig.wordmark.clip+'% 0 0 0)'; wordmarkEl.style.willChange='clip-path'; }
+    if (postHeroEl) postHeroEl.style.transform = saved;
+  }
+  const heroMarqueeEl = document.querySelector('.hero-marquee');
+  const postHeroEl = document.querySelector('.post-hero');
+  let _lastMB = null;
+  (function tick(){
+    if (prefersReducedMotion){ requestAnimationFrame(tick); return; }
+    const sY = window.__lenis ? window.__lenis.scroll : window.scrollY;
+    const vh = window.innerHeight;
+    const isDesktop = window.innerWidth > 767;
+    if (heroMarqueeEl){
+      const pp = animConfig.parallax;
+      if (isDesktop){
+        const rs = pp.rangeStart/100*vh, re = pp.range/100*vh;
+        const p = easeOut3(clamp((sY - rs)/(re - rs),0,1));
+        heroMarqueeEl.style.transform = 'translateY('+(p*-pp.translate)+'vh)';
+        document.documentElement.style.setProperty('--parallax-progress', p);
+      } else { heroMarqueeEl.style.transform=''; document.documentElement.style.setProperty('--parallax-progress',0); }
+    }
+    let postHeroOffsetPx = 0;
+    if (postHeroEl){
+      const pp2 = animConfig.plansParallax;
+      if (isDesktop){
+        const rs = pp2.rangeStart/100*vh, re = pp2.range/100*vh;
+        const p = easeOut3(clamp((sY - rs)/(re - rs),0,1));
+        postHeroOffsetPx = p*-pp2.translate/100*vh;
+        postHeroEl.style.transform = 'translateY('+(p*-pp2.translate)+'vh)';
+        const newMB = (p*-pp2.translate)+'vh';
+        if (newMB !== _lastMB){ postHeroEl.style.marginBottom = newMB; _lastMB = newMB; }
+      } else { postHeroEl.style.transform=''; if(_lastMB!==''){ postHeroEl.style.marginBottom=''; _lastMB=''; } }
+    }
+    for (let i=0;i<animList.length;i++){
+      const item = animList[i]; const { trigger, range, slide } = animConfig.cards;
+      const raw = (sY + vh*trigger - (item.triggerTop + postHeroOffsetPx))/(vh*range);
+      const p = easeOut3(clamp(raw - item.staggerDelay,0,1));
+      item.el.style.opacity = String(p);
+      item.el.style.transform = 'translateY('+((1-p)*slide)+'px)';
+    }
+    if (wordmarkEl){
+      const adjustedTop = wordmarkTop + postHeroOffsetPx;
+      const wP = easeOut3(clamp((sY + vh - adjustedTop)/(vh*animConfig.wordmark.range),0,1));
+      wordmarkEl.style.clipPath = 'inset('+((1-wP)*animConfig.wordmark.clip)+'% 0 0 0)';
+    }
+    requestAnimationFrame(tick);
+  })();
+  measure();
+  window.addEventListener('load', ()=>requestAnimationFrame(measure), { once:true });
+  window.addEventListener('resize', measure, { passive:true });
+  if (prefersReducedMotion){
+    document.querySelectorAll('[data-anim]').forEach((el)=>{ el.style.opacity='1'; el.style.transform='none'; });
+    if (wordmarkEl) wordmarkEl.style.clipPath='none';
+  }
+})();
+</script>
+</body>
+</html>
