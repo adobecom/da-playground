@@ -275,16 +275,21 @@ Three lick handlers — **generate**, **refine**, **deploy** — plus **prefligh
 renders pasted HTML for Match itself). Emit `phase:"generate"`.
 
 **`mode:'match'` (and any Figma input) — 1:1, fast:**
-1. Produce the bespoke 1:1 HTML:
-   - `source:'url'` → render the page with SLICC's browser/tab control and capture its HTML.
+1. Produce the bespoke 1:1 HTML **to a file** (never hold it in your own output):
+   - `source:'url'` → run **`scripts/capture-url.jsh <url> output/v1.html`**. It renders the live
+     page and writes **clean, self-contained** HTML (scripts/iframes/preload stripped, Milo
+     lifecycle hide-body guards + gnav/footer chrome removed, **all URLs absolutized**) — the port of
+     forge's `fetch-url.js`. **Do NOT just grab the raw rendered DOM** — that 264KB framework dump
+     won't render in the `srcdoc` iframe and can't be snowflaked.
    - `source:'figma'` → follow `references/figma-extract.md` (strict 1:1 rules). Read via SLICC's
      native Figma, or `figma-fetch.jsh` REST + `/images`. **Don't relax the fidelity rules.**
      Then run the **convergence loop** (`scripts/convergence/convergence.jsh <workdir>`) — it
      iterates render→screenshot→pixel-diff→correct up to 4 rounds to converge on the Figma
-     reference. See `references/figma-convergence.md` for full details. The loop's `finalVersion`
-     is the version to emit.
-2. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML from
-   `output/v<finalVersion>.html`. **Then STOP.**
+     reference. See `references/figma-convergence.md`. The loop's `finalVersion` is `output/v<N>.html`.
+2. Deliver with **`scripts/emit-preview.jsh <html-file> '{"stage":"bespoke","v":1}'`** — chunked
+   **raw** delivery to the panel (the panel reassembles `preview-chunk` by `id`). **Never inline the
+   full HTML in a `sprinkle send`, and never base64-encode the chunks** — the panel concatenates raw
+   chunk strings. **Then STOP.**
 
 **`mode:'reimagine'` (url only) — two-phase Stardust, several minutes:**
 
