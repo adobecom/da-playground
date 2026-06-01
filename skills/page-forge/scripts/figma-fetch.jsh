@@ -1,8 +1,10 @@
-#!/usr/bin/env jsh
 // figma-fetch.jsh — Figma REST helper (SLICC .jsh: global fetch/fs/process, top-level await).
 // Pluggable extract seam: structure + node geometry + raster export, no MCP.
 // Prefer SLICC's native Figma (logged-in browser session); use this only when the REST/raster
 // path is needed. Token comes from the FIGMA_TOKEN secret (api.figma.com), never hardcoded.
+//
+// SLICC .jsh runtime: async fs API ONLY (fs.mkdir/writeFile/writeFileBinary — there is NO
+// fs.mkdirSync/writeFileSync) and NO shebang (the file is wrapped in an AsyncFunction).
 //
 // Usage:  figma-fetch.jsh <figma-url> [outDir=./input/figma] [scale=2]
 
@@ -33,12 +35,12 @@ function collectImageNodes(node, acc) {
   return acc;
 }
 
-fs.mkdirSync(outDir, { recursive: true });
+await fs.mkdir(outDir);
 
 const nodes = await figmaGet(nodeId
-  ? `/files/${key}/nodes?ids=${encodeURIComponent(nodeId)}&depth=6`
-  : `/files/${key}?depth=4`);
-fs.writeFileSync(`${outDir}/nodes.json`, JSON.stringify(nodes, null, 2));
+  ? `/files/${key}/nodes?ids=${encodeURIComponent(nodeId)}&depth=30`
+  : `/files/${key}?depth=30`);
+await fs.writeFile(`${outDir}/nodes.json`, JSON.stringify(nodes, null, 2));
 
 const roots = nodes.nodes ? Object.values(nodes.nodes).map((n) => n.document) : [nodes.document];
 const ids = new Set(nodeId ? [nodeId] : []);
@@ -49,6 +51,22 @@ if (ids.size) {
   const exported = await figmaGet(`/images/${key}?ids=${encodeURIComponent([...ids].slice(0, 200).join(','))}&format=png&scale=${scale}`);
   images = exported.images || {};
 }
-fs.writeFileSync(`${outDir}/images.json`, JSON.stringify(images, null, 2));
+await fs.writeFile(`${outDir}/images.json`, JSON.stringify(images, null, 2));
 
-console.log(JSON.stringify({ key, nodeId, outDir, nodeRoots: roots.length, imageNodes: Object.keys(images).length }));
+// Download the primary frame export as reference.png (used by the convergence loop).
+// SLICC has no fs.writeFileSync — binary writes go through fs.writeFileBinary(Uint8Array).
+const primaryId = nodeId || [...ids][0];
+const primaryUrl = primaryId && images[primaryId];
+let refDownloaded = false;
+if (primaryUrl) {
+  try {
+    const refResp = await fetch(primaryUrl);
+    if (refResp.ok) {
+      const refBuf = new Uint8Array(await refResp.arrayBuffer());
+      await fs.writeFileBinary(`${outDir}/reference.png`, refBuf);
+      refDownloaded = true;
+    }
+  } catch (e) { /* non-fatal — convergence.jsh will retry from images.json */ }
+}
+
+console.log(JSON.stringify({ key, nodeId, outDir, nodeRoots: roots.length, imageNodes: Object.keys(images).length, refDownloaded }));

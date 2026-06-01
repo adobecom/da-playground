@@ -1,14 +1,15 @@
 ---
 name: page-forge
 description: >-
-  Side-panel tool that turns a Figma frame / page URL / raw HTML into a 1:1 prototype, with an
-  optional Stardust (Consonant 2) redesign, and — only on explicit request — publishes it to Adobe
-  DA. The panel drives FOUR separate actions (preflight, generate, refine, deploy); the scoop
-  handles EXACTLY ONE per event. generate = preview only, refine = Stardust preview only, deploy =
-  the only action that snowflakes/pushes/publishes. generate and refine MUST NOT deploy.
-  Use when the user wants to: preview a page from Figma/URL/HTML, play with Stardust redesigns, or
+  Side-panel tool that turns a Figma frame / page URL / raw HTML into either a 1:1 prototype
+  (Match) or a beautiful Adobe Consonant 2 redesign (Reimagine, via the real two-phase Stardust
+  engine), and — only on explicit request — publishes it to Adobe DA. The panel drives FOUR
+  separate actions (preflight, generate, refine, deploy); the scoop handles EXACTLY ONE per event.
+  generate = preview only (Match 1:1, or Reimagine → Stardust variants), refine = Stardust preview
+  only, deploy = the only action that snowflakes/pushes/publishes. generate and refine MUST NOT deploy.
+  Use when the user wants to: preview a page from Figma/URL/HTML, Reimagine it with Stardust, or
   (separately) publish a prototype to DA. Triggers on "page forge", "figma to page", "figma to da",
-  "snowflake this", "make a prototype", "1:1 prototype", "redesign this page", "deploy to da".
+  "snowflake this", "make a prototype", "1:1 prototype", "reimagine", "redesign this page", "deploy to da".
 allowed-tools: bash
 ---
 
@@ -35,8 +36,9 @@ Every lick carries `data.action`. The scoop handles **exactly that one action an
 | `data.action` | Do | NEVER do |
 |---|---|---|
 | `preflight` | probe creds, emit `check`s | anything else |
-| `generate` | make the 1:1 HTML, emit `action:"preview"`, **STOP** | ❌ no git, no snowflake, no `aem`, no deploy |
-| `refine` | Stardust-redesign the viewed version, emit `action:"preview"`, **STOP** | ❌ no git, no snowflake, no `aem`, no deploy |
+| `generate` (`mode:'match'`) | make the 1:1 HTML, emit `action:"preview"`, **STOP** | ❌ no git, no snowflake, no `aem`, no deploy |
+| `generate` (`mode:'reimagine'`) | run the two-phase Stardust engine (`references/redesign.md`), emit **one `action:"preview"` per variant** (1 with intent, 3–4 blank), **STOP** | ❌ no git, no snowflake, no `aem`, no deploy |
+| `refine` | Stardust-redesign the viewed version (intent-mode), emit `action:"preview"`, **STOP** | ❌ no git, no snowflake, no `aem`, no deploy |
 | `deploy` | snowflake → git push → `aem` → emit `action:"done"` | — (this is the ONLY action allowed to publish) |
 
 **`generate` and `refine` produce a PREVIEW and nothing else.** They never create a branch, never
@@ -57,10 +59,17 @@ upskill adobecom/da-playground --path skills/page-forge
 
 # the snowflake deploy skill (PR #154 — ships as a SLICC package)
 upskill adobe/skills --path plugins/aem/edge-delivery-services --all --branch feat/eds-snowflake-da-content
+
+# the Reimagine (Stardust) engine + its hard dependency, impeccable
+upskill adobe/skills --path plugins/stardust --all
+upskill pbakaus/impeccable
 ```
 
-Both land in `/workspace/skills/<name>/`. Regenerate `references/_vendored/` for the redesign
-step (see `references/README.md`) before publishing the skill.
+They land in `/workspace/skills/<name>/`. For the **Reimagine** path the stardust + impeccable
+skills must be reachable as `.claude/skills/{stardust,impeccable}` from the **working dir** (symlink
+them in, mirroring the snowflake-deploy pattern). Stardust runs best on **Opus + extended thinking**.
+Regenerate `references/_vendored/` (incl. the vendored C2 brand surface) before publishing the skill
+(see `references/README.md` / `scripts/sync-references.mjs`).
 
 ## The pipeline — generate → refine* → deploy (iterative)
 
@@ -68,13 +77,14 @@ Three separate actions, mirroring the da.live Page Forge tool. Each produces a *
 the designer flips between versions in the panel and deploys whichever one they pick.
 
 ```
-input (figma | url | html)
+input (figma | url | html)  +  mode (match | reimagine; figma is always match)
         │
-        ▼
-   [generate]  ──►  v1  =  bespoke 1:1 HTML      (Figma extract  /  URL+HTML passthrough)
+        ├─ generate · MATCH ──────►  v1  =  bespoke 1:1 HTML   (Figma extract / URL+HTML passthrough)
+        │
+        ├─ generate · REIMAGINE ──►  two-phase Stardust → 1 variant (intent) or 3–4 (blank: A/B/C+cine)
         │
         ▼  (repeatable — each refine = a new version off the viewed one)
-   [refine]    ──►  v2, v3 …  Stardust redesign  (Consonant 2 + brand; `intent` is a modifier)
+   [refine]    ──►  Stardust redesign (intent-mode, 1 variant) of the viewed version
         │
         ▼  (on the version the designer chose)
    [deploy]    ──►  snowflake skill → git push forge-proto-* → aem preview → preview URL
@@ -82,7 +92,7 @@ input (figma | url | html)
 
 Keep every version's HTML in the working dir (`output/v<N>.html`) so refine can base off any
 version and deploy can ship the chosen one. Emit an `action:"preview"` (with the version
-number) after **every** generate/refine so the panel updates live.
+number) after **every** generate variant / refine so the panel updates live.
 
 The **generate** step is a **pluggable seam** — its Figma-extraction internals are owned by the
 parallel fidelity thread (REST-based motion/static-fidelity work). This skill calls whatever
@@ -111,6 +121,10 @@ so "only people with repo Write can push" still holds. The agent only ever sees 
   `aem publish <path>`. Wraps the DA/AEM admin API with Adobe OAuth. Use instead of curl.
 - **`mount --source da://adobecom/da-playground /mnt/da`** — DA as a filesystem (Adobe OAuth).
 - **`scripts/figma-fetch.jsh`** — optional Figma REST structure + `/images` raster export.
+- **`scripts/inject-c2-brand.jsh`** — Reimagine: overwrite the stardust capture's brand with the
+  canonical C2 surface (mandatory, fail-loud). See `references/redesign.md`.
+- **`scripts/collect-prototype.jsh`** — Reimagine: prepare a stardust prototype for the preview
+  iframe (rewrite local `assets/media/` refs → live URLs so images render; inline lenis for cinematic).
 - **`scripts/deploy.jsh`** — commit + push the `forge-proto-*` substrate branch.
 
 ## Sprinkle ⇄ scoop protocol
@@ -123,19 +137,24 @@ exact HTML to work on. The scoop never keeps version state and never "continues"
 ```js
 // preflight carries da (read-only) so the GitHub PAT check targets the right repo.
 slicc.lick({ action: 'preflight', data: { da: { org: 'adobecom', site: 'da-playground' } } })
-// 1. generate — PREVIEW ONLY. NO da (can't deploy). html source never reaches the scoop (the
-//    panel renders pasted HTML itself), so the scoop only sees source 'url' or 'figma'.
+// 1. generate — PREVIEW ONLY. NO da (can't deploy). `mode` picks the engine.
+//    'match' html source never reaches the scoop (the panel renders pasted HTML itself), so the
+//    scoop only sees source 'url' or 'figma'. 'reimagine' runs the two-phase Stardust engine and
+//    emits ONE preview per variant (1 with intent, 3–4 blank).
 slicc.lick({ action: 'generate', data: {
   source: 'url' | 'figma',
   input:  '<page url | figma url>',
-  _rule:  'PREVIEW ONLY — emit action:"preview" then STOP; no repo/slug given; no deploy.'
+  mode:   'match' | 'reimagine',          // figma is always treated as match (1:1 extract)
+  intent: '<reimagine only — blank = 3 auto variants; text = one targeted redesign>',
+  _rule:  'PREVIEW ONLY — match: emit action:"preview" + STOP. reimagine: follow references/redesign.md '
+        + '(extract → MANDATORY scripts/inject-c2-brand.jsh → direct|uplift), emit one preview per variant, STOP. No repo/slug; no deploy.'
 }})
-// 2. refine — PREVIEW ONLY. NO da. Redesign the EXACT html handed in (not a stored file).
+// 2. refine — PREVIEW ONLY. NO da. Intent-mode Stardust on the EXACT html handed in (not a stored file).
 slicc.lick({ action: 'refine', data: {
   intent: '<optional — empty = default Consonant 2 redesign>',
   fromV: <version being viewed>,
   fromHtml: '<the full HTML of that version — redesign THIS>',
-  _rule:  'PREVIEW ONLY — redesign fromHtml, emit action:"preview", STOP; no repo/slug; no deploy.'
+  _rule:  'PREVIEW ONLY — Stardust-redesign fromHtml (references/redesign.md, inject C2), emit action:"preview", STOP; no repo/slug; no deploy.'
 }})
 // 3. deploy — the ONLY publishing action (and the ONLY lick with da). Snowflake the EXACT html.
 slicc.lick({ action: 'deploy', data: {
@@ -153,19 +172,22 @@ The scoop pushes back:
 sprinkle send page-forge '{"action":"check","key":"adobe|figma|github","status":"ok|missing","fix":"…"}'
 sprinkle send page-forge '{"action":"preflight-done","ready":true}'
 sprinkle send page-forge '{"action":"update","phase":"generate|refine|deploy","status":"…"}'
-# After EVERY generate/refine: stream the version's HTML so the panel shows it in the
-# preview iframe and adds a version chip. stage: "bespoke" (v1) | "redesigned" (refines).
+# After EVERY generate variant / refine: stream the version's HTML so the panel shows it in the
+# preview iframe and adds a version chip. stage: "bespoke" (Match 1:1) | "redesigned" (Reimagine).
+# For Reimagine, include `label` ("Redesign", or "Variant A/B/C", "Variant C — cinematic") so the
+# panel labels the chip; emit one preview PER variant.
 sprinkle send page-forge '{"action":"preview","v":1,"stage":"bespoke","intent":"","html":"<full HTML>"}'
-sprinkle send page-forge '{"action":"preview","v":2,"stage":"redesigned","intent":"<the intent>","html":"<full HTML>"}'
+sprinkle send page-forge '{"action":"preview","v":1,"stage":"redesigned","intent":"<intent>","label":"Variant A","html":"<full HTML>"}'
+sprinkle send page-forge '{"action":"preview","v":2,"stage":"redesigned","intent":"<intent>","label":"Variant B","html":"<full HTML>"}'
 # done — only after DEPLOY. The panel swaps the preview to the live URL and shows a report.
 sprinkle send page-forge '{"action":"done","url":"https://forge-proto-…--da-playground--adobecom.aem.page/<slug>","slug":"<slug>","branchUrl":"…","branchName":"forge-proto-…","sha":"<full-sha>"}'
 sprinkle send page-forge '{"action":"error","message":"…"}'
 ```
 
-**Versions:** keep each version's HTML as `output/v<N>.html`. `generate` makes v1.
-Each `refine` reads `output/v<fromV>.html`, applies the Stardust redesign with `intent` as a
-modifier, writes `output/v<N+1>.html`, and emits a `preview` for the new version. `deploy`
-ships `output/v<v>.html`.
+**Versions:** keep each emitted version's HTML as `output/v<N>.html`. `generate · match` makes v1;
+`generate · reimagine` emits one version per Stardust variant. `refine` is a **stateless transform**
+— it redesigns the `data.fromHtml` handed to it (not a stored file) and emits the new version.
+`deploy` ships the exact `data.html` handed to it.
 
 **Slug:** the panel keeps it auto-derived (hidden under "Advanced"). If `data.slug` is
 blank, the scoop derives one (URL → last path segment; figma → `figma`; html → `page`)
@@ -186,6 +208,20 @@ automatically once set. So **never block generate/refine on Adobe or GitHub.**
 On the `preflight` lick (fired when the panel opens, by "Check access", and re-fired by the panel
 right before publishing), **probe each prerequisite and report a checklist** — detect and instruct,
 don't point at docs. Emit a `check` for each; the panel decides what gates what.
+
+0. **Dependent skills (auto-install — the "SLICC sets it up for you" step).** The user only
+   `upskill`s *this* skill; the scoop bootstraps the rest. Check `/workspace/skills/` for the three
+   dependencies and **install any that are missing** by running the `upskill` command yourself
+   (don't make the user do it):
+   - `snowflake` (deploy) → `upskill adobe/skills --path plugins/aem/edge-delivery-services --all --branch feat/eds-snowflake-da-content`
+   - `stardust` (Reimagine) → `upskill adobe/skills --path plugins/stardust --all`
+   - `impeccable` (stardust dep) → `upskill pbakaus/impeccable`
+
+   Then symlink stardust + impeccable into the working dir's `.claude/skills/` (so the agent finds
+   them at runtime). Emit a single `check` (`key:"skills"`): `ok` once all three resolve; `missing`
+   only if an auto-install fails — and then put the **exact failing `upskill` command** in `fix` so
+   the user can run it. This makes setup one step (`upskill … skills/page-forge`) + sign-ins; the
+   skill installs its own toolchain.
 
 1. **Figma (play — only for Figma input).** Try a lightweight read of the user's Figma URL (or a
    known file). Fail → `fix: "Open figma.com and sign in in this browser, then re-check."`
@@ -221,9 +257,10 @@ don't point at docs. Emit a `check` for each; the panel decides what gates what.
    existing PAT covers the new repo; if not, they edit the token to add it (no need to recreate).
 
 Emit one `check` per item + `preflight-done`. The panel uses them like this:
-**Figma** gates only Figma-input generate; **Adobe + GitHub** gate only publish. The publish button
-re-fires `preflight`, shows the missing items inline, and deploys automatically the moment they pass —
-so keep the `fix` strings tight and actionable.
+**Skills** is informational (auto-installed — only shows if an install failed); **Figma** gates only
+Figma-input generate; **Adobe + GitHub** gate only publish. The publish button re-fires `preflight`,
+shows the missing items inline, and deploys automatically the moment they pass — so keep the `fix`
+strings tight and actionable.
 
 ## Pipeline (scoop)
 
@@ -232,22 +269,43 @@ Three lick handlers — **generate**, **refine**, **deploy** — plus **prefligh
 
 ### `generate` → preview only (NEVER deploy)
 
-Only `source:'url'` and `source:'figma'` reach the scoop (the panel renders pasted HTML itself).
-1. Emit `phase:"generate"`.
-2. Produce the bespoke 1:1 HTML:
+`data.mode` picks the engine. Only `source:'url'` and `source:'figma'` reach the scoop (the panel
+renders pasted HTML for Match itself). Emit `phase:"generate"`.
+
+**`mode:'match'` (and any Figma input) — 1:1, fast:**
+1. Produce the bespoke 1:1 HTML:
    - `source:'url'` → render the page with SLICC's browser/tab control and capture its HTML.
    - `source:'figma'` → follow `references/figma-extract.md` (strict 1:1 rules). Read via SLICC's
      native Figma, or `figma-fetch.jsh` REST + `/images`. **Don't relax the fidelity rules.**
-3. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML. **Then STOP.**
-   No git, no snowflake, no `aem`, no deploy. The designer decides what happens next from the panel.
+     Then run the **convergence loop** (`scripts/convergence/convergence.jsh <workdir>`) — it
+     iterates render→screenshot→pixel-diff→correct up to 4 rounds to converge on the Figma
+     reference. See `references/figma-convergence.md` for full details. The loop's `finalVersion`
+     is the version to emit.
+2. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML from
+   `output/v<finalVersion>.html`. **Then STOP.**
+
+**`mode:'reimagine'` (url only) — two-phase Stardust, several minutes:**
+1. Follow **`references/redesign.md`** exactly: `stardust:extract <url> --single` (content) →
+   **run `scripts/inject-c2-brand.jsh <workdir>` (MANDATORY — the C2 brand injection; treat a
+   non-zero exit as a hard `error`)** → then `data.intent` present → `stardust:direct "<intent>"` →
+   `stardust:prototype` (1 variant); blank → `stardust:uplift` against the existing capture
+   (do NOT re-extract / overwrite the injected brand) → 3–4 variants.
+2. For **each** prototype, run **`scripts/collect-prototype.jsh <prototype> <workdir>`** (rewrites
+   local `assets/media/` refs → live URLs so images render in the `srcdoc` iframe; inlines lenis for
+   the cinematic), then emit **one `action:"preview"` per variant** from its `out` file —
+   `stage:"redesigned"`, with `label` (`"Redesign"`, or `"Variant A/B/C"`, `"Variant C — cinematic"`),
+   `v` incrementing. **Then STOP.**
+
+Either way: no git, no snowflake, no `aem`, no deploy. The designer decides next from the panel.
 
 ### `refine` → preview only (repeatable, NEVER deploy)
 
 1. Take `data.fromHtml` as the base (it's handed to you — do not look for a stored file);
    emit `phase:"refine"`.
-2. Follow `references/redesign.md`, injecting `references/_vendored/{c2-brief,design-knowledge}.md`.
-   Apply `data.intent` as a *modifier* on the Consonant 2 baseline (empty intent = default C2
-   redesign).
+2. Follow `references/redesign.md` in **intent mode** (one variant): write `fromHtml` to
+   `input/current.html`, `stardust:extract file://… --single`, **`scripts/inject-c2-brand.jsh`
+   (MANDATORY)**, `stardust:direct "<intent>"` → `stardust:prototype`. Empty intent = default C2
+   redesign. (Never inject the C2 brief into a Figma *extract* — redesign only.)
 3. Emit **`action:"preview"` with `v:<fromV+1>, stage:"redesigned", intent:<the intent>`** and the
    redesigned HTML. **Then STOP.** No deploy — the designer keeps refining until they pick a version.
 

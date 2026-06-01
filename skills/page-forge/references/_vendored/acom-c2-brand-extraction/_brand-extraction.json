@@ -1,0 +1,550 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:extract",
+    "writtenAt": "2026-06-01T12:23:10.526Z",
+    "readArtifacts": [
+      "file:///Users/victor/Downloads/bizpro-hub-prototype/bizpro-hub.html",
+      "stardust/current/pages/home.json"
+    ],
+    "synthesizedInputs": [],
+    "stardustVersion": "0.10.0",
+    "notes": "Single-page (--single) extract; cross-page aggregation degenerates to one page. Home hero is a scroll-scaled <video>, not a static image -> heroImage:null. System-component detection skipped (requires >=3 pages); header + footer captured as structural context only. Dark/light split: top half of page is white/warm-gray surfaces, lower half (studio-banner -> footer) is pure-black sections with white text. Palette dropped white-tint text colors rgba(255,255,255,.48/.6/.72/.8) used on dark sections."
+  },
+  "site": {
+    "name": "BizPro Hub",
+    "tagline": "PDF & Productivity",
+    "originUrl": "file:///Users/victor/Downloads/bizpro-hub-prototype/bizpro-hub.html"
+  },
+  "logo": {
+    "source": "img",
+    "sourceSelector": "nav .nav__logo img[alt=\"Adobe\"]",
+    "localPath": "stardust/current/assets/logo.svg",
+    "format": "svg",
+    "intrinsicWidth": 67,
+    "intrinsicHeight": 16,
+    "synthesized": false,
+    "synthesizedBasis": null,
+    "_provenance": {
+      "notes": "Adobe corporate wordmark, served as SVG <img> from assets/figma-svg/, rendered at height 16px in the nav pill. SVG paths carry the Adobe red fill."
+    }
+  },
+  "palette": [
+    {
+      "role": "background",
+      "value": "#ffffff",
+      "occurrences": 8729328,
+      "sourceSelectors": [
+        ".hero-sticky",
+        ".stories",
+        ".acrobat-feature",
+        ".tutorial",
+        ".solutions"
+      ],
+      "usedAs": [
+        "background",
+        "text",
+        "border"
+      ]
+    },
+    {
+      "role": "background-inverse",
+      "value": "#000000",
+      "occurrences": 4000000,
+      "sourceSelectors": [
+        "body",
+        ".studio-banner",
+        ".product-section",
+        ".search-section",
+        ".footer"
+      ],
+      "usedAs": [
+        "background",
+        "text"
+      ]
+    },
+    {
+      "role": "primary",
+      "value": "#3b63fb",
+      "occurrences": 29045,
+      "sourceSelectors": [
+        ".btn--primary",
+        "a"
+      ],
+      "sources": [
+        "home"
+      ],
+      "usedAs": [
+        "background"
+      ],
+      "note": "Spectrum blue-900; hover -> #274dea (blue-1000)"
+    },
+    {
+      "role": "surface",
+      "value": "#eceae7",
+      "occurrences": 6175167,
+      "sourceSelectors": [
+        ".acrobat-card__asset",
+        ".tutorial__slide"
+      ],
+      "usedAs": [
+        "background"
+      ],
+      "note": "warm neutral card/asset ground"
+    },
+    {
+      "role": "surface-subtle",
+      "value": "#f8f8f8",
+      "occurrences": 1551143,
+      "sourceSelectors": [
+        ".story-card",
+        ".price-card",
+        ".price-card__inner"
+      ],
+      "usedAs": [
+        "background",
+        "border"
+      ]
+    },
+    {
+      "role": "text-secondary",
+      "value": "rgba(0,0,0,0.64)",
+      "occurrences": 39137,
+      "sourceSelectors": [
+        "p.body-md",
+        ".acrobat-card__body",
+        "a"
+      ],
+      "usedAs": [
+        "text"
+      ],
+      "note": "--s2a-color-content-subtle"
+    },
+    {
+      "role": "text-subtle",
+      "value": "#505050",
+      "occurrences": 10674,
+      "sourceSelectors": [
+        ".eyebrow"
+      ],
+      "usedAs": [
+        "text"
+      ],
+      "note": "--s2a-color-gray-700 / content-background-subtle"
+    },
+    {
+      "role": "accent",
+      "value": "#eb1000",
+      "occurrences": 0,
+      "sourceSelectors": [
+        "nav .nav__logo svg"
+      ],
+      "usedAs": [
+        "fill"
+      ],
+      "note": "Adobe brand red (--s2a-color-brand-adobe-red). Token-defined and carried by the Adobe wordmark logo; not used as a UI surface color. Reserve to brand lockups."
+    }
+  ],
+  "type": {
+    "headingFamily": {
+      "name": "Adobe Clean Display",
+      "stack": "'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif",
+      "weights": [
+        900
+      ],
+      "weightsDefined": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "sizes": [
+        "clamp(40px, 6.25vw, 80px)",
+        "56px",
+        "48px",
+        "24px"
+      ],
+      "lineHeights": [
+        0.95,
+        1,
+        1.05,
+        1
+      ],
+      "letterSpacing": [
+        "-1.5px → -3.2px",
+        "-0.8px → -1.68px",
+        "-0.8px → -1.2px",
+        "-0.48px"
+      ],
+      "sourceSelectors": [
+        ".title-1",
+        ".title-2",
+        ".title-3",
+        ".title-4"
+      ]
+    },
+    "bodyFamily": {
+      "name": "Adobe Clean",
+      "stack": "'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif",
+      "weights": [
+        400,
+        700
+      ],
+      "weightsDefined": [
+        300,
+        400,
+        500,
+        700,
+        800
+      ],
+      "sizes": [
+        "20px",
+        "16px",
+        "14px"
+      ],
+      "lineHeights": [
+        1.2,
+        1.25,
+        1.29
+      ],
+      "letterSpacing": [
+        "0px",
+        "0.16px"
+      ],
+      "sourceSelectors": [
+        ".body-lg",
+        ".body-md",
+        ".body-sm",
+        ".eyebrow",
+        ".label"
+      ]
+    },
+    "monoFamily": null,
+    "scaleRatio": null,
+    "scaleAudit": {
+      "kind": "ad-hoc",
+      "ratios": [
+        1.43,
+        1.17,
+        2
+      ],
+      "matchedScale": null,
+      "note": "Spectrum-2 discrete type ramp (title-1..4 = 80/56/48/24px), not a single modular scale."
+    },
+    "loadStrategy": "auto",
+    "files": [
+      {
+        "url": "assets/fonts/AdobeClean/AdobeClean-Regular.otf",
+        "family": "Adobe Clean",
+        "weight": 400,
+        "style": "normal",
+        "unicodeRange": null,
+        "localPath": "stardust/current/assets/fonts/AdobeClean/AdobeClean-Regular.otf",
+        "sourceCssRule": "@font-face { font-family: 'adobe-clean'; src: url('assets/fonts/AdobeClean/AdobeClean-Regular.otf') format('opentype'); font-weight: 400; }",
+        "licensingFlag": "private"
+      },
+      {
+        "url": "assets/fonts/AdobeClean/AdobeClean-Bold.otf",
+        "family": "Adobe Clean",
+        "weight": 700,
+        "style": "normal",
+        "unicodeRange": null,
+        "localPath": "stardust/current/assets/fonts/AdobeClean/AdobeClean-Bold.otf",
+        "sourceCssRule": "@font-face { font-family: 'adobe-clean'; src: url('assets/fonts/AdobeClean/AdobeClean-Bold.otf') format('opentype'); font-weight: 700; }",
+        "licensingFlag": "private"
+      },
+      {
+        "url": "assets/fonts/Adobe Clean Display/AdobeCleanDisplay-Black.otf",
+        "family": "Adobe Clean Display",
+        "weight": 900,
+        "style": "normal",
+        "unicodeRange": null,
+        "localPath": "stardust/current/assets/fonts/Adobe Clean Display/AdobeCleanDisplay-Black.otf",
+        "sourceCssRule": "@font-face { font-family: 'adobe-clean-display'; src: url('assets/fonts/Adobe Clean Display/AdobeCleanDisplay-Black.otf') format('opentype'); font-weight: 900; }",
+        "licensingFlag": "private"
+      }
+    ],
+    "_provenance": {
+      "notes": "Adobe Clean / Adobe Clean Display are proprietary Adobe typefaces (licensingFlag: private). 9 display weights + 5 text weights declared via local @font-face; the live render only fetched Regular, Bold (text) and Black (display) because those are the weights the visible copy uses. Titles are uniformly weight 900 with tight negative tracking and sub-1.0 line-height."
+    }
+  },
+  "spacing": {
+    "baseUnit": 8,
+    "scale": [
+      8,
+      12,
+      16,
+      24,
+      32,
+      40,
+      48,
+      64,
+      80,
+      96
+    ],
+    "sectionPadding": "96px",
+    "containerMaxWidth": "1920px",
+    "gridGap": "8px",
+    "_provenance": {
+      "notes": "Spectrum-2 spacing tokens xs..6xl (8→96). Section padding-block mode is 96px (stories/acrobat/solutions/product); tutorial uses 80px, search 124px. Grid gutter 8px, side margin 8.333vw ≥768px."
+    }
+  },
+  "motifs": {
+    "borderRadius": {
+      "primary": "16px",
+      "secondary": "12px",
+      "pill": "999px",
+      "primarySources": [
+        "home"
+      ],
+      "occurrences": {
+        "16px": 19,
+        "8px": 2,
+        "999px": 13,
+        "32px": 1,
+        "50%": 5,
+        "24px": 1,
+        "50px": 3,
+        "12px": 9
+      },
+      "note": "16px = nav pill + cards (--border-radius-md). 12px = inner cards. 999px = buttons/chips/tabs(50px). 32px = stories section top corners. 50% = circular carousel arrows + dots."
+    },
+    "shadows": [
+      {
+        "value": "0 2px 12px rgba(0,0,0,0.08)",
+        "uses": "sticky nav on scroll (.nav.scrolled)"
+      },
+      {
+        "value": "0 1px 8px rgba(0,0,0,0.14)",
+        "uses": "elevated controls (carousel arrows / floating buttons)"
+      },
+      {
+        "value": "0 -45px 45px rgba(0,0,0,0.1), 0 -11px 25px rgba(0,0,0,0.1) (stacked upward)",
+        "uses": "large upward ambient lift on sticky/overlay elements"
+      }
+    ],
+    "gradients": [
+      {
+        "value": "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 31%, transparent)",
+        "uses": "hero video scrim / image overlays for white text legibility"
+      },
+      {
+        "value": "linear-gradient(rgba(0,0,0,0) 50.5%, rgb(0,0,0) 101%)",
+        "uses": "product-tile image bottom fade into black section (x4 tiles)"
+      },
+      {
+        "value": "linear-gradient(rgb(0,0,0) 0%, rgba(0,0,0,0) 45%, transparent)",
+        "uses": "studio-banner top fade"
+      }
+    ],
+    "patterns": [
+      {
+        "name": "hero-with-scroll-video",
+        "evidence": "home hero is a <video> that scales bounded→full-viewport on scroll, with text parallax and a late-fade product overlay (Buy now / Learn more)"
+      },
+      {
+        "name": "card-carousel",
+        "evidence": "Customer Stories = 4-card horizontal carousel with full-bleed background photos and category labels"
+      },
+      {
+        "name": "feature-3up",
+        "evidence": "Acrobat feature section uses a wide hero image + 3-up image cards (collaboration / Express / security)"
+      },
+      {
+        "name": "tutorial-carousel",
+        "evidence": "Tutorial section: slide deck with prev/next circular arrows + dot pagination"
+      },
+      {
+        "name": "pricing-tabs",
+        "evidence": "Solutions section toggles Individuals / Businesses / Students & Teachers pill tabs over price cards"
+      },
+      {
+        "name": "product-mnemonic-grid",
+        "evidence": "3×3 grid of Adobe product tiles (Firefly, Acrobat, Photoshop, Premiere, Creative Cloud, GenStudio, Business Products, Illustrator, All products) on black"
+      },
+      {
+        "name": "ai-search-bar",
+        "evidence": "Search section = full-width AI chat input (\"Ask anything\") with Send + beta disclaimer"
+      },
+      {
+        "name": "footer-mega",
+        "evidence": "6-column mega footer + Featured Products row, on black"
+      }
+    ]
+  },
+  "componentStyle": {
+    "buttons": {
+      "primary": {
+        "background": "#3b63fb",
+        "color": "#ffffff",
+        "borderRadius": "999px",
+        "padding": "0 24px (height 40px)",
+        "fontWeight": 700,
+        "shadow": null,
+        "hoverDelta": "background → #274dea (blue-1000)"
+      },
+      "dark": {
+        "background": "#000000",
+        "color": "#ffffff",
+        "borderRadius": "999px",
+        "padding": "0 24px (height 40px)",
+        "fontWeight": 700,
+        "hoverDelta": "background → #1a1a1a"
+      },
+      "outline": {
+        "background": "transparent",
+        "color": "#000000",
+        "borderRadius": "999px",
+        "border": "1.5px solid #000000",
+        "fontWeight": 700,
+        "hoverDelta": "background → rgba(0,0,0,0.04)"
+      },
+      "ghostWhite": {
+        "background": "transparent",
+        "color": "#ffffff",
+        "borderRadius": "999px",
+        "border": "1.5px solid #ffffff",
+        "backdropFilter": "blur(16px)",
+        "fontWeight": 700,
+        "hoverDelta": "background → rgba(255,255,255,0.08)"
+      }
+    },
+    "dualCTAPattern": "primary-then-outline",
+    "cards": {
+      "background": "#eceae7 / #f8f8f8",
+      "borderRadius": "16px",
+      "padding": "24px",
+      "shadow": null,
+      "border": "1px solid #f8f8f8 (subtle)"
+    },
+    "inputs": {
+      "borderRadius": "0px",
+      "padding": "16px",
+      "border": "none",
+      "background": "transparent (on dark) / rgba(255,255,255,0.1) search bar",
+      "placeholder": "Ask anything",
+      "focusRing": null,
+      "note": "Only input is the AI chat search bar; borderless, large 16px padding, on a translucent dark bar."
+    },
+    "nav": {
+      "container": "fixed translucent pill — bg rgba(255,255,255,0.64), backdrop-blur 128px, radius 16px, height 64px, 8px outer padding",
+      "scrolledShadow": "0 2px 12px rgba(0,0,0,0.08)"
+    },
+    "_provenance": {
+      "notes": "Button system is fully pill-shaped (999px), height 40px (sm 32px), weight 700, 200ms cubic-bezier(0.42,0,0,1) transitions. Four variants: primary(blue), dark(black), outline(black 1.5px), ghost-white(white 1.5px + blur)."
+    }
+  },
+  "systemComponents": [],
+  "iconFont": null,
+  "voice": {
+    "heroHeadline": "Work faster, smarter, and more securely with Adobe.",
+    "heroSubcopy": "Streamline the way you work, communicate, and transact business. Plus, get AI-powered assistance, APIs and integrations, and built-in security tools.",
+    "heroImage": null,
+    "heroVideo": {
+      "src": "assets/section-1/section-1-video.mp4",
+      "behavior": "scroll-scaled bounded→full-viewport, autoplay muted loop",
+      "note": "The home hero is a video, not a static image; heroImage is null by design."
+    },
+    "primaryCTALabel": "Buy now",
+    "ctaSamples": [
+      "View Pricing",
+      "Buy now",
+      "Learn more",
+      "Free trial",
+      "Download now",
+      "Sign In"
+    ],
+    "navItems": [
+      "Use Cases",
+      "PDF & Productivity",
+      "Acrobat",
+      "Express",
+      "Sign",
+      "Scan"
+    ],
+    "footerHeadings": [
+      "For individuals & small business",
+      "For medium & large business",
+      "For Organizations",
+      "Support",
+      "Contact",
+      "Adobe",
+      "Featured Products"
+    ],
+    "firstParagraph": "From small businesses to the world's largest enterprises, our customers use Acrobat to unleash their creativity, accelerate document productivity, and power their digital businesses.",
+    "tone": {
+      "guess": "professional-warm",
+      "evidence": "Short benefit-led imperative headlines (\"Work faster, smarter…\", \"Do it all with the power of Acrobat.\"), second-person address, SMB-to-enterprise framing, AI/security emphasis. Aspirational without jargon."
+    }
+  },
+  "voiceTable": {
+    "ctaFrequency": [
+      {
+        "label": "Buy now",
+        "total": 3,
+        "pageCount": 1,
+        "pages": [
+          "home"
+        ]
+      },
+      {
+        "label": "Learn more",
+        "total": 2,
+        "pageCount": 1,
+        "pages": [
+          "home"
+        ]
+      },
+      {
+        "label": "View Pricing",
+        "total": 1,
+        "pageCount": 1,
+        "pages": [
+          "home"
+        ]
+      },
+      {
+        "label": "Free trial",
+        "total": 1,
+        "pageCount": 1,
+        "pages": [
+          "home"
+        ]
+      },
+      {
+        "label": "Download now",
+        "total": 1,
+        "pageCount": 1,
+        "pages": [
+          "home"
+        ]
+      },
+      {
+        "label": "Sign In",
+        "total": 1,
+        "pageCount": 1,
+        "pages": [
+          "home"
+        ]
+      }
+    ],
+    "headingFrequency": [],
+    "toneMetrics": {
+      "headingsTotal": 15,
+      "headingsUppercasePercent": 0,
+      "distinctHeadings": 15,
+      "distinctCtaLabels": 19
+    },
+    "_provenance": {
+      "notes": "Single page → headingFrequency requires pageCount>=3 and is empty. Headings are sentence-case (0% uppercase); CTA vocabulary is small and benefit-led."
+    }
+  },
+  "crossPromo": {
+    "detected": false
+  },
+  "register": "brand"
+}

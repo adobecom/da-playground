@@ -8,29 +8,32 @@ instincts, trust these.
 
 ### Observed palette
 
-- **background**: `rgb(0, 0, 0)`
-- **surface**: `rgb(19, 19, 19)`
-- **primary**: `rgba(0, 0, 0, 0.04)`
-- **secondary**: `rgb(238, 238, 238)`
-- **text-primary**: `rgb(255, 255, 255)`
-- **accent-1**: `rgb(44, 44, 44)`
+- **background**: `#ffffff`
+- **surface**: `#eceae7`
+- **primary**: `#3b63fb`
+- **accent**: `#eb1000`
+- **background-inverse**: `#000000`
+- **surface-subtle**: `#f8f8f8`
 
 ### Voice and copy patterns
 
 Real headlines from these pages — imitate their rhythm, brevity, and register:
-- "DA Playground"
+- "Work faster, smarter, and more securely with Adobe."
+- "Plans that work for you."
+- "Create at the highest level."
 
 Representative body copy register (first paragraphs):
-> Photoshop, Illustrator, Premiere, and much more. Work with the tools behind the world's most iconic creative content. Save 50% on Creative Cloud Pro for the first three months. See terms.
+> From small businesses to the world's largest enterprises, our customers use Acrobat to unleash their creativity, accelerate document productivity, and power their digital businesses.
+> Start with confidence — you can cancel within 14 days of purchase for a full refund.
 
 ### Motifs
 
 - Signature border-radius: `[object Object]`
-
-### System components observed on these pages
-
-`0` · `1` · `2` · `3` · `4` · `5`
+- Shadow stack: `[object Object]` · `[object Object]` · `[object Object]`
+- Recurring patterns: [object Object], [object Object], [object Object]
 
 ### Source pages
 
 - `acom-c2-brand-extraction`
+- `acrobat-plans-c2`
+- `animation-demo-c2`

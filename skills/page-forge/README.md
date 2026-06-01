@@ -1,10 +1,10 @@
 # page-forge (SLICC skill)
 
-Browser-native re-host of the Page Forge pipeline: **Figma / page URL / raw HTML → 1:1
-prototype published to Adobe DA**, with an optional Stardust (Consonant 2 + brand-knowledge)
-redesign pass. Replaces the local `:3002` Node server. A `page-forge` **scoop** owns the
-side-panel **sprinkle** (`page-forge.shtml`) and runs the pipeline, reusing the `snowflake`
-skill (installed via `upskill`) for the deploy.
+Browser-native re-host of the Page Forge pipeline: **Figma / page URL / raw HTML → either a 1:1
+prototype (Match) or an Adobe Consonant 2 redesign (Reimagine) → published to Adobe DA**. Replaces
+the local `:3002` Node server. A `page-forge` **scoop** owns the side-panel **sprinkle**
+(`page-forge.shtml`) and runs the pipeline, reusing the `snowflake` skill for the deploy and the
+two-phase **stardust** engine (on `impeccable`) for Reimagine — both installed via `upskill`.
 
 See `../../docs/sliccy-demo-plan.md` for the why and the phased plan.
 
@@ -15,15 +15,17 @@ page-forge/
 ├── SKILL.md            # scoop/sprinkle architecture + pipeline + sprinkle⇄scoop protocol
 ├── page-forge.shtml    # side-panel sprinkle: preflight checklist + Figma/URL/HTML + Generate
 ├── scripts/
-│   ├── figma-fetch.jsh    # Figma REST: structure + /images raster export (FIGMA_TOKEN)
-│   ├── deploy.jsh         # commit + push forge-proto-* branch
-│   └── sync-references.mjs # build-time (host node) vendoring of C2/design-knowledge/catalog
+│   ├── figma-fetch.jsh       # Figma REST: structure + /images raster export (FIGMA_TOKEN)
+│   ├── inject-c2-brand.jsh   # Reimagine: copy vendored C2 brand over stardust/current/ (fail-loud)
+│   ├── collect-prototype.jsh # Reimagine: rewrite local image refs → live URLs + inline lenis
+│   ├── deploy.jsh            # commit + push forge-proto-* branch
+│   └── sync-references.mjs # build-time (host node) vendoring of C2 brief/brand/knowledge/catalog
 └── references/
-    ├── figma-extract.md      # strict 1:1 Figma extract prompt
-    ├── redesign.md           # optional Stardust redesign prompt
+    ├── figma-extract.md      # strict 1:1 Figma extract prompt (Match · Figma)
+    ├── redesign.md           # two-phase Stardust Reimagine (extract → inject C2 → direct/uplift)
     ├── snowflake-deploy.md   # snowflake deploy (aem command + Milo flavor)
-    ├── _vendored/            # generated; gitignored in forge, shipped in the package
-    └── README.md
+    ├── _vendored/            # generated; shipped in the package. Incl. acom-c2-brand-extraction/
+    └── README.md             #   (_brand-extraction.json + DESIGN.json — the C2 brand injected by Reimagine)
 ```
 
 `.jsh` = SLICC-native shell scripts (global `fetch`/`fs`/`process`/`exec`, top-level await; run
@@ -34,9 +36,11 @@ that has the forge checkout), not a runtime script.
 
 ```
 # 1. install this skill + the snowflake deploy skill (Milo flavor lives on the fork branch
-#    until merged upstream into adobe/skills)
+#    until merged upstream into adobe/skills) + the Stardust Reimagine engine (+ impeccable)
 upskill adobecom/da-playground --path skills/page-forge
 upskill vhargrave/skills --path plugins/aem/edge-delivery-services --all --branch feat/snowflake-milo-substrate
+upskill adobe/skills --path plugins/stardust --all          # Reimagine engine
+upskill pbakaus/impeccable                                  # stardust's hard dependency
 
 # 2. access — per designer:
 #    - Settings → Providers → Sign in with Adobe   (covers DA + aem)
@@ -53,8 +57,14 @@ Regenerate `references/_vendored/` before publishing (see `references/README.md`
 
 ## Status
 
-Scaffold — prompts + sprinkle UI + `.jsh` helpers ported from `page-forge/server`, aligned to
-SLICC's verified model (upskill, `aem` command, Adobe OAuth, scoop/sprinkle). **Not yet run
-end-to-end on SLICC.** Phase 0 validates the one real unknown: whether the WASM shell can
-`git push` with the fetch-proxy secret-injection model. `deploy.jsh` is written to report the
-exact failure so we pick the right auth mechanism.
+1:1 with the DA Page Forge tool (forge `stage`): **Match / Reimagine** model, the two-phase
+**Stardust** Reimagine engine (`extract → inject canonical C2 brand → direct|uplift`), multi-variant
+chips, and the activity log are all ported here.
+
+Caveats for the demo:
+- **Match** (URL/HTML/Figma → 1:1 → snowflake deploy) is the fast, verified spine — lead with it.
+- **Reimagine** is slow (~10–30 min/phase) and **not yet validated end-to-end inside SLICC** (it is
+  proven in DA). Pre-bake it for the demo. Unlike DA — where the C2 injection is a Node copy *outside*
+  the agent — here the scoop runs `scripts/inject-c2-brand.jsh` itself, so it's a *mandated* (not
+  structurally guaranteed) step; the script fails loud if the injection doesn't land.
+- Phase 0 still validates whether the WASM shell can `git push` via the fetch-proxy `GITHUB_PAT`.
