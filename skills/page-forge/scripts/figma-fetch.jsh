@@ -36,8 +36,8 @@ function collectImageNodes(node, acc) {
 fs.mkdirSync(outDir, { recursive: true });
 
 const nodes = await figmaGet(nodeId
-  ? `/files/${key}/nodes?ids=${encodeURIComponent(nodeId)}&depth=6`
-  : `/files/${key}?depth=4`);
+  ? `/files/${key}/nodes?ids=${encodeURIComponent(nodeId)}&depth=30`
+  : `/files/${key}?depth=30`);
 fs.writeFileSync(`${outDir}/nodes.json`, JSON.stringify(nodes, null, 2));
 
 const roots = nodes.nodes ? Object.values(nodes.nodes).map((n) => n.document) : [nodes.document];
@@ -51,4 +51,19 @@ if (ids.size) {
 }
 fs.writeFileSync(`${outDir}/images.json`, JSON.stringify(images, null, 2));
 
-console.log(JSON.stringify({ key, nodeId, outDir, nodeRoots: roots.length, imageNodes: Object.keys(images).length }));
+// Download the primary frame export as reference.png (used by the convergence loop)
+const primaryId = nodeId || [...ids][0];
+const primaryUrl = primaryId && images[primaryId];
+let refDownloaded = false;
+if (primaryUrl) {
+  try {
+    const refResp = await fetch(primaryUrl);
+    if (refResp.ok) {
+      const refBuf = new Uint8Array(await refResp.arrayBuffer());
+      fs.writeFileSync(`${outDir}/reference.png`, refBuf);
+      refDownloaded = true;
+    }
+  } catch (e) { /* non-fatal — convergence.jsh will retry from images.json */ }
+}
+
+console.log(JSON.stringify({ key, nodeId, outDir, nodeRoots: roots.length, imageNodes: Object.keys(images).length, refDownloaded }));

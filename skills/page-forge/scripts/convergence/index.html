@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head><title>SLICC Pixel Diff Utility</title></head>
+<body>
+<!--
+  Headless utility page for canvas-based pixel comparison.
+  Served via `serve <dir>`, invoked via `playwright-cli eval --tab=<id>`.
+
+  Port of forge's renderDiff.js pixelmatch logic — using pure browser Canvas API
+  instead of Node's pixelmatch + pngjs (unavailable in SLICC's .jsh runtime).
+
+  Supports:
+  - Basic full-image pixel diff (threshold-based)
+  - Masked diff (exclude image regions / text-as-pixels to reduce noise)
+  - Downscaled comparison (for performance on large frames)
+  - Region-level mismatch reporting (worst quadrants for correction targeting)
+-->
+<canvas id="ref" style="display:none"></canvas>
+<canvas id="ren" style="display:none"></canvas>
+<canvas id="diff" style="display:none"></canvas>
+<script>
+// Configuration (mirrors forge's renderDiff.js defaults)
+const THRESHOLD = 35;        // per-channel delta threshold (pixelmatch default ~35)
+const MAX_COMPARE_W = 700;   // downscale to ~700px before diffing (forge semantic)
+const GRID_COLS = 4;         // region grid for worst-region reporting
+const GRID_ROWS = 4;
+
+// ── Image loading ───────────────────────────────────────────────────────────
+function loadImg(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error('Failed to load image: ' + url));
+    img.src = url;
+  });
+}
+
+// ── Draw image to canvas, optionally downscaled ──────────────────────────────
+function drawToCanvas(canvas, img, targetW, targetH) {
+  canvas.width = targetW;
+  canvas.height = targetH;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, targetW, targetH);
+  return ctx.getImageData(0, 0, targetW, targetH);
+}
+
+// ── Core pixel diff (threshold-based, per-pixel) ─────────────────────────────
+// Returns { totalPixels, diffPixels, mismatch, regionScores }
+function diffImageData(refData, renData, w, h, mask) {
+  const ref = refData.data;
+  const ren = renData.data;
+  let diffPixels = 0;
+  const totalPixels = w * h;
+
+  // Region grid for worst-region reporting
+  const cellW = Math.ceil(w / GRID_COLS);
+  const cellH = Math.ceil(h / GRID_ROWS);
+  const regionDiffs = new Array(GRID_COLS * GRID_ROWS).fill(0);
+  const regionTotals = new Array(GRID_COLS * GRID_ROWS).fill(0);
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+
+      // Skip masked pixels (image regions / text-as-pixels)
+      if (mask && mask[y * w + x]) continue;
+
+      const dr = Math.abs(ref[i] - ren[i]);
+      const dg = Math.abs(ref[i + 1] - ren[i + 1]);
+      const db = Math.abs(ref[i + 2] - ren[i + 2]);
+
+      // Region tracking
+      const col = Math.min(Math.floor(x / cellW), GRID_COLS - 1);
+      const row = Math.min(Math.floor(y / cellH), GRID_ROWS - 1);
+      const regionIdx = row * GRID_COLS + col;
+      regionTotals[regionIdx]++;
+
+      if (dr > THRESHOLD || dg > THRESHOLD || db > THRESHOLD) {
+        diffPixels++;
+        regionDiffs[regionIdx]++;
+      }
+    }
+  }
+
+  // Compute per-region mismatch scores
+  const regionScores = regionDiffs.map((d, i) => ({
+    row: Math.floor(i / GRID_COLS),
+    col: i % GRID_COLS,
+    mismatch: regionTotals[i] > 0 ? d / regionTotals[i] : 0,
+    diffPixels: d,
+  }));
+
+  // Sort by worst mismatch
+  regionScores.sort((a, b) => b.mismatch - a.mismatch);
+
+  return {
+    width: w,
+    height: h,
+    totalPixels,
+    diffPixels,
+    mismatch: diffPixels / (totalPixels || 1),
+    regionScores: regionScores.slice(0, 6), // top 6 worst regions
+  };
+}
+
+// Mask generation -- forge semantics:
+// 1. EXCLUDE image/background-image rects (photographic content differs by load state)
+// 2. RE-INCLUDE text rects sitting on images (text fidelity matters even on photos)
+// 3. Masked pixels get equalized so the diff ignores them completely
+//
+// In SLICC we approximate this with gradient analysis:
+// - Low gradient blocks = photographic (mask out)
+// - High gradient blocks on top of low-gradient surroundings = text on images (unmask)
+// - Everything else = UI elements (compare)
+function generateImageMask(imgData, w, h) {
+  const data = imgData.data;
+  const mask = new Uint8Array(w * h); // 1 = masked (skip), 0 = compare
+
+  const blockSize = 16;
+  const cols = Math.ceil(w / blockSize);
+  const rows = Math.ceil(h / blockSize);
+  const blockGradients = new Float32Array(cols * rows);
+
+  // Pass 1: compute per-block gradient (identifies photos vs UI)
+  for (let by = 0; by < rows; by++) {
+    for (let bx = 0; bx < cols; bx++) {
+      let gradient = 0;
+      let count = 0;
+      const yStart = by * blockSize;
+      const xStart = bx * blockSize;
+      for (let y = yStart; y < Math.min(yStart + blockSize, h) - 1; y++) {
+        for (let x = xStart; x < Math.min(xStart + blockSize, w) - 1; x++) {
+          const i = (y * w + x) * 4;
+          const iRight = (y * w + x + 1) * 4;
+          const iDown = ((y + 1) * w + x) * 4;
+          gradient += Math.abs(data[i] - data[iRight]) + Math.abs(data[i] - data[iDown]);
+          gradient += Math.abs(data[i+1] - data[iRight+1]) + Math.abs(data[i+1] - data[iDown+1]);
+          gradient += Math.abs(data[i+2] - data[iRight+2]) + Math.abs(data[i+2] - data[iDown+2]);
+          count++;
+        }
+      }
+      blockGradients[by * cols + bx] = count > 0 ? gradient / count / 3 : 0;
+    }
+  }
+
+  // Pass 2: mask low-gradient blocks (photos), but RE-INCLUDE high-gradient
+  // blocks surrounded by low-gradient ones (text on images)
+  const IMAGE_THRESHOLD = 10;    // below this = likely photographic
+  const TEXT_ON_IMAGE = 40;      // above this even when neighbors are photos = text
+
+  for (let by = 0; by < rows; by++) {
+    for (let bx = 0; bx < cols; bx++) {
+      const idx = by * cols + bx;
+      const g = blockGradients[idx];
+
+      if (g < IMAGE_THRESHOLD) {
+        // Low gradient = photo -> mask it
+        const yStart = by * blockSize;
+        const xStart = bx * blockSize;
+        for (let y = yStart; y < Math.min(yStart + blockSize, h); y++) {
+          for (let x = xStart; x < Math.min(xStart + blockSize, w); x++) {
+            mask[y * w + x] = 1;
+          }
+        }
+      } else if (g > TEXT_ON_IMAGE) {
+        // High gradient = could be text on image -> check neighbors
+        // If most neighbors are photo blocks, this is text ON an image -> unmask (keep for diff)
+        let photoNeighbors = 0;
+        let totalNeighbors = 0;
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            if (dy === 0 && dx === 0) continue;
+            const ny = by + dy, nx = bx + dx;
+            if (ny >= 0 && ny < rows && nx >= 0 && nx < cols) {
+              totalNeighbors++;
+              if (blockGradients[ny * cols + nx] < IMAGE_THRESHOLD) photoNeighbors++;
+            }
+          }
+        }
+        // If > 50% neighbors are photos, this is text on image -> keep it unmasked (0)
+        // Otherwise it's normal UI text -> also unmasked (0)
+        // Either way, don't mask high-gradient blocks. They stay at mask=0.
+      }
+    }
+  }
+
+  return mask;
+}
+
+// ── Main API: compare two images ────────────────────────────────────────────
+// Called via playwright-cli eval: window.pixelDiff(refUrl, renUrl, {masked})
+window.pixelDiff = async function(refUrl, renUrl, options = {}) {
+  const { masked = true, maxWidth = MAX_COMPARE_W } = options;
+
+  const [refImg, renImg] = await Promise.all([loadImg(refUrl), loadImg(renUrl)]);
+
+  // Determine comparison dimensions (downscale to maxWidth, preserving aspect)
+  const refAspect = refImg.height / refImg.width;
+  const renAspect = renImg.height / renImg.width;
+
+  // Use reference dimensions as the canonical size
+  let w = Math.min(refImg.width, maxWidth);
+  let h = Math.round(w * refAspect);
+
+  // Draw both at the same dimensions
+  const refCanvas = document.getElementById('ref');
+  const renCanvas = document.getElementById('ren');
+
+  const refData = drawToCanvas(refCanvas, refImg, w, h);
+  const renData = drawToCanvas(renCanvas, renImg, w, h);
+
+  // Generate mask from the reference (exclude photographic regions)
+  let mask = null;
+  if (masked) {
+    mask = generateImageMask(refData, w, h);
+  }
+
+  const result = diffImageData(refData, renData, w, h, mask);
+
+  // Add metadata
+  result.refOriginal = { width: refImg.width, height: refImg.height };
+  result.renOriginal = { width: renImg.width, height: renImg.height };
+  result.masked = masked;
+  result.aspectMatch = Math.abs(refAspect - renAspect) < 0.05;
+
+  return result;
+};
+
+// ── Presence check: does the render have the same major structural blocks? ──
+// Simple heuristic: compare dominant color distribution (header, hero, sections)
+window.presenceScore = async function(refUrl, renUrl) {
+  const [refImg, renImg] = await Promise.all([loadImg(refUrl), loadImg(renUrl)]);
+
+  const w = 320; // very small for fast presence check
+  const refH = Math.round(w * (refImg.height / refImg.width));
+  const renH = Math.round(w * (renImg.height / renImg.width));
+
+  const c = document.createElement('canvas');
+
+  // Sample vertical strips from both
+  function verticalProfile(img, h) {
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.drawImage(img, 0, 0, w, h);
+    const data = ctx.getImageData(0, 0, w, h).data;
+
+    // Average color per horizontal band (16 bands)
+    const bands = 16;
+    const bandH = Math.ceil(h / bands);
+    const profile = [];
+    for (let b = 0; b < bands; b++) {
+      let r = 0, g = 0, bl = 0, count = 0;
+      for (let y = b * bandH; y < Math.min((b + 1) * bandH, h); y++) {
+        for (let x = 0; x < w; x++) {
+          const i = (y * w + x) * 4;
+          r += data[i]; g += data[i + 1]; bl += data[i + 2];
+          count++;
+        }
+      }
+      if (count > 0) profile.push([r / count, g / count, bl / count]);
+    }
+    return profile;
+  }
+
+  const refProfile = verticalProfile(refImg, refH);
+  const renProfile = verticalProfile(renImg, renH);
+
+  // Compare profiles — structural similarity
+  const len = Math.min(refProfile.length, renProfile.length);
+  let totalDelta = 0;
+  for (let i = 0; i < len; i++) {
+    const dr = Math.abs(refProfile[i][0] - renProfile[i][0]);
+    const dg = Math.abs(refProfile[i][1] - renProfile[i][1]);
+    const db = Math.abs(refProfile[i][2] - renProfile[i][2]);
+    totalDelta += (dr + dg + db) / (3 * 255);
+  }
+
+  const presence = 1 - (totalDelta / len);
+  return { presence, bands: len, heightRatio: renH / refH };
+};
+
+document.title = 'pixel-diff-ready';
+</script>
+<p style="font-family:monospace;color:#666">SLICC Pixel Diff Utility — loaded</p>
+</body>
+</html>

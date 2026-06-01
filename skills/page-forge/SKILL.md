@@ -277,7 +277,12 @@ renders pasted HTML for Match itself). Emit `phase:"generate"`.
    - `source:'url'` → render the page with SLICC's browser/tab control and capture its HTML.
    - `source:'figma'` → follow `references/figma-extract.md` (strict 1:1 rules). Read via SLICC's
      native Figma, or `figma-fetch.jsh` REST + `/images`. **Don't relax the fidelity rules.**
-2. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML. **Then STOP.**
+     Then run the **convergence loop** (`scripts/convergence/convergence.jsh <workdir>`) — it
+     iterates render→screenshot→pixel-diff→correct up to 4 rounds to converge on the Figma
+     reference. See `references/figma-convergence.md` for full details. The loop's `finalVersion`
+     is the version to emit.
+2. Emit **`action:"preview"` with `v:1, stage:"bespoke"`** and the full HTML from
+   `output/v<finalVersion>.html`. **Then STOP.**
 
 **`mode:'reimagine'` (url only) — two-phase Stardust, several minutes:**
 1. Follow **`references/redesign.md`** exactly: `stardust:extract <url> --single` (content) →
