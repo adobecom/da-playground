@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:prototype (intent flow — single variant)
+  writtenAt:        2026-06-01T16:05:00Z
+  page:             home
+  pageUrl:          http://main--da-express-milo--adobecom.aem.live/express/
+  againstDirection: stardust/direction.md (Active 2026-06-01T16:00:00Z)
+  againstInput:     "can we make the normal text on this page just a smidge larger?"
+  mode:             A (brand-faithful, pinned to canonical Adobe Consonant-2 surface)
+  iaFidelity:       verbatim
+  surprise:         low
+  change:           "type-scale (body only) — --body 18px→19px, --body-lg 20px→21px; all else verbatim from captured C2 page"
+  readArtifacts:
+    - stardust/current/pages/home.json
+    - stardust/prototypes/home-shape.md
+    - stardust/prototypes/home-improvements.md
+    - DESIGN.md
+    - DESIGN.json
+  reflexRejectAudit:
+    bypassed: true
+    reason: "Mode A — display (Adobe Clean Display) + body (Adobe Clean) families pinned to captured C2 surface; not a reflex pick."
+  divergenceVersion: v1.0
+  unsourcedContent:
+    - selector: 'section[data-section="compare-plans"] .plan-price'
+      type: price
+      reason: "design demanded plan pricing; current/pages/home.json captured Compare-Plans tabs but no price values"
+  stardustVersion:   0.10.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Design, Photo, and Video Tool – The quick and easy app to create on-brand content | Adobe Express</title>
+<style>
+:root{
+  --heading-font-family:"adobe-clean-display","Adobe Clean Display","Adobe Clean",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --body-font-family:"adobe-clean","Adobe Clean",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --heading-xxl:clamp(48px,10.5vw,132px);
+  --heading-xl:clamp(40px,6vw,84px);
+  --heading-lg:clamp(30px,4vw,56px);
+  --heading-md:24px;
+  --body-lg:21px; --body:19px; --body-sm:14px;
+  --line-height-heading:0.92; --line-height-body:1.5;
+  --color-bg:#ffffff; --color-bg-inverse:#000000; --color-fg:#000000;
+  --color-fg-secondary:rgba(0,0,0,0.64); --color-fg-subtle:#505050;
+  --color-accent:#3b63fb; --color-accent-hover:#274dea;
+  --surface-stone:#eceae7; --surface-cloud:#f8f8f8; --adobe-red:#eb1000;
+  --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px; --spacing-lg:24px;
+  --spacing-xl:48px; --spacing-2xl:96px;
+  --section-padding:96px; --max-width:1280px; --radius:16px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--color-bg);color:var(--color-fg);font-family:var(--body-font-family);font-size:var(--body);line-height:var(--line-height-body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--color-accent);text-decoration:none}
+h1,h2,h3,h4{font-family:var(--heading-font-family);font-weight:900;line-height:var(--line-height-heading);letter-spacing:-0.03em;margin:0}
+p{margin:0}
+:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max-width);margin:0 auto;padding-inline:clamp(20px,8.333vw,160px)}
+.eyebrow{font-family:var(--body-font-family);font-weight:700;font-size:var(--body-sm);color:var(--color-fg-subtle);margin:0 0 var(--spacing-md);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:var(--body-lg);color:var(--color-fg-secondary);max-width:60ch}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding-inline:24px;border:1.5px solid transparent;border-radius:999px;font-family:var(--body-font-family);font-size:15px;font-weight:700;cursor:pointer;transition:background 200ms cubic-bezier(.42,0,0,1);white-space:nowrap}
+.btn--primary{background:var(--color-accent);color:#fff}
+.btn--primary:hover{background:var(--color-accent-hover)}
+.btn--outline{background:transparent;color:#000;border-color:#000}
+.btn--outline:hover{background:rgba(0,0,0,.04)}
+.btn--dark{background:#000;color:#fff}
+.btn--dark:hover{background:#1a1a1a}
+.btn--sm{height:36px;font-size:14px;padding-inline:18px}
+
+.nav{position:fixed;top:8px;left:50%;transform:translateX(-50%);width:calc(100% - 16px);max-width:var(--max-width);z-index:100;display:flex;align-items:center;gap:24px;height:64px;padding:0 16px 0 20px;border-radius:16px;background:rgba(255,255,255,.64);backdrop-filter:blur(128px);-webkit-backdrop-filter:blur(128px);transition:box-shadow 200ms}
+.nav.scrolled{box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.nav__brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:#000}
+.nav__brand img{height:22px}
+.nav__links{display:flex;gap:4px;margin-left:8px}
+.nav__links a{color:#000;font-weight:700;font-size:14px;padding:8px 12px;border-radius:999px}
+.nav__links a:hover{background:rgba(0,0,0,.05)}
+.nav__cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nav__burger{display:none;margin-left:auto;width:44px;height:44px;border:none;background:transparent;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.nav__burger span{display:block;width:22px;height:2px;background:#000}
+.nav__panel{display:none}
+
+main{display:block}
+section{padding-block:var(--section-padding)}
+
+/* ── Section head with display-set index ── */
+.shead{display:flex;align-items:flex-start;gap:clamp(16px,3vw,48px);margin-bottom:var(--spacing-xl)}
+.shead__idx{font-family:var(--heading-font-family);font-weight:900;font-size:clamp(40px,6vw,96px);line-height:.8;color:var(--color-accent);letter-spacing:-0.04em;flex:none}
+.shead__t{flex:1}
+.shead__t h2{font-size:var(--heading-xl)}
+.shead__t .lede{margin-top:var(--spacing-md)}
+
+/* ── Hero (type-led) ── */
+.hero{padding-top:150px;padding-bottom:var(--spacing-2xl)}
+.hero__grid{display:grid;grid-template-columns:1.5fr .5fr;gap:clamp(24px,4vw,64px);align-items:end}
+.hero h1{font-size:var(--heading-xxl);letter-spacing:-0.045em;line-height:.86}
+.hero h1 em{font-style:normal;color:var(--color-accent)}
+.hero__plate{border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;background:var(--surface-stone);align-self:end}
+.hero__plate img{width:100%;height:100%;object-fit:cover}
+.hero__foot{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--spacing-xl);margin-top:var(--spacing-xl);flex-wrap:wrap}
+.hero .lede{max-width:42ch}
+.hero__ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:var(--spacing-lg)}
+.hero__ratings{display:flex;gap:32px}
+.rating__score{font-family:var(--heading-font-family);font-weight:900;font-size:32px;line-height:1;display:flex;align-items:center;gap:6px}
+.rating__score .star{color:var(--color-accent);font-size:22px}
+.rating__label{font-size:var(--body-sm);color:var(--color-fg-secondary);margin-top:4px}
+.hero__chips{margin-top:var(--spacing-2xl);display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid var(--surface-stone);padding-top:var(--spacing-xl)}
+.chip{display:inline-flex;align-items:center;height:40px;padding-inline:18px;border-radius:999px;border:1.5px solid rgba(0,0,0,.12);font-size:14px;font-weight:700;color:#000;background:#fff}
+.chip[aria-pressed="true"]{background:#000;color:#fff;border-color:#000}
+
+/* ── Segments ── */
+.segments{background:var(--surface-cloud)}
+.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--spacing-lg)}
+.seg-card{background:#fff;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.seg-card__media{aspect-ratio:16/10;background:var(--surface-stone)}
+.seg-card__media img{width:100%;height:100%;object-fit:cover}
+.seg-card__body{padding:var(--spacing-lg);display:flex;flex-direction:column;gap:var(--spacing-md);flex:1}
+.seg-card__body h3{font-size:var(--heading-md)}
+.seg-card__body p{color:var(--color-fg-secondary);flex:1}
+
+/* ── Features as indexed editorial list ── */
+.feat-list{display:flex;flex-direction:column}
+.frow{display:grid;grid-template-columns:auto 1fr 1fr;gap:clamp(20px,4vw,64px);align-items:center;padding-block:var(--spacing-xl);border-top:1px solid var(--surface-stone)}
+.frow:last-child{border-bottom:1px solid var(--surface-stone)}
+.frow__idx{font-family:var(--heading-font-family);font-weight:900;font-size:clamp(28px,3vw,44px);line-height:.8;color:rgba(0,0,0,.18);letter-spacing:-0.03em}
+.frow__text h4{font-size:var(--heading-lg);max-width:16ch}
+.frow__text .beta{display:inline-block;font-size:12px;font-weight:700;color:var(--color-accent);border:1px solid var(--color-accent);border-radius:999px;padding:2px 10px;margin-left:8px;vertical-align:middle;font-family:var(--body-font-family)}
+.frow__text p{color:var(--color-fg-secondary);font-size:var(--body-lg);margin:var(--spacing-md) 0 var(--spacing-lg);max-width:46ch}
+.frow__media{border-radius:var(--radius);overflow:hidden;aspect-ratio:16/11;background:var(--surface-stone)}
+.frow__media img{width:100%;height:100%;object-fit:cover}
+.frow:nth-child(even) .frow__media{order:-1}
+
+/* ── Testimonial ── */
+.testi{background:var(--surface-stone)}
+.testi__grid{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--spacing-2xl);align-items:center}
+.testi__media{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3}
+.testi__media img{width:100%;height:100%;object-fit:cover}
+.testi blockquote{margin:0;font-family:var(--heading-font-family);font-weight:900;font-size:var(--heading-lg);line-height:1.0;letter-spacing:-0.02em}
+.testi cite{display:block;margin-top:var(--spacing-lg);font-style:normal;font-weight:700}
+.testi cite span{display:block;font-weight:400;color:var(--color-fg-secondary)}
+
+/* ── App band ── */
+.appband{text-align:center}
+.appband h2{font-size:var(--heading-lg);max-width:20ch;margin:0 auto}
+.appband__stores{display:flex;gap:16px;justify-content:center;margin-top:var(--spacing-xl);flex-wrap:wrap}
+.appband__stores img{height:48px}
+
+.act-dark{background:var(--color-bg-inverse);color:#fff}
+.act-dark h2,.act-dark h3{color:#fff}
+.act-dark .lede,.act-dark p{color:rgba(255,255,255,.72)}
+.act-dark .shead__idx{color:var(--color-accent)}
+
+.plans__tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--spacing-xl)}
+.plans__tabs .chip{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.plans__tabs .chip[aria-pressed="true"]{background:#fff;color:#000;border-color:#fff}
+.plans__row{display:flex;gap:var(--spacing-lg);align-items:flex-start;flex-wrap:wrap;justify-content:space-between}
+.plan-price{border:2px dashed var(--color-accent);background:rgba(255,255,255,.06);padding:14px 18px;border-radius:12px;font-family:ui-monospace,Menlo,monospace}
+.plan-price .placeholder-eyebrow{display:block;font-size:11px;letter-spacing:1px;color:var(--color-accent);text-transform:uppercase}
+.plan-price .placeholder-shape{display:block;margin-top:4px;color:rgba(255,255,255,.7);font-size:13px}
+
+.closing{text-align:center}
+.closing h2{font-size:var(--heading-xl);max-width:16ch;margin:0 auto}
+.closing .btn{margin-top:var(--spacing-xl)}
+
+.site-footer{background:var(--color-bg-inverse);color:#fff;padding-block:var(--spacing-2xl) var(--spacing-xl)}
+.foot-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--spacing-xl)}
+.foot-cols h3{font-family:var(--body-font-family);font-size:var(--body-sm);font-weight:700;color:#fff;margin-bottom:12px}
+.foot-cols ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.foot-cols a{color:rgba(255,255,255,.7);font-size:var(--body-sm)}
+.foot-cols a:hover{color:#fff}
+.site-footer__wordmark{font-family:var(--heading-font-family);font-weight:900;font-size:clamp(48px,13vw,170px);letter-spacing:-0.045em;line-height:.78;margin-top:var(--spacing-2xl);color:#fff}
+.foot-fine{margin-top:var(--spacing-xl);padding-top:var(--spacing-lg);border-top:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.5);font-size:12px;line-height:1.6}
+
+@media (max-width:960px){
+  .hero__grid{grid-template-columns:1fr}
+  .hero__plate{display:none}
+  .testi__grid{grid-template-columns:1fr;gap:var(--spacing-xl)}
+  .cards-3{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:auto 1fr;gap:var(--spacing-lg)}
+  .frow__media{grid-column:1 / -1;order:0}
+  .frow:nth-child(even) .frow__media{order:0}
+}
+@media (max-width:767px){
+  :root{--section-padding:64px}
+  .nav__links,.nav__cta{display:none}
+  .nav__burger{display:flex}
+  .nav.open .nav__panel{display:flex;flex-direction:column;gap:6px;position:absolute;top:72px;left:0;right:0;background:#fff;border-radius:16px;padding:16px;box-shadow:0 12px 40px rgba(0,0,0,.16)}
+  .nav.open .nav__panel a{padding:10px 12px;border-radius:10px;color:#000;font-weight:700}
+  .nav.open .nav__panel .btn{width:100%;margin-top:6px}
+  .cards-3{grid-template-columns:1fr}
+  .shead{flex-direction:column;gap:8px}
+  .frow{grid-template-columns:1fr}
+  .frow__idx{font-size:32px}
+  .foot-cols{grid-template-columns:1fr 1fr;gap:var(--spacing-lg)}
+}
+</style>
+</head>
+<body data-template="landing">
+<header class="nav" id="nav" data-section="site-header" data-intent="orient and route" data-layout="contained" data-nav-collapse="hamburger" data-canon>
+  <a class="nav__brand" href="#" aria-label="Adobe Express home"><img src="https://main--da-express-milo--adobecom.aem.live/express/code/icons/adobe-express-logo.svg" alt="Adobe Express logo"><span>Adobe Express</span></a>
+  <nav class="nav__links" aria-label="Primary"><a href="#features">Create</a><a href="#features">Edit</a><a href="#features">Print</a><a href="#segments">Business</a><a href="#segments">Education</a><a href="#plans">Plans</a></nav>
+  <div class="nav__cta"><a class="btn btn--outline btn--sm" href="#">Sign in</a><a class="btn btn--primary btn--sm" href="https://adobesparkpost.app.link/AnkNdGxthOb">Go to Adobe Express</a></div>
+  <button class="nav__burger" id="burger" aria-label="Open menu" aria-controls="navpanel" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav__panel" id="navpanel"><a href="#features">Create</a><a href="#features">Edit</a><a href="#features">Print</a><a href="#segments">Business</a><a href="#segments">Education</a><a href="#plans">Plans</a><a class="btn btn--outline" href="#">Sign in</a><a class="btn btn--primary" href="https://adobesparkpost.app.link/AnkNdGxthOb">Go to Adobe Express</a></div>
+</header>
+
+<main>
+  <!-- HERO — type-led -->
+  <section class="hero" data-section="hero" data-intent="emotional hook" data-layout="split-media" data-media="image">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Adobe Express</p>
+          <h1>The quick and easy <em>create-anything</em> app.</h1>
+        </div>
+        <div class="hero__plate"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_12de83e22be8b19c2071f4a88335b05fa69238cb3.png?width=2000&format=webply&optimize=medium" alt="Adobe Express editor with a social post design in progress"></div>
+      </div>
+      <div class="hero__foot">
+        <div>
+          <p class="lede">Make stunning social posts, images, videos, flyers, and more with Adobe Express. Dream it. Make it. Easy.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="https://adobesparkpost.app.link/GJrBPFUWBBb?url=%2Fexpress%2F">Get Adobe Express Free</a>
+            <a class="btn btn--outline" href="#plans">Start 30-day free trial</a>
+          </div>
+        </div>
+        <div class="hero__ratings">
+          <div class="rating"><span class="rating__score"><span class="star">★</span>4.8</span><span class="rating__label">345.6K ratings</span></div>
+          <div class="rating"><span class="rating__score"><span class="star">★</span>4.6</span><span class="rating__label">574K ratings</span></div>
+        </div>
+      </div>
+      <div class="hero__chips" role="group" aria-label="What you can do">
+        <span class="chip" aria-pressed="true">Create anything, quickly and easily</span>
+        <span class="chip">Edit with one click</span>
+        <span class="chip">Create fast with generative AI</span>
+        <span class="chip">Start from standout content</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGMENTS -->
+  <section class="segments" id="segments" data-section="audience-segments" data-intent="value proposition" data-layout="grid" data-items="3">
+    <div class="wrap">
+      <div class="shead"><div class="shead__idx" aria-hidden="true">01</div><div class="shead__t"><h2>Adobe Express works for Teams, Enterprise, and Students.</h2><p class="lede">See how Adobe Express makes it easy to create standout content using AI that's designed to be commercially safe.</p></div></div>
+      <div class="cards-3">
+        <article class="seg-card"><div class="seg-card__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1e3e46ed6d2e261925bdc9d516ebe3d20e182e609.png?width=2000&format=webply&optimize=medium" alt="A team collaborating on brand assets in Adobe Express"></div><div class="seg-card__body"><h3>Teams</h3><p>Keep projects on brand and streamline workflows with real-time collaboration and Adobe Creative Cloud integration.</p><div><a class="btn btn--outline btn--sm" href="/express/business/teams">Learn more</a></div></div></article>
+        <article class="seg-card"><div class="seg-card__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1b1796a6b1fda9c1a2bef0758423c47350aad666c.png?width=2000&format=webply&optimize=medium" alt="Enterprise admin controls and brand governance in Adobe Express"></div><div class="seg-card__body"><h3>Enterprise</h3><p>Create on-brand content with easy collaboration, security, and admin features built for large organizations.</p><div><a class="btn btn--outline btn--sm" href="/express/business">Learn more</a></div></div></article>
+        <article class="seg-card"><div class="seg-card__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_15ea6288d986ec2719a0ca2fd834b25d0842a4050.png?width=2000&format=webply&optimize=medium" alt="A student creating a class project with templates in Adobe Express"></div><div class="seg-card__body"><h3>Students</h3><p>Go from basic to bold content for your classes, clubs, and career with professional templates and generative AI.</p><div><a class="btn btn--outline btn--sm" href="/express/learn/students">Learn more</a></div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES — indexed editorial list -->
+  <section id="features" data-section="features" data-intent="explain mechanic" data-layout="stack" data-items="6">
+    <div class="wrap">
+      <div class="shead"><div class="shead__idx" aria-hidden="true">02</div><div class="shead__t"><h2>Discover the top features that everyone loves.</h2></div></div>
+      <div class="feat-list">
+        <article class="frow"><div class="frow__idx" aria-hidden="true">01</div><div class="frow__text"><h4>All-new AI Assistant<span class="beta">beta</span></h4><p>AI Assistant allows you to prompt, create and edit anything. Make quick edits and refine every layer, all while keeping the parts you love intact.</p><a class="btn btn--dark btn--sm" href="https://adobesparkpost.app.link/XyUY6j9ZwWb?url=%2Fexpress%2F">Try AI Assistant</a></div><div class="frow__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_11a6d037c34b18552b0501aae71a97271609274b2.png?width=2000&format=webply&optimize=medium" alt="The all-new AI Assistant prompting and editing a design in Adobe Express"></div></article>
+        <article class="frow"><div class="frow__idx" aria-hidden="true">02</div><div class="frow__text"><h4>Works with Photoshop, Firefly, and more.</h4><p>Sync content and keep brand assets in reach, all without leaving the app you're already in.</p><a class="btn btn--dark btn--sm" href="https://adobesparkpost.app.link/MpnN0Ue0wWb?url=%2Fexpress%2F">Get started</a></div><div class="frow__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1c173e61b26b4c5c2fb07f4279d54f6e6ab5ebfd7.png?width=2000&format=webply&optimize=medium" alt="Photoshop and Firefly assets synced inside Adobe Express"></div></article>
+        <article class="frow"><div class="frow__idx" aria-hidden="true">03</div><div class="frow__text"><h4>Video made easy.</h4><p>Make video editing effortless with drag-and-drop content, bulk editing, self-recording, and direct exporting and publishing to Vimeo.</p><a class="btn btn--dark btn--sm" href="https://adobesparkpost.app.link/K7QlvIv7FDb?tab=videos">Get started</a></div><div class="frow__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1f3dbf1cd874e05650134b32c41874f353b57ef46.png?width=2000&format=webply&optimize=medium" alt="Drag-and-drop video editing timeline in Adobe Express"></div></article>
+        <article class="frow"><div class="frow__idx" aria-hidden="true">04</div><div class="frow__text"><h4>Resize any asset.</h4><p>Turn your design into a social campaign instantly. Resize for any channel in one click, all in a single design file. Download it. Schedule it.</p><a class="btn btn--dark btn--sm" href="https://adobesparkpost.app.link/K7QlvIv7FDb?tab=images">Resize now</a></div><div class="frow__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_139d77ad751257a6445dc504fd7fad609339d181d.png?width=2000&format=webply&optimize=medium" alt="One design resized for multiple social channels in Adobe Express"></div></article>
+        <article class="frow"><div class="frow__idx" aria-hidden="true">05</div><div class="frow__text"><h4>Create anytime, anywhere.</h4><p>Create content seamlessly across your desktop browser and phone. Files stay synced so you can work wherever you are.</p><a class="btn btn--dark btn--sm" href="https://adobesparkpost.app.link/K7QlvIv7FDb?category=templates">Create now</a></div><div class="frow__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_15dcf06bef71e56b6959aabd2708a9457244e0968.png?width=2000&format=webply&optimize=medium" alt="Adobe Express open on desktop and phone with files synced"></div></article>
+        <article class="frow"><div class="frow__idx" aria-hidden="true">06</div><div class="frow__text"><h4>Easily stay on brand.</h4><p>With brand kits, your team can apply brand fonts and colors to designs, images, and illustrations in a click. Lock elements to keep everyone in sync.</p><a class="btn btn--dark btn--sm" href="#">Discover brand kits</a></div><div class="frow__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_17cf7f6474fe12727dc188525b547cbce53115d4f.png?width=2000&format=webply&optimize=medium" alt="Brand kit fonts and colors applied across designs in Adobe Express"></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testi" data-section="social-proof" data-intent="build trust" data-layout="split-media" data-media="image">
+    <div class="wrap"><div class="testi__grid">
+      <div class="testi__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1ac78d27e175dd39cf5219f39652f8da7cbc55f2b.png?width=2000&format=webply&optimize=medium" alt="A small-business flyer created with Adobe Express"></div>
+      <div><blockquote>“I love using Adobe Express to create flyers for my small business. All the tools in Adobe Express, such as the different fonts and graphics, help bring my vision to life.”</blockquote><cite>Erica X.<span>Owner at Photoshoots by Erica</span></cite></div>
+    </div></div>
+  </section>
+
+  <!-- APP BAND -->
+  <section class="appband" data-section="get-the-app" data-intent="drive action" data-layout="stack">
+    <div class="wrap"><h2>Create on the go. Get the Adobe Express app.</h2><div class="appband__stores"><a href="#" aria-label="Download on the App Store"><img src="https://main--da-express-milo--adobecom.aem.live/express/code/icons/apple-store.svg" alt="Download on the App Store"></a><a href="#" aria-label="Get it on Google Play"><img src="https://main--da-express-milo--adobecom.aem.live/express/code/icons/google-store.svg" alt="Get it on Google Play"></a></div></div>
+  </section>
+
+  <!-- PLANS (dark act) -->
+  <section class="act-dark" id="plans" data-section="compare-plans" data-intent="drive action" data-layout="contained" data-interactive="tabs">
+    <div class="wrap">
+      <div class="shead"><div class="shead__idx" aria-hidden="true">03</div><div class="shead__t"><h2>Compare Plans</h2><p class="lede">Pick the plan that fits how you create — for yourself, your business, or your classroom.</p></div></div>
+      <div class="plans__tabs" role="tablist" aria-label="Plan audiences"><span class="chip" role="tab" aria-pressed="true">Individuals</span><span class="chip" role="tab" aria-pressed="false">Businesses</span><span class="chip" role="tab" aria-pressed="false">Students &amp; Teachers</span></div>
+      <div class="plans__row">
+        <p class="lede" style="max-width:34ch">Start free, then upgrade for premium templates, generative AI, and brand kits when you need them.</p>
+        <span class="plan-price" data-placeholder="true" data-placeholder-type="price" data-placeholder-source="design demanded plan pricing; not in current/pages/home.json"><span class="placeholder-eyebrow">PLACEHOLDER · price</span><span class="placeholder-shape">e.g. Free · Premium $9.99/mo</span></span>
+        <a class="btn btn--primary" href="https://adobesparkpost.app.link/GJrBPFUWBBb?url=%2Fexpress%2F">Get Adobe Express Free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="act-dark closing" data-section="closing-cta" data-intent="drive action" data-layout="full-bleed">
+    <div class="wrap"><h2>Content creation made easy.</h2><a class="btn btn--primary" href="https://adobesparkpost.app.link/GJrBPFUWBBb?url=%2Fexpress%2F">Get Adobe Express Free</a></div>
+  </section>
+</main>
+
+<footer class="site-footer" data-section="footer" data-intent="navigate" data-layout="grid" data-canon>
+  <div class="wrap">
+    <div class="foot-cols">
+      <div><h3>For individuals &amp; small business</h3><ul><li><a href="#features">Create</a></li><li><a href="#features">Edit</a></li><li><a href="#plans">Plans</a></li></ul></div>
+      <div><h3>For medium &amp; large business</h3><ul><li><a href="/express/business/teams">Teams</a></li><li><a href="/express/business">Enterprise</a></li></ul></div>
+      <div><h3>Education &amp; support</h3><ul><li><a href="/express/learn/students">Students</a></li><li><a href="#">Support</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h3>Adobe</h3><ul><li><a href="#">Featured Products</a></li><li><a href="https://adobesparkpost.app.link/AnkNdGxthOb">Go to Adobe Express</a></li></ul></div>
+    </div>
+    <div class="site-footer__wordmark">Adobe Express</div>
+    <p class="foot-fine">1 Billing begins when your free trial ends. Cancel before free trial ends and you won’t be charged. Subscription automatically renews until you cancel. Cancel anytime. &nbsp; 2 Limited beta availability: Adobe Express AI Assistant. &nbsp; 3 Brand kits availability varies by plan.</p>
+  </div>
+</footer>
+
+<script>
+(function(){var n=document.getElementById('nav'),b=document.getElementById('burger');if(!b)return;
+b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('open')){n.classList.remove('open');b.setAttribute('aria-expanded','false');b.focus();}});})();
+</script>
+</body>
+</html>

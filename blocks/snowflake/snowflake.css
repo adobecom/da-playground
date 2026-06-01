@@ -1,0 +1,8 @@
+/*
+ * Snowflake block styles
+ * The block div itself is hidden — it only exists momentarily before
+ * snowflake.js replaces <main> with the template content.
+ */
+.snowflake {
+  display: none;
+}
