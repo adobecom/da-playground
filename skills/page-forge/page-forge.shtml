@@ -237,6 +237,7 @@
     const checks = {};
     const DA = { org: 'adobecom', site: 'da-playground' };
     const versions = [];      // [{ v, stage, intent, html, label }]
+    const chunkBuf = {};      // id -> { total, parts:{}, got, meta } — reassembles preview-chunk
     let viewedV = null;
     let pendingDeploy = false; // set when a publish click is waiting on creds
     const actLog = [];         // accumulated run messages
@@ -549,6 +550,22 @@
         addVersion(v, d.stage || 'bespoke', d.intent || '', d.html, d.label || d.variant || '');
         $('refine-btn').disabled = false;
         setStatus('ready', 'v' + v + (d.label ? ' (' + d.label + ')' : '') + ' ready — play with Stardust, or create a prototype.');
+      }
+      // Chunked preview (emit-prototypes.jsh): reassemble parts by id, then render once complete.
+      if (d.action === 'preview-chunk' && d.id) {
+        const b = chunkBuf[d.id] || (chunkBuf[d.id] = { total: d.total, parts: {}, got: 0,
+          meta: { v: d.v, stage: d.stage, intent: d.intent, label: d.label } });
+        if (b.parts[d.seq] === undefined) { b.parts[d.seq] = d.data || ''; b.got += 1; }
+        if (b.got >= b.total) {
+          let html = ''; for (let i = 0; i < b.total; i += 1) html += b.parts[i] || '';
+          delete chunkBuf[d.id];
+          const v = b.meta.v || nextV();
+          addVersion(v, b.meta.stage || 'redesigned', b.meta.intent || '', html, b.meta.label || '');
+          $('refine-btn').disabled = false;
+          setStatus('ready', 'v' + v + (b.meta.label ? ' (' + b.meta.label + ')' : '') + ' ready — play with Stardust, or create a prototype.');
+        } else {
+          setStatus('generate', 'Receiving ' + (b.meta.label || 'variant') + '… (' + b.got + '/' + b.total + ')');
+        }
       }
       if (d.action === 'done') {
         $('deploy-btn').disabled = false; $('refine-btn').disabled = false;
