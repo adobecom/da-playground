@@ -1,0 +1,23 @@
+.forge-caps { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+.forge-caps { width:100%; max-width:var(--max-width); margin:0 auto; padding-inline:var(--spacing-lg); }
+
+.forge-caps { background:var(--color-surface-warm); }
+
+.forge-caps { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--spacing-xl); }
+
+.forge-caps { font-family:var(--heading-font-family); font-weight:900; font-size:14px; color:var(--color-accent); margin-bottom:10px; }
+
+.forge-caps h3 { font-size:22px; letter-spacing:-0.01em; }
+
+@media (max-width:1024px) {
+.forge-caps { gap:var(--spacing-md); }
+}
+
+@media (max-width:900px) {
+.forge-caps { grid-template-columns:repeat(2,1fr); }
+}
+
+@media (max-width:480px) {
+.forge-caps { grid-template-columns:1fr; }
+}

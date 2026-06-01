@@ -1,0 +1,38 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "hero"
+  },
+  {
+    "idx": 1,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "caps"
+  },
+  {
+    "idx": 2,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": null
+  },
+  {
+    "idx": 3,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "act-dark"
+  },
+  {
+    "idx": 4,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "act-dark"
+  },
+  {
+    "idx": 5,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "act-dark"
+  }
+]
