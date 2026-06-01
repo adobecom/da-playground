@@ -332,10 +332,12 @@ Either way: no git, no snowflake, no `aem`, no deploy. The designer decides next
 
 ### `deploy` → publish (the ONLY action that snowflakes/pushes)
 
-**First re-verify publish creds.** Probe Adobe and the GitHub PAT (against `data.da`'s repo) and
-emit a fresh `check` for each. If **either** is missing, emit those checks and **stop without
-deploying** — the panel shows the inline setup and will re-fire `deploy` once they pass. Only when
-both are ok, proceed.
+**First re-verify publish creds — for real, before any snowflake work.** Run
+**`scripts/check-aem-auth.jsh`** (a live `aem` probe). A token that merely *exists* is not enough:
+a stale/revoked one still returns ~1200 chars but DA rejects it with `forbidden: oauth.adobe.token`,
+and every `aem` call then hangs. If the script exits non-zero, emit `check` `adobe`=`missing` with
+its re-sign-in message and **stop without deploying** (do NOT start the conversion — it will hang).
+Also confirm the GitHub PAT (against `data.da`'s repo). Only when both are ok, proceed.
 
 Snowflake **`data.html`** exactly as handed in (do **not** regenerate from the source), following
 `references/snowflake-deploy.md`:

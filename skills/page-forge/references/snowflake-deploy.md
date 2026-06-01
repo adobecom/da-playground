@@ -19,6 +19,16 @@ Publishes `input/bespoke.html` as an authorable Adobe DA page that renders 1:1.
 - **Use SLICC's `aem` command** for DA + preview/publish — it wraps the admin API:
   `aem put <local> <da-path>` · `aem get` · `aem list` · `aem preview <path>` · `aem publish <path>`.
 
+## ⛔ Step 0 — verify Adobe auth BEFORE any conversion work
+
+Run **`scripts/check-aem-auth.jsh`** first. It does a live `aem list /` probe. A stale/revoked
+Adobe token still *exists* (`oauth-token adobe` returns ~1200 chars) but DA rejects it with
+`forbidden: oauth.adobe.token on admin.da.live`, and every `aem put`/`aem preview` then hangs —
+this is what stalled a deploy for 15+ minutes *after* the snowflake conversion had already run. If
+the probe exits non-zero, **stop and emit `action:"error"`** telling the user to re-sign-in
+(Settings → Providers → Sign in with Adobe). Do **not** install the substrate or start the
+conversion until the probe passes.
+
 ## Prereq — install the snowflake skill
 
 Install it from PR #154 (it ships as a SLICC-installable package), once per workspace:
