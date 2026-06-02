@@ -1,0 +1,96 @@
+/* forge-closing-cta — dark, centered call-to-action section */
+
+:root {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-xl: clamp(32px, 4vw, 56px);
+  --body-sm: 15px;
+  --line-height-heading: 0.98;
+  --line-height-body: 1.55;
+  --color-bg-inverse: #000000;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: rgb(255 255 255 / 72%);
+  --color-accent: #3b63fb;
+  --color-accent-strong: #274dea;
+  --spacing-md: 16px;
+  --spacing-xl: 48px;
+  --spacing-lg: 24px;
+  --max-width: 1200px;
+  --pill: 999px;
+}
+
+/* ── Wrapper overrides (full-bleed dark) ── */
+.forge-closing-cta-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* ── Block base ── */
+.forge-closing-cta {
+  background: var(--color-bg-inverse);
+  color: var(--color-on-dark);
+  text-align: center;
+  padding-block: 120px;
+  font-family: var(--body-font-family);
+}
+
+.forge-closing-cta *,
+.forge-closing-cta *::before,
+.forge-closing-cta *::after {
+  box-sizing: border-box;
+}
+
+.forge-closing-cta .wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--spacing-lg);
+}
+
+.forge-closing-cta h2 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-xl);
+  font-weight: 900;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+  margin: 0 0 var(--spacing-xl);
+  text-wrap: balance;
+}
+
+.forge-closing-cta p {
+  font-size: 20px;
+  color: var(--color-on-dark-muted);
+  max-width: 48ch;
+  margin: 0 auto var(--spacing-xl);
+  line-height: var(--line-height-body);
+}
+
+/* ── Button ── */
+.forge-closing-cta .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding-inline: 28px;
+  border: 1.5px solid transparent;
+  border-radius: var(--pill);
+  font-family: var(--body-font-family);
+  font-size: var(--body-sm);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 200ms, color 200ms;
+}
+
+.forge-closing-cta .btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.forge-closing-cta .btn--primary:hover {
+  background: var(--color-accent-strong);
+  color: #fff;
+}
