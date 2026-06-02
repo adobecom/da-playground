@@ -33,14 +33,28 @@ export default function decorate(block) {
     nameEl.textContent = name;
     card.appendChild(nameEl);
 
-    // Price placeholder (commerce-injected — represented as an empty price row)
+    // Price placeholder pill — static design placeholder carried 1:1 from the
+    // source preview (NOT commerce-injected). Reproduce the literal placeholder text.
     const priceDiv = document.createElement('div');
     priceDiv.className = 'fpc-price';
-    const pricePlaceholder = document.createElement('span');
-    pricePlaceholder.className = 'fpc-price-placeholder';
-    pricePlaceholder.textContent = '—';
-    pricePlaceholder.setAttribute('aria-label', 'Price coming soon');
-    priceDiv.appendChild(pricePlaceholder);
+
+    const pill = document.createElement('span');
+    pill.className = 'fpc-price-pill';
+    const priceTag = document.createElement('span');
+    priceTag.className = 'fpc-price-tag';
+    priceTag.textContent = 'PLACEHOLDER · price';
+    const priceEg = document.createElement('span');
+    priceEg.className = 'fpc-price-eg';
+    priceEg.textContent = /free/i.test(name) ? 'e.g. US$0/mo' : 'e.g. US$19.99/mo';
+    pill.append(priceTag, priceEg);
+    priceDiv.appendChild(pill);
+
+    if (featured) {
+      const save = document.createElement('span');
+      save.className = 'fpc-price-save';
+      save.textContent = 'Save XX%';
+      priceDiv.appendChild(save);
+    }
     card.appendChild(priceDiv);
 
     const descEl = document.createElement('p');

@@ -105,15 +105,38 @@
 /* ── Price placeholder ──────────────────────────────────────────────────── */
 .fpc-price {
   display: flex;
-  align-items: baseline;
-  gap: 6px;
+  align-items: center;
+  gap: var(--fpc-spacing-md);
   min-height: 52px;
 }
 
-.fpc-price-placeholder {
-  font-size: var(--fpc-body-sm);
-  color: rgba(0, 0, 0, 0.4);
-  font-style: italic;
+.fpc-price-pill {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #eef1ff;
+  border: 1px solid rgba(59, 99, 251, 0.35);
+  border-radius: 10px;
+  padding: 6px 12px;
+}
+
+.fpc-price-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fpc-accent);
+}
+
+.fpc-price-eg {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.fpc-price-save {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
 }
 
 /* ── Description ────────────────────────────────────────────────────────── */
