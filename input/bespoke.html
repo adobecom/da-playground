@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:prototype --cinematic (via stardust:uplift Phase 5)
+  writtenAt:        2026-06-01T19:00:00Z
+  page:             express
+  pageUrl:          https://main--da-express-milo--adobecom.aem.live/express/
+  variant:          C — cinematic (Signature-gesture extension)
+  motion:
+    register:       arrival
+    registerSource: heuristic
+    rationale:      "captured C2 brand surface's defining gesture is arrival-class (hero-with-scroll-video + two-act + rising-plate); kinetic-grid refuses page-level parallax which conflicts with the captured hero-scroll trait → tie-break arrival"
+  staticReference:  express-C-proposed.html
+  againstDirection: stardust/direction.md (Active 2026-06-01T18:08:00Z)
+  readArtifacts:
+    - stardust/current/pages/express.json
+    - DESIGN.md
+    - DESIGN.json
+    - DESIGN-C.json
+  mode:             A (brand-faithful, pinned to canonical C2)
+  divergenceNotes:  pure #fff / #000 grounds are brand decisions (Two-Act Rule), not agent defaults
+  reducedMotion:    "fully neutralized — renders identically to express-C-proposed.html"
+  noscript:         "no-JS fallback forces all motion-hidden states to visible end state"
+  unsourcedContent:
+    - selector: 'section[data-section="plans"] .tier .tier__price'
+      type: price
+      reason: "plan-comparison row; prices live in uncaptured pricing fragment"
+  stardustVersion:  0.10.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Design, Photo, and Video Tool – The quick and easy app to create on-brand content | Adobe Express</title>
+<style>html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis [data-lenis-prevent],.lenis [data-lenis-prevent-wheel],.lenis [data-lenis-prevent-touch],.lenis [data-lenis-prevent-vertical],.lenis [data-lenis-prevent-horizontal]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}
+</style>
+<noscript>
+  <style>
+    [data-anim], [data-tile-anim], [data-split] span { opacity:1 !important; transform:none !important; filter:none !important; clip-path:none !important; }
+    .word { clip-path:none !important; transform:none !important; }
+    [data-parallax]{ transform:none !important; }
+    .hero-marquee{ transform:none !important; }
+    .post-hero{ transform:none !important; }
+    .enter-up{ opacity:1 !important; transform:none !important; }
+    .site-footer__wordmark{ clip-path:none !important; }
+  </style>
+</noscript>
+<style>
+:root {
+  --heading-font-family: 'adobe-clean-display','Adobe Clean Display','Adobe Clean',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --body-font-family:    'adobe-clean','Adobe Clean',-apple-system,'Helvetica Neue',Arial,sans-serif;
+
+  --heading-xxl: clamp(40px, 6.25vw, 80px);
+  --heading-xl:  clamp(34px, 4.2vw, 56px);
+  --heading-lg:  clamp(28px, 3.2vw, 48px);
+  --heading-md:  24px;
+  --body:        18px;
+  --body-sm:     15px;
+
+  --line-height-heading: 1.0;
+  --line-height-body:    1.5;
+
+  --color-bg:     #ffffff;
+  --color-fg:     #000000;
+  --color-accent: #3b63fb;
+
+  --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px;
+  --spacing-lg:24px; --spacing-xl:48px; --spacing-2xl:96px;
+
+  --section-padding: 96px;
+  --max-width:       1280px;
+  --radius:          16px;
+
+  --primary-dark:#274dea; --ink:#000000; --surface:#eceae7; --surface-subtle:#f8f8f8;
+  --text-secondary:rgba(0,0,0,0.64); --eyebrow:#505050; --radius-sm:12px; --pill:999px;
+  --ease:cubic-bezier(0.42,0,0,1);
+  --nav-blur:saturate(180%) blur(20px);
+
+  /* ── Motion (cinematic only — register: arrival) ── */
+  --ease-out-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-quart: cubic-bezier(0.42, 0, 0, 1);
+  --ease-expo:      cubic-bezier(0.16, 1, 0.3, 1);
+  --enter-duration: 700ms;
+  --enter-stagger:  90ms;
+  --parallax-translate: 35;
+  --parallax-fade:      0.55;
+  --parallax-progress:  0;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--color-bg); color:var(--color-fg); font-family:var(--body-font-family); font-size:var(--body); line-height:var(--line-height-body); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+img { max-width:100%; display:block; }
+h1,h2,h3,h4 { font-family:var(--heading-font-family); font-weight:900; line-height:var(--line-height-heading); letter-spacing:-0.03em; margin:0; }
+p { margin:0; }
+.eyebrow { font-family:var(--body-font-family); font-weight:700; font-size:14px; letter-spacing:.02em; color:var(--eyebrow); margin:0 0 var(--spacing-md); }
+.wrap { width:100%; max-width:var(--max-width); margin-inline:auto; padding-inline:clamp(20px,8.333vw,120px); }
+.section { padding-block:var(--section-padding); }
+@media (max-width:767px){ :root{ --section-padding:64px; } }
+
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; height:48px; padding-inline:28px; border-radius:var(--pill); font-family:var(--body-font-family); font-size:16px; font-weight:700; text-decoration:none; border:1.5px solid transparent; cursor:pointer; transition:background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease); }
+.btn:focus-visible { outline:3px solid var(--color-accent); outline-offset:3px; }
+.btn--primary { background:var(--color-accent); color:#fff; }
+.btn--primary:hover { background:var(--primary-dark); }
+.btn--outline { background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn--outline:hover { background:rgba(0,0,0,.04); }
+.btn--ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,.85); backdrop-filter:blur(16px); }
+.btn--ghost:hover { background:rgba(255,255,255,.1); }
+.btn--sm { height:40px; padding-inline:22px; font-size:14px; }
+
+.nav-spacer { height:88px; }
+#nav { position:fixed; inset:16px 16px auto 16px; z-index:60; max-width:calc(var(--max-width) - 32px); margin-inline:auto; display:flex; align-items:center; gap:var(--spacing-lg); height:64px; padding-inline:20px; border-radius:var(--radius); background:rgba(255,255,255,.64); backdrop-filter:var(--nav-blur); -webkit-backdrop-filter:var(--nav-blur); transition:box-shadow .3s var(--ease), background .3s var(--ease); }
+#nav.scrolled { box-shadow:0 2px 12px rgba(0,0,0,.08); background:rgba(255,255,255,.82); }
+.nav__brand { display:flex; align-items:center; gap:10px; font-family:var(--heading-font-family); font-weight:900; font-size:19px; letter-spacing:-0.02em; text-decoration:none; }
+.nav__brand img { height:26px; width:auto; }
+.nav__links { display:flex; gap:22px; margin-left:8px; }
+.nav__links a { text-decoration:none; font-weight:700; font-size:15px; color:var(--ink); opacity:.82; }
+.nav__links a:hover { opacity:1; color:var(--color-accent); }
+.nav__actions { margin-left:auto; display:flex; align-items:center; gap:12px; }
+@media (max-width:920px){ .nav__links{display:none;} .nav__actions .btn--outline{display:none;} }
+
+/* ── Hero (cinematic stage / parallax marquee) ── */
+.hero { position:relative; z-index:1; padding-top:var(--spacing-xl); }
+.hero__inner { display:grid; gap:var(--spacing-xl); }
+.hero h1 { font-size:var(--heading-xxl); letter-spacing:-0.04em; max-width:18ch; }
+.hero__sub { font-size:clamp(18px,1.6vw,22px); color:var(--text-secondary); max-width:46ch; margin-top:var(--spacing-lg); line-height:1.35; }
+.hero__ctas { display:flex; flex-wrap:wrap; gap:14px; margin-top:var(--spacing-xl); }
+.ratings { display:flex; flex-wrap:wrap; gap:var(--spacing-xl); margin-top:var(--spacing-xl); }
+.rating__score { font-family:var(--heading-font-family); font-weight:900; font-size:34px; letter-spacing:-0.03em; display:flex; align-items:center; gap:8px; }
+.rating__star { color:var(--color-accent); font-size:26px; line-height:1; }
+.rating__meta { font-size:14px; color:var(--text-secondary); }
+.caps { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--spacing-md); margin-top:var(--spacing-2xl); }
+.cap { position:relative; border-radius:var(--radius); overflow:hidden; background:var(--surface); aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:flex-end; }
+.cap img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.cap__scrim { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.18) 38%, transparent 64%); }
+.cap__label { position:relative; padding:var(--spacing-lg); color:#fff; font-family:var(--heading-font-family); font-weight:900; font-size:21px; line-height:1.05; letter-spacing:-0.02em; }
+@media (max-width:900px){ .caps{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:480px){ .caps{grid-template-columns:1fr;} .hero h1{max-width:none;} }
+
+/* enter-up on-load (above-fold hero — visible without scroll JS, neutralized by reduced-motion) */
+.enter-up { opacity:0; transform:translateY(28px); }
+@media (prefers-reduced-motion: no-preference){
+  .enter-up { animation:enterUp var(--enter-duration) var(--ease-out-cubic) forwards; }
+  .enter-up.d1{animation-delay:90ms} .enter-up.d2{animation-delay:180ms} .enter-up.d3{animation-delay:270ms} .enter-up.d4{animation-delay:360ms}
+}
+@media (prefers-reduced-motion: reduce){ .enter-up{ opacity:1; transform:none; } }
+@keyframes enterUp { to { opacity:1; transform:none; } }
+
+/* ── Post-hero rising plate ── */
+.post-hero { position:relative; z-index:2; background:var(--color-bg); border-radius:32px 32px 0 0; box-shadow:0 -45px 45px rgba(0,0,0,.06), 0 -11px 25px rgba(0,0,0,.05); }
+
+/* ── Segments ── */
+.band-head { max-width:24ch; margin-bottom:var(--spacing-xl); }
+.band-head h2 { font-size:var(--heading-xl); }
+.band-head p { color:var(--text-secondary); font-size:19px; margin-top:var(--spacing-md); max-width:52ch; }
+.seg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--spacing-lg); }
+.seg { background:var(--surface-subtle); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; }
+.seg__media { aspect-ratio:16/11; background:var(--surface); }
+.seg__media img { width:100%; height:100%; object-fit:cover; }
+.seg__body { padding:var(--spacing-lg); display:flex; flex-direction:column; gap:var(--spacing-md); flex:1; }
+.seg__body h3 { font-size:var(--heading-md); }
+.seg__body p { color:var(--text-secondary); font-size:16px; line-height:1.35; flex:1; }
+.seg__body a { color:var(--color-accent); font-weight:700; text-decoration:none; font-size:15px; }
+.seg__body a:hover { text-decoration:underline; }
+@media (max-width:820px){ .seg-grid{grid-template-columns:1fr;} }
+
+/* ── Features ── */
+.features { background:var(--surface-subtle); }
+.features__head { text-align:center; max-width:20ch; margin:0 auto var(--spacing-2xl); }
+.features__head h2 { font-size:var(--heading-xl); }
+.feature-lead { display:grid; grid-template-columns:1.05fr 1fr; gap:var(--spacing-xl); align-items:center; background:var(--ink); color:#fff; border-radius:28px; overflow:hidden; margin-bottom:var(--spacing-lg); }
+.feature-lead__media { aspect-ratio:16/11; }
+.feature-lead__media img { width:100%; height:100%; object-fit:cover; }
+.feature-lead__body { padding:clamp(28px,4vw,56px); }
+.feature-lead .eyebrow { color:rgba(255,255,255,.7); }
+.feature-lead h3 { font-size:var(--heading-lg); color:#fff; }
+.feature-lead p { color:rgba(255,255,255,.78); font-size:18px; line-height:1.4; margin:var(--spacing-md) 0 var(--spacing-lg); max-width:42ch; }
+@media (max-width:820px){ .feature-lead{grid-template-columns:1fr;} }
+.feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--spacing-lg); }
+.feat { background:var(--color-bg); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; }
+.feat__media { aspect-ratio:16/9; background:var(--surface); }
+.feat__media img { width:100%; height:100%; object-fit:cover; }
+.feat__media--stone { display:grid; place-items:center; background:linear-gradient(135deg,#eceae7,#dad7d2); }
+.feat__glyph { width:64px; height:64px; border-radius:var(--radius-sm); background:var(--color-bg); display:grid; place-items:center; box-shadow:0 1px 8px rgba(0,0,0,.08); }
+.feat__glyph svg { width:32px; height:32px; stroke:var(--color-accent); fill:none; stroke-width:2; }
+.feat__body { padding:var(--spacing-lg); display:flex; flex-direction:column; gap:10px; flex:1; }
+.feat__body h4 { font-size:21px; letter-spacing:-0.02em; }
+.feat__body p { color:var(--text-secondary); font-size:16px; line-height:1.35; flex:1; }
+.feat__body a { color:var(--color-accent); font-weight:700; text-decoration:none; font-size:15px; margin-top:4px; }
+.feat__body a:hover { text-decoration:underline; }
+@media (max-width:900px){ .feat-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width:560px){ .feat-grid{grid-template-columns:1fr;} }
+
+/* ── Testimonial ── */
+.quote-wrap { display:grid; grid-template-columns:0.8fr 1.2fr; gap:var(--spacing-2xl); align-items:center; }
+.quote__portrait { border-radius:var(--radius); overflow:hidden; background:var(--surface); aspect-ratio:3/4; max-width:340px; }
+.quote__portrait img { width:100%; height:100%; object-fit:cover; }
+.quote blockquote { margin:0; font-family:var(--heading-font-family); font-weight:900; font-size:clamp(26px,3vw,40px); line-height:1.08; letter-spacing:-0.03em; }
+.quote cite { display:block; margin-top:var(--spacing-lg); font-style:normal; font-weight:700; font-size:16px; }
+.quote cite span { display:block; color:var(--text-secondary); font-weight:400; }
+@media (max-width:820px){ .quote-wrap{grid-template-columns:1fr;gap:var(--spacing-lg);} .quote__portrait{max-width:240px;} }
+
+/* ── Logos ── */
+.logos { text-align:center; }
+.logos h2 { font-size:var(--heading-md); font-weight:900; color:var(--text-secondary); margin-bottom:var(--spacing-xl); }
+.logos__row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:clamp(28px,5vw,64px); }
+.logos__row img { height:30px; width:auto; opacity:.72; filter:grayscale(1); }
+
+/* ── Plans ── */
+.plans__head { display:flex; align-items:flex-end; justify-content:space-between; gap:var(--spacing-lg); flex-wrap:wrap; margin-bottom:var(--spacing-xl); }
+.plans__head h2 { font-size:var(--heading-xl); }
+.tier-row { display:grid; grid-template-columns:repeat(5,1fr); gap:var(--spacing-md); }
+.tier { border:1px solid #e4e2de; border-radius:var(--radius); padding:var(--spacing-lg); background:var(--color-bg); display:flex; flex-direction:column; gap:12px; }
+.tier__name { font-family:var(--heading-font-family); font-weight:900; font-size:18px; line-height:1.1; min-height:2.2em; }
+.tier a { margin-top:auto; color:var(--color-accent); font-weight:700; text-decoration:none; font-size:14px; }
+.tier a:hover { text-decoration:underline; }
+@media (max-width:980px){ .tier-row{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){ .tier-row{grid-template-columns:1fr;} }
+
+[data-placeholder]{ display:inline-flex; flex-direction:column; gap:2px; border:2px dashed var(--color-accent); border-radius:8px; padding:6px 8px; background:rgba(248,248,248,.7); }
+.placeholder-eyebrow{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:10px; letter-spacing:.04em; color:var(--color-accent); text-transform:uppercase; }
+.placeholder-shape{ font-size:13px; color:var(--text-secondary); }
+
+/* ── Closing (dark act) + scrim-deepen driven by --parallax-progress ── */
+.closing { position:relative; background:var(--ink); color:#fff; text-align:center; overflow:hidden; }
+.closing::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(59,99,251,0.10), transparent 60%); opacity:calc(0.4 + var(--parallax-progress) * 0.6); pointer-events:none; }
+.closing h2 { font-size:var(--heading-xl); margin-bottom:var(--spacing-lg); position:relative; }
+.closing .btn--primary { height:52px; position:relative; }
+
+.footnotes { background:var(--surface-subtle); }
+.footnotes p { color:var(--text-secondary); font-size:13px; line-height:1.5; margin-bottom:6px; }
+.site-footer { background:var(--ink); color:rgba(255,255,255,.72); padding-block:var(--spacing-2xl) var(--spacing-xl); overflow:hidden; }
+.site-footer__top { display:flex; flex-wrap:wrap; gap:var(--spacing-2xl); justify-content:space-between; }
+.site-footer__wordmark { font-family:var(--heading-font-family); font-weight:900; font-size:clamp(40px,9vw,120px); line-height:.9; letter-spacing:-0.04em; color:#fff; margin:var(--spacing-2xl) 0 var(--spacing-lg); }
+.footcol h5 { font-family:var(--body-font-family); font-size:13px; letter-spacing:.04em; color:#fff; margin:0 0 14px; font-weight:700; }
+.footcol a { display:block; color:rgba(255,255,255,.66); text-decoration:none; font-size:14px; margin-bottom:9px; }
+.footcol a:hover { color:#fff; }
+.site-footer__legal { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid rgba(255,255,255,.14); padding-top:var(--spacing-lg); font-size:13px; }
+.site-footer__legal .adobe-mark { color:#eb1000; font-family:var(--heading-font-family); font-weight:900; letter-spacing:-0.02em; }
+</style>
+</head>
+<body>
+<a class="btn" href="#main" style="position:absolute;left:-9999px;top:0;">Skip to content</a>
+
+<nav id="nav" data-section="global-nav" data-intent="wayfinding" data-layout="contained" aria-label="Primary">
+  <a class="nav__brand" href="#main"><img src="https://main--federal--adobecom.aem.live/federal/assets/svgs/express.svg" alt="Adobe Express">Express</a>
+  <div class="nav__links">
+    <a href="#features">Features</a><a href="#segments">Business</a><a href="#plans">Plans</a><a href="#proof">Customers</a>
+  </div>
+  <div class="nav__actions">
+    <a class="btn btn--outline btn--sm" href="#plans">Sign in</a>
+    <a class="btn btn--primary btn--sm" href="#hero">Get Adobe Express Free</a>
+  </div>
+</nav>
+<div class="nav-spacer" aria-hidden="true"></div>
+
+<main id="main">
+  <!-- HERO (parallax marquee) -->
+  <section class="section hero hero-marquee" id="hero" data-section="hero" data-intent="value proposition" data-layout="stack" data-media="image" data-items="4">
+    <div class="wrap hero__inner">
+      <div>
+        <p class="eyebrow enter-up">Adobe Express</p>
+        <h1 class="enter-up d1">The quick and easy create-anything app.</h1>
+        <p class="hero__sub enter-up d2">Make stunning social posts, images, videos, flyers, and more with Adobe Express. Dream it. Make it. Easy.</p>
+        <div class="hero__ctas enter-up d3">
+          <a class="btn btn--primary" href="#plans">Start 30-day free trial</a>
+          <a class="btn btn--outline" href="#hero">Get Adobe Express Free</a>
+        </div>
+        <div class="ratings enter-up d4" role="group" aria-label="App store ratings">
+          <div class="rating"><span class="rating__score">4.8<span class="rating__star" aria-hidden="true">★</span></span><span class="rating__meta"><span data-countup="345">0</span>.6K ratings · App&nbsp;Store</span></div>
+          <div class="rating"><span class="rating__score">4.6<span class="rating__star" aria-hidden="true">★</span></span><span class="rating__meta"><span data-countup="574">0</span>k ratings · Google&nbsp;Play</span></div>
+        </div>
+      </div>
+      <div class="caps enter-up d2">
+        <figure class="cap"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1c173e61b26b4c5c2fb07f4279d54f6e6ab5ebfd7.png?width=2000&format=webply&optimize=medium" alt="Creating a design in Adobe Express"><span class="cap__scrim"></span><figcaption class="cap__label">Create anything, quickly and easily</figcaption></figure>
+        <figure class="cap"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1f3dbf1cd874e05650134b32c41874f353b57ef46.png?width=2000&format=webply&optimize=medium" alt="One-click editing in Adobe Express"><span class="cap__scrim"></span><figcaption class="cap__label">Edit with one click</figcaption></figure>
+        <figure class="cap"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_139d77ad751257a6445dc504fd7fad609339d181d.png?width=2000&format=webply&optimize=medium" alt="Generating content with AI in Adobe Express"><span class="cap__scrim"></span><figcaption class="cap__label">Create fast with generative AI</figcaption></figure>
+        <figure class="cap"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_15dcf06bef71e56b6959aabd2708a9457244e0968.png?width=2000&format=webply&optimize=medium" alt="Standout templates in Adobe Express"><span class="cap__scrim"></span><figcaption class="cap__label">Start from standout content</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- POST-HERO RISING PLATE: SEGMENTS -->
+  <section class="section post-hero" id="segments" data-section="segments" data-intent="audience routing" data-layout="grid" data-items="3">
+    <div class="wrap">
+      <div class="band-head">
+        <h2 data-anim>Adobe Express works for Teams, Enterprise, and Students.</h2>
+        <p data-anim>See how Adobe Express makes it easy to create standout content using AI that's designed to be commercially safe.</p>
+      </div>
+      <div class="seg-grid">
+        <article class="seg" data-tile-anim><div class="seg__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_17cf7f6474fe12727dc188525b547cbce53115d4f.png?width=2000&format=webply&optimize=medium" alt="A team collaborating on branded content in Adobe Express"></div><div class="seg__body"><h3>Teams</h3><p>Keep projects on brand and streamline workflows with real-time collaboration and Adobe Creative Cloud integration.</p><a href="#plans">Learn more&nbsp;→</a></div></article>
+        <article class="seg" data-tile-anim><div class="seg__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1e3e46ed6d2e261925bdc9d516ebe3d20e182e609.png?width=2000&format=webply&optimize=medium" alt="Enterprise content workflows in Adobe Express"></div><div class="seg__body"><h3>Enterprise</h3><p>Create on-brand content with easy collaboration, security, and admin features built for large organizations.</p><a href="#plans">Learn more&nbsp;→</a></div></article>
+        <article class="seg" data-tile-anim><div class="seg__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1b1796a6b1fda9c1a2bef0758423c47350aad666c.png?width=2000&format=webply&optimize=medium" alt="A student designing a project in Adobe Express"></div><div class="seg__body"><h3>Students</h3><p>Go from basic to bold content for your classes, clubs, and career with professional templates and generative AI.</p><a href="#plans">Learn more&nbsp;→</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section features" id="features" data-section="features" data-intent="value proposition" data-layout="grid" data-items="6">
+    <div class="wrap">
+      <div class="features__head"><h2 data-anim>Discover the top features that everyone loves.</h2></div>
+      <article class="feature-lead" data-anim>
+        <div class="feature-lead__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_15ea6288d986ec2719a0ca2fd834b25d0842a4050.png?width=2000&format=webply&optimize=medium" alt="The Adobe Express AI Assistant generating and refining a design"></div>
+        <div class="feature-lead__body">
+          <p class="eyebrow">Headline feature</p>
+          <h3>All-new AI Assistant (beta).</h3>
+          <p>AI Assistant<sup>2</sup> lets you prompt, create, and edit anything. Make quick edits and refine every layer, all while keeping the parts you love intact.</p>
+          <a class="btn btn--ghost" href="#hero">Try AI Assistant</a>
+        </div>
+      </article>
+      <div class="feat-grid">
+        <article class="feat" data-tile-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_12de83e22be8b19c2071f4a88335b05fa69238cb3.png?width=2000&format=webply&optimize=medium" alt="Adobe Express syncing assets with Photoshop and Firefly"></div><div class="feat__body"><h4>Works with Photoshop, Firefly, and more.</h4><p>Sync content and keep brand assets in reach, all without leaving the app you're already in.</p><a href="#hero">Get started&nbsp;→</a></div></article>
+        <article class="feat" data-tile-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1ac78d27e175dd39cf5219f39652f8da7cbc55f2b.png?width=2000&format=webply&optimize=medium" alt="Editing a video timeline in Adobe Express"></div><div class="feat__body"><h4>Video made easy.</h4><p>Make video editing effortless with drag-and-drop content, bulk editing, self-recording, and direct publishing to Vimeo.</p><a href="#hero">Get started&nbsp;→</a></div></article>
+        <article class="feat" data-tile-anim><div class="feat__media"><img src="https://main--da-express-milo--adobecom.aem.live/express/media_133d33526c932390f966f008d353fb09f529cf766.png?width=2000&format=webply&optimize=medium" alt="Resizing a design for multiple social channels in Adobe Express"></div><div class="feat__body"><h4>Resize any asset.</h4><p>Turn your design into a social campaign instantly. Resize for any channel in one click, all in a single design file.</p><a href="#hero">Resize now&nbsp;→</a></div></article>
+        <article class="feat" data-tile-anim><div class="feat__media feat__media--stone"><span class="feat__glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span></div><div class="feat__body"><h4>Create anytime, anywhere.</h4><p>Create content seamlessly across your desktop browser and phone. Files stay synced so you can work wherever you are.</p><a href="#hero">Create now&nbsp;→</a></div></article>
+        <article class="feat" data-tile-anim><div class="feat__media feat__media--stone"><span class="feat__glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg></span></div><div class="feat__body"><h4>Easily stay on brand.</h4><p>With brand kits<sup>3</sup>, your team can apply brand fonts and colors in a click. Lock elements to keep everyone in sync.</p><a href="#hero">Discover brand kits&nbsp;→</a></div></article>
+        <article class="feat" data-tile-anim style="background:var(--surface);"><div class="feat__body" style="justify-content:center;gap:16px;"><h4>Ready to make something?</h4><p>Start free — no credit card required. Upgrade any time as your needs grow.</p><a class="btn btn--primary btn--sm" href="#plans" style="align-self:flex-start;margin-top:0;color:#fff;">Get Adobe Express Free</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="section" id="proof" data-section="testimonial" data-intent="build trust" data-layout="split-media" data-media="image">
+    <div class="wrap quote-wrap quote">
+      <div class="quote__portrait" data-anim><img src="https://main--da-express-milo--adobecom.aem.live/express/media_1e40eded204e2f9574f4c00014931d57fe86e1c2e.png?width=2000&format=webply&optimize=medium" alt="Erica X., owner of Photoshoots by Erica"></div>
+      <div data-anim>
+        <blockquote>"I love using Adobe Express to create flyers for my small business. All the tools — the different fonts and graphics — help bring my vision to life."</blockquote>
+        <cite>Erica X.<span>Owner, Photoshoots by Erica</span></cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS -->
+  <section class="section logos" data-section="social-proof" data-intent="build trust" data-layout="stack" data-items="5" data-media="image">
+    <div class="wrap">
+      <h2 data-anim>The world's leading businesses use Adobe Express.</h2>
+      <div class="logos__row">
+        <img data-anim src="https://main--da-express-milo--adobecom.aem.live/express/fragments/media_11462bd5b62fc83d252b04741bee4246c7ddde1b8.png?width=2000&format=webply&optimize=medium" alt="IBM">
+        <img data-anim src="https://main--da-express-milo--adobecom.aem.live/express/fragments/media_18482acf278aa73d6c811998823be3c709a080862.png?width=2000&format=webply&optimize=medium" alt="Havas">
+        <img data-anim src="https://main--da-express-milo--adobecom.aem.live/express/fragments/media_17e9915a34882880086d2d4210c7a4483d326b6fa.png?width=2000&format=webply&optimize=medium" alt="Accenture">
+        <img data-anim src="https://main--da-express-milo--adobecom.aem.live/express/fragments/media_1e8a0080a2663201ddb62f2147b3b7bb2bf8ce0b1.png?width=2000&format=webply&optimize=medium" alt="Red Hat">
+        <img data-anim src="https://main--da-express-milo--adobecom.aem.live/express/fragments/media_12ed9b1ca1aab32a7fed2e86602e80e3041347b41.png?width=2000&format=webply&optimize=medium" alt="ABB">
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="section plans" id="plans" data-section="plans" data-intent="drive action" data-layout="grid" data-items="5">
+    <div class="wrap">
+      <div class="plans__head">
+        <h2 data-anim>Compare plans.</h2>
+        <a class="btn btn--outline btn--sm" href="#plans">Compare all plans</a>
+      </div>
+      <div class="tier-row">
+        <div class="tier" data-tile-anim><span class="tier__name">Adobe Express Free</span><span class="tier__price" data-placeholder="true" data-placeholder-type="price" data-placeholder-source="plan row; price in uncaptured pricing fragment"><span class="placeholder-eyebrow">Placeholder · price</span><span class="placeholder-shape">e.g. US$0/mo</span></span><a href="#hero">Get started</a></div>
+        <div class="tier" data-tile-anim><span class="tier__name">Adobe Express Premium</span><span class="tier__price" data-placeholder="true" data-placeholder-type="price" data-placeholder-source="uncaptured pricing fragment"><span class="placeholder-eyebrow">Placeholder · price</span><span class="placeholder-shape">e.g. US$X/mo</span></span><a href="#hero">Start free trial</a></div>
+        <div class="tier" data-tile-anim><span class="tier__name">Adobe Firefly Pro</span><span class="tier__price" data-placeholder="true" data-placeholder-type="price" data-placeholder-source="uncaptured pricing fragment"><span class="placeholder-eyebrow">Placeholder · price</span><span class="placeholder-shape">e.g. US$X/mo</span></span><a href="#hero">Learn more</a></div>
+        <div class="tier" data-tile-anim><span class="tier__name">Adobe Express Teams</span><span class="tier__price" data-placeholder="true" data-placeholder-type="price" data-placeholder-source="uncaptured pricing fragment"><span class="placeholder-eyebrow">Placeholder · price</span><span class="placeholder-shape">e.g. US$X/seat</span></span><a href="#hero">Learn more</a></div>
+        <div class="tier" data-tile-anim><span class="tier__name">Adobe Express Enterprise</span><span class="tier__price" data-placeholder="true" data-placeholder-type="price" data-placeholder-source="uncaptured pricing fragment"><span class="placeholder-eyebrow">Placeholder · price</span><span class="placeholder-shape">Contact sales</span></span><a href="#hero">Contact sales</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING (scrim deepens with scroll) -->
+  <section class="section closing" data-section="closing-cta" data-intent="drive action" data-layout="stack">
+    <div class="wrap">
+      <h2 data-anim>Content creation made easy.</h2>
+      <a class="btn btn--primary" href="#hero">Get Adobe Express Free</a>
+    </div>
+  </section>
+
+  <!-- FOOTNOTES -->
+  <section class="section footnotes" data-section="footnotes" data-intent="legal" data-layout="stack">
+    <div class="wrap">
+      <p><sup>1</sup> Billing begins when your free trial ends. Cancel before the free trial ends and you won't be charged. Subscription automatically renews until you cancel. Cancel anytime.</p>
+      <p><sup>2</sup> Limited beta availability: Adobe Express Premium, Desktop and English (US) only.</p>
+      <p><sup>3</sup> Available on the Premium plan.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-section="footer" data-intent="wayfinding" data-layout="grid">
+  <div class="wrap">
+    <div class="site-footer__top">
+      <div class="footcol"><h5>Create</h5><a href="#features">Features</a><a href="#hero">Templates</a><a href="#features">AI Assistant</a><a href="#features">Brand kits</a></div>
+      <div class="footcol"><h5>Business</h5><a href="#segments">For Teams</a><a href="#segments">For Enterprise</a><a href="#segments">For Students</a></div>
+      <div class="footcol"><h5>Plans</h5><a href="#plans">Compare plans</a><a href="#hero">Free plan</a><a href="#plans">Premium</a></div>
+      <div class="footcol"><h5>Support</h5><a href="#proof">Customer stories</a><a href="#footnotes">Legal</a></div>
+    </div>
+    <div class="site-footer__wordmark">Adobe&nbsp;Express</div>
+    <div class="site-footer__legal">
+      <span><span class="adobe-mark">Adobe</span> &nbsp;© 2026 Adobe. All rights reserved.</span>
+      <span>Privacy · Terms of Use · Cookie preferences</span>
+    </div>
+  </div>
+</footer>
+
+<script>/*! Lenis v1.3.19 | MIT License | Copyright (c) Darkroom Engineering | https://github.com/darkroomengineering/lenis */
+var t="1.3.19";function e(t,e,i){return Math.max(t,Math.min(e,i))}var i=class{isRunning=!1;value=0;from=0;to=0;currentTime=0;lerp;duration;easing;onUpdate;advance(t){if(!this.isRunning)return;let i=!1;if(this.duration&&this.easing){this.currentTime+=t;const s=e(0,this.currentTime/this.duration,1);i=s>=1;const o=i?1:this.easing(s);this.value=this.from+(this.to-this.from)*o}else this.lerp?(this.value=function(t,e,i,s){return function(t,e,i){return(1-i)*t+i*e}(t,e,1-Math.exp(-i*s))}(this.value,this.to,60*this.lerp,t),Math.round(this.value)===this.to&&(this.value=this.to,i=!0)):(this.value=this.to,i=!0);i&&this.stop(),this.onUpdate?.(this.value,i)}stop(){this.isRunning=!1}fromTo(t,e,{lerp:i,duration:s,easing:o,onStart:n,onUpdate:r}){this.from=this.value=t,this.to=e,this.lerp=i,this.duration=s,this.easing=o,this.currentTime=0,this.isRunning=!0,n?.(),this.onUpdate=r}};var s=class{constructor(t,e,{autoResize:i=!0,debounce:s=250}={}){this.wrapper=t,this.content=e,i&&(this.debouncedResize=function(t,e){let i;return function(...s){clearTimeout(i),i=setTimeout(()=>{i=void 0,t.apply(this,s)},e)}}(this.resize,s),this.wrapper instanceof Window?window.addEventListener("resize",this.debouncedResize):(this.wrapperResizeObserver=new ResizeObserver(this.debouncedResize),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(this.debouncedResize),this.contentResizeObserver.observe(this.content)),this.resize()}width=0;height=0;scrollHeight=0;scrollWidth=0;debouncedResize;wrapperResizeObserver;contentResizeObserver;destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect(),this.wrapper===window&&this.debouncedResize&&window.removeEventListener("resize",this.debouncedResize)}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper instanceof Window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.wrapper instanceof Window?(this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth):(this.scrollHeight=this.wrapper.scrollHeight,this.scrollWidth=this.wrapper.scrollWidth)};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}},o=class{events={};emit(t,...e){const i=this.events[t]||[];for(let t=0,s=i.length;t<s;t++)i[t]?.(...e)}on(t,e){return this.events[t]?this.events[t].push(e):this.events[t]=[e],()=>{this.events[t]=this.events[t]?.filter(t=>e!==t)}}off(t,e){this.events[t]=this.events[t]?.filter(t=>e!==t)}destroy(){this.events={}}},n=100/6,r={passive:!1};function l(t,e){return 1===t?n:2===t?e:1}var h=class{constructor(t,e={wheelMultiplier:1,touchMultiplier:1}){this.element=t,this.options=e,window.addEventListener("resize",this.onWindowResize),this.onWindowResize(),this.element.addEventListener("wheel",this.onWheel,r),this.element.addEventListener("touchstart",this.onTouchStart,r),this.element.addEventListener("touchmove",this.onTouchMove,r),this.element.addEventListener("touchend",this.onTouchEnd,r)}touchStart={x:0,y:0};lastDelta={x:0,y:0};window={width:0,height:0};emitter=new o;on(t,e){return this.emitter.on(t,e)}destroy(){this.emitter.destroy(),window.removeEventListener("resize",this.onWindowResize),this.element.removeEventListener("wheel",this.onWheel,r),this.element.removeEventListener("touchstart",this.onTouchStart,r),this.element.removeEventListener("touchmove",this.onTouchMove,r),this.element.removeEventListener("touchend",this.onTouchEnd,r)}onTouchStart=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:0,y:0},this.emitter.emit("scroll",{deltaX:0,deltaY:0,event:t})};onTouchMove=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t,s=-(e-this.touchStart.x)*this.options.touchMultiplier,o=-(i-this.touchStart.y)*this.options.touchMultiplier;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:s,y:o},this.emitter.emit("scroll",{deltaX:s,deltaY:o,event:t})};onTouchEnd=t=>{this.emitter.emit("scroll",{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:t})};onWheel=t=>{let{deltaX:e,deltaY:i,deltaMode:s}=t;e*=l(s,this.window.width),i*=l(s,this.window.height),e*=this.options.wheelMultiplier,i*=this.options.wheelMultiplier,this.emitter.emit("scroll",{deltaX:e,deltaY:i,event:t})};onWindowResize=()=>{this.window={width:window.innerWidth,height:window.innerHeight}}},a=t=>Math.min(1,1.001-2**(-10*t)),Lenis=class{_isScrolling=!1;_isStopped=!1;_isLocked=!1;_preventNextNativeScrollEvent=!1;_resetVelocityTimeout=null;_rafId=null;isTouching;time=0;userData={};lastVelocity=0;velocity=0;direction=0;options;targetScroll;animatedScroll;animate=new i;emitter=new o;dimensions;virtualScroll;constructor({wrapper:e=window,content:i=document.documentElement,eventsTarget:o=e,smoothWheel:n=!0,syncTouch:r=!1,syncTouchLerp:l=.075,touchInertiaExponent:c=1.7,duration:p,easing:d,lerp:u=.1,infinite:m=!1,orientation:v="vertical",gestureOrientation:w=("horizontal"===v?"both":"vertical"),touchMultiplier:g=1,wheelMultiplier:S=1,autoResize:f=!0,prevent:y,virtualScroll:E,overscroll:T=!0,autoRaf:z=!1,anchors:b=!1,autoToggle:L=!1,allowNestedScroll:N=!1,__experimental__naiveDimensions:R=!1,naiveDimensions:M=R,stopInertiaOnNavigate:_=!1}={}){window.lenisVersion=t,window.lenis||(window.lenis={}),window.lenis.version=t,"horizontal"===v&&(window.lenis.horizontal=!0),!0===r&&(window.lenis.touch=!0),e&&e!==document.documentElement||(e=window),"number"==typeof p&&"function"!=typeof d?d=a:"function"==typeof d&&"number"!=typeof p&&(p=1),this.options={wrapper:e,content:i,eventsTarget:o,smoothWheel:n,syncTouch:r,syncTouchLerp:l,touchInertiaExponent:c,duration:p,easing:d,lerp:u,infinite:m,gestureOrientation:w,orientation:v,touchMultiplier:g,wheelMultiplier:S,autoResize:f,prevent:y,virtualScroll:E,overscroll:T,autoRaf:z,anchors:b,autoToggle:L,allowNestedScroll:N,naiveDimensions:M,stopInertiaOnNavigate:_},this.dimensions=new s(e,i,{autoResize:f}),this.updateClassName(),this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener("scroll",this.onNativeScroll),this.options.wrapper.addEventListener("scrollend",this.onScrollEnd,{capture:!0}),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.addEventListener("click",this.onClick),this.options.wrapper.addEventListener("pointerdown",this.onPointerDown),this.virtualScroll=new h(o,{touchMultiplier:g,wheelMultiplier:S}),this.virtualScroll.on("scroll",this.onVirtualScroll),this.options.autoToggle&&(this.checkOverflow(),this.rootElement.addEventListener("transitionend",this.onTransitionEnd)),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))}destroy(){this.emitter.destroy(),this.options.wrapper.removeEventListener("scroll",this.onNativeScroll),this.options.wrapper.removeEventListener("scrollend",this.onScrollEnd,{capture:!0}),this.options.wrapper.removeEventListener("pointerdown",this.onPointerDown),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.removeEventListener("click",this.onClick),this.virtualScroll.destroy(),this.dimensions.destroy(),this.cleanUpClassName(),this._rafId&&cancelAnimationFrame(this._rafId)}on(t,e){return this.emitter.on(t,e)}off(t,e){return this.emitter.off(t,e)}onScrollEnd=t=>{t instanceof CustomEvent||"smooth"!==this.isScrolling&&!1!==this.isScrolling||t.stopPropagation()};dispatchScrollendEvent=()=>{this.options.wrapper.dispatchEvent(new CustomEvent("scrollend",{bubbles:this.options.wrapper===window,detail:{lenisScrollEnd:!0}}))};get overflow(){const t=this.isHorizontal?"overflow-x":"overflow-y";return getComputedStyle(this.rootElement)[t]}checkOverflow(){["hidden","clip"].includes(this.overflow)?this.internalStop():this.internalStart()}onTransitionEnd=t=>{t.propertyName.includes("overflow")&&this.checkOverflow()};setScroll(t){this.isHorizontal?this.options.wrapper.scrollTo({left:t,behavior:"instant"}):this.options.wrapper.scrollTo({top:t,behavior:"instant"})}onClick=t=>{const e=t.composedPath().filter(t=>t instanceof HTMLAnchorElement&&t.href).map(t=>new URL(t.href)),i=new URL(window.location.href);if(this.options.anchors){const t=e.find(t=>i.host===t.host&&i.pathname===t.pathname&&t.hash);if(t){const e="object"==typeof this.options.anchors&&this.options.anchors?this.options.anchors:void 0,i=`#${t.hash.split("#")[1]}`;return void this.scrollTo(i,e)}}if(this.options.stopInertiaOnNavigate){if(e.some(t=>i.host===t.host&&i.pathname!==t.pathname))return void this.reset()}};onPointerDown=t=>{1===t.button&&this.reset()};onVirtualScroll=t=>{if("function"==typeof this.options.virtualScroll&&!1===this.options.virtualScroll(t))return;const{deltaX:e,deltaY:i,event:s}=t;if(this.emitter.emit("virtual-scroll",{deltaX:e,deltaY:i,event:s}),s.ctrlKey)return;if(s.lenisStopPropagation)return;const o=s.type.includes("touch"),n=s.type.includes("wheel");this.isTouching="touchstart"===s.type||"touchmove"===s.type;const r=0===e&&0===i;if(this.options.syncTouch&&o&&"touchstart"===s.type&&r&&!this.isStopped&&!this.isLocked)return void this.reset();const l="vertical"===this.options.gestureOrientation&&0===i||"horizontal"===this.options.gestureOrientation&&0===e;if(r||l)return;let h=s.composedPath();h=h.slice(0,h.indexOf(this.rootElement));const a=this.options.prevent,c=Math.abs(e)>=Math.abs(i)?"horizontal":"vertical";if(h.find(t=>t instanceof HTMLElement&&("function"==typeof a&&a?.(t)||t.hasAttribute?.("data-lenis-prevent")||"vertical"===c&&t.hasAttribute?.("data-lenis-prevent-vertical")||"horizontal"===c&&t.hasAttribute?.("data-lenis-prevent-horizontal")||o&&t.hasAttribute?.("data-lenis-prevent-touch")||n&&t.hasAttribute?.("data-lenis-prevent-wheel")||this.options.allowNestedScroll&&this.hasNestedScroll(t,{deltaX:e,deltaY:i}))))return;if(this.isStopped||this.isLocked)return void(s.cancelable&&s.preventDefault());if(!(this.options.syncTouch&&o||this.options.smoothWheel&&n))return this.isScrolling="native",this.animate.stop(),void(s.lenisStopPropagation=!0);let p=i;"both"===this.options.gestureOrientation?p=Math.abs(i)>Math.abs(e)?i:e:"horizontal"===this.options.gestureOrientation&&(p=e),(!this.options.overscroll||this.options.infinite||this.options.wrapper!==window&&this.limit>0&&(this.animatedScroll>0&&this.animatedScroll<this.limit||0===this.animatedScroll&&i>0||this.animatedScroll===this.limit&&i<0))&&(s.lenisStopPropagation=!0),s.cancelable&&s.preventDefault();const d=o&&this.options.syncTouch,u=o&&"touchend"===s.type;u&&(p=Math.sign(this.velocity)*Math.abs(this.velocity)**this.options.touchInertiaExponent),this.scrollTo(this.targetScroll+p,{programmatic:!1,...d?{lerp:u?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize(),this.animatedScroll=this.targetScroll=this.actualScroll,this.emit()}emit(){this.emitter.emit("scroll",this)}onNativeScroll=()=>{if(null!==this._resetVelocityTimeout&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this._preventNextNativeScrollEvent)this._preventNextNativeScrollEvent=!1;else if(!1===this.isScrolling||"native"===this.isScrolling){const t=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity,this.velocity=this.animatedScroll-t,this.direction=Math.sign(this.animatedScroll-t),this.isStopped||(this.isScrolling="native"),this.emit(),0!==this.velocity&&(this._resetVelocityTimeout=setTimeout(()=>{this.lastVelocity=this.velocity,this.velocity=0,this.isScrolling=!1,this.emit()},400))}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity=0,this.animate.stop()}start(){this.isStopped&&(this.options.autoToggle?this.rootElement.style.removeProperty("overflow"):this.internalStart())}internalStart(){this.isStopped&&(this.reset(),this.isStopped=!1,this.emit())}stop(){this.isStopped||(this.options.autoToggle?this.rootElement.style.setProperty("overflow","clip"):this.internalStop())}internalStop(){this.isStopped||(this.reset(),this.isStopped=!0,this.emit())}raf=t=>{const e=t-(this.time||t);this.time=t,this.animate.advance(.001*e),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))};scrollTo(t,{offset:i=0,immediate:s=!1,lock:o=!1,programmatic:n=!0,lerp:r=(n?this.options.lerp:void 0),duration:l=(n?this.options.duration:void 0),easing:h=(n?this.options.easing:void 0),onStart:c,onComplete:p,force:d=!1,userData:u}={}){if((this.isStopped||this.isLocked)&&!d)return;let m=t,v=i;if("string"==typeof m&&["top","left","start","#"].includes(m))m=0;else if("string"==typeof m&&["bottom","right","end"].includes(m))m=this.limit;else{let t=null;if("string"==typeof m?(t=document.querySelector(m),t||("#top"===m?m=0:console.warn("Lenis: Target not found",m))):m instanceof HTMLElement&&m?.nodeType&&(t=m),t){if(this.options.wrapper!==window){const t=this.rootElement.getBoundingClientRect();v-=this.isHorizontal?t.left:t.top}const e=t.getBoundingClientRect();m=(this.isHorizontal?e.left:e.top)+this.animatedScroll}}if("number"==typeof m){if(m+=v,m=Math.round(m),this.options.infinite){if(n){this.targetScroll=this.animatedScroll=this.scroll;const t=m-this.animatedScroll;t>this.limit/2?m-=this.limit:t<-this.limit/2&&(m+=this.limit)}}else m=e(0,m,this.limit);if(m===this.targetScroll)return c?.(this),void p?.(this);if(this.userData=u??{},s)return this.animatedScroll=this.targetScroll=m,this.setScroll(this.scroll),this.reset(),this.preventNextNativeScrollEvent(),this.emit(),p?.(this),this.userData={},void requestAnimationFrame(()=>{this.dispatchScrollendEvent()});n||(this.targetScroll=m),"number"==typeof l&&"function"!=typeof h?h=a:"function"==typeof h&&"number"!=typeof l&&(l=1),this.animate.fromTo(this.animatedScroll,m,{duration:l,easing:h,lerp:r,onStart:()=>{o&&(this.isLocked=!0),this.isScrolling="smooth",c?.(this)},onUpdate:(t,e)=>{this.isScrolling="smooth",this.lastVelocity=this.velocity,this.velocity=t-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=t,this.setScroll(this.scroll),n&&(this.targetScroll=t),e||this.emit(),e&&(this.reset(),this.emit(),p?.(this),this.userData={},requestAnimationFrame(()=>{this.dispatchScrollendEvent()}),this.preventNextNativeScrollEvent())}})}}preventNextNativeScrollEvent(){this._preventNextNativeScrollEvent=!0,requestAnimationFrame(()=>{this._preventNextNativeScrollEvent=!1})}hasNestedScroll(t,{deltaX:e,deltaY:i}){const s=Date.now();t._lenis||(t._lenis={});const o=t._lenis;let n,r,l,h,a,c,p,d,u,m;if(s-(o.time??0)>2e3){o.time=Date.now();const e=window.getComputedStyle(t);if(o.computedStyle=e,n=["auto","overlay","scroll"].includes(e.overflowX),r=["auto","overlay","scroll"].includes(e.overflowY),a=["auto"].includes(e.overscrollBehaviorX),c=["auto"].includes(e.overscrollBehaviorY),o.hasOverflowX=n,o.hasOverflowY=r,!n&&!r)return!1;p=t.scrollWidth,d=t.scrollHeight,u=t.clientWidth,m=t.clientHeight,l=p>u,h=d>m,o.isScrollableX=l,o.isScrollableY=h,o.scrollWidth=p,o.scrollHeight=d,o.clientWidth=u,o.clientHeight=m,o.hasOverscrollBehaviorX=a,o.hasOverscrollBehaviorY=c}else l=o.isScrollableX,h=o.isScrollableY,n=o.hasOverflowX,r=o.hasOverflowY,p=o.scrollWidth,d=o.scrollHeight,u=o.clientWidth,m=o.clientHeight,a=o.hasOverscrollBehaviorX,c=o.hasOverscrollBehaviorY;if(!(n&&l||r&&h))return!1;const v=Math.abs(e)>=Math.abs(i)?"horizontal":"vertical";let w,g,S,f,y,E;if("horizontal"===v)w=Math.round(t.scrollLeft),g=p-u,S=e,f=n,y=l,E=a;else{if("vertical"!==v)return!1;w=Math.round(t.scrollTop),g=d-m,S=i,f=r,y=h,E=c}if(!E&&(w>=g||w<=0))return!0;return(S>0?w<g:w>0)&&f&&y}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.options.naiveDimensions?this.isHorizontal?this.rootElement.scrollWidth-this.rootElement.clientWidth:this.rootElement.scrollHeight-this.rootElement.clientHeight:this.dimensions.limit[this.isHorizontal?"x":"y"]}get isHorizontal(){return"horizontal"===this.options.orientation}get actualScroll(){const t=this.options.wrapper;return this.isHorizontal?t.scrollX??t.scrollLeft:t.scrollY??t.scrollTop}get scroll(){return this.options.infinite?(t=this.animatedScroll,e=this.limit,(t%e+e)%e):this.animatedScroll;var t,e}get progress(){return 0===this.limit?1:this.scroll/this.limit}get isScrolling(){return this._isScrolling}set isScrolling(t){this._isScrolling!==t&&(this._isScrolling=t,this.updateClassName())}get isStopped(){return this._isStopped}set isStopped(t){this._isStopped!==t&&(this._isStopped=t,this.updateClassName())}get isLocked(){return this._isLocked}set isLocked(t){this._isLocked!==t&&(this._isLocked=t,this.updateClassName())}get isSmooth(){return"smooth"===this.isScrolling}get className(){let t="lenis";return this.options.autoToggle&&(t+=" lenis-autoToggle"),this.isStopped&&(t+=" lenis-stopped"),this.isLocked&&(t+=" lenis-locked"),this.isScrolling&&(t+=" lenis-scrolling"),"smooth"===this.isScrolling&&(t+=" lenis-smooth"),t}updateClassName(){this.cleanUpClassName(),this.rootElement.className=`${this.rootElement.className} ${this.className}`.trim()}cleanUpClassName(){this.rootElement.className=this.rootElement.className.replace(/lenis(-\w+)?/g,"").trim()}};globalThis.Lenis=Lenis,globalThis.Lenis.prototype=Lenis.prototype;//# sourceMappingURL=lenis.min.js.map
+</script>
+<script>
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis bootstrap ──
+  const lenis = new Lenis({ lerp: 0.1, smoothWheel: !prefersReducedMotion });
+  window.__lenis = lenis;
+  (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+
+  // ── Nav scrolled state ──
+  const nav = document.getElementById('nav');
+  if (nav) lenis.on('scroll', ({ scroll }) => { nav.classList.toggle('scrolled', scroll > 40); });
+
+  const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+  const easeOut3 = t => 1 - Math.pow(1 - t, 3);
+  const getDocTop = el => el.getBoundingClientRect().top + (window.__lenis ? window.__lenis.scroll : window.scrollY);
+
+  // ── Register config: arrival ──
+  const animConfig = {
+    parallax:      { translate: 35, fade: 0.55, rangeStart: 0, range: 80 },
+    plansParallax: { translate: 16, rangeStart: 0, range: 80 },
+    cards:         { trigger: 0.85, range: 0.32, slide: 40, stagger: 0.12 },
+    wordmark:      { range: 0.6, clip: 80 },
+  };
+
+  const animList = [];
+  let wordmarkEl = null, wordmarkTop = 0;
+
+  function measure() {
+    const postHeroEl = document.querySelector('.post-hero');
+    const savedTransform = postHeroEl ? postHeroEl.style.transform : '';
+    if (postHeroEl) postHeroEl.style.transform = '';
+
+    animList.forEach(({ el }) => { el.style.opacity = el.style.transform = el.style.willChange = ''; });
+    animList.length = 0;
+
+    document.querySelectorAll('[data-anim], [data-tile-anim]').forEach((el) => {
+      const parent = el.closest('section');
+      let stagger = 0;
+      if (parent) {
+        const peers = parent.querySelectorAll('[data-anim], [data-tile-anim]');
+        const idx = Array.prototype.indexOf.call(peers, el);
+        stagger = (idx % 8) * animConfig.cards.stagger;
+      }
+      el.style.opacity = '0';
+      el.style.transform = el.hasAttribute('data-tile-anim') ? 'translateY(28px) rotateX(8deg)' : `translateY(${animConfig.cards.slide}px)`;
+      el.style.willChange = 'opacity, transform';
+      animList.push({ el, triggerTop: getDocTop(el), staggerDelay: stagger });
+    });
+
+    wordmarkEl = document.querySelector('.site-footer__wordmark');
+    if (wordmarkEl) {
+      wordmarkTop = getDocTop(wordmarkEl);
+      wordmarkEl.style.clipPath = `inset(${animConfig.wordmark.clip}% 0 0 0)`;
+      wordmarkEl.style.willChange = 'clip-path';
+    }
+    if (postHeroEl) postHeroEl.style.transform = savedTransform;
+  }
+
+  // ── [data-countup] ──
+  const countSeen = new WeakSet();
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || countSeen.has(entry.target)) return;
+      countSeen.add(entry.target);
+      const target = +entry.target.getAttribute('data-countup');
+      const duration = target > 20 ? 1400 : target > 5 ? 900 : 600;
+      const start = performance.now();
+      (function step(now){ const t = clamp((now - start)/duration,0,1); entry.target.textContent = String(Math.round(easeOut3(t)*target)); if (t<1) requestAnimationFrame(step); })(performance.now());
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-countup]').forEach((el) => countObserver.observe(el));
+
+  // ── rAF loop: hero parallax + rising plate + entrances + scrim + wordmark ──
+  const heroMarqueeEl = document.querySelector('.hero-marquee');
+  const postHeroEl = document.querySelector('.post-hero');
+  let _lastMB = null;
+
+  (function tick() {
+    if (prefersReducedMotion) { requestAnimationFrame(tick); return; }
+    const sY = window.__lenis ? window.__lenis.scroll : window.scrollY;
+    const vh = window.innerHeight;
+    const isDesktop = window.innerWidth > 767;
+
+    if (heroMarqueeEl) {
+      const pp = animConfig.parallax;
+      if (isDesktop) {
+        const rs = pp.rangeStart/100*vh, re = pp.range/100*vh;
+        const p = easeOut3(clamp((sY - rs)/(re - rs),0,1));
+        heroMarqueeEl.style.transform = `translateY(${p * -pp.translate}vh)`;
+        heroMarqueeEl.style.opacity = String(1 - p * pp.fade);
+        document.documentElement.style.setProperty('--parallax-progress', p);
+      } else {
+        heroMarqueeEl.style.transform = '';
+        heroMarqueeEl.style.opacity = '';
+        document.documentElement.style.setProperty('--parallax-progress', 0);
+      }
+    }
+
+    let postHeroOffsetPx = 0;
+    if (postHeroEl) {
+      const pp2 = animConfig.plansParallax;
+      if (isDesktop) {
+        const rs = pp2.rangeStart/100*vh, re = pp2.range/100*vh;
+        const p = easeOut3(clamp((sY - rs)/(re - rs),0,1));
+        postHeroOffsetPx = p * -pp2.translate/100*vh;
+        postHeroEl.style.transform = `translateY(${p * -pp2.translate}vh)`;
+        const newMB = `${p * -pp2.translate}vh`;
+        if (newMB !== _lastMB) { postHeroEl.style.marginBottom = newMB; _lastMB = newMB; }
+      } else {
+        postHeroEl.style.transform = '';
+        if (_lastMB !== '') { postHeroEl.style.marginBottom = ''; _lastMB = ''; }
+      }
+    }
+
+    for (let i=0;i<animList.length;i++){
+      const item = animList[i];
+      const { trigger, range, slide } = animConfig.cards;
+      const raw = (sY + vh*trigger - (item.triggerTop + postHeroOffsetPx))/(vh*range);
+      const p = easeOut3(clamp(raw - item.staggerDelay,0,1));
+      item.el.style.opacity = String(p);
+      if (item.el.hasAttribute('data-tile-anim')) item.el.style.transform = `translateY(${(1-p)*28}px) rotateX(${(1-p)*8}deg)`;
+      else item.el.style.transform = `translateY(${(1-p)*slide}px)`;
+    }
+
+    if (wordmarkEl) {
+      const adjustedTop = wordmarkTop + postHeroOffsetPx;
+      const wP = easeOut3(clamp((sY + vh - adjustedTop)/(vh*animConfig.wordmark.range),0,1));
+      wordmarkEl.style.clipPath = `inset(${(1-wP)*animConfig.wordmark.clip}% 0 0 0)`;
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
+  measure();
+  window.addEventListener('load',   () => requestAnimationFrame(measure), { once: true });
+  window.addEventListener('resize', measure, { passive: true });
+
+  if (prefersReducedMotion) {
+    document.querySelectorAll('[data-anim], [data-tile-anim]').forEach((el) => { el.style.opacity='1'; el.style.transform='none'; el.style.filter='none'; el.style.clipPath='none'; });
+    document.querySelectorAll('[data-countup]').forEach((el) => { el.textContent = el.getAttribute('data-countup'); });
+    if (document.querySelector('.site-footer__wordmark')) document.querySelector('.site-footer__wordmark').style.clipPath = 'none';
+  }
+})();
+</script>
+</body>
+</html>
