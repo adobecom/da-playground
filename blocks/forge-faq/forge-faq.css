@@ -1,0 +1,122 @@
+/* ── forge-faq: dark accordion FAQ section ──────────────────────────────── */
+
+:root {
+  --ffaq-accent:      #3b63fb;
+  --ffaq-max-width:   1200px;
+  --ffaq-section-pad: 64px;
+  --ffaq-spacing-xl:  48px;
+  --ffaq-spacing-lg:  24px;
+  --ffaq-spacing-md:  16px;
+  --ffaq-body:        20px;
+  --ffaq-body-sm:     16px;
+  --ffaq-font-display:'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean',
+                      -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --ffaq-font-body:   'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── Full-bleed section reset ───────────────────────────────────────────── */
+.section .forge-faq-wrapper {
+  max-width: unset !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+main > .section:has(.forge-faq-wrapper) {
+  max-width: unset !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* ── Block ──────────────────────────────────────────────────────────────── */
+.forge-faq {
+  background: #000;
+  color: #fff;
+  padding: var(--ffaq-section-pad) 0;
+  font-family: var(--ffaq-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ffaq-container {
+  width: 100%;
+  max-width: var(--ffaq-max-width);
+  margin-inline: auto;
+  padding-inline: var(--ffaq-spacing-lg);
+}
+
+/* ── Heading ────────────────────────────────────────────────────────────── */
+.forge-faq h2 {
+  font-family: var(--ffaq-font-display);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-size: clamp(32px, 4vw, 56px);
+  color: #fff;
+  text-align: center;
+  margin: 0 0 var(--ffaq-spacing-xl);
+  text-wrap: balance;
+}
+
+/* ── FAQ items ──────────────────────────────────────────────────────────── */
+.ffaq-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.ffaq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--ffaq-spacing-lg) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ffaq-spacing-lg);
+  font-weight: 700;
+  font-size: var(--ffaq-body);
+  color: #fff;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ffaq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ffaq-item summary::after {
+  content: '+';
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--ffaq-accent);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.ffaq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.ffaq-answer {
+  padding: 0 0 var(--ffaq-spacing-lg);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--ffaq-body-sm);
+  max-width: 70ch;
+  line-height: 1.5;
+}
+
+.ffaq-answer a {
+  color: var(--ffaq-accent);
+  text-decoration: none;
+}
+
+.ffaq-answer a:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .forge-faq {
+    padding: 48px 0;
+  }
+
+  .ffaq-item summary {
+    font-size: var(--ffaq-body-sm);
+  }
+}

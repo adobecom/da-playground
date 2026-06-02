@@ -1,0 +1,117 @@
+/* ── forge-hero: Adobe Express Pricing hero section ─────────────────────── */
+
+/* ── Design tokens (needed by this block; cascade to later blocks too) ─── */
+:root {
+  --fh-font-display: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean',
+    -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --fh-font-body:    'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --fh-color-bg:     #ffffff;
+  --fh-color-fg:     #000000;
+  --fh-color-accent: #3b63fb;
+  --fh-color-surface-warm: #eceae7;
+  --fh-color-subtle: #505050;
+  --fh-section-pad:  64px;
+  --fh-max-width:    1200px;
+  --fh-radius-pill:  999px;
+  --fh-body:         20px;
+  --fh-body-sm:      16px;
+  --fh-ease-quart:   cubic-bezier(0.42, 0, 0, 1);
+  --fh-spacing-xl:   48px;
+  --fh-spacing-lg:   24px;
+  --fh-spacing-sm:   12px;
+}
+
+/* ── Full-bleed section reset (beat Milo's .section max-width) ─────────── */
+.section .forge-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+  width: 100%;
+}
+
+/* ── Block container ────────────────────────────────────────────────────── */
+.forge-hero {
+  text-align: center;
+  padding: calc(var(--fh-section-pad) + 16px) 0 var(--fh-spacing-xl);
+  background: var(--fh-color-bg);
+  font-family: var(--fh-font-body);
+  color: var(--fh-color-fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.fh-container {
+  width: 100%;
+  max-width: var(--fh-max-width);
+  margin-inline: auto;
+  padding-inline: var(--fh-spacing-lg);
+}
+
+/* ── Heading ────────────────────────────────────────────────────────────── */
+.fh-title {
+  font-family: var(--fh-font-display);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-size: clamp(40px, 6.25vw, 72px);
+  max-width: 18ch;
+  margin-inline: auto;
+  color: var(--fh-color-fg);
+  text-wrap: balance;
+}
+
+/* ── Subtitle ───────────────────────────────────────────────────────────── */
+.fh-sub {
+  font-size: var(--fh-body);
+  color: rgba(0, 0, 0, 0.64);
+  max-width: 46ch;
+  margin: var(--fh-spacing-lg) auto 0;
+  text-wrap: pretty;
+}
+
+/* ── Audience switcher ──────────────────────────────────────────────────── */
+.fh-switcher {
+  margin-top: var(--fh-spacing-xl);
+  display: flex;
+  justify-content: center;
+}
+
+.fh-switcher-group {
+  display: inline-flex;
+  gap: 4px;
+  padding: 6px;
+  background: var(--fh-color-surface-warm);
+  border-radius: var(--fh-radius-pill);
+}
+
+.fh-tab {
+  font-family: var(--fh-font-body);
+  font-size: var(--fh-body-sm);
+  font-weight: 700;
+  color: var(--fh-color-subtle);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px 22px;
+  border-radius: var(--fh-radius-pill);
+  transition: background-color 0.3s var(--fh-ease-quart), color 0.3s;
+}
+
+.fh-tab[aria-selected='true'] {
+  background: #000;
+  color: #fff;
+}
+
+.fh-tab:not([aria-selected='true']):hover {
+  color: #000;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .forge-hero {
+    padding-top: var(--fh-spacing-xl);
+  }
+
+  .fh-switcher-group {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

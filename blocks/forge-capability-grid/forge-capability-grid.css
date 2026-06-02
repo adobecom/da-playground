@@ -1,0 +1,183 @@
+/* ── forge-capability-grid: dark "act" capabilities grid ────────────────── */
+
+:root {
+  --fcg-accent:       #3b63fb;
+  --fcg-max-width:    1200px;
+  --fcg-section-pad:  64px;
+  --fcg-spacing-xl:   48px;
+  --fcg-spacing-lg:   24px;
+  --fcg-spacing-md:   16px;
+  --fcg-spacing-sm:   12px;
+  --fcg-heading-md:   24px;
+  --fcg-body-sm:      16px;
+  --fcg-radius:       16px;
+  --fcg-radius-pill:  999px;
+  --fcg-lift-dur:     380ms;
+  --fcg-ease-quart:   cubic-bezier(0.42, 0, 0, 1);
+  --fcg-font-display: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean',
+                      -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --fcg-font-body:    'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── Full-bleed section reset ───────────────────────────────────────────── */
+.section .forge-capability-grid-wrapper {
+  max-width: unset !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+main > .section:has(.forge-capability-grid-wrapper) {
+  max-width: unset !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── Block ──────────────────────────────────────────────────────────────── */
+.forge-capability-grid {
+  background: #000;
+  color: #fff;
+  padding: var(--fcg-section-pad) 0;
+  font-family: var(--fcg-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.fcg-container {
+  width: 100%;
+  max-width: var(--fcg-max-width);
+  margin-inline: auto;
+  padding-inline: var(--fcg-spacing-lg);
+}
+
+/* ── Section head ───────────────────────────────────────────────────────── */
+.fcg-head {
+  text-align: center;
+  margin-bottom: var(--fcg-spacing-xl);
+}
+
+.fcg-head h2 {
+  font-family: var(--fcg-font-display);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-size: clamp(32px, 4vw, 56px);
+  color: #fff;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.fcg-head p {
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: var(--fcg-spacing-md);
+  font-size: var(--fcg-body-sm);
+}
+
+.fcg-count {
+  font-family: var(--fcg-font-display);
+  font-weight: 900;
+  color: var(--fcg-accent);
+}
+
+/* ── Filter chips ───────────────────────────────────────────────────────── */
+.fcg-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fcg-spacing-sm);
+  justify-content: center;
+  margin-bottom: var(--fcg-spacing-xl);
+}
+
+.fcg-chip {
+  font-family: var(--fcg-font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--fcg-radius-pill);
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fcg-chip[aria-current='true'] {
+  background: var(--fcg-accent);
+  color: #fff;
+  border-color: var(--fcg-accent);
+}
+
+/* ── Capability grid ────────────────────────────────────────────────────── */
+.fcg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--fcg-spacing-md);
+  perspective: 1200px;
+}
+
+/* ── Tile ───────────────────────────────────────────────────────────────── */
+.fcg-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fcg-spacing-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--fcg-radius);
+  padding: var(--fcg-spacing-lg);
+  transition: transform var(--fcg-lift-dur) var(--fcg-ease-quart),
+              background-color var(--fcg-lift-dur),
+              border-color var(--fcg-lift-dur);
+  transform-origin: center top;
+}
+
+.fcg-tile:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.fcg-tile-name {
+  font-family: var(--fcg-font-display);
+  font-weight: 900;
+  font-size: var(--fcg-heading-md);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #fff;
+  margin: 0;
+}
+
+.fcg-tile-desc {
+  font-size: var(--fcg-body-sm);
+  color: rgba(255, 255, 255, 0.64);
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.fcg-tile-avail {
+  margin-top: var(--fcg-spacing-sm);
+}
+
+.fcg-avail-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .fcg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .fcg-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forge-capability-grid {
+    padding: 48px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fcg-tile { transition: none; }
+}

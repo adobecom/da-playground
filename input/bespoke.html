@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:         stardust:prototype  (uplift Phase 5, variant C — cinematic)
+  writtenAt:         2026-06-01T17:40:00Z
+  page:              express__pricing
+  variant:           C — Motion as identity (CINEMATIC; static reference is express__pricing-C-proposed.html)
+  pageUrl:           https://main--da-express-milo--adobecom.aem.live/express/pricing
+  againstDirection:  stardust/direction.md (Active 2026-06-01T17:20:00Z)
+  mode:              A (brand-faithful — palette + type pinned to captured C2 surface)
+  readArtifacts:
+    - stardust/current/pages/express__pricing.json
+    - stardust/current/_brand-extraction.json
+    - stardust/current/DESIGN.json
+    - DESIGN.md
+    - stardust/prototypes/express__pricing-C-shape.md
+    - skills/prototype/reference/motion-runtime.md
+    - skills/prototype/reference/motion-registers.md
+  reflexRejectAudit:
+    bypassed: true
+    reason: "Mode A — display + body families pinned to captured C2 surface; not a reflex choice."
+  motion:
+    register:        kinetic-grid
+    registerSource:  direct
+    runtimeVersion:  v1
+    lenisAssets:     { js: lenis.min.js, css: lenis.min.css }
+    attributesEmitted: [data-anim, data-tile-anim, data-countup]
+    choreographies:
+      - cap-tile-cascade (rotateX settle, 70ms stagger)
+      - plan-card-cascade
+      - section-head-fade-up
+      - capability-countup (0 → 9)
+      - hover-lift (cards + tiles)
+      - button-sheen
+    refuses: [page-level-parallax, letter-reveals, tickers]
+  fidelity:          refined
+  unsourcedContent:
+    - selector: ".plan-card .price [data-placeholder]"
+      type: price
+      reason: "Plan prices commerce-injected client-side; not in captured static DOM."
+    - selector: ".cap-tile [data-placeholder]"
+      type: other
+      reason: "Per-plan feature availability fragment/commerce-injected; only category names captured."
+  divergence:
+    notes: "Pure #000/#fff inherited as a C2 Two-Act brand decision. Motion is the differentiating axis (A and B refuse it). C-cliff guard: C bets on motion + table→tile motif swap, not 'B but bigger'."
+    anti_toolbox_hits: []
+  stardustVersion:   0.10.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing: Compare Free &amp; Premium Plans | Adobe Express</title>
+<style>html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis [data-lenis-prevent],.lenis [data-lenis-prevent-wheel],.lenis [data-lenis-prevent-touch],.lenis [data-lenis-prevent-vertical],.lenis [data-lenis-prevent-horizontal]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}
+</style>
+<noscript>
+  <style>
+    [data-anim], [data-tile-anim], [data-split] span {
+      opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important;
+    }
+    .word { clip-path: none !important; transform: none !important; }
+    [data-parallax] { transform: none !important; }
+    .hero-marquee { transform: none !important; }
+    .post-hero { transform: none !important; }
+  </style>
+</noscript>
+<style>
+  .ds-nav-burger { display: none; }
+  :root {
+    --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    --body-font-family:    'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    --heading-xxl: 80px; --heading-xl: 56px; --heading-lg: 48px; --heading-md: 24px;
+    --body: 20px; --body-sm: 16px;
+    --line-height-heading: 0.95; --line-height-body: 1.25;
+    --color-bg: #ffffff; --color-fg: #000000; --color-accent: #3b63fb;
+    --color-accent-hover: #274dea; --color-surface: #f8f8f8; --color-surface-warm: #eceae7;
+    --color-inverse: #000000; --color-text-secondary: rgba(0,0,0,0.64); --color-subtle: #505050;
+    --color-savings: #05834e; --color-adobe-red: #eb1000;
+    --spacing-xs: 8px; --spacing-sm: 12px; --spacing-md: 16px; --spacing-lg: 24px; --spacing-xl: 48px; --spacing-2xl: 96px;
+    --section-padding: 64px; --max-width: 1200px; --radius: 16px; --radius-secondary: 12px; --radius-pill: 999px;
+
+    /* Motion (cinematic only — kinetic-grid token defaults) */
+    --ease-out-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out-quart: cubic-bezier(0.42, 0, 0, 1);
+    --ease-expo:      cubic-bezier(0.16, 1, 0.3, 1);
+    --enter-duration: 500ms;
+    --enter-stagger:  70ms;
+    --lift-translate: -4px;
+    --lift-duration:  380ms;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; hanging-punctuation: first; }
+  body { margin: 0; font-family: var(--body-font-family); font-size: var(--body); line-height: var(--line-height-body); color: var(--color-fg); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--heading-font-family); font-weight: 900; line-height: var(--line-height-heading); letter-spacing: -0.04em; margin: 0; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-hover); }
+  svg { max-width: 100%; display: block; }
+  .container { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--spacing-lg); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 24px; border-radius: var(--radius-pill); font-family: var(--body-font-family); font-weight: 700; font-size: var(--body-sm); border: none; cursor: pointer; transition: background-color .2s var(--ease-out-quart), color .2s, border-color .2s; white-space: nowrap; text-decoration: none; position: relative; overflow: hidden; }
+  /* kinetic-grid signature: button sheen on hover */
+  .btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%); transform: translateX(-120%); transition: transform .7s var(--ease-out-quart); pointer-events: none; }
+  .btn:hover::after { transform: translateX(120%); }
+  .btn--primary { background: var(--color-accent); color: #fff; }
+  .btn--primary:hover { background: var(--color-accent-hover); color: #fff; }
+  .btn--outline { background: transparent; color: #000; border: 1.5px solid #000; }
+  .btn--outline:hover { background: rgba(0,0,0,0.04); }
+  .btn--outline::after { background: linear-gradient(110deg, transparent 30%, rgba(0,0,0,0.08) 50%, transparent 70%); }
+  .btn--block { width: 100%; }
+
+  .nav-shell { position: sticky; top: 0; z-index: 50; padding: var(--spacing-xs); }
+  .nav { display: flex; align-items: center; gap: var(--spacing-lg); height: 64px; padding: 0 var(--spacing-lg); background: rgba(255,255,255,0.64); -webkit-backdrop-filter: blur(32px); backdrop-filter: blur(32px); border-radius: var(--radius); max-width: var(--max-width); margin-inline: auto; transition: box-shadow .2s; }
+  .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .nav__logo { flex: 0 0 auto; height: 18px; }
+  .nav__logo svg { height: 18px; width: auto; }
+  .nav__links { display: flex; align-items: center; gap: 2px; margin: 0; padding: 0; list-style: none; flex: 1 1 auto; }
+  .nav__links a, .nav__links button { font: inherit; font-size: 15px; font-weight: 400; color: #292929; background: none; border: none; cursor: pointer; padding: 8px 12px; border-radius: 8px; }
+  .nav__links a:hover, .nav__links button:hover { background: rgba(0,0,0,0.04); color: #000; }
+  .nav__links [aria-current="page"] { font-weight: 700; color: #000; }
+  .nav__cta { display: flex; align-items: center; gap: var(--spacing-sm); flex: 0 0 auto; }
+  .nav__cta .btn { height: 40px; }
+  .nav__signin { font: inherit; font-size: 15px; font-weight: 700; color: #000; background: none; border: none; cursor: pointer; padding: 8px 12px; }
+
+  .hero { padding: calc(var(--section-padding) + 16px) 0 var(--spacing-2xl); text-align: center; }
+  .hero__title { font-size: clamp(40px, 6.25vw, 72px); max-width: 18ch; margin-inline: auto; }
+  .hero__sub { font-size: var(--body); color: var(--color-text-secondary); max-width: 46ch; margin: var(--spacing-lg) auto 0; }
+  .switcher { margin-top: var(--spacing-xl); display: flex; justify-content: center; }
+  .switcher__group { display: inline-flex; gap: 4px; padding: 6px; background: var(--color-surface-warm); border-radius: var(--radius-pill); }
+  .switcher__tab { font: inherit; font-size: var(--body-sm); font-weight: 700; color: var(--color-subtle); background: transparent; border: none; cursor: pointer; padding: 10px 22px; border-radius: var(--radius-pill); transition: background-color .3s var(--ease-out-quart), color .3s; }
+  .switcher__tab[aria-selected="true"] { background: #000; color: #fff; }
+  .switcher__tab:not([aria-selected="true"]):hover { color: #000; }
+
+  .plans { padding-bottom: var(--section-padding); }
+  .plans__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); align-items: stretch; }
+  .plan-card { display: flex; flex-direction: column; gap: var(--spacing-md); background: var(--color-surface-warm); border-radius: var(--radius); padding: var(--spacing-xl) var(--spacing-lg); border: 1px solid transparent; transition: transform var(--lift-duration) var(--ease-out-quart), box-shadow var(--lift-duration) var(--ease-out-quart); }
+  .plan-card:hover { transform: translateY(var(--lift-translate)); box-shadow: 0 12px 32px rgba(0,0,0,0.10); }
+  .plan-card--featured { background: #fff; border: 1.5px solid var(--color-accent); position: relative; }
+  .plan-card__flag { position: absolute; top: calc(-1 * var(--spacing-sm)); left: var(--spacing-lg); background: var(--color-accent); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: var(--radius-pill); }
+  .plan-card__name { font-family: var(--heading-font-family); font-weight: 900; font-size: var(--heading-md); letter-spacing: -0.03em; }
+  .plan-card__price { display: flex; align-items: baseline; gap: 6px; min-height: 52px; }
+  .plan-card__desc { font-size: var(--body-sm); color: var(--color-text-secondary); margin: 0; flex: 1 1 auto; }
+  .savings { display: inline-block; font-size: 12px; font-weight: 700; color: var(--color-savings); background: rgba(5,131,78,0.08); padding: 3px 10px; border-radius: var(--radius-pill); align-self: flex-start; }
+
+  [data-placeholder] { display: inline-flex; flex-direction: column; gap: 2px; border: 2px dashed var(--color-accent); background: color-mix(in srgb, var(--color-surface) 70%, transparent); border-radius: 8px; padding: 6px 10px; }
+  .placeholder-eyebrow { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 10px; font-weight: 600; letter-spacing: .04em; color: var(--color-accent); }
+  .placeholder-shape { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13px; color: var(--color-fg); }
+
+  .act-dark { background: #000; color: #fff; }
+  .act-dark h2, .act-dark h3 { color: #fff; }
+
+  .caps { padding: var(--section-padding) 0; }
+  .caps__head { text-align: center; margin-bottom: var(--spacing-xl); }
+  .caps__head h2 { font-size: clamp(32px, 4vw, 56px); }
+  .caps__head p { color: rgba(255,255,255,0.72); margin-top: var(--spacing-md); }
+  .caps__count { font-family: var(--heading-font-family); font-weight: 900; color: var(--color-accent); }
+  .caps__filters { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); justify-content: center; margin-bottom: var(--spacing-xl); }
+  .chip { font-family: var(--body-font-family); font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.72); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius-pill); padding: 8px 16px; }
+  .chip[aria-current="true"] { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  .caps__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md); perspective: 1200px; }
+  .cap-tile { display: flex; flex-direction: column; gap: var(--spacing-sm); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); padding: var(--spacing-lg); transition: transform var(--lift-duration) var(--ease-out-quart), background-color var(--lift-duration), border-color var(--lift-duration); transform-origin: center top; }
+  .cap-tile:hover { transform: translateY(var(--lift-translate)); background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.24); }
+  .cap-tile__name { font-family: var(--heading-font-family); font-weight: 900; font-size: var(--heading-md); letter-spacing: -0.03em; color: #fff; }
+  .cap-tile__desc { font-size: var(--body-sm); color: rgba(255,255,255,0.64); margin: 0; flex: 1 1 auto; }
+  .cap-tile__avail { margin-top: var(--spacing-sm); }
+  .cap-tile [data-placeholder] { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.4); }
+  .cap-tile .placeholder-eyebrow { color: rgba(255,255,255,0.8); }
+  .cap-tile .placeholder-shape { color: #fff; }
+
+  .faq { padding: var(--section-padding) 0; }
+  .faq h2 { font-size: clamp(32px, 4vw, 56px); text-align: center; margin-bottom: var(--spacing-xl); }
+  .faq__item { border-top: 1px solid rgba(255,255,255,0.14); }
+  .faq__item summary { list-style: none; cursor: pointer; padding: var(--spacing-lg) 0; display: flex; justify-content: space-between; align-items: center; gap: var(--spacing-lg); font-weight: 700; font-size: var(--body); color: #fff; }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary::after { content: "+"; font-size: 28px; font-weight: 300; color: var(--color-accent); transition: transform .2s; }
+  .faq__item[open] summary::after { transform: rotate(45deg); }
+  .faq__answer { padding: 0 0 var(--spacing-lg); color: rgba(255,255,255,0.72); font-size: var(--body-sm); max-width: 70ch; }
+
+  .site-footer { padding: var(--section-padding) 0 var(--spacing-2xl); border-top: 1px solid rgba(0,0,0,0.10); background: #fff; color: #000; }
+  .footer-cols { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--spacing-lg); }
+  .footer-cols h3 { font-family: var(--body-font-family); font-size: 13px; font-weight: 700; color: #000; margin: 0 0 var(--spacing-md); letter-spacing: .04em; }
+  .footer-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .footer-cols a { color: rgba(0,0,0,0.60); font-size: var(--body-sm); }
+  .footer-cols a:hover { color: #000; }
+  .footer-legal { margin-top: var(--spacing-2xl); padding-top: var(--spacing-lg); border-top: 1px solid rgba(0,0,0,0.10); color: rgba(0,0,0,0.45); font-size: 12px; line-height: 1.5; display: grid; gap: var(--spacing-sm); }
+
+  @media (max-width: 1024px) { .plans__grid, .caps__grid { grid-template-columns: repeat(2, 1fr); } .plans__grid { max-width: 720px; margin-inline: auto; } .footer-cols { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 900px) {
+    .nav__links, .nav__cta { display: none; }
+    .ds-nav-burger { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; width: 40px; height: 40px; border-radius: 999px; background: none; border: none; cursor: pointer; }
+    .ds-nav-burger span, .ds-nav-burger span::before, .ds-nav-burger span::after { content: ""; display: block; width: 18px; height: 2px; background: #000; position: relative; }
+    .ds-nav-burger span::before { position: absolute; top: -6px; } .ds-nav-burger span::after { position: absolute; top: 6px; }
+    .nav[data-open="true"] { height: auto; flex-wrap: wrap; align-items: center; padding-bottom: var(--spacing-md); row-gap: var(--spacing-sm); }
+    .nav[data-open="true"] .nav__links { display: flex; flex-direction: column; align-items: flex-start; width: 100%; order: 3; gap: 2px; }
+    .nav[data-open="true"] .nav__cta { display: flex; width: 100%; order: 4; gap: var(--spacing-sm); }
+    .nav[data-open="true"] .nav__cta .btn { flex: 1 1 auto; }
+  }
+  @media (max-width: 640px) {
+    :root { --section-padding: 48px; }
+    .plans__grid, .caps__grid { grid-template-columns: 1fr; }
+    .plans__grid { max-width: 520px; }
+    .switcher__group { flex-wrap: wrap; justify-content: center; }
+    .footer-cols { grid-template-columns: repeat(2, 1fr); }
+    .hero { padding-top: var(--spacing-2xl); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn::after { display: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body data-template="landing">
+<div class="nav-shell">
+  <header class="nav" id="nav" data-section="nav" data-intent="brand wayfinding + primary conversion" data-layout="contained" data-nav-collapse="hamburger">
+    <a class="nav__logo" href="#" aria-label="Adobe Express home">
+      <svg viewBox="0 0 67 16" role="img" aria-label="Adobe"><path fill="#eb1000" d="M12.6 0H20v16zM7.4 0H0v16zM10 5.9 14.7 16h-3L10.3 12.4H6.9z"/><text x="24" y="13" font-family="Arial, sans-serif" font-weight="700" font-size="13" fill="#000">Adobe</text></svg>
+    </a>
+    <ul class="nav__links">
+      <li><button type="button">Create</button></li>
+      <li><button type="button">Edit</button></li>
+      <li><button type="button">Print</button></li>
+      <li><button type="button">Business</button></li>
+      <li><button type="button">Education</button></li>
+      <li><a href="#plans" aria-current="page">Plans</a></li>
+    </ul>
+    <div class="nav__cta">
+      <button class="nav__signin" type="button">Sign in</button>
+      <a class="btn btn--primary" href="https://adobesparkpost.app.link/AnkNdGxthOb">Go to Adobe Express</a>
+    </div>
+    <button class="ds-nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+  </header>
+</div>
+
+<main>
+  <section class="hero" id="plans" data-section="hero" data-intent="value proposition" data-layout="stack" data-media="none">
+    <div class="container">
+      <h1 class="hero__title" data-anim>Stand out with Adobe Express. Pick your plan.</h1>
+      <p class="hero__sub" data-anim>Find the perfect plan to fit your needs. Check out our powerful features like premium AI, and design tools.</p>
+      <div class="switcher" role="tablist" aria-label="Choose your audience" data-anim>
+        <div class="switcher__group">
+          <button class="switcher__tab" role="tab" aria-selected="true" type="button">Individuals</button>
+          <button class="switcher__tab" role="tab" aria-selected="false" type="button">Businesses</button>
+          <button class="switcher__tab" role="tab" aria-selected="false" type="button">Students</button>
+          <button class="switcher__tab" role="tab" aria-selected="false" type="button">Educators</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plans" data-section="plan-cards" data-intent="drive action" data-layout="grid" data-items="3" data-interactive="tabs">
+    <div class="container">
+      <div class="plans__grid">
+        <article class="plan-card" data-tile-anim>
+          <h3 class="plan-card__name">Adobe Express Free</h3>
+          <div class="plan-card__price"><span data-placeholder="true" data-placeholder-type="price" data-placeholder-source="commerce-injected; not captured"><span class="placeholder-eyebrow">PLACEHOLDER · price</span><span class="placeholder-shape">e.g. US$0/mo</span></span></div>
+          <p class="plan-card__desc">Everything you need to start creating standout content — no credit card required.</p>
+          <a class="btn btn--outline btn--block" href="#">Get Adobe Express Free</a>
+        </article>
+        <article class="plan-card plan-card--featured" data-tile-anim>
+          <span class="plan-card__flag">Most popular</span>
+          <h3 class="plan-card__name">Adobe Express Premium</h3>
+          <div class="plan-card__price"><span data-placeholder="true" data-placeholder-type="price" data-placeholder-source="commerce-injected; not captured"><span class="placeholder-eyebrow">PLACEHOLDER · price</span><span class="placeholder-shape">e.g. US$9.99/mo</span></span></div>
+          <span class="savings" data-placeholder="true" data-placeholder-type="price" data-placeholder-source="commerce-injected savings; not captured">Save XX%</span>
+          <p class="plan-card__desc">Boost your creativity with Photoshop: in addition to the Adobe Express Premium plan, get full access to Adobe Photoshop on web and mobile.</p>
+          <a class="btn btn--primary btn--block" href="#">Start 30-day free trial</a>
+        </article>
+        <article class="plan-card" data-tile-anim>
+          <h3 class="plan-card__name">Adobe Firefly Pro</h3>
+          <div class="plan-card__price"><span data-placeholder="true" data-placeholder-type="price" data-placeholder-source="commerce-injected; not captured"><span class="placeholder-eyebrow">PLACEHOLDER · price</span><span class="placeholder-shape">e.g. US$19.99/mo</span></span></div>
+          <p class="plan-card__desc">The full generative AI toolkit — premium Firefly models for image, video, and audio, plus everything in Premium.</p>
+          <a class="btn btn--outline btn--block" href="#">Start 7-day free trial</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="act-dark">
+    <section class="caps" data-section="capability-grid" data-intent="explain mechanic" data-layout="grid" data-items="9" data-interactive="filter">
+      <div class="container">
+        <div class="caps__head">
+          <h2 data-anim>Everything you can do, in <span class="caps__count" data-countup="9">0</span> capabilities</h2>
+          <p data-anim>Filter by what matters to you. Availability scales across Free, Premium, and Firefly Pro.</p>
+        </div>
+        <div class="caps__filters" role="group" aria-label="Filter capabilities">
+          <span class="chip" aria-current="true">All</span>
+          <span class="chip">Adobe apps</span>
+          <span class="chip">Templates and design assets</span>
+          <span class="chip">Generative AI</span>
+          <span class="chip">Photo and design</span>
+          <span class="chip">Video and motion</span>
+          <span class="chip">Quick Actions</span>
+          <span class="chip">Brand management and collaboration</span>
+          <span class="chip">Campaigns and publishing</span>
+          <span class="chip">Support and Storage</span>
+        </div>
+        <div class="caps__grid">
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Adobe apps</h3><p class="cap-tile__desc">Access to Adobe Express and connected Adobe apps.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Templates and design assets</h3><p class="cap-tile__desc">Thousands of professionally designed templates and stock.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Generative AI</h3><p class="cap-tile__desc">Firefly-powered image, video, and text effects.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Photo and design</h3><p class="cap-tile__desc">Editing, layout, and brand-ready visuals.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Video and motion</h3><p class="cap-tile__desc">Clips, animations, and motion templates.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Quick Actions</h3><p class="cap-tile__desc">One-tap edits like remove background.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Brand management and collaboration</h3><p class="cap-tile__desc">Shared brand kits and team workflows.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Campaigns and publishing</h3><p class="cap-tile__desc">Schedule and publish across channels.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+          <article class="cap-tile" data-tile-anim><h3 class="cap-tile__name">Support and Storage</h3><p class="cap-tile__desc">Cloud storage and customer support tiers.</p><div class="cap-tile__avail"><span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="per-plan availability fragment-injected"><span class="placeholder-eyebrow">PLACEHOLDER · feature</span><span class="placeholder-shape">Free / Premium / Firefly Pro</span></span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" data-section="faq" data-intent="reduce friction" data-layout="stack" data-interactive="accordion">
+      <div class="container">
+        <h2 data-anim>Frequently asked questions</h2>
+        <details class="faq__item" open><summary>Where can I check out all the templates available?</summary><div class="faq__answer">Explore thousands of professionally designed templates and refine your search by curated use cases. You can also browse for templates when starting a new project.</div></details>
+        <details class="faq__item"><summary>What do I get with a business plan that I don’t get with an individual subscription?</summary><div class="faq__answer">Adobe offers three Adobe Express plan options for businesses: Adobe Express for teams, Adobe Express for enterprise, and Adobe Express &amp; Adobe Firefly for enterprise. By choosing a business plan, you can seamlessly add users as your organization grows so everyone can scale on-brand content creation.</div></details>
+        <details class="faq__item"><summary>Can I get Adobe Express Premium for free through my university?</summary><div class="faq__answer">You might already have free access to Adobe Express Premium through your school. To check, go to express.adobe.com and log in with your .edu email address.</div></details>
+        <details class="faq__item"><summary>How is Adobe Express for K-12 Education different from the commercial version of Adobe Express?</summary><div class="faq__answer">While Adobe Express for Education offers the same creative tools found in the commercial version of Adobe Express, it also includes features designed to support student learning and safety, including safe search functionality.</div></details>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-section="footer" data-intent="navigation + legal" data-layout="grid" data-canon>
+      <div class="container">
+        <div class="footer-cols">
+          <div><h3>For individuals &amp; small business</h3><ul><li><a href="#">Adobe Express</a></li><li><a href="#">Photoshop</a></li><li><a href="#">Acrobat</a></li></ul></div>
+          <div><h3>For medium &amp; large business</h3><ul><li><a href="#">Express for teams</a></li><li><a href="#">Express for enterprise</a></li></ul></div>
+          <div><h3>For Organizations</h3><ul><li><a href="#">Admin Console</a></li><li><a href="#">Education</a></li></ul></div>
+          <div><h3>Support</h3><ul><li><a href="#">Help Center</a></li><li><a href="#">Contact</a></li></ul></div>
+          <div><h3>Contact</h3><ul><li><a href="#">Sales</a></li><li><a href="#">Support</a></li></ul></div>
+          <div><h3>Adobe</h3><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li></ul></div>
+        </div>
+        <div class="footer-legal">
+          <p>1If you have signed up for a free trial, billing begins when free trial ends. Cancel before free trial ends and you won't be charged. Subscription automatically renews until you cancel.</p>
+          <p>2Adobe Express membership required. The Adobe Stock photo collection does not include Premium or editorial content. Limited Adobe Stock functionality available in webpage and video features.</p>
+          <p>3Photoshop or Illustrator membership required for linked assets.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</main>
+
+<script>/*! Lenis v1.3.19 | MIT License | Copyright (c) Darkroom Engineering | https://github.com/darkroomengineering/lenis */
+var t="1.3.19";function e(t,e,i){return Math.max(t,Math.min(e,i))}var i=class{isRunning=!1;value=0;from=0;to=0;currentTime=0;lerp;duration;easing;onUpdate;advance(t){if(!this.isRunning)return;let i=!1;if(this.duration&&this.easing){this.currentTime+=t;const s=e(0,this.currentTime/this.duration,1);i=s>=1;const o=i?1:this.easing(s);this.value=this.from+(this.to-this.from)*o}else this.lerp?(this.value=function(t,e,i,s){return function(t,e,i){return(1-i)*t+i*e}(t,e,1-Math.exp(-i*s))}(this.value,this.to,60*this.lerp,t),Math.round(this.value)===this.to&&(this.value=this.to,i=!0)):(this.value=this.to,i=!0);i&&this.stop(),this.onUpdate?.(this.value,i)}stop(){this.isRunning=!1}fromTo(t,e,{lerp:i,duration:s,easing:o,onStart:n,onUpdate:r}){this.from=this.value=t,this.to=e,this.lerp=i,this.duration=s,this.easing=o,this.currentTime=0,this.isRunning=!0,n?.(),this.onUpdate=r}};var s=class{constructor(t,e,{autoResize:i=!0,debounce:s=250}={}){this.wrapper=t,this.content=e,i&&(this.debouncedResize=function(t,e){let i;return function(...s){clearTimeout(i),i=setTimeout(()=>{i=void 0,t.apply(this,s)},e)}}(this.resize,s),this.wrapper instanceof Window?window.addEventListener("resize",this.debouncedResize):(this.wrapperResizeObserver=new ResizeObserver(this.debouncedResize),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(this.debouncedResize),this.contentResizeObserver.observe(this.content)),this.resize()}width=0;height=0;scrollHeight=0;scrollWidth=0;debouncedResize;wrapperResizeObserver;contentResizeObserver;destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect(),this.wrapper===window&&this.debouncedResize&&window.removeEventListener("resize",this.debouncedResize)}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper instanceof Window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.wrapper instanceof Window?(this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth):(this.scrollHeight=this.wrapper.scrollHeight,this.scrollWidth=this.wrapper.scrollWidth)};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}},o=class{events={};emit(t,...e){const i=this.events[t]||[];for(let t=0,s=i.length;t<s;t++)i[t]?.(...e)}on(t,e){return this.events[t]?this.events[t].push(e):this.events[t]=[e],()=>{this.events[t]=this.events[t]?.filter(t=>e!==t)}}off(t,e){this.events[t]=this.events[t]?.filter(t=>e!==t)}destroy(){this.events={}}},n=100/6,r={passive:!1};function l(t,e){return 1===t?n:2===t?e:1}var h=class{constructor(t,e={wheelMultiplier:1,touchMultiplier:1}){this.element=t,this.options=e,window.addEventListener("resize",this.onWindowResize),this.onWindowResize(),this.element.addEventListener("wheel",this.onWheel,r),this.element.addEventListener("touchstart",this.onTouchStart,r),this.element.addEventListener("touchmove",this.onTouchMove,r),this.element.addEventListener("touchend",this.onTouchEnd,r)}touchStart={x:0,y:0};lastDelta={x:0,y:0};window={width:0,height:0};emitter=new o;on(t,e){return this.emitter.on(t,e)}destroy(){this.emitter.destroy(),window.removeEventListener("resize",this.onWindowResize),this.element.removeEventListener("wheel",this.onWheel,r),this.element.removeEventListener("touchstart",this.onTouchStart,r),this.element.removeEventListener("touchmove",this.onTouchMove,r),this.element.removeEventListener("touchend",this.onTouchEnd,r)}onTouchStart=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:0,y:0},this.emitter.emit("scroll",{deltaX:0,deltaY:0,event:t})};onTouchMove=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t,s=-(e-this.touchStart.x)*this.options.touchMultiplier,o=-(i-this.touchStart.y)*this.options.touchMultiplier;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:s,y:o},this.emitter.emit("scroll",{deltaX:s,deltaY:o,event:t})};onTouchEnd=t=>{this.emitter.emit("scroll",{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:t})};onWheel=t=>{let{deltaX:e,deltaY:i,deltaMode:s}=t;e*=l(s,this.window.width),i*=l(s,this.window.height),e*=this.options.wheelMultiplier,i*=this.options.wheelMultiplier,this.emitter.emit("scroll",{deltaX:e,deltaY:i,event:t})};onWindowResize=()=>{this.window={width:window.innerWidth,height:window.innerHeight}}},a=t=>Math.min(1,1.001-2**(-10*t)),Lenis=class{_isScrolling=!1;_isStopped=!1;_isLocked=!1;_preventNextNativeScrollEvent=!1;_resetVelocityTimeout=null;_rafId=null;isTouching;time=0;userData={};lastVelocity=0;velocity=0;direction=0;options;targetScroll;animatedScroll;animate=new i;emitter=new o;dimensions;virtualScroll;constructor({wrapper:e=window,content:i=document.documentElement,eventsTarget:o=e,smoothWheel:n=!0,syncTouch:r=!1,syncTouchLerp:l=.075,touchInertiaExponent:c=1.7,duration:p,easing:d,lerp:u=.1,infinite:m=!1,orientation:v="vertical",gestureOrientation:w=("horizontal"===v?"both":"vertical"),touchMultiplier:g=1,wheelMultiplier:S=1,autoResize:f=!0,prevent:y,virtualScroll:E,overscroll:T=!0,autoRaf:z=!1,anchors:b=!1,autoToggle:L=!1,allowNestedScroll:N=!1,__experimental__naiveDimensions:R=!1,naiveDimensions:M=R,stopInertiaOnNavigate:_=!1}={}){window.lenisVersion=t,window.lenis||(window.lenis={}),window.lenis.version=t,"horizontal"===v&&(window.lenis.horizontal=!0),!0===r&&(window.lenis.touch=!0),e&&e!==document.documentElement||(e=window),"number"==typeof p&&"function"!=typeof d?d=a:"function"==typeof d&&"number"!=typeof p&&(p=1),this.options={wrapper:e,content:i,eventsTarget:o,smoothWheel:n,syncTouch:r,syncTouchLerp:l,touchInertiaExponent:c,duration:p,easing:d,lerp:u,infinite:m,gestureOrientation:w,orientation:v,touchMultiplier:g,wheelMultiplier:S,autoResize:f,prevent:y,virtualScroll:E,overscroll:T,autoRaf:z,anchors:b,autoToggle:L,allowNestedScroll:N,naiveDimensions:M,stopInertiaOnNavigate:_},this.dimensions=new s(e,i,{autoResize:f}),this.updateClassName(),this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener("scroll",this.onNativeScroll),this.options.wrapper.addEventListener("scrollend",this.onScrollEnd,{capture:!0}),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.addEventListener("click",this.onClick),this.options.wrapper.addEventListener("pointerdown",this.onPointerDown),this.virtualScroll=new h(o,{touchMultiplier:g,wheelMultiplier:S}),this.virtualScroll.on("scroll",this.onVirtualScroll),this.options.autoToggle&&(this.checkOverflow(),this.rootElement.addEventListener("transitionend",this.onTransitionEnd)),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))}destroy(){this.emitter.destroy(),this.options.wrapper.removeEventListener("scroll",this.onNativeScroll),this.options.wrapper.removeEventListener("scrollend",this.onScrollEnd,{capture:!0}),this.options.wrapper.removeEventListener("pointerdown",this.onPointerDown),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.removeEventListener("click",this.onClick),this.virtualScroll.destroy(),this.dimensions.destroy(),this.cleanUpClassName(),this._rafId&&cancelAnimationFrame(this._rafId)}on(t,e){return this.emitter.on(t,e)}off(t,e){return this.emitter.off(t,e)}onScrollEnd=t=>{t instanceof CustomEvent||"smooth"!==this.isScrolling&&!1!==this.isScrolling||t.stopPropagation()};dispatchScrollendEvent=()=>{this.options.wrapper.dispatchEvent(new CustomEvent("scrollend",{bubbles:this.options.wrapper===window,detail:{lenisScrollEnd:!0}}))};get overflow(){const t=this.isHorizontal?"overflow-x":"overflow-y";return getComputedStyle(this.rootElement)[t]}checkOverflow(){["hidden","clip"].includes(this.overflow)?this.internalStop():this.internalStart()}onTransitionEnd=t=>{t.propertyName.includes("overflow")&&this.checkOverflow()};setScroll(t){this.isHorizontal?this.options.wrapper.scrollTo({left:t,behavior:"instant"}):this.options.wrapper.scrollTo({top:t,behavior:"instant"})}onClick=t=>{const e=t.composedPath().filter(t=>t instanceof HTMLAnchorElement&&t.href).map(t=>new URL(t.href)),i=new URL(window.location.href);if(this.options.anchors){const t=e.find(t=>i.host===t.host&&i.pathname===t.pathname&&t.hash);if(t){const e="object"==typeof this.options.anchors&&this.options.anchors?this.options.anchors:void 0,i=`#${t.hash.split("#")[1]}`;return void this.scrollTo(i,e)}}if(this.options.stopInertiaOnNavigate){if(e.some(t=>i.host===t.host&&i.pathname!==t.pathname))return void this.reset()}};onPointerDown=t=>{1===t.button&&this.reset()};onVirtualScroll=t=>{if("function"==typeof this.options.virtualScroll&&!1===this.options.virtualScroll(t))return;const{deltaX:e,deltaY:i,event:s}=t;if(this.emitter.emit("virtual-scroll",{deltaX:e,deltaY:i,event:s}),s.ctrlKey)return;if(s.lenisStopPropagation)return;const o=s.type.includes("touch"),n=s.type.includes("wheel");this.isTouching="touchstart"===s.type||"touchmove"===s.type;const r=0===e&&0===i;if(this.options.syncTouch&&o&&"touchstart"===s.type&&r&&!this.isStopped&&!this.isLocked)return void this.reset();const l="vertical"===this.options.gestureOrientation&&0===i||"horizontal"===this.options.gestureOrientation&&0===e;if(r||l)return;let h=s.composedPath();h=h.slice(0,h.indexOf(this.rootElement));const a=this.options.prevent,c=Math.abs(e)>=Math.abs(i)?"horizontal":"vertical";if(h.find(t=>t instanceof HTMLElement&&("function"==typeof a&&a?.(t)||t.hasAttribute?.("data-lenis-prevent")||"vertical"===c&&t.hasAttribute?.("data-lenis-prevent-vertical")||"horizontal"===c&&t.hasAttribute?.("data-lenis-prevent-horizontal")||o&&t.hasAttribute?.("data-lenis-prevent-touch")||n&&t.hasAttribute?.("data-lenis-prevent-wheel")||this.options.allowNestedScroll&&this.hasNestedScroll(t,{deltaX:e,deltaY:i}))))return;if(this.isStopped||this.isLocked)return void(s.cancelable&&s.preventDefault());if(!(this.options.syncTouch&&o||this.options.smoothWheel&&n))return this.isScrolling="native",this.animate.stop(),void(s.lenisStopPropagation=!0);let p=i;"both"===this.options.gestureOrientation?p=Math.abs(i)>Math.abs(e)?i:e:"horizontal"===this.options.gestureOrientation&&(p=e),(!this.options.overscroll||this.options.infinite||this.options.wrapper!==window&&this.limit>0&&(this.animatedScroll>0&&this.animatedScroll<this.limit||0===this.animatedScroll&&i>0||this.animatedScroll===this.limit&&i<0))&&(s.lenisStopPropagation=!0),s.cancelable&&s.preventDefault();const d=o&&this.options.syncTouch,u=o&&"touchend"===s.type;u&&(p=Math.sign(this.velocity)*Math.abs(this.velocity)**this.options.touchInertiaExponent),this.scrollTo(this.targetScroll+p,{programmatic:!1,...d?{lerp:u?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize(),this.animatedScroll=this.targetScroll=this.actualScroll,this.emit()}emit(){this.emitter.emit("scroll",this)}onNativeScroll=()=>{if(null!==this._resetVelocityTimeout&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this._preventNextNativeScrollEvent)this._preventNextNativeScrollEvent=!1;else if(!1===this.isScrolling||"native"===this.isScrolling){const t=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity,this.velocity=this.animatedScroll-t,this.direction=Math.sign(this.animatedScroll-t),this.isStopped||(this.isScrolling="native"),this.emit(),0!==this.velocity&&(this._resetVelocityTimeout=setTimeout(()=>{this.lastVelocity=this.velocity,this.velocity=0,this.isScrolling=!1,this.emit()},400))}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity=0,this.animate.stop()}start(){this.isStopped&&(this.options.autoToggle?this.rootElement.style.removeProperty("overflow"):this.internalStart())}internalStart(){this.isStopped&&(this.reset(),this.isStopped=!1,this.emit())}stop(){this.isStopped||(this.options.autoToggle?this.rootElement.style.setProperty("overflow","clip"):this.internalStop())}internalStop(){this.isStopped||(this.reset(),this.isStopped=!0,this.emit())}raf=t=>{const e=t-(this.time||t);this.time=t,this.animate.advance(.001*e),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))};scrollTo(t,{offset:i=0,immediate:s=!1,lock:o=!1,programmatic:n=!0,lerp:r=(n?this.options.lerp:void 0),duration:l=(n?this.options.duration:void 0),easing:h=(n?this.options.easing:void 0),onStart:c,onComplete:p,force:d=!1,userData:u}={}){if((this.isStopped||this.isLocked)&&!d)return;let m=t,v=i;if("string"==typeof m&&["top","left","start","#"].includes(m))m=0;else if("string"==typeof m&&["bottom","right","end"].includes(m))m=this.limit;else{let t=null;if("string"==typeof m?(t=document.querySelector(m),t||("#top"===m?m=0:console.warn("Lenis: Target not found",m))):m instanceof HTMLElement&&m?.nodeType&&(t=m),t){if(this.options.wrapper!==window){const t=this.rootElement.getBoundingClientRect();v-=this.isHorizontal?t.left:t.top}const e=t.getBoundingClientRect();m=(this.isHorizontal?e.left:e.top)+this.animatedScroll}}if("number"==typeof m){if(m+=v,m=Math.round(m),this.options.infinite){if(n){this.targetScroll=this.animatedScroll=this.scroll;const t=m-this.animatedScroll;t>this.limit/2?m-=this.limit:t<-this.limit/2&&(m+=this.limit)}}else m=e(0,m,this.limit);if(m===this.targetScroll)return c?.(this),void p?.(this);if(this.userData=u??{},s)return this.animatedScroll=this.targetScroll=m,this.setScroll(this.scroll),this.reset(),this.preventNextNativeScrollEvent(),this.emit(),p?.(this),this.userData={},void requestAnimationFrame(()=>{this.dispatchScrollendEvent()});n||(this.targetScroll=m),"number"==typeof l&&"function"!=typeof h?h=a:"function"==typeof h&&"number"!=typeof l&&(l=1),this.animate.fromTo(this.animatedScroll,m,{duration:l,easing:h,lerp:r,onStart:()=>{o&&(this.isLocked=!0),this.isScrolling="smooth",c?.(this)},onUpdate:(t,e)=>{this.isScrolling="smooth",this.lastVelocity=this.velocity,this.velocity=t-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=t,this.setScroll(this.scroll),n&&(this.targetScroll=t),e||this.emit(),e&&(this.reset(),this.emit(),p?.(this),this.userData={},requestAnimationFrame(()=>{this.dispatchScrollendEvent()}),this.preventNextNativeScrollEvent())}})}}preventNextNativeScrollEvent(){this._preventNextNativeScrollEvent=!0,requestAnimationFrame(()=>{this._preventNextNativeScrollEvent=!1})}hasNestedScroll(t,{deltaX:e,deltaY:i}){const s=Date.now();t._lenis||(t._lenis={});const o=t._lenis;let n,r,l,h,a,c,p,d,u,m;if(s-(o.time??0)>2e3){o.time=Date.now();const e=window.getComputedStyle(t);if(o.computedStyle=e,n=["auto","overlay","scroll"].includes(e.overflowX),r=["auto","overlay","scroll"].includes(e.overflowY),a=["auto"].includes(e.overscrollBehaviorX),c=["auto"].includes(e.overscrollBehaviorY),o.hasOverflowX=n,o.hasOverflowY=r,!n&&!r)return!1;p=t.scrollWidth,d=t.scrollHeight,u=t.clientWidth,m=t.clientHeight,l=p>u,h=d>m,o.isScrollableX=l,o.isScrollableY=h,o.scrollWidth=p,o.scrollHeight=d,o.clientWidth=u,o.clientHeight=m,o.hasOverscrollBehaviorX=a,o.hasOverscrollBehaviorY=c}else l=o.isScrollableX,h=o.isScrollableY,n=o.hasOverflowX,r=o.hasOverflowY,p=o.scrollWidth,d=o.scrollHeight,u=o.clientWidth,m=o.clientHeight,a=o.hasOverscrollBehaviorX,c=o.hasOverscrollBehaviorY;if(!(n&&l||r&&h))return!1;const v=Math.abs(e)>=Math.abs(i)?"horizontal":"vertical";let w,g,S,f,y,E;if("horizontal"===v)w=Math.round(t.scrollLeft),g=p-u,S=e,f=n,y=l,E=a;else{if("vertical"!==v)return!1;w=Math.round(t.scrollTop),g=d-m,S=i,f=r,y=h,E=c}if(!E&&(w>=g||w<=0))return!0;return(S>0?w<g:w>0)&&f&&y}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.options.naiveDimensions?this.isHorizontal?this.rootElement.scrollWidth-this.rootElement.clientWidth:this.rootElement.scrollHeight-this.rootElement.clientHeight:this.dimensions.limit[this.isHorizontal?"x":"y"]}get isHorizontal(){return"horizontal"===this.options.orientation}get actualScroll(){const t=this.options.wrapper;return this.isHorizontal?t.scrollX??t.scrollLeft:t.scrollY??t.scrollTop}get scroll(){return this.options.infinite?(t=this.animatedScroll,e=this.limit,(t%e+e)%e):this.animatedScroll;var t,e}get progress(){return 0===this.limit?1:this.scroll/this.limit}get isScrolling(){return this._isScrolling}set isScrolling(t){this._isScrolling!==t&&(this._isScrolling=t,this.updateClassName())}get isStopped(){return this._isStopped}set isStopped(t){this._isStopped!==t&&(this._isStopped=t,this.updateClassName())}get isLocked(){return this._isLocked}set isLocked(t){this._isLocked!==t&&(this._isLocked=t,this.updateClassName())}get isSmooth(){return"smooth"===this.isScrolling}get className(){let t="lenis";return this.options.autoToggle&&(t+=" lenis-autoToggle"),this.isStopped&&(t+=" lenis-stopped"),this.isLocked&&(t+=" lenis-locked"),this.isScrolling&&(t+=" lenis-scrolling"),"smooth"===this.isScrolling&&(t+=" lenis-smooth"),t}updateClassName(){this.cleanUpClassName(),this.rootElement.className=`${this.rootElement.className} ${this.className}`.trim()}cleanUpClassName(){this.rootElement.className=this.rootElement.className.replace(/lenis(-\w+)?/g,"").trim()}};globalThis.Lenis=Lenis,globalThis.Lenis.prototype=Lenis.prototype;//# sourceMappingURL=lenis.min.js.map
+</script>
+<script>
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis bootstrap ────────────────────────────────────────────
+  const lenis = new Lenis({ lerp: 0.1, smoothWheel: !prefersReducedMotion });
+  window.__lenis = lenis;
+  (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+
+  // ── Nav scrolled state ─────────────────────────────────────────
+  const nav = document.getElementById('nav');
+  if (nav) lenis.on('scroll', ({ scroll }) => { nav.classList.toggle('scrolled', scroll > 40); });
+
+  // ── Helpers ────────────────────────────────────────────────────
+  const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+  const easeOut3 = t => 1 - Math.pow(1 - t, 3);
+  const getDocTop = el => el.getBoundingClientRect().top + (window.__lenis ? window.__lenis.scroll : window.scrollY);
+
+  // ── Register-specific configuration (kinetic-grid) ─────────────
+  const animConfig = {
+    parallax:      { translate: 0, fade: 0.55, rangeStart: 0, range: 80 },
+    plansParallax: { translate: 0, rangeStart: 0, range: 80 },
+    cards:         { trigger: 0.85, range: 0.32, slide: 28, stagger: 0.08 },
+    wordmark:      { range: 0.6, clip: 80 },
+  };
+
+  document.querySelectorAll('[data-split]').forEach((el) => {
+    const text = el.textContent; el.textContent = '';
+    text.split('').forEach((ch) => { const s = document.createElement('span'); s.textContent = ch === ' ' ? ' ' : ch; s.style.opacity = '0'; s.style.transform = 'translateY(60%)'; s.style.filter = 'blur(8px)'; el.appendChild(s); });
+  });
+
+  const animList = [];
+  const headWords = [];
+  const splitLetters = [];
+  let wordmarkEl = null, wordmarkTop = 0;
+
+  function measure() {
+    const postHeroEl = document.querySelector('.post-hero');
+    const savedTransform = postHeroEl ? postHeroEl.style.transform : '';
+    if (postHeroEl) postHeroEl.style.transform = '';
+
+    animList.forEach(({ el }) => { el.style.opacity = el.style.transform = el.style.willChange = ''; });
+    animList.length = 0; headWords.length = 0; splitLetters.length = 0;
+
+    document.querySelectorAll('[data-anim], [data-tile-anim]').forEach((el) => {
+      const parent = el.closest('.plans__grid, .caps__grid, .caps__head, .hero .container, section');
+      let stagger = 0;
+      if (parent) { const peers = parent.querySelectorAll('[data-anim], [data-tile-anim]'); const idx = Array.prototype.indexOf.call(peers, el); stagger = (idx % 8) * animConfig.cards.stagger; }
+      el.style.opacity = '0';
+      el.style.transform = el.hasAttribute('data-tile-anim') ? `translateY(28px) rotateX(8deg)` : `translateY(${animConfig.cards.slide}px)`;
+      el.style.willChange = 'opacity, transform';
+      animList.push({ el, triggerTop: getDocTop(el), staggerDelay: stagger });
+    });
+
+    document.querySelectorAll('.display-head, .terminals-band__head h2').forEach((head) => {
+      const words = head.querySelectorAll('.word'); const top = getDocTop(head);
+      words.forEach((w, i) => { w.style.clipPath = 'inset(0 100% 0 0)'; w.style.transform = 'translateY(110%)'; w.style.willChange = 'clip-path, transform'; headWords.push({ el: w, triggerTop: top, staggerDelay: i * 0.15 }); });
+    });
+
+    document.querySelectorAll('[data-split]').forEach((el) => { const top = getDocTop(el); el.querySelectorAll('span').forEach((s, i) => { splitLetters.push({ el: s, triggerTop: top, staggerDelay: i * 0.05 }); }); });
+
+    wordmarkEl = document.querySelector('.site-footer__wordmark');
+    if (wordmarkEl) { wordmarkTop = getDocTop(wordmarkEl); wordmarkEl.style.clipPath = `inset(${animConfig.wordmark.clip}% 0 0 0)`; wordmarkEl.style.willChange = 'clip-path'; }
+
+    if (postHeroEl) postHeroEl.style.transform = savedTransform;
+  }
+
+  const countSeen = new WeakSet();
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || countSeen.has(entry.target)) return;
+      countSeen.add(entry.target);
+      const target = +entry.target.getAttribute('data-countup');
+      const duration = target > 20 ? 1400 : target > 5 ? 900 : 600;
+      const start = performance.now();
+      (function step(now) { const t = clamp((now - start) / duration, 0, 1); entry.target.textContent = String(Math.round(easeOut3(t) * target)); if (t < 1) requestAnimationFrame(step); })(performance.now());
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-countup]').forEach((el) => countObserver.observe(el));
+
+  const fillObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => { if (!entry.isIntersecting || entry.target.dataset.filled === '1') return; entry.target.dataset.filled = '1'; const pct = +entry.target.getAttribute('data-fill'); setTimeout(() => { entry.target.style.width = pct + '%'; }, 120); });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-fill]').forEach((el) => fillObserver.observe(el));
+
+  const heroMarqueeEl = document.querySelector('.hero-marquee');
+  const postHeroEl = document.querySelector('.post-hero');
+  let _lastMB = null;
+
+  (function tick() {
+    if (prefersReducedMotion) { requestAnimationFrame(tick); return; }
+    const sY = window.__lenis ? window.__lenis.scroll : window.scrollY;
+    const vh = window.innerHeight;
+    const isDesktop = window.innerWidth > 767;
+
+    if (heroMarqueeEl) {
+      const pp = animConfig.parallax;
+      if (isDesktop) { const rs = pp.rangeStart / 100 * vh; const re = pp.range / 100 * vh; const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1)); heroMarqueeEl.style.transform = `translateY(${p * -pp.translate}vh)`; document.documentElement.style.setProperty('--parallax-progress', p); }
+      else { heroMarqueeEl.style.transform = ''; document.documentElement.style.setProperty('--parallax-progress', 0); }
+    }
+
+    let postHeroOffsetPx = 0;
+    if (postHeroEl) {
+      const pp2 = animConfig.plansParallax;
+      if (isDesktop) { const rs = pp2.rangeStart / 100 * vh; const re = pp2.range / 100 * vh; const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1)); postHeroOffsetPx = p * -pp2.translate / 100 * vh; postHeroEl.style.transform = `translateY(${p * -pp2.translate}vh)`; const newMB = `${p * -pp2.translate}vh`; if (newMB !== _lastMB) { postHeroEl.style.marginBottom = newMB; _lastMB = newMB; } }
+      else { postHeroEl.style.transform = ''; if (_lastMB !== '') { postHeroEl.style.marginBottom = ''; _lastMB = ''; } }
+    }
+
+    for (let i = 0; i < animList.length; i++) {
+      const item = animList[i];
+      const { trigger, range, slide } = animConfig.cards;
+      const raw = (sY + vh * trigger - (item.triggerTop + postHeroOffsetPx)) / (vh * range);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      if (item.el.hasAttribute('data-tile-anim')) { item.el.style.transform = `translateY(${(1 - p) * 28}px) rotateX(${(1 - p) * 8}deg)`; }
+      else { item.el.style.transform = `translateY(${(1 - p) * slide}px)`; }
+    }
+
+    for (let i = 0; i < headWords.length; i++) { const item = headWords[i]; const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.30); const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1)); item.el.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`; item.el.style.transform = `translateY(${(1 - p) * 110}%)`; }
+    for (let i = 0; i < splitLetters.length; i++) { const item = splitLetters[i]; const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.35); const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1)); item.el.style.opacity = String(p); item.el.style.transform = `translateY(${(1 - p) * 60}%)`; item.el.style.filter = `blur(${(1 - p) * 8}px)`; }
+
+    if (wordmarkEl) { const adjustedTop = wordmarkTop + postHeroOffsetPx; const wP = easeOut3(clamp((sY + vh - adjustedTop) / (vh * animConfig.wordmark.range), 0, 1)); wordmarkEl.style.clipPath = `inset(${(1 - wP) * animConfig.wordmark.clip}% 0 0 0)`; }
+
+    requestAnimationFrame(tick);
+  })();
+
+  measure();
+  window.addEventListener('load',   () => requestAnimationFrame(measure), { once: true });
+  window.addEventListener('resize', measure, { passive: true });
+
+  if (prefersReducedMotion) {
+    document.querySelectorAll('[data-anim], [data-tile-anim], [data-split] span').forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; el.style.clipPath = 'none'; });
+    document.querySelectorAll('.word').forEach((el) => { el.style.clipPath = 'none'; el.style.transform = 'none'; });
+    document.querySelectorAll('[data-countup]').forEach((el) => { el.textContent = el.getAttribute('data-countup'); });
+    document.querySelectorAll('[data-flip]').forEach((el) => { el.textContent = el.getAttribute('data-flip'); });
+    document.querySelectorAll('[data-fill]').forEach((el) => { el.style.width = el.getAttribute('data-fill') + '%'; });
+  }
+})();
+</script>
+<script>
+  (function(){var n=document.getElementById('nav'),b=n&&n.querySelector('.ds-nav-burger');if(!b)return;
+   b.addEventListener('click',function(){var o=n.getAttribute('data-open')==='true';n.setAttribute('data-open',!o);b.setAttribute('aria-expanded',!o);});
+   document.addEventListener('keydown',function(e){if(e.key==='Escape'){n.setAttribute('data-open','false');b.setAttribute('aria-expanded','false');}});})();
+</script>
+</body>
+</html>

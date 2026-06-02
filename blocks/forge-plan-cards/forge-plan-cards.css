@@ -1,0 +1,205 @@
+/* ── forge-plan-cards: 3-column plan card grid ──────────────────────────── */
+
+/* ── Shared button + utility tokens (re-declared for isolation) ─────────── */
+:root {
+  --fpc-accent:        #3b63fb;
+  --fpc-accent-hover:  #274dea;
+  --fpc-surface-warm:  #eceae7;
+  --fpc-radius:        16px;
+  --fpc-radius-pill:   999px;
+  --fpc-spacing-xl:    48px;
+  --fpc-spacing-lg:    24px;
+  --fpc-spacing-md:    16px;
+  --fpc-spacing-sm:    12px;
+  --fpc-body-sm:       16px;
+  --fpc-heading-md:    24px;
+  --fpc-lift-dur:      380ms;
+  --fpc-ease-quart:    cubic-bezier(0.42, 0, 0, 1);
+  --fpc-savings:       #05834e;
+  --fpc-max-width:     1200px;
+  --fpc-section-pad:   64px;
+  --fpc-font-display:  'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean',
+                       -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --fpc-font-body:     'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── Full-bleed wrapper reset ───────────────────────────────────────────── */
+.section .forge-plan-cards-wrapper {
+  max-width: unset;
+  padding: 0;
+  width: 100%;
+}
+
+/* ── Block container ────────────────────────────────────────────────────── */
+.forge-plan-cards {
+  padding-bottom: var(--fpc-section-pad);
+  background: #fff;
+  font-family: var(--fpc-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.fpc-container {
+  width: 100%;
+  max-width: var(--fpc-max-width);
+  margin-inline: auto;
+  padding-inline: var(--fpc-spacing-lg);
+}
+
+/* ── 3-column grid ──────────────────────────────────────────────────────── */
+.fpc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--fpc-spacing-lg);
+  align-items: stretch;
+}
+
+/* ── Individual card ────────────────────────────────────────────────────── */
+.fpc-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fpc-spacing-md);
+  background: var(--fpc-surface-warm);
+  border-radius: var(--fpc-radius);
+  padding: var(--fpc-spacing-xl) var(--fpc-spacing-lg);
+  border: 1px solid transparent;
+  position: relative;
+  transition: transform var(--fpc-lift-dur) var(--fpc-ease-quart),
+              box-shadow var(--fpc-lift-dur) var(--fpc-ease-quart);
+}
+
+.fpc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.fpc-card--featured {
+  background: #fff;
+  border: 1.5px solid var(--fpc-accent);
+}
+
+/* ── Flag badge ─────────────────────────────────────────────────────────── */
+.fpc-flag {
+  position: absolute;
+  top: calc(-1 * var(--fpc-spacing-sm));
+  left: var(--fpc-spacing-lg);
+  background: var(--fpc-accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--fpc-radius-pill);
+  font-family: var(--fpc-font-body);
+}
+
+/* ── Plan name ──────────────────────────────────────────────────────────── */
+.fpc-name {
+  font-family: var(--fpc-font-display);
+  font-weight: 900;
+  font-size: var(--fpc-heading-md);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #000;
+  margin: 0;
+}
+
+/* ── Price placeholder ──────────────────────────────────────────────────── */
+.fpc-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 52px;
+}
+
+.fpc-price-placeholder {
+  font-size: var(--fpc-body-sm);
+  color: rgba(0, 0, 0, 0.4);
+  font-style: italic;
+}
+
+/* ── Description ────────────────────────────────────────────────────────── */
+.fpc-desc {
+  font-size: var(--fpc-body-sm);
+  color: rgba(0, 0, 0, 0.64);
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+/* ── CTA button ─────────────────────────────────────────────────────────── */
+.fpc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--fpc-radius-pill);
+  font-family: var(--fpc-font-body);
+  font-weight: 700;
+  font-size: var(--fpc-body-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.2s var(--fpc-ease-quart), color 0.2s, border-color 0.2s;
+}
+
+/* Sheen effect */
+.fpc-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--fpc-ease-quart);
+  pointer-events: none;
+}
+
+.fpc-btn:hover::after {
+  transform: translateX(120%);
+}
+
+.fpc-btn--primary {
+  background: var(--fpc-accent);
+  color: #fff;
+}
+
+.fpc-btn--primary:hover {
+  background: var(--fpc-accent-hover);
+  color: #fff;
+}
+
+.fpc-btn--outline {
+  background: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+}
+
+.fpc-btn--outline:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.fpc-btn--outline::after {
+  background: linear-gradient(110deg, transparent 30%, rgba(0, 0, 0, 0.08) 50%, transparent 70%);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .fpc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 720px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .fpc-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fpc-btn::after { display: none; }
+  .fpc-card { transition: none; }
+}
