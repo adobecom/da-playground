@@ -1,0 +1,167 @@
+/* forge-plans — dark, 3-column compare-plans section */
+
+:root {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-xl: clamp(32px, 4vw, 56px);
+  --body-sm: 15px;
+  --line-height-heading: 0.98;
+  --line-height-body: 1.55;
+  --color-bg-inverse: #000000;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: rgb(255 255 255 / 72%);
+  --color-accent: #3b63fb;
+  --color-accent-strong: #274dea;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --section-padding: 64px;
+  --max-width: 1200px;
+  --radius: 16px;
+  --pill: 999px;
+}
+
+/* ── Wrapper overrides (full-bleed dark) ── */
+.forge-plans-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Block base ── */
+.forge-plans {
+  background: var(--color-bg-inverse);
+  color: var(--color-on-dark);
+  padding-block: var(--section-padding);
+  font-family: var(--body-font-family);
+}
+
+.forge-plans *,
+.forge-plans *::before,
+.forge-plans *::after {
+  box-sizing: border-box;
+}
+
+.forge-plans .wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--spacing-lg);
+}
+
+/* ── Section heading ── */
+.forge-plans .section-head {
+  max-width: 760px;
+  margin-bottom: 0;
+}
+
+.forge-plans .section-head h2 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-xl);
+  font-weight: 900;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ── Plans grid ── */
+.forge-plans .plans__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+/* ── Plan card ── */
+.forge-plans .plan {
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: var(--radius);
+  padding: var(--spacing-xl);
+}
+
+.forge-plans .plan h3 {
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 900;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.01em;
+  color: var(--color-on-dark);
+  margin: 0 0 8px;
+}
+
+.forge-plans .plan p {
+  font-size: var(--body-sm);
+  color: var(--color-on-dark-muted);
+  margin: 0 0 var(--spacing-lg);
+  line-height: var(--line-height-body);
+}
+
+/* ── Buttons ── */
+.forge-plans .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  padding-inline: 28px;
+  border: 1.5px solid transparent;
+  border-radius: var(--pill);
+  font-family: var(--body-font-family);
+  font-size: var(--body-sm);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 200ms ease, color 200ms, border-color 200ms;
+}
+
+.forge-plans .btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.forge-plans .btn--primary:hover {
+  background: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+}
+
+.forge-plans .btn--ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgb(255 255 255 / 70%);
+  backdrop-filter: blur(16px);
+}
+
+.forge-plans .btn--ghost:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+/* ── Footnote ── */
+.forge-plans .plans-footnote {
+  margin-top: var(--spacing-xl);
+  font-size: var(--body-sm);
+}
+
+.forge-plans .plans-footnote a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.forge-plans .plans-footnote a:hover {
+  opacity: 0.8;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .forge-plans .plans__grid { gap: var(--spacing-md); }
+  .forge-plans .plan { padding: 32px; }
+}
+
+@media (max-width: 768px) {
+  .forge-plans { padding-block: 48px; }
+  .forge-plans .plans__grid { grid-template-columns: 1fr; }
+}

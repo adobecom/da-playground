@@ -1,0 +1,200 @@
+/* forge-features — dark feature showcase with lead + regular grid */
+
+:root {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-xl: clamp(32px, 4vw, 56px);
+  --heading-lg: 40px;
+  --body-sm: 15px;
+  --body: 18px;
+  --line-height-heading: 0.98;
+  --line-height-body: 1.55;
+  --color-bg-inverse: #000000;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: rgb(255 255 255 / 72%);
+  --color-accent: #3b63fb;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --section-padding: 64px;
+  --max-width: 1200px;
+  --radius: 16px;
+  --pill: 999px;
+}
+
+/* ── Wrapper overrides (full-bleed dark, rising-plate overlap) ── */
+.forge-features-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+  margin-top: calc(-1 * var(--spacing-xl));
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Block base — dark "act" ── */
+.forge-features {
+  background: var(--color-bg-inverse);
+  color: var(--color-on-dark);
+  position: relative;
+  border-radius: 32px 32px 0 0;
+  padding-top: calc(var(--section-padding) + var(--spacing-xl));
+  padding-bottom: var(--section-padding);
+  font-family: var(--body-font-family);
+}
+
+.forge-features *,
+.forge-features *::before,
+.forge-features *::after {
+  box-sizing: border-box;
+}
+
+.forge-features .wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--spacing-lg);
+}
+
+/* ── Section heading ── */
+.forge-features .section-head {
+  max-width: 760px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.forge-features .section-head h2 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-xl);
+  font-weight: 900;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ── Feature grid ── */
+.forge-features .feat__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+/* ── Regular feature ── */
+.forge-features .feat {
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.forge-features .feat__media {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  margin-bottom: var(--spacing-md);
+  background: rgb(255 255 255 / 8%);
+}
+
+.forge-features .feat__media img,
+.forge-features .feat__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.forge-features .feat h3 {
+  font-family: var(--heading-font-family);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: var(--line-height-heading);
+  color: var(--color-on-dark);
+  margin: 0 0 8px;
+}
+
+.forge-features .feat p {
+  font-size: var(--body-sm);
+  color: var(--color-on-dark-muted);
+  margin: 0 0 var(--spacing-md);
+  flex: 1;
+  line-height: var(--line-height-body);
+}
+
+.forge-features .feat a.more {
+  font-weight: 700;
+  font-size: var(--body-sm);
+  color: var(--color-on-dark);
+  text-decoration: none;
+}
+
+.forge-features .feat a.more::after {
+  content: ' →';
+}
+
+/* ── Chip ── */
+.forge-features .chip {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding-inline: 10px;
+  border-radius: var(--pill);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* ── Lead feature ── */
+.forge-features .feat--lead {
+  grid-column: span 3;
+  flex-direction: row;
+  gap: var(--spacing-xl);
+  align-items: center;
+  background: rgb(255 255 255 / 7%);
+}
+
+.forge-features .feat--lead .feat__media {
+  flex: 1;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+}
+
+.forge-features .feat--lead .feat__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.forge-features .feat--lead h3 {
+  font-size: var(--heading-lg);
+}
+
+.forge-features .feat--lead p {
+  font-size: var(--body);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .forge-features .feat__grid { gap: var(--spacing-md); }
+}
+
+@media (max-width: 900px) {
+  .forge-features .feat--lead { flex-direction: column; }
+  .forge-features .feat--lead .feat__media { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .forge-features {
+    border-radius: 24px 24px 0 0;
+    padding-top: calc(48px + 32px);
+    padding-bottom: 48px;
+  }
+  .forge-features .feat__grid { grid-template-columns: 1fr; }
+  .forge-features .feat--lead { grid-column: span 1; }
+}

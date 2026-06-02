@@ -1,0 +1,182 @@
+/* forge-hero — self-contained styles including global design tokens */
+
+:root {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-xxl: clamp(40px, 6vw, 80px);
+  --heading-xl: clamp(32px, 4vw, 56px);
+  --heading-lg: 40px;
+  --heading-md: 28px;
+  --body: 18px;
+  --body-sm: 15px;
+  --line-height-heading: 0.98;
+  --line-height-body: 1.55;
+  --color-bg: #ffffff;
+  --color-bg-inverse: #000000;
+  --color-surface: #f8f8f8;
+  --color-surface-warm: #eceae7;
+  --color-fg: #131313;
+  --color-body: rgb(0 0 0 / 64%);
+  --color-muted: #505050;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: rgb(255 255 255 / 72%);
+  --color-accent: #3b63fb;
+  --color-accent-strong: #274dea;
+  --color-border: rgb(0 0 0 / 10%);
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 96px;
+  --section-padding: 64px;
+  --max-width: 1200px;
+  --radius: 16px;
+  --pill: 999px;
+  --ease-out-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-quart: cubic-bezier(0.42, 0, 0, 1);
+}
+
+/* ── Wrapper overrides (full-bleed) ── */
+.forge-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Block base ── */
+.forge-hero {
+  padding-top: 128px;
+  padding-bottom: var(--section-padding);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+  font-family: var(--body-font-family);
+  color: var(--color-fg);
+}
+
+.forge-hero *,
+.forge-hero *::before,
+.forge-hero *::after {
+  box-sizing: border-box;
+}
+
+.forge-hero .wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--spacing-lg);
+}
+
+/* ── Grid layout ── */
+.forge-hero .hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--spacing-2xl);
+  align-items: center;
+}
+
+/* ── Copy column ── */
+.forge-hero .eyebrow {
+  font-family: var(--body-font-family);
+  font-size: var(--body-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  margin: 0 0 var(--spacing-md);
+}
+
+.forge-hero .hero__copy h1 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-xxl);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: var(--line-height-heading);
+  color: var(--color-fg);
+  margin: 0 0 var(--spacing-lg);
+  text-wrap: balance;
+}
+
+.forge-hero .lede {
+  font-size: 22px;
+  max-width: 34ch;
+  margin: 0 0 var(--spacing-xl);
+  color: var(--color-body);
+  line-height: var(--line-height-body);
+}
+
+.forge-hero .hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+/* ── Buttons ── */
+.forge-hero .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding-inline: 28px;
+  border: 1.5px solid transparent;
+  border-radius: var(--pill);
+  font-family: var(--body-font-family);
+  font-size: var(--body-sm);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 200ms var(--ease-out-quart), color 200ms, border-color 200ms;
+}
+
+.forge-hero .btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.forge-hero .btn--primary:hover {
+  background: var(--color-accent-strong);
+  color: #fff;
+}
+
+.forge-hero .btn--outline {
+  background: transparent;
+  color: var(--color-fg);
+  border-color: var(--color-fg);
+}
+
+.forge-hero .btn--outline:hover {
+  background: rgb(0 0 0 / 4%);
+}
+
+/* ── Media column ── */
+.forge-hero .hero__media {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-surface-warm);
+  aspect-ratio: 4 / 3.2;
+}
+
+.forge-hero .hero__media img,
+.forge-hero .hero__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .forge-hero .hero__grid { gap: var(--spacing-xl); }
+}
+
+@media (max-width: 768px) {
+  .forge-hero { padding-top: 104px; padding-bottom: 48px; }
+  .forge-hero .hero__grid { grid-template-columns: 1fr; gap: 40px; }
+  .forge-hero .lede { font-size: 19px; }
+}
+
+@media (max-width: 480px) {
+  .forge-hero .hero__cta .btn { width: 100%; }
+}

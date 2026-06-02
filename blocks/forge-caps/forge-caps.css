@@ -1,0 +1,99 @@
+/* forge-caps — capability strip */
+
+:root {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', 'Trebuchet MS', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-sm: 15px;
+  --line-height-heading: 0.98;
+  --color-fg: #131313;
+  --color-accent: #3b63fb;
+  --color-surface-warm: #eceae7;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --section-padding: 64px;
+  --max-width: 1200px;
+  --radius: 16px;
+}
+
+/* ── Wrapper overrides ── */
+.forge-caps-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Block base ── */
+.forge-caps {
+  background: var(--color-surface-warm);
+  padding-block: var(--section-padding);
+  font-family: var(--body-font-family);
+}
+
+.forge-caps *,
+.forge-caps *::before,
+.forge-caps *::after {
+  box-sizing: border-box;
+}
+
+.forge-caps .wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--spacing-lg);
+}
+
+.forge-caps .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Grid ── */
+.forge-caps .caps__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-xl);
+}
+
+/* ── Cap item ── */
+.forge-caps .cap__n {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+}
+
+.forge-caps .cap h3 {
+  font-family: var(--heading-font-family);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: var(--line-height-heading);
+  color: var(--color-fg);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .forge-caps .caps__row { gap: var(--spacing-lg); }
+}
+
+@media (max-width: 900px) {
+  .forge-caps .caps__row { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .forge-caps { padding-block: 48px; }
+}
+
+@media (max-width: 480px) {
+  .forge-caps .caps__row { grid-template-columns: 1fr; }
+}
