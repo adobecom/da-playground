@@ -50,6 +50,36 @@ async function sprinkleSend(name, payload) {
 }
 function dirname(p) { return (p || '').replace(/\/[^/]*$/, '') || '.'; }
 
+// ── brand-injection guard (the SLICC analog of forge's out-of-agent Node copy) ──
+// In forge, injectC2Brand() is a Node copyFileSync OUTSIDE the agent → unskippable. In SLICC the
+// scoop must run inject-c2-brand.jsh itself, and uplift's re-extract can overwrite it. This checks,
+// at delivery, whether stardust/current/_brand-extraction.json STILL matches the canonical C2
+// surface — if not, the variants were designed off-brand (the dark-mode regression). Compares a
+// signature read from the vendored canonical at runtime (not hardcoded), so it survives brand swaps.
+async function checkBrandInjected() {
+  const scriptDir = dirname(process.argv[1] || '');
+  const brandDir = (await (async () => {
+    for (const c of [`${scriptDir}/../references/_vendored/acom-c2-brand-extraction`,
+      '/workspace/skills/page-forge/references/_vendored/acom-c2-brand-extraction']) {
+      if (c && (await fs.exists(`${c}/_brand-extraction.json`))) return c;
+    } return null;
+  })());
+  const injectedPath = `${workdir}/stardust/current/_brand-extraction.json`;
+  const out = { ok: false, reason: '' };
+  if (!brandDir) { out.reason = 'canonical C2 surface not found (cannot verify)'; out.ok = null; return out; }
+  if (!(await fs.exists(injectedPath))) { out.reason = 'stardust/current/_brand-extraction.json missing — inject-c2-brand.jsh was NOT run'; return out; }
+  let canon, got;
+  try { canon = JSON.parse(await fs.readFile(`${brandDir}/_brand-extraction.json`)); } catch { out.reason = 'canonical brand unreadable'; out.ok = null; return out; }
+  try { got = JSON.parse(await fs.readFile(injectedPath)); } catch { out.reason = 'injected brand unreadable'; return out; }
+  const sig = (b) => `${b?.site?.name || ''}|${(b?.palette || []).find((p) => p.role === 'primary')?.value || ''}`;
+  if (sig(got) !== sig(canon)) {
+    out.reason = `injected brand is "${got?.site?.name || '?'}" but canonical C2 is "${canon?.site?.name || '?'}" — `
+      + 'the C2 injection was skipped or a re-extract overwrote it; variants are OFF-BRAND.';
+    return out;
+  }
+  out.ok = true; return out;
+}
+
 // ── classify a prototype filename → { label, order } ──
 function classify(name) {
   if (/-cinematic\.html$/i.test(name)) return { label: 'Variant C — cinematic', order: 3 };
@@ -259,4 +289,11 @@ for (let i = 0; i < entries.length; i += 1) {
   sent.push({ ...(await sendVariant(html, e.info, baseV + i)), images: r.stats });
 }
 
-console.log(JSON.stringify({ emitted: sent.length, variants: sent }));
+// Verify the C2 brand actually landed (non-blocking — variants already delivered, but surface it
+// loud so an off-brand/dark run is diagnosed instead of shipped silently).
+const brand = await checkBrandInjected();
+if (brand.ok === false) {
+  console.error(`⚠ C2 BRAND NOT INJECTED: ${brand.reason} Re-run scripts/inject-c2-brand.jsh after `
+    + 'extract (and do NOT let uplift re-extract over stardust/current/), then re-design — see references/redesign.md.');
+}
+console.log(JSON.stringify({ emitted: sent.length, variants: sent, brandOk: brand.ok, brandReason: brand.reason || undefined }));

@@ -40,6 +40,15 @@ prototypes yourself, applying impeccable's craft principles and the **injected C
   (`stardust/current/_brand-extraction.json` + `DESIGN.json`) and design to *those exact tokens*
   (palette, type, spacing, motifs). Improvising from your own notion of Adobe styling — ignoring the
   injected brand — is exactly what produced the off-brand variants the first time. Don't.
+- **⛔ C2 is a LIGHT brand — never output a dark-mode design.** In the injected `palette`, the
+  dominant role is **`background` = `#ffffff`** (8.7M occurrences) — that is the **page canvas**.
+  `#f8f8f8` / `#eceae7` (`surface`, `surface-subtle`) are light neutral section grounds; body text is
+  near-black (`rgba(0,0,0,.64–.9)`); **`#3b63fb`** (hover `#274dea`) is the primary; **`#eb1000`** the
+  red accent. `#000000` is role **`background-inverse`** — a deliberate ACCENT for a *few* sections
+  (footer, a banner) only. **Ignore that its `sourceSelectors` lists `body`** — that is a capture
+  artifact, NOT a license to make the page dark. The page/`body` background MUST be the light canvas
+  (`#ffffff`). A dark canvas with light text is **off-brand and is the exact failure being reported** —
+  do not produce it. The only exception is an explicit `intent` that asks for a dark treatment.
 - **Write each prototype to a file** at `stardust/prototypes/<slug>-*-proposed.html` (the names the
   prototype/uplift methodology defines), then deliver with `scripts/emit-prototypes.jsh` — never
   stream prototype HTML through your own output (it blows your token budget).
@@ -106,6 +115,13 @@ A stardust capture now exists under `stardust/current/` and its
 - Treat the captured brand as C2 and stay **brand-faithful (Mode A)** to it. The page being
   redesigned may itself be an older (C1) design — that's expected; the job is to bring its
   content into the C2 look.
+
+**Forcing check — read the brand, then prove it.** Before authoring any HTML, `fs.readFile`
+`stardust/current/_brand-extraction.json` and **state the tokens you will use** in one line — canvas,
+surfaces, text, primary, accent (e.g. *"canvas #ffffff; surfaces #f8f8f8/#eceae7; text rgba(0,0,0,.7);
+primary #3b63fb; accent #eb1000"*). If you can't quote them, you haven't read the injected brand —
+read it first. Every prototype's page/`body` background MUST be that light canvas (`#ffffff`), not a
+dark one. (This is the guard against the recurring dark-mode regression.)
 
 ### `mode: intent` → one targeted variant
 
