@@ -57,8 +57,9 @@ emit the preview and stop.** Each lick also carries `data._rule` restating its c
 # this skill (team distribution)
 upskill adobecom/da-playground --path skills/page-forge
 
-# the snowflake deploy skill (PR #154 — ships as a SLICC package)
-upskill adobe/skills --path plugins/aem/edge-delivery-services --all --branch feat/eds-snowflake-da-content
+# the snowflake deploy skill (PR #166 — the Milo block-level + animation flavor; ships as a SLICC
+# package). The branch lives on the fork vhargrave/skills until #166 merges into adobe/skills.
+upskill vhargrave/skills --path plugins/aem/edge-delivery-services --all --branch feat/snowflake-milo-substrate-v2
 
 # the Reimagine (Stardust) engine + its hard dependency, impeccable
 upskill adobe/skills --path plugins/stardust --all
@@ -215,7 +216,7 @@ don't point at docs. Emit a `check` for each; the panel decides what gates what.
    `upskill`s *this* skill; the scoop bootstraps the rest. Check `/workspace/skills/` for the three
    dependencies and **install any that are missing** by running the `upskill` command yourself
    (don't make the user do it):
-   - `snowflake` (deploy) → `upskill adobe/skills --path plugins/aem/edge-delivery-services --all --branch feat/eds-snowflake-da-content`
+   - `snowflake` (deploy) → `upskill vhargrave/skills --path plugins/aem/edge-delivery-services --all --branch feat/snowflake-milo-substrate-v2`
    - `stardust` (Reimagine) → `upskill adobe/skills --path plugins/stardust --all`
    - `impeccable` (stardust dep) → `upskill pbakaus/impeccable`
 
@@ -349,8 +350,11 @@ Snowflake **`data.html`** exactly as handed in (do **not** regenerate from the s
 - Write `data.html` into a fresh git worktree of `<org>/<site>` on `forge-proto-<short>-<ts>` as
   the bespoke HTML. Emit `phase:"deploy"`.
 - Run the snowflake skill (`/workspace/skills/snowflake`) methodology. On a **Milo** repo
-  (da-playground) it auto-selects the **Milo flavor** — preserves live gnav/footer, no static
-  chrome fragments (avoids the expanded-gnav blob).
+  (da-playground) it auto-selects the **Milo flavor**, deployed **block-level by default**: each
+  section becomes an **editable `forge-*` block table** (a `decorate()` rebuilds its DOM so it renders
+  1:1), with the **live gnav/footer** (from chrome metadata, no static fragments → no expanded-gnav
+  blob) and **adjustable `--pa-*` scroll-animation sidecars**. See `references/snowflake-deploy.md`
+  (the frozen overlay is the documented fallback if a section won't converge to 1:1 in time).
 - DA content via **`aem put`**; preview via **`aem preview`**.
 - `scripts/deploy.jsh` commits + pushes the branch **as the designer** (isomorphic-git over the
   fetch-proxy → the `GITHUB_PAT` secret authenticates the push).

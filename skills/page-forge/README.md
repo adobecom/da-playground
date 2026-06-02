@@ -38,7 +38,7 @@ that has the forge checkout), not a runtime script.
 # 1. install this skill + the snowflake deploy skill (Milo flavor lives on the fork branch
 #    until merged upstream into adobe/skills) + the Stardust Reimagine engine (+ impeccable)
 upskill adobecom/da-playground --path skills/page-forge
-upskill vhargrave/skills --path plugins/aem/edge-delivery-services --all --branch feat/snowflake-milo-substrate
+upskill vhargrave/skills --path plugins/aem/edge-delivery-services --all --branch feat/snowflake-milo-substrate-v2
 upskill adobe/skills --path plugins/stardust --all          # Reimagine engine
 upskill pbakaus/impeccable                                  # stardust's hard dependency
 
@@ -59,10 +59,18 @@ Regenerate `references/_vendored/` before publishing (see `references/README.md`
 
 1:1 with the DA Page Forge tool (forge `stage`): **Match / Reimagine** model, the two-phase
 **Stardust** Reimagine engine (`extract → inject canonical C2 brand → direct|uplift`), multi-variant
-chips, and the activity log are all ported here.
+chips, and the activity log are all ported here. The Milo deploy is **block-level editable `forge-*`
+blocks + adjustable `--pa-*` scroll animations** by default (snowflake PR #166 — `decorate()` rebuilds
+each section's DOM for 1:1, live gnav/footer from chrome metadata), with the frozen page-level overlay
+as a documented fallback. Reimagine's prototype-image resolution matches DA's 4-tier recovery
+(`collect-prototype.jsh`).
 
 Caveats for the demo:
 - **Match** (URL/HTML/Figma → 1:1 → snowflake deploy) is the fast, verified spine — lead with it.
+- **Block-level Milo deploy** is the headline (editable + animated), but it has **not yet been run
+  live end-to-end inside SLICC** — it's proven via the DA `:3002` tool, and the methodology +
+  branch pin are now wired here. Smoke-test one deploy before the demo; fall back to the overlay
+  (`conversionLevel: page-level`) if a section won't converge to 1:1.
 - **Reimagine** is slow (~10–30 min/phase) and **not yet validated end-to-end inside SLICC** (it is
   proven in DA). Pre-bake it for the demo. Unlike DA — where the C2 injection is a Node copy *outside*
   the agent — here the scoop runs `scripts/inject-c2-brand.jsh` itself, so it's a *mandated* (not
