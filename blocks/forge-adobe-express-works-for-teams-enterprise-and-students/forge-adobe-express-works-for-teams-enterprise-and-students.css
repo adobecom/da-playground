@@ -1,0 +1,37 @@
+.forge-adobe-express-works-for-teams-enterprise-and-students { width:100%; max-width:var(--max-width); margin:0 auto; padding-inline:var(--spacing-lg); }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students { max-width:760px; margin-bottom:var(--spacing-xl); }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students h2 { margin-bottom:var(--spacing-md); }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students p { font-size:20px; }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--spacing-lg); }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students { background:var(--color-surface-warm); border-radius:var(--radius); padding:var(--spacing-lg); display:flex; flex-direction:column; }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students { border-radius:12px; overflow:hidden; aspect-ratio:16/10; margin-bottom:var(--spacing-md); background:var(--color-surface); }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students img { width:100%; height:100%; object-fit:cover; }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students h3 { margin-bottom:8px; font-size:24px; }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students p { margin-bottom:var(--spacing-md); flex:1; font-size:var(--body-sm); }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students a.more { font-weight:700; font-size:var(--body-sm); }
+
+.forge-adobe-express-works-for-teams-enterprise-and-students a.more::after { content:" →"; }
+
+.act-dark .forge-adobe-express-works-for-teams-enterprise-and-students p { color:var(--color-on-dark-muted); }
+
+.feat a.forge-adobe-express-works-for-teams-enterprise-and-students { font-weight:700; font-size:var(--body-sm); color:#fff; }
+
+.feat a.forge-adobe-express-works-for-teams-enterprise-and-students::after { content:" →"; }
+
+@media (max-width:1024px) {
+.forge-adobe-express-works-for-teams-enterprise-and-students { gap:var(--spacing-md); }
+}
+
+@media (max-width:768px) {
+.forge-adobe-express-works-for-teams-enterprise-and-students { grid-template-columns:1fr; }
+}
