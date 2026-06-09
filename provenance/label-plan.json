@@ -1,0 +1,56 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 1,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 2,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 3,
+    "dataBlock": "carousel-c2",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 4,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 5,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 6,
+    "dataBlock": "news",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 7,
+    "dataBlock": "martech-metadata",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 8,
+    "dataBlock": "martech-metadata",
+    "dataVariants": [],
+    "primaryClass": "section"
+  }
+]
