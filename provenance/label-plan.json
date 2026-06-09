@@ -1,0 +1,44 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 1,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 2,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 3,
+    "dataBlock": "elastic-carousel",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 4,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 5,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 6,
+    "dataBlock": "news",
+    "dataVariants": [],
+    "primaryClass": "section"
+  }
+]

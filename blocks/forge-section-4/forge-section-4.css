@@ -1,0 +1,413 @@
+.forge-section-4 .section-background img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+main .forge-section-4:is([data-status='decorated'], [data-status='pending']) {
+  display: none;
+}
+
+main > .forge-section-4, .fragment > .forge-section-4 {
+  display: block;
+  position: relative;
+}
+
+main > .forge-section-4 > .content, .fragment > .forge-section-4 > .content {
+  display: block;
+  max-width: var(--grid-container-width);
+  margin: 0 auto;
+}
+
+main .forge-section-4:not([data-padding='none']):not(.xxxl-spacing-static,
+.xxl-spacing-static,
+.xl-spacing-static,
+.xxxl-spacing,
+.xxl-spacing,
+.xl-spacing,
+.l-spacing,
+.m-spacing,
+.s-spacing,
+.xs-spacing,
+.xxs-spacing)>.content:first-child {
+  padding-top: 60px;
+}
+
+main .forge-section-4#hero {
+  color: var(--color-white);
+  position: relative;
+  padding: 120px 15px;
+}
+
+main .forge-section-4 p.legal-copy {
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+}
+
+main .forge-section-4.secondary {
+  background-color: var(--color-gray-100);
+}
+
+main .forge-section-4.panel {
+  margin: 0 var(--spacing-600) var(--spacing-900) var(--spacing-600); 
+  padding: var(--spacing-600) var(--spacing-500);
+  border-radius: 16px;
+  border: 2px solid var(--color-white);
+  background: var(--color-gray-100);
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.08), 0 1px 4px 0 rgba(0, 0, 0, 0.04), 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 899px) {
+main .forge-section-4.panel {
+    margin: 0 var(--spacing-500) var(--spacing-600) var(--spacing-500);
+  }
+}
+
+@media (max-width: 599px) {
+main .forge-section-4.panel {
+    margin: 0 var(--spacing-300) var(--spacing-600) var(--spacing-300);
+    padding-left: var(--spacing-300);
+    padding-right: var(--spacing-300);
+  }
+}
+
+@media (min-width: 1800px) {
+main .forge-section-4.panel {
+    margin: 0 auto var(--spacing-900) auto;
+    max-width: 1679px;
+  }
+}
+
+main .forge-section-4.panel .link-list-wrapper, main .forge-section-4.panel .link-list-wrapper:has(.link-list), main .forge-section-4.panel .link-list-wrapper:has(.link-list:is([class*=" "])), main .forge-section-4.panel .link-list-wrapper:has(.link-list.inline) {
+  max-width: var(--ax-grid-10-col-width);
+  margin: 0 auto;
+  padding: 0 28px var(--spacing-500) 28px;
+}
+
+@media (min-width: 1200px) {
+main .forge-section-4.panel .link-list-wrapper, main .forge-section-4.panel .link-list-wrapper:has(.link-list), main .forge-section-4.panel .link-list-wrapper:has(.link-list:is([class*=" "])), main .forge-section-4.panel .link-list-wrapper:has(.link-list.inline) {
+    max-width: var(--ax-grid-10-col-width);
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+main .forge-section-4 p.button-container, main .forge-section-4 .content p.button-container {
+  text-align: center;
+  margin-top: var(--spacing-300);
+  margin-bottom: 0;
+}
+
+main .forge-section-4 #hero {
+  color: initial;
+}
+
+:lang(ja) main .forge-section-4>.content {
+  text-align: left;
+  padding: 60px var(--spacing-350) 0;
+}
+
+:lang(ja) main .forge-section-4>.content.center {
+  text-align: center;
+  padding: 60px var(--spacing-350) 0;
+}
+
+main .forge-section-4>.content {
+  text-align: center;
+  max-width: 375px;
+}
+
+main .forge-section-4 .content p, main .forge-section-4 p {
+  margin: var(--spacing-500) 0;
+}
+
+main .forge-section-4:not(.xxxl-spacing-static,
+.xxl-spacing-static,
+.xl-spacing-static,
+.xxxl-spacing,
+.xxl-spacing,
+.xl-spacing,
+.l-spacing,
+.m-spacing,
+.s-spacing,
+.xs-spacing,
+.xxs-spacing):last-of-type>.content:not(:has(+ .template-list-wrapper)) {
+  padding-bottom: var(--spacing-600);
+}
+
+main .forge-section-4.blog-content>.content *:is(h1, h2) {
+  font-size: 32px;
+}
+
+main .forge-section-4.blog-content>.content *:is(h1, h2, h3, h4, h5, h6), main .forge-section-4.blog-content>.content>p {
+  margin-left: var(--spacing-350);
+  margin-right: var(--spacing-350);
+  text-align: left;
+}
+
+main .forge-section-4.blog-content>.content>p {
+  font-size: var(--body-font-size-m);
+}
+
+@media (min-width: 600px) {
+main .forge-section-4.blog-content>.content {
+    max-width: 648px
+  }
+main .forge-section-4.blog-content.narrow>.content {
+    max-width: 540px
+  }
+main .forge-section-4.blog-content>.content>p {
+    font-size: var(--body-font-size-xl);
+  }
+}
+
+@media (min-width: 900px) {
+main .forge-section-4>.content {
+    max-width: 830px;
+  }
+main .forge-section-4.blog-content>.content *:is(h1, h2, h3, h4, h5, h6), main .forge-section-4.blog-content>.content>p {
+    margin-left: unset;
+    margin-right: unset;
+  }
+main .forge-section-4.blog-content.narrow>.content {
+    max-width: 875px
+  }
+}
+
+@media (min-width: 1200px) {
+main .forge-section-4 h1 {
+    font-size: var(--heading-font-size-l);
+  }
+main .forge-section-4>.content {
+    max-width: var(--block-lg-max-width);
+  }
+}
+
+main .forge-section-4.long-form.narrow {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+main .forge-section-4.long-form .content, main .forge-section-4.long-form .text .foreground {
+  box-sizing: border-box;
+  padding-left: var(--spacing-350);
+  padding-right: var(--spacing-350);
+  max-width: unset;
+  width: var(--ax-grid-12-col-width);
+  margin: 0 auto;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+main .forge-section-4.long-form .content h1 {
+  font-size: var(--heading-font-size-xl);
+}
+
+main .forge-section-4.long-form .content h2 {
+  font-size: var(--heading-font-size-m);
+}
+
+main .forge-section-4.long-form.long-form-blog .content h2 {
+  font-size: var(--Global-Typography-Size-Headings-Heading-XL);
+  font-weight: var(--heading-font-weight-extra);
+  line-height: 104%;
+}
+
+main .forge-section-4.long-form .content h3, main .forge-section-4.long-form .content h4, main .forge-section-4.long-form .content h5, main .forge-section-4.long-form .content h6 {
+  font-size: var(--heading-font-size-s);
+  color: var(--color-gray-950);
+}
+
+main .forge-section-4.long-form.long-form-blog .content :is(h3, h4, h5, h6) {
+  font-size: var(--Global-Typography-Size-Headings-Heading-L);
+  line-height: 104%;
+  font-weight: var(--heading-font-weight-extra);
+}
+
+main .forge-section-4.long-form .content, main .forge-section-4.long-form .content :is(p:not(.button-container, :has(.con-button)), h1, h2, h3, h4, h5, h6) {
+  text-align: left;
+}
+
+main .forge-section-4.long-form .content, main .forge-section-4.long-form .content p:not(.button-container, :has(.con-button)) {
+  color: var(--palette-gray-700);
+}
+
+main .forge-section-4.long-form .content :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--palette-gray-900);
+}
+
+main .forge-section-4.long-form .content h1, main .forge-section-4.long-form .content h2, main .forge-section-4.long-form .content h3, main .forge-section-4.long-form .content h4 {
+  margin-top: 0;
+  color: var(--color-gray-950);
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+main .forge-section-4.long-form .content p {
+  margin-top: var(--spacing-300);
+  color: var(--color-dark-gray);
+}
+
+main .forge-section-4.long-form .content :is(p, ul, ol) {
+  font-size: var(--Global-Typography-Size-Body-Body-M);
+  line-height: 130%;
+}
+
+main .forge-section-4.long-form-blog .content .button-container a {
+  margin-bottom: var(--spacing-100);
+}
+
+main .forge-section-4.long-form-blog .milo-video {
+  margin-bottom: var(--spacing-400);
+}
+
+@media (min-width: 768px) {
+main .forge-section-4.long-form .content, main .forge-section-4.long-form .text .foreground {
+    padding: 0 var(--spacing-600) 0;
+    width: var(--ax-grid-8-col-width);
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 1024px) {
+main .forge-section-4.long-form .content, main .forge-section-4.long-form .text .foreground {
+    /* Desktop: 7 columns, shifted right to accommodate fixed TOC */
+    max-width: var(--ax-grid-7-col-width);
+    margin-left: calc(var(--ax-grid-3-col-width) + var(--spacing-600) + var(--ax-grid-gutter));
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1680px) {
+main .forge-section-4.long-form .content, main .forge-section-4.long-form .text .foreground {
+    margin: 0 auto;
+  }
+}
+
+body:not(.blog) main #hero:not(:has(.hero-bg))+.forge-section-4 {
+  padding-top: 0;
+}
+
+.forge-section-4.display-none {
+  display: none;
+  height: var(--spacing-0);
+}
+
+main .forge-section-4.zero-margin:not([data-padding='none']) .content:first-child {
+  padding-top: var(--spacing-0);
+}
+
+main .forge-section-4.no-h2-margin h2, main .forge-section-4.no-h2-margin .content h2 {
+  margin: 0;
+}
+
+.forge-section-4 .grid-marquee {
+  --m-img-w: 152px;
+  --t-img-w: 304px;
+  --d-img-w: 254px;
+  max-width: initial;
+  text-align: center;
+}
+
+main .forge-section-4 .grid-marquee h1 {
+  font-size: var(--heading-font-size-m);
+  padding-bottom: var(--spacing-100);
+}
+
+main .forge-section-4 .grid-marquee.pricing-page h1 {
+  font-weight: 900;
+  font-size: var(--heading-size);
+  line-height: 130%;
+  text-align: center;
+  padding-bottom: var(--padding-bottom);
+ 
+}
+
+@media screen and (min-width: 1280px) {
+main .forge-section-4 .grid-marquee .headline h1 {
+    font-size: var(--heading-font-size-xl);
+    font-weight: var(--heading-font-weight-extra);
+  }
+}
+
+#checkout-link-modal > .forge-section-4 {
+  width: 100%;
+  height: auto;
+}
+
+.forge-section-4 .gen-ai-cards-wrapper {
+  max-width: none;
+  margin: auto;
+}
+
+.forge-section-4:not(.xxxl-spacing-static, .xxl-spacing-static, .xl-spacing-static, .xxxl-spacing, .xxl-spacing, .xl-spacing,
+  .l-spacing, .m-spacing, .s-spacing, .xs-spacing, .xxs-spacing) .gen-ai-cards.homepage:first-child {
+  padding-top: 60px;
+}
+
+.forge-section-4 .gen-ai-cards-wrapper.homepage {
+  max-width: fit-content;
+}
+
+@media (min-width: 768px) {
+.forge-section-4:has(.gen-ai-cards.homepage.v2) {
+    padding-top: var(--spacing-500);
+    padding-bottom: var(--spacing-500);
+  }
+}
+
+@media (min-width: 1280px) {
+.forge-section-4:has(.gen-ai-cards.homepage.v2) {
+    padding-top: var(--spacing-800);
+    padding-bottom: var(--spacing-800);
+  }
+}
+
+.forge-section-4 .gen-ai-cards.homepage.v2 {
+  padding: 0;
+}
+
+.forge-section-4:has(.gen-ai-cards.homepage.v2) {
+  padding-top: var(--spacing-400);
+  padding-bottom: var(--spacing-400);
+}
+
+main .forge-section-4 .discover-cards {
+    max-width: none;
+    text-align: center;
+}
+
+.forge-section-4:not([data-padding='none']):not(.xxxl-spacing-static, .xxl-spacing-static, .xl-spacing-static, .xxxl-spacing, .xxl-spacing, .xl-spacing,
+.l-spacing, .m-spacing, .s-spacing, .xs-spacing, .xxs-spacing) .discover-cards:first-child:not(.flip):not(.v2) {
+    padding-top: 60px;
+}
+
+.forge-section-4:has(.discover-cards.v2) {
+  padding-top: var(--spacing-600);
+  padding-bottom: var(--spacing-600);
+}
+
+.forge-section-4 .discover-cards .card .button-container a {
+    background-color: var(--color-gray-800-variant);
+    color: var(--color-white);
+    border: none;
+    margin-top: var(--spacing-500);
+    margin-left: 0;
+}
+
+@media (min-width: 600px) {
+.forge-section-4:has(.discover-cards.v2) {
+      padding-top: var(--spacing-600);
+      padding-bottom: var(--spacing-600);
+    }
+}
+
+@media (min-width: 1200px) {
+.forge-section-4:has(.discover-cards.v2) {
+    padding-top: var(--spacing-800);
+    padding-bottom: var(--spacing-800);
+  }
+}
