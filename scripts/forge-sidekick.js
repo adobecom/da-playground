@@ -48,9 +48,9 @@
       if (document.querySelector('[data-replay="host"]')) return;
       load(window.forgeSources?.adjustments || 'http://localhost:3001/overlay.js');
     });
-    sk.addEventListener('custom:forge-annotations', () => {
-      if (document.getElementById('page-commenter-root')) return;
-      load(window.forgeSources?.annotations || 'https://milo-core-prod.adobe.io/page-commenter.js');
+    sk.addEventListener('custom:forge-annotations', async () => {
+      if (document.getElementById('pc-root')) return;
+      await import(window.forgeSources?.annotations || 'https://milo-core-prod.adobe.io/page-commenter.js');
     });
     sk.addEventListener('custom:forge-publish', () => {
       load(window.forgeSources?.publish || 'http://localhost:3001/forge-publish.js');
