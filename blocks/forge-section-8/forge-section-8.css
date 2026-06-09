@@ -1,0 +1,39 @@
+.forge-section-8[class$="merch-cards"] > .content {
+    --merch-card-collection-card-width: unset;
+    display: grid;
+    justify-content: center;
+    justify-items: stretch;
+    align-items: normal;
+    gap: var(--consonant-merch-spacing-m);
+    padding: var(--spacing-m);
+    grid-template-columns: var(--merch-card-collection-card-width);
+}
+
+.forge-section-8[class$="merch-cards"] > .content {
+	padding: 0;
+}
+
+.tab-content [role='tabpanel'] .forge-section-8[class$="merch-cards"] > .content {
+	width: auto;
+}
+
+@media screen and (min-width: 768px) {
+.forge-section-8[class*="-merch-cards"] > .content {
+        grid-template-columns: repeat(2, var(--merch-card-collection-card-width));
+    }
+}
+
+@media screen and (min-width: 1200px) {
+.forge-section-8.four-merch-cards > .content {
+        grid-template-columns: repeat(4, var(--merch-card-collection-card-width));
+    }
+.forge-section-8.three-merch-cards > .content {
+        grid-template-columns: repeat(3, var(--merch-card-collection-card-width));
+    }
+}
+
+@media screen and (min-width: 1600px) {
+.forge-section-8.four-merch-cards > .content {
+        grid-template-columns: repeat(4, var(--merch-card-collection-card-width));
+    }
+}
