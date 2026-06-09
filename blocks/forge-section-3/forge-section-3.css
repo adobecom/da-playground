@@ -1,0 +1,2719 @@
+.forge-section-3 .body-m {
+  margin: 0;
+}
+
+.forge-section-3 .body-m {
+  font-size: var(--type-body-m-size);
+  line-height: var(--type-body-m-lh);
+}
+
+.forge-section-3 .con-button {
+  background-color: transparent;
+  border-radius: 16px;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  display: inline-block;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  padding: 5px 14px;
+  text-decoration: none;
+}
+
+.forge-section-3 .con-button:hover {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.forge-section-3 .l-button .con-button, .forge-section-3 .con-button.button-l {
+  border-radius: 20px;
+  font-size: 17px;
+  line-height: 20px;
+  min-height: 21px;
+  padding: 7px 18px 8px;
+}
+
+.forge-section-3 .xl-button .con-button, .forge-section-3 .con-button.button-xl {
+  border-radius: 25px;
+  font-size: 19px;
+  line-height: 24px;
+  min-height: 28px;
+  padding: 10px 24px 8px;
+}
+
+.forge-section-3 .xxl-button .con-button, .forge-section-3 .con-button.button-xxl {
+  border-radius: 30px;
+  font-size: 22px;
+  line-height: 27px;
+  min-height: 27px;
+  padding: 14px 30px 15px;
+}
+
+.forge-section-3 .con-button.button-justified {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.forge-section-3 .dark .con-button {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.forge-section-3 .light .con-button {
+  border-color: var(--text-color);
+  color: var(--text-color);
+}
+
+.forge-section-3 .light .con-button:hover, .forge-section-3 .light .con-button:active {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.forge-section-3 .dark .con-button:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+.forge-section-3 .con-button.blue {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.forge-section-3 .con-button.blue:hover, .forge-section-3 .con-button.blue:active {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: var(--color-white);
+}
+
+.forge-section-3 .con-button.fill {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--color-white);
+}
+
+.forge-section-3 .con-button.fill:hover, .forge-section-3 .con-button.fill:active {
+  background: var(--color-black);
+  border-color: var(--color-black);
+}
+
+.forge-section-3 .dark .con-button.fill {
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--text-color);
+}
+
+.forge-section-3 .dark .con-button.fill:hover, .forge-section-3 .dark .con-button.fill:active {
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.forge-section-3 .section-background img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+main .forge-section-3:is([data-status='decorated'], [data-status='pending']) {
+  display: none;
+}
+
+main > .forge-section-3, .fragment > .forge-section-3 {
+  display: block;
+  position: relative;
+}
+
+main > .forge-section-3 > .content, .fragment > .forge-section-3 > .content {
+  display: block;
+  max-width: var(--grid-container-width);
+  margin: 0 auto;
+}
+
+.forge-section-3 .con-button svg.icon-milo {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+}
+
+.forge-section-3 .con-button[aria-disabled="true"], .forge-section-3 .con-button.blue[aria-disabled="true"], .forge-section-3 .con-button.fill[aria-disabled="true"] {
+  background-color: transparent;
+  border-color: var(--color-gray-500);
+  color: var(--color-gray-500);
+}
+
+.forge-section-3 .con-button.blue[aria-disabled="true"], .forge-section-3 .con-button.fill[aria-disabled="true"] {
+  background-color: var(--color-gray-500);
+  color: var(--color-gray-300);
+}
+
+.forge-section-3 .con-button[aria-disabled="true"]:hover, .forge-section-3 .con-button.blue[aria-disabled="true"]:hover, .forge-section-3 .con-button.fill[aria-disabled="true"]:hover {
+  cursor: default;
+}
+
+.forge-section-3 .dark .con-button[aria-disabled="true"]:hover {
+  background-color: transparent;
+  color: var(--color-gray-500);
+}
+
+.forge-section-3 .dark .con-button.blue[aria-disabled="true"]:hover, .forge-section-3 .dark .con-button.fill[aria-disabled="true"]:hover {
+  background-color: var(--color-gray-500);
+  color: var(--color-gray-300);
+}
+
+.forge-section-3 .button-l .con-button span.icon.margin-left, .forge-section-3 .con-button.button-l span.icon.margin-left { margin-left: 12px; }
+
+.forge-section-3 .button-xl .con-button span.icon.margin-left, .forge-section-3 .con-button.button-xl span.icon.margin-left { margin-left: 14px; }
+
+.con-block.forge-section-3 { padding: var(--spacing-xxs) 0; }
+
+.forge-section-3 .con-block.xs-spacing { padding: var(--spacing-xs) 0; }
+
+.forge-section-3 .con-block.s-spacing { padding: var(--spacing-s) 0; }
+
+.forge-section-3 .con-block.m-spacing { padding: var(--spacing-m) 0; }
+
+.forge-section-3 .con-block.l-spacing { padding: var(--spacing-l) 0; }
+
+.forge-section-3 .con-block.xl-spacing { padding: var(--spacing-xl) 0; }
+
+.forge-section-3 .con-block.xxl-spacing { padding: var(--spacing-xxl) 0; }
+
+.forge-section-3 .con-block.xxxl-spacing { padding: var(--spacing-xxxl) 0; }
+
+.forge-section-3 .con-block.no-spacing { padding: 0; }
+
+.forge-section-3 .con-block.xxs-spacing-top { padding-top: var(--spacing-xxs); }
+
+.forge-section-3 .con-block.xs-spacing-top { padding-top: var(--spacing-xs); }
+
+.forge-section-3 .con-block.s-spacing-top { padding-top: var(--spacing-s); }
+
+.forge-section-3 .con-block.m-spacing-top { padding-top: var(--spacing-m); }
+
+.forge-section-3 .con-block.l-spacing-top { padding-top: var(--spacing-l); }
+
+.forge-section-3 .con-block.xl-spacing-top { padding-top: var(--spacing-xl); }
+
+.forge-section-3 .con-block.xxl-spacing-top { padding-top: var(--spacing-xxl); }
+
+.forge-section-3 .con-block.xxxl-spacing-top { padding-top: var(--spacing-xxxl); }
+
+.forge-section-3 .con-block.no-spacing-top { padding-top: 0; }
+
+.forge-section-3 .con-block.xxs-spacing-bottom { padding-bottom: var(--spacing-xxs); }
+
+.forge-section-3 .con-block.xs-spacing-bottom { padding-bottom: var(--spacing-xs); }
+
+.forge-section-3 .con-block.s-spacing-bottom { padding-bottom: var(--spacing-s); }
+
+.forge-section-3 .con-block.m-spacing-bottom { padding-bottom: var(--spacing-m); }
+
+.forge-section-3 .con-block.l-spacing-bottom { padding-bottom: var(--spacing-l); }
+
+.forge-section-3 .con-block.xl-spacing-bottom { padding-bottom: var(--spacing-xl); }
+
+.forge-section-3 .con-block.xxl-spacing-bottom { padding-bottom: var(--spacing-xxl); }
+
+.forge-section-3 .con-block.xxxl-spacing-bottom { padding-bottom: var(--spacing-xxxl); }
+
+.forge-section-3 .con-block.no-spacing-bottom { padding-bottom: 0; }
+
+.forge-section-3 .con-block.xl-spacing-static-bottom { padding-bottom: var(--spacing-xl-static); }
+
+.forge-section-3 .con-block.xxl-spacing-static-bottom { padding-bottom: var(--spacing-xxl-static); }
+
+.forge-section-3 .con-block.xxxl-spacing-static-bottom { padding-bottom: var(--spacing-xxxl-static); }
+
+.forge-section-3 div[class*='-up'] .con-block.full-width { grid-column: 1 /-1; }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg { padding: var(--spacing-m); }
+
+div[class*='-up'] .con-block.has-bg.forge-section-3 { padding: var(--spacing-xxs); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.xs-spacing { padding: var(--spacing-xs); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.s-spacing { padding: var(--spacing-s); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.m-spacing { padding: var(--spacing-m); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.l-spacing { padding: var(--spacing-l); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.xl-spacing { padding: var(--spacing-xl); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.xxl-spacing { padding: var(--spacing-xxl); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.xxxl-spacing { padding: var(--spacing-xxxl); }
+
+.forge-section-3 div[class*='-up'] .con-block.has-bg.no-spacing { padding: 0; }
+
+.forge-section-3 .con-block .foreground { position: relative; }
+
+.forge-section-3 .con-block.max-width-6 .foreground { max-width: 600px; }
+
+.forge-section-3 .con-block.max-width-8 .foreground { max-width: 800px; }
+
+.forge-section-3 .con-block.max-width-10 .foreground { max-width: 1000px; }
+
+.forge-section-3 .con-block.max-width-12 .foreground { max-width: 1200px; }
+
+.forge-section-3 .con-block.max-width-auto .foreground { max-width: unset; }
+
+.forge-section-3 .con-block .background {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.forge-section-3 .con-block .background>div { height: 100%; }
+
+.forge-section-3 .con-block .background img, .forge-section-3 .con-block .background video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.forge-section-3 .con-block .background video {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.forge-section-3 .con-block .background .tablet-only, .forge-section-3 .con-block .background .desktop-only {
+  display: none;
+}
+
+.forge-section-3 a.fragment {
+  display: none;
+}
+
+@media (max-width: 599px) {
+.forge-section-3 .con-button.button-justified-mobile {
+    display: block;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 600px) {
+.forge-section-3 dialog .fragment > *:first-child {
+    margin-top: 0;
+  }
+.forge-section-3 dialog .fragment > *:last-child {
+    margin-bottom: 0;
+  }
+.forge-section-3 .con-block.max-width-6-tablet .foreground { max-width: 600px; }
+.forge-section-3 .con-block.max-width-8-tablet .foreground { max-width: 800px; }
+.forge-section-3 .con-block.max-width-10-tablet .foreground { max-width: 1000px; }
+.forge-section-3 .con-block.max-width-12-tablet .foreground { max-width: 1200px; }
+.forge-section-3 .con-block .background .mobile-only, .forge-section-3 .con-block .background .desktop-only {
+    display: none;
+  }
+.forge-section-3 .con-block .background .tablet-only { display: block; }
+.forge-section-3 .con-block.xxs-spacing-tablet { padding: var(--spacing-xxs) 0; }
+.forge-section-3 .con-block.xs-spacing-tablet { padding: var(--spacing-xs) 0; }
+.forge-section-3 .con-block.s-spacing-tablet { padding: var(--spacing-s) 0; }
+.forge-section-3 .con-block.m-spacing-tablet { padding: var(--spacing-m) 0; }
+.forge-section-3 .con-block.l-spacing-tablet { padding: var(--spacing-l) 0; }
+.forge-section-3 .con-block.xl-spacing-tablet { padding: var(--spacing-xl) 0; }
+.forge-section-3 .con-block.xxl-spacing-tablet { padding: var(--spacing-xxl) 0; }
+.forge-section-3 .con-block.xxxl-spacing-tablet { padding: var(--spacing-xxxl) 0; }
+.forge-section-3 .con-block.no-spacing-tablet { padding: 0; }
+.forge-section-3 .con-block.xxs-spacing-top-tablet { padding-top: var(--spacing-xxs); }
+.forge-section-3 .con-block.xs-spacing-top-tablet { padding-top: var(--spacing-xs); }
+.forge-section-3 .con-block.s-spacing-top-tablet { padding-top: var(--spacing-s); }
+.forge-section-3 .con-block.m-spacing-top-tablet { padding-top: var(--spacing-m); }
+.forge-section-3 .con-block.l-spacing-top-tablet { padding-top: var(--spacing-l); }
+.forge-section-3 .con-block.xl-spacing-top-tablet { padding-top: var(--spacing-xl); }
+.forge-section-3 .con-block.xxl-spacing-top-tablet { padding-top: var(--spacing-xxl); }
+.forge-section-3 .con-block.xxxl-spacing-top-tablet { padding-top: var(--spacing-xxxl); }
+.forge-section-3 .con-block.no-spacing-top-tablet { padding-top: 0; }
+.forge-section-3 .con-block.xxs-spacing-bottom-tablet { padding-bottom: var(--spacing-xxs); }
+.forge-section-3 .con-block.xs-spacing-bottom-tablet { padding-bottom: var(--spacing-xs); }
+.forge-section-3 .con-block.s-spacing-bottom-tablet { padding-bottom: var(--spacing-s); }
+.forge-section-3 .con-block.m-spacing-bottom-tablet { padding-bottom: var(--spacing-m); }
+.forge-section-3 .con-block.l-spacing-bottom-tablet { padding-bottom: var(--spacing-l); }
+.forge-section-3 .con-block.xl-spacing-bottom-tablet { padding-bottom: var(--spacing-xl); }
+.forge-section-3 .con-block.xxl-spacing-bottom-tablet { padding-bottom: var(--spacing-xxl); }
+.forge-section-3 .con-block.xxxl-spacing-bottom-tablet { padding-bottom: var(--spacing-xxxl); }
+.forge-section-3 .con-block.no-spacing-bottom-tablet { padding-bottom: 0; }
+.forge-section-3 .con-block.xl-spacing-static-bottom-tablet { padding-bottom: var(--spacing-xl-static); }
+.forge-section-3 .con-block.xxl-spacing-static-bottom-tablet { padding-bottom: var(--spacing-xxl-static); }
+.forge-section-3 .con-block.xxxl-spacing-static-bottom-tablet { padding-bottom: var(--spacing-xxxl-static); }
+}
+
+@media screen and (min-width: 1200px) {
+.forge-section-3 .con-block.max-width-6-desktop .foreground { max-width: 600px; }
+.forge-section-3 .con-block.max-width-8-desktop .foreground { max-width: 800px; }
+.forge-section-3 .con-block.max-width-10-desktop .foreground { max-width: 1000px; }
+.forge-section-3 .con-block.max-width-12-desktop .foreground { max-width: 1200px; }
+.forge-section-3 .con-block .background .mobile-only, .forge-section-3 .con-block .background .tablet-only {
+    display: none;
+  }
+.forge-section-3 .con-block .background .desktop-only { display: block; }
+.forge-section-3 .con-block.xxs-spacing-desktop { padding: var(--spacing-xxs) 0; }
+.forge-section-3 .con-block.xs-spacing-desktop { padding: var(--spacing-xs) 0; }
+.forge-section-3 .con-block.s-spacing-desktop { padding: var(--spacing-s) 0; }
+.forge-section-3 .con-block.m-spacing-desktop { padding: var(--spacing-m) 0; }
+.forge-section-3 .con-block.l-spacing-desktop { padding: var(--spacing-l) 0; }
+.forge-section-3 .con-block.xl-spacing-desktop { padding: var(--spacing-xl) 0; }
+.forge-section-3 .con-block.xxl-spacing-desktop { padding: var(--spacing-xxl) 0; }
+.forge-section-3 .con-block.xxxl-spacing-desktop { padding: var(--spacing-xxxl) 0; }
+.forge-section-3 .con-block.no-spacing-desktop { padding: 0; }
+.forge-section-3 .con-block.xxs-spacing-top-desktop { padding-top: var(--spacing-xxs); }
+.forge-section-3 .con-block.xs-spacing-top-desktop { padding-top: var(--spacing-xs); }
+.forge-section-3 .con-block.s-spacing-top-desktop { padding-top: var(--spacing-s); }
+.forge-section-3 .con-block.m-spacing-top-desktop { padding-top: var(--spacing-m); }
+.forge-section-3 .con-block.l-spacing-top-desktop { padding-top: var(--spacing-l); }
+.forge-section-3 .con-block.xl-spacing-top-desktop { padding-top: var(--spacing-xl); }
+.forge-section-3 .con-block.xxl-spacing-top-desktop { padding-top: var(--spacing-xxl); }
+.forge-section-3 .con-block.xxxl-spacing-top-desktop { padding-top: var(--spacing-xxxl); }
+.forge-section-3 .con-block.no-spacing-top-desktop { padding-top: 0; }
+.forge-section-3 .con-block.xxs-spacing-bottom-desktop { padding-bottom: var(--spacing-xxs); }
+.forge-section-3 .con-block.xs-spacing-bottom-desktop { padding-bottom: var(--spacing-xs); }
+.forge-section-3 .con-block.s-spacing-bottom-desktop { padding-bottom: var(--spacing-s); }
+.forge-section-3 .con-block.m-spacing-bottom-desktop { padding-bottom: var(--spacing-m); }
+.forge-section-3 .con-block.l-spacing-bottom-desktop { padding-bottom: var(--spacing-l); }
+.forge-section-3 .con-block.xl-spacing-bottom-desktop { padding-bottom: var(--spacing-xl); }
+.forge-section-3 .con-block.xxl-spacing-bottom-desktop { padding-bottom: var(--spacing-xxl); }
+.forge-section-3 .con-block.xxxl-spacing-bottom-desktop { padding-bottom: var(--spacing-xxxl); }
+.forge-section-3 .con-block.no-spacing-bottom-desktop { padding-bottom: 0; }
+.forge-section-3 .con-block.xl-spacing-static-bottom-desktop { padding-bottom: var(--spacing-xl-static); }
+.forge-section-3 .con-block.xxl-spacing-static-bottom-desktop { padding-bottom: var(--spacing-xxl-static); }
+.forge-section-3 .con-block.xxxl-spacing-static-bottom-desktop { padding-bottom: var(--spacing-xxxl-static); }
+.forge-section-3 .con-block.margin-top-desktop { margin-top: var(--spacing-s); }
+.forge-section-3 .con-block.margin-bottom-desktop { margin-bottom: var(--spacing-s); }
+}
+
+@media screen and (min-width: 1440px) {
+.forge-section-3 .con-block.max-width-12-desktop-large .foreground { max-width: 1200px; }
+}
+
+main .forge-section-3:not([data-padding='none']):not(.xxxl-spacing-static,
+.xxl-spacing-static,
+.xl-spacing-static,
+.xxxl-spacing,
+.xxl-spacing,
+.xl-spacing,
+.l-spacing,
+.m-spacing,
+.s-spacing,
+.xs-spacing,
+.xxs-spacing)>.content:first-child {
+  padding-top: 60px;
+}
+
+.forge-section-3 main .content h2 {
+  margin-top: var(--spacing-900);
+}
+
+.forge-section-3 main a.con-button:any-link {
+  text-decoration: none;
+  border-radius: 18px;
+  padding: 5px 1.2em var(--spacing-80);
+  text-align: center;
+  font-size: var(--body-font-size-s);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--body-line-height);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+  border-width: var(--spacing-50);
+  border-style: solid;
+  margin: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  min-height: initial;
+}
+
+.forge-section-3 .text-block .foreground>.cta-container .body-m.action-area a {
+  margin: unset;
+}
+
+.forge-section-3 main a.con-button.button-l:any-link, .forge-section-3 main a.con-button.l-button:any-link, .forge-section-3 main .button-l a.con-button:any-link, .forge-section-3 main .l-button a.con-button:any-link {
+  border-radius: 999px;
+  padding: 5px 1.2em var(--spacing-80);
+  font-size: var(--body-font-size-s);
+}
+
+.forge-section-3 main a.con-button.large:any-link, .forge-section-3 main a.con-button.button-xl:any-link, .forge-section-3 main a.con-button.xl-button:any-link, .forge-section-3 main .button-xl a.con-button:any-link, .forge-section-3 main .xl-button a.con-button:any-link {
+  padding: 10px 1.5em;
+  border-radius: 22px;
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-line-height);
+}
+
+.forge-section-3 main a.con-button.xlarge:any-link, .forge-section-3 main a.con-button.button-xxl:any-link, .forge-section-3 main a.con-button.xxl-button:any-link, .forge-section-3 main .button-xxl a.con-button:any-link, .forge-section-3 main .xxl-button a.con-button:any-link {
+  padding: 13px 1.5em var(--spacing-250);
+  border-radius: 999px;
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+}
+
+.forge-section-3 main a.con-button.small:any-link, .forge-section-3 main .small a.con-button:any-link {
+  padding: var(--spacing-75) 1em;
+  border-radius: 15px;
+  font-size: var(--body-font-size-xs);
+}
+
+.forge-section-3 main a.con-button.blue:any-link, .forge-section-3 main .dark a.con-button.blue:any-link {
+  color: var(--color-white);
+  background-color: var(--color-info-accent);
+  border-color: var(--color-info-accent);
+}
+
+.forge-section-3 main a.con-button.blue:any-link:hover, .forge-section-3 main .dark a.con-button.blue:any-link:hover {
+  background-color: var(--color-info-accent-hover);
+  border-color: var(--color-info-accent-hover);
+}
+
+.forge-section-3 main a.con-button.blue:any-link:active, .forge-section-3 main .dark a.con-button.blue:any-link:active {
+  background-color: var(--color-info-accent-down);
+  border-color: var(--color-info-accent-down);
+}
+
+.forge-section-3 main a.con-button.blue:focus, .forge-section-3 main .dark a.con-button.blue:focus {
+  background-color: var(--color-info-accent-hover);
+  border-color: var(--color-info-accent-hover);
+  color: var(--color-white);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-white),
+    0 0 0 4px var(--color-info-accent-hover);
+}
+
+.forge-section-3 main .dark a.con-button.outline:any-link {
+  color: var(--color-white);
+  background-color: var(--color-info-primary);
+  border-color: var(--color-info-primary);
+}
+
+.forge-section-3 main a.con-button.outline:any-link:hover {
+  background-color: var(--color-info-primary-hover);
+  border-color: var(--color-info-primary-hover);
+}
+
+.forge-section-3 main a.con-button.outline:any-link:active {
+  background-color: var(--color-info-primary-down);
+  border-color: var(--color-info-primary-down);
+}
+
+.forge-section-3 main a.con-button.outline:any-link {
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+.forge-section-3 main a.con-button.outline:any-link:hover {
+  background-color: var(--color-info-secondary-hover);
+}
+
+.forge-section-3 main a.con-button.outline:any-link:active {
+  background-color: var(--color-info-secondary-down);
+}
+
+.forge-section-3 main a.con-button.dark:any-link {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.forge-section-3 main a.con-button.dark:any-link:hover {
+  color: var(--color-black);
+  background-color: var(--color-gray-100);
+  border-color: var(--color-gray-100);
+}
+
+.forge-section-3 main a.con-button.dark:any-link:active {
+  color: var(--color-black);
+  background-color: var(--color-gray-200);
+  border-color: var(--color-gray-200);
+}
+
+.forge-section-3 main a.con-button.outline:any-link:focus {
+  background-color: var(--color-info-primary-hover);
+  border-color: var(--color-info-primary-hover);
+  color: var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-white),
+    0 0 0 4px var(--color-info-accent-hover);
+}
+
+.forge-section-3 main a.con-button.outline:any-link:active {
+  background-color: var(--color-info-secondary-hover);
+  box-shadow: 0 0 0 2px var(--color-white),
+    0 0 0 4px var(--color-info-accent-hover);
+}
+
+.forge-section-3 main .dark a.con-button.outline:any-link {
+  color: var(--color-white);
+  background-color: transparent;
+  border-color: var(--color-white);
+}
+
+.forge-section-3 main .dark a.con-button.outline:any-link:hover {
+  color: var(--color-white);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: var(--color-gray-100);
+}
+
+.forge-section-3 main .dark a.con-button.outline:any-link:active {
+  color: var(--color-white);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: var(--color-gray-200);
+}
+
+.forge-section-3 main .dark a.con-button.outline:any-link:focus {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-info-accent-hover);
+}
+
+.forge-section-3 main a.con-button.wide {
+  display: block;
+}
+
+main .forge-section-3#hero {
+  color: var(--color-white);
+  position: relative;
+  padding: 120px 15px;
+}
+
+main .forge-section-3 p.legal-copy {
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+}
+
+main .forge-section-3.secondary {
+  background-color: var(--color-gray-100);
+}
+
+main .forge-section-3.panel {
+  margin: 0 var(--spacing-600) var(--spacing-900) var(--spacing-600); 
+  padding: var(--spacing-600) var(--spacing-500);
+  border-radius: 16px;
+  border: 2px solid var(--color-white);
+  background: var(--color-gray-100);
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.08), 0 1px 4px 0 rgba(0, 0, 0, 0.04), 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 899px) {
+main .forge-section-3.panel {
+    margin: 0 var(--spacing-500) var(--spacing-600) var(--spacing-500);
+  }
+}
+
+@media (max-width: 599px) {
+main .forge-section-3.panel {
+    margin: 0 var(--spacing-300) var(--spacing-600) var(--spacing-300);
+    padding-left: var(--spacing-300);
+    padding-right: var(--spacing-300);
+  }
+}
+
+@media (min-width: 1800px) {
+main .forge-section-3.panel {
+    margin: 0 auto var(--spacing-900) auto;
+    max-width: 1679px;
+  }
+}
+
+main .forge-section-3.panel .link-list-wrapper, main .forge-section-3.panel .link-list-wrapper:has(.link-list), main .forge-section-3.panel .link-list-wrapper:has(.link-list:is([class*=" "])), main .forge-section-3.panel .link-list-wrapper:has(.link-list.inline) {
+  max-width: var(--ax-grid-10-col-width);
+  margin: 0 auto;
+  padding: 0 28px var(--spacing-500) 28px;
+}
+
+@media (min-width: 1200px) {
+main .forge-section-3.panel .link-list-wrapper, main .forge-section-3.panel .link-list-wrapper:has(.link-list), main .forge-section-3.panel .link-list-wrapper:has(.link-list:is([class*=" "])), main .forge-section-3.panel .link-list-wrapper:has(.link-list.inline) {
+    max-width: var(--ax-grid-10-col-width);
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+main .forge-section-3 p.button-container, main .forge-section-3 .content p.button-container {
+  text-align: center;
+  margin-top: var(--spacing-300);
+  margin-bottom: 0;
+}
+
+main .forge-section-3 #hero {
+  color: initial;
+}
+
+.forge-section-3 main .center .button-container.free-plan-container {
+  justify-content: center;
+}
+
+.forge-section-3 main .center .free-plan-widget-placeholder {
+  margin: auto;
+}
+
+.forge-section-3 main .center .free-plan-widget {
+  margin: var(--spacing-500) auto;
+}
+
+:lang(ja) main .forge-section-3>.content {
+  text-align: left;
+  padding: 60px var(--spacing-350) 0;
+}
+
+:lang(ja) main .forge-section-3>.content.center {
+  text-align: center;
+  padding: 60px var(--spacing-350) 0;
+}
+
+main .forge-section-3>.content {
+  text-align: center;
+  max-width: 375px;
+}
+
+main .forge-section-3 .content p, main .forge-section-3 p {
+  margin: var(--spacing-500) 0;
+}
+
+main .forge-section-3:not(.xxxl-spacing-static,
+.xxl-spacing-static,
+.xl-spacing-static,
+.xxxl-spacing,
+.xxl-spacing,
+.xl-spacing,
+.l-spacing,
+.m-spacing,
+.s-spacing,
+.xs-spacing,
+.xxs-spacing):last-of-type>.content:not(:has(+ .template-list-wrapper)) {
+  padding-bottom: var(--spacing-600);
+}
+
+.forge-section-3 div[data-block-status]:not(.pricing-cards-wrapper, .pricing-table-wrapper, .split-action-wrapper, .link-list-wrapper, .wayfinder, .ratings, .ribbon-banner, .content, .banner, .text, .hover-cards, .cta-cards, .simplified-pricing-cards-v2, .cta-carousel) a.button.same-fcta, .forge-section-3 div[data-block-status]:not(.pricing-cards-wrapper, .pricing-table-wrapper, .split-action-wrapper, .link-list-wrapper, .wayfinder, .ratings, .ribbon-banner, .content, .banner, .text, .hover-cards, .cta-cards, .simplified-pricing-cards-v2, .cta-carousel) a.con-button.same-fcta {
+  display: none;
+}
+
+main .forge-section-3.blog-content>.content *:is(h1, h2) {
+  font-size: 32px;
+}
+
+main .forge-section-3.blog-content>.content *:is(h1, h2, h3, h4, h5, h6), main .forge-section-3.blog-content>.content>p {
+  margin-left: var(--spacing-350);
+  margin-right: var(--spacing-350);
+  text-align: left;
+}
+
+main .forge-section-3.blog-content>.content>p {
+  font-size: var(--body-font-size-m);
+}
+
+@media (min-width: 600px) {
+main .forge-section-3.blog-content>.content {
+    max-width: 648px
+  }
+main .forge-section-3.blog-content.narrow>.content {
+    max-width: 540px
+  }
+main .forge-section-3.blog-content>.content>p {
+    font-size: var(--body-font-size-xl);
+  }
+}
+
+@media (min-width: 900px) {
+.forge-section-3 div[data-block-status]:not(.pricing-cards-wrapper, .pricing-table-wrapper, .split-action-wrapper, .link-list-wrapper, .wayfinder, .ratings, .text, .hover-cards, .cta-cards, .simplified-pricing-cards-v2) a.button.same-fcta, .forge-section-3 div[data-block-status]:not(.pricing-cards-wrapper, .pricing-table-wrapper, .split-action-wrapper, .link-list-wrapper, .wayfinder, .ratings, .text, .hover-cards, .cta-cards, .simplified-pricing-cards-v2) a.con-button.same-fcta {
+    display: inline-block;
+  }
+main .forge-section-3>.content {
+    max-width: 830px;
+  }
+main .forge-section-3.blog-content>.content *:is(h1, h2, h3, h4, h5, h6), main .forge-section-3.blog-content>.content>p {
+    margin-left: unset;
+    margin-right: unset;
+  }
+main .forge-section-3.blog-content.narrow>.content {
+    max-width: 875px
+  }
+}
+
+@media (min-width: 1200px) {
+main .forge-section-3 h1 {
+    font-size: var(--heading-font-size-l);
+  }
+.forge-section-3 main .center .button-container.free-plan-container {
+    justify-content: unset;
+    margin: var(--spacing-600) auto 0;
+  }
+main .forge-section-3>.content {
+    max-width: var(--block-lg-max-width);
+  }
+}
+
+main .forge-section-3.long-form.narrow {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+main .forge-section-3.long-form .content, main .forge-section-3.long-form .text .foreground {
+  box-sizing: border-box;
+  padding-left: var(--spacing-350);
+  padding-right: var(--spacing-350);
+  max-width: unset;
+  width: var(--ax-grid-12-col-width);
+  margin: 0 auto;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+main .forge-section-3.long-form .content h1 {
+  font-size: var(--heading-font-size-xl);
+}
+
+main .forge-section-3.long-form .content h2 {
+  font-size: var(--heading-font-size-m);
+}
+
+main .forge-section-3.long-form.long-form-blog .content h2 {
+  font-size: var(--Global-Typography-Size-Headings-Heading-XL);
+  font-weight: var(--heading-font-weight-extra);
+  line-height: 104%;
+}
+
+main .forge-section-3.long-form .content h3, main .forge-section-3.long-form .content h4, main .forge-section-3.long-form .content h5, main .forge-section-3.long-form .content h6 {
+  font-size: var(--heading-font-size-s);
+  color: var(--color-gray-950);
+}
+
+main .forge-section-3.long-form.long-form-blog .content :is(h3, h4, h5, h6) {
+  font-size: var(--Global-Typography-Size-Headings-Heading-L);
+  line-height: 104%;
+  font-weight: var(--heading-font-weight-extra);
+}
+
+main .forge-section-3.long-form .content, main .forge-section-3.long-form .content :is(p:not(.button-container, :has(.con-button)), h1, h2, h3, h4, h5, h6) {
+  text-align: left;
+}
+
+main .forge-section-3.long-form .content, main .forge-section-3.long-form .content p:not(.button-container, :has(.con-button)) {
+  color: var(--palette-gray-700);
+}
+
+main .forge-section-3.long-form .content :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--palette-gray-900);
+}
+
+main .forge-section-3.long-form .content h1, main .forge-section-3.long-form .content h2, main .forge-section-3.long-form .content h3, main .forge-section-3.long-form .content h4 {
+  margin-top: 0;
+  color: var(--color-gray-950);
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+main .forge-section-3.long-form .content p {
+  margin-top: var(--spacing-300);
+  color: var(--color-dark-gray);
+}
+
+main .forge-section-3.long-form .content :is(p, ul, ol) {
+  font-size: var(--Global-Typography-Size-Body-Body-M);
+  line-height: 130%;
+}
+
+main .forge-section-3.long-form-blog .content .button-container a {
+  margin-bottom: var(--spacing-100);
+}
+
+main .forge-section-3.long-form-blog .milo-video {
+  margin-bottom: var(--spacing-400);
+}
+
+@media (min-width: 768px) {
+main .forge-section-3.long-form .content, main .forge-section-3.long-form .text .foreground {
+    padding: 0 var(--spacing-600) 0;
+    width: var(--ax-grid-8-col-width);
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 1024px) {
+main .forge-section-3.long-form .content, main .forge-section-3.long-form .text .foreground {
+    /* Desktop: 7 columns, shifted right to accommodate fixed TOC */
+    max-width: var(--ax-grid-7-col-width);
+    margin-left: calc(var(--ax-grid-3-col-width) + var(--spacing-600) + var(--ax-grid-gutter));
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1680px) {
+main .forge-section-3.long-form .content, main .forge-section-3.long-form .text .foreground {
+    margin: 0 auto;
+  }
+}
+
+.forge-section-3 main .marquee.transpiled p.action-area>span {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.forge-section-3 main .marquee.transpiled p.action-area>span>a {
+  margin: 0;
+}
+
+.forge-section-3 main .marquee.transpiled.small .text {
+  order: 2;
+}
+
+.forge-section-3 main .marquee.transpiled .foreground .text h2 {
+  font-weight: 700;
+  text-transform: none;
+  font-size: clamp(var(--heading-font-size-s), 3vw, var(--heading-font-size-l));
+  margin: 0 0 var(--spacing-100) 0;
+}
+
+@media screen and (min-width: 600px) {
+.forge-section-3 main .marquee.transpiled .foreground .text h2 {
+    font-size: var(--heading-font-size-s);
+  }
+.forge-section-3 main .marquee.transpiled .action-area {
+    align-items: flex-start;
+  }
+.forge-section-3 main .marquee.transpiled.small .text {
+    order: 1;
+  }
+}
+
+body:not(.blog) main #hero:not(:has(.hero-bg))+.forge-section-3 {
+  padding-top: 0;
+}
+
+.forge-section-3 .marquee.light.xxl-button .action-area a {
+  margin: 0;
+}
+
+.forge-section-3 .marquee.light.xxl-button a:not(.con-button) {
+  text-decoration: underline;
+}
+
+.forge-section-3.display-none {
+  display: none;
+  height: var(--spacing-0);
+}
+
+main .forge-section-3.zero-margin:not([data-padding='none']) .content:first-child {
+  padding-top: var(--spacing-0);
+}
+
+main .forge-section-3.no-h2-margin h2, main .forge-section-3.no-h2-margin .content h2 {
+  margin: 0;
+}
+
+.forge-section-3 .text.ax-eyebrow :is([class^="heading-"]:only-child, [class^="body-"]:only-child, [class^="detail-"]) {
+  color: var(--palette-gray-600);
+  font-size: var(--Global-Typography-Size-Title-Title-XS);
+  line-height: var(--Global-Typography-Line-height-Title-Title-XS);
+  font-weight: 700;
+}
+
+.forge-section-3 .grid-marquee {
+  --m-img-w: 152px;
+  --t-img-w: 304px;
+  --d-img-w: 254px;
+  max-width: initial;
+  text-align: center;
+}
+
+main .forge-section-3 .grid-marquee h1 {
+  font-size: var(--heading-font-size-m);
+  padding-bottom: var(--spacing-100);
+}
+
+.forge-section-3 .grid-marquee .background {
+  width: 100%
+}
+
+.forge-section-3 .grid-marquee.with-hero-above .background {
+  position: relative;
+  z-index: -1;
+  top: var(--ax-grid-margin);
+}
+
+.forge-section-3 .grid-marquee .background img {
+  position: absolute;
+  top: 50%;
+  object-fit: fill;
+  width: 250%;
+  transform: translate(-50%, -35%);
+  max-height: 600px;
+  max-width: 1200px;
+}
+
+.forge-section-3 .grid-marquee.with-hero-above .background img {
+  max-height: 550px;
+}
+
+.forge-section-3 .grid-marquee .foreground {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forge-section-3 .grid-marquee .drawer .content {
+  overflow: auto;
+  scrollbar-width: thin;
+  width: 100%;
+}
+
+main .forge-section-3 .grid-marquee.pricing-page h1 {
+  font-weight: 900;
+  font-size: var(--heading-size);
+  line-height: 130%;
+  text-align: center;
+  padding-bottom: var(--padding-bottom);
+ 
+}
+
+@media screen and (min-width: 768px) {
+.forge-section-3 .grid-marquee .background img {
+    max-width: 1500px;
+    max-height: 1200px;
+  }
+.forge-section-3 .grid-marquee .drawer .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+.forge-section-3 .grid-marquee .background img {
+    max-height: 600px;
+    max-width: 1800px;
+  }
+main .forge-section-3 .grid-marquee .headline h1 {
+    font-size: var(--heading-font-size-xl);
+    font-weight: var(--heading-font-weight-extra);
+  }
+.forge-section-3 .grid-marquee .drawer .content {
+    display: block;
+  }
+}
+
+.forge-section-3 a[is='checkout-link'].con-button > span {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  min-width: 66px;
+}
+
+#checkout-link-modal > .forge-section-3 {
+  width: 100%;
+  height: auto;
+}
+
+.forge-section-3 .gen-ai-cards-wrapper {
+  max-width: none;
+  margin: auto;
+}
+
+.forge-section-3:not(.xxxl-spacing-static, .xxl-spacing-static, .xl-spacing-static, .xxxl-spacing, .xxl-spacing, .xl-spacing,
+  .l-spacing, .m-spacing, .s-spacing, .xs-spacing, .xxs-spacing) .gen-ai-cards.homepage:first-child {
+  padding-top: 60px;
+}
+
+.forge-section-3 .gen-ai-cards-wrapper.homepage {
+  max-width: fit-content;
+}
+
+@media (min-width: 768px) {
+.forge-section-3:has(.gen-ai-cards.homepage.v2) {
+    padding-top: var(--spacing-500);
+    padding-bottom: var(--spacing-500);
+  }
+}
+
+@media (min-width: 1280px) {
+.forge-section-3:has(.gen-ai-cards.homepage.v2) {
+    padding-top: var(--spacing-800);
+    padding-bottom: var(--spacing-800);
+  }
+}
+
+.forge-section-3 .gen-ai-cards.homepage.v2 {
+  padding: 0;
+}
+
+.forge-section-3:has(.gen-ai-cards.homepage.v2) {
+  padding-top: var(--spacing-400);
+  padding-bottom: var(--spacing-400);
+}
+
+main .forge-section-3 .discover-cards {
+    max-width: none;
+    text-align: center;
+}
+
+.forge-section-3:not([data-padding='none']):not(.xxxl-spacing-static, .xxl-spacing-static, .xl-spacing-static, .xxxl-spacing, .xxl-spacing, .xl-spacing,
+.l-spacing, .m-spacing, .s-spacing, .xs-spacing, .xxs-spacing) .discover-cards:first-child:not(.flip):not(.v2) {
+    padding-top: 60px;
+}
+
+.forge-section-3:has(.discover-cards.v2) {
+  padding-top: var(--spacing-600);
+  padding-bottom: var(--spacing-600);
+}
+
+.forge-section-3 .discover-cards .card .button-container a {
+    background-color: var(--color-gray-800-variant);
+    color: var(--color-white);
+    border: none;
+    margin-top: var(--spacing-500);
+    margin-left: 0;
+}
+
+@media (min-width: 600px) {
+.forge-section-3:has(.discover-cards.v2) {
+      padding-top: var(--spacing-600);
+      padding-bottom: var(--spacing-600);
+    }
+}
+
+@media (min-width: 1200px) {
+.forge-section-3:has(.discover-cards.v2) {
+    padding-top: var(--spacing-800);
+    padding-bottom: var(--spacing-800);
+  }
+}
+
+.forge-section-3 .discover-cards .gallery.center.gallery--all-displayed {
+    justify-content: center;
+}
+
+.forge-section-3 .quotes-wrapper, .forge-section-3 .content:has(+ .quotes-wrapper) {
+  max-width: 375px;
+  margin: auto;
+}
+
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel), .forge-section-3 .content:has(+ .carousel) {
+  max-width: unset;
+  padding-top: var(--spacing-600);
+  padding-left: var(--spacing-300);
+  padding-right: var(--spacing-300);
+}
+
+.forge-section-3 .quotes-wrapper .quote .author-content .summary p {
+  font-size: 12px;
+}
+
+.forge-section-3 .quotes:not(.carousel) .quote .content {
+  padding-top: 28px;
+  font-size: 1rem;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.forge-section-3 .template.basic-carousel-element.quote {
+  width: 100%;
+  margin-bottom: var(--spacing-400);
+}
+
+.forge-section-3 .quotes-wrapper .basic-carousel-container .template.basic-carousel-element.quote:nth-child(2) {
+  margin-left: var(--spacing-400);
+  margin-right: var(--spacing-300);
+}
+
+.forge-section-3 .quotes-wrapper .basic-carousel-platform > .template.basic-carousel-element.quote:not(:nth-child(2)) {
+  margin-left: 0;
+  margin-right: var(--spacing-300)
+}
+
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel) .basic-carousel-container {
+  scroll-padding-left: var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+}
+
+.forge-section-3 .quotes-wrapper .quotes-ratings-wrapper .basic-carousel-container .basic-carousel-fader-left.arrow-hidden a.button.basic-carousel-arrow::before, .forge-section-3 .quotes-wrapper .quotes-ratings-wrapper .basic-carousel-container .basic-carousel-fader-right.arrow-hidden a.button.basic-carousel-arrow::before {
+  opacity: 0.7;
+  border-radius: 2px;
+}
+
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel) .basic-carousel-container .basic-carousel-platform {
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: auto;
+  display: flex;
+  align-items: end;
+  background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0) 50%);
+}
+
+.forge-section-3 .quotes.carousel .quote {
+  display: flex;
+  min-height: 0;
+  width: 348px;
+  min-width: 348px;
+  max-width: 348px;
+  padding: var(--spacing-400);
+  flex-direction: column;
+  gap: 16px;
+  border-radius: var(--Marquee-grid-Card-Card-Radius, 16px);
+  background: var(--Alias-background-app-frame-layer-1, #F8F8F8);
+  /* Drop shadow/emphasized-default */
+  box-shadow: 0px 1px 6px 0px var(--Alias-drop-shadow-emphasized-default, rgba(0, 0, 0, 0.12));
+  flex: 1 1 auto;
+}
+
+.forge-section-3:has(.quotes)>div>h2 {
+  margin-top: 80px;
+}
+
+.forge-section-3 .quotes {
+  margin-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.forge-section-3:not(.xxxl-spacing-static, .xxl-spacing-static, .xl-spacing-static, .xxxl-spacing, .xxl-spacing, .xl-spacing,
+.l-spacing, .m-spacing, .s-spacing, .xs-spacing, .xxs-spacing) .quotes:last-child {
+  padding-bottom: 80px;
+}
+
+.forge-section-3 .quotes-wrapper .quotes.carousel {
+  margin: 0 -24px;
+  padding-bottom: 0;
+}
+
+.forge-section-3 .quotes.singular {
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+
+.forge-section-3 .quotes.singular .quote-comment p {
+  margin: 0;
+  font-size: 22px;
+  font-weight: var(--heading-font-weight);
+  text-align: left;
+  line-height: initial;
+}
+
+.forge-section-3 .quotes .quote {
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
+  background: var(--color-white);
+}
+
+.forge-section-3 .quotes .quote .author .author-content {
+  display: flex;
+  align-items: center;
+}
+
+.forge-section-3 .quotes.quotes:not(.carousel) .quote .author .author-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.forge-section-3 .quotes .quote .author .author-content img {
+  margin-bottom: 16px;
+}
+
+.forge-section-3 .template.basic-carousel-element.quote {
+  transition: background-color 300ms ease;
+}
+
+.forge-section-3 .template.basic-carousel-element.quote:hover {
+  background-color: #FFFFFF;
+}
+
+.forge-section-3 .quotes.carousel .quote .author-content {
+  flex-direction: column;
+}
+
+.forge-section-3 .quotes.carousel .basic-carousel-element.quote .author:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: var(--spacing-300);
+  background-color: #C6C6C6;
+}
+
+.forge-section-3 .quotes:not(.carousel) .quote .author .summary {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.forge-section-3 .quotes .quote .author-content .image {
+  padding-right: 10px;
+}
+
+.forge-section-3 .quotes-ratings-wrapper .quote .author .image {
+  padding-right: 0;
+}
+
+.forge-section-3 .quotes .quote .content::before {
+  content: '“';
+  display: block;
+  margin-top: -15px;
+  width: 36px;
+  text-align: left;
+  font-size: 72px;
+  font-weight: 900;
+}
+
+.forge-section-3 .quotes.carousel .quote .content::before {
+  display: none;
+}
+
+.forge-section-3 .quotes .quote p {
+  margin: 32px 0;
+}
+
+.forge-section-3 .quotes:not(.carousel) .quote .author {
+  flex-wrap: nowrap;
+  align-items: self-start;
+  align-self: baseline;
+  margin-top: 16px;
+}
+
+.forge-section-3 .quotes.carousel .quote .author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0;
+}
+
+.forge-section-3 .quotes.carousel .quote .author {
+  display: flex;
+  margin-top: 0;
+  align-items: center;
+}
+
+.forge-section-3 .quotes.carousel .quote .author > p {
+  display: none;
+}
+
+.forge-section-3 .quotes .quote .author hr {
+  display: none;
+}
+
+.forge-section-3 .quotes.carousel .quote .author .summary p:first-of-type {
+  font-size: var(--body-font-size-s);
+}
+
+.forge-section-3 .quotes.carousel .quote .author .summary p:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper .quote .content {
+  text-align: center;
+}
+
+.forge-section-3 .quotes .quote .author .image img {
+  object-fit: cover;
+  width: 42px;
+  height: 42px;
+  max-width: unset;
+  border-radius: 21px;
+  box-sizing: border-box;
+}
+
+.forge-section-3 main div:has(> .quotes-wrapper .singular.quotes) {
+  padding-top: 0;
+}
+
+.forge-section-3 main .quotes-wrapper:has(.singular.quotes) {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: unset;
+}
+
+.forge-section-3 main .quotes.singular {
+  width: 100%;
+}
+
+.forge-section-3 main .quotes.singular .quote-container {
+  width: 100%;
+}
+
+.forge-section-3 main .quotes.singular .quote-container .desktop-container {
+  position: relative;
+  display: none;
+}
+
+.forge-section-3 main .quotes.singular .quote-container .mobile-container {
+  position: relative;
+}
+
+.forge-section-3 main .quotes.singular .quote-container .mobile-container .quote {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+.forge-section-3 main .quotes.singular .quote-container .desktop-container {
+    display: block;
+  }
+.forge-section-3 main .quotes.singular .quote-container .mobile-container {
+    display: none;
+  }
+.forge-section-3 .quotes-wrapper .quotes.carousel {
+    margin: 0px -40px;
+  }
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel), .forge-section-3 .content:has(+ .carousel) {
+    padding-top: var(--spacing-600);
+    padding-left: var(--spacing-500);
+    padding-right: var(--spacing-500);
+  }
+.forge-section-3 .quotes-wrapper .basic-carousel-container .template.basic-carousel-element.quote:nth-child(2) {
+    margin-left: var(--spacing-600);
+  }
+}
+
+.forge-section-3 main .quotes.singular .quote-container .desktop-container .background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.forge-section-3 main .quotes.singular .quote-container .mobile-container .background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.forge-section-3 main .quotes.singular .quote {
+  display: flex;
+  flex-flow: row;
+  background: transparent;
+  justify-content: center;
+  padding: 64px 0;
+  min-height: 370px;
+}
+
+.forge-section-3 main .quotes.singular .author-photo {
+  width: 100px;
+  height: 100px;
+  min-width: 100px; /* at certain container width, the 100px width may be made smaller by the browser, so impose a min-width */
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.forge-section-3 main .quotes.singular .author-photo picture, .forge-section-3 main .quotes.singular .author-photo picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  display: inline-block;
+}
+
+.forge-section-3 main .quotes.singular .mobile-container .author-photo {
+  width: 60px;
+  height: 60px;
+  min-width: 60px; /* at certain container width, the 60px width may be made smaller by the browser, so impose a min-width */
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.forge-section-3 main .quotes.singular .mobile-container .author-photo picture, .forge-section-3 main .quotes.singular .mobile-container .author-photo picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  display: inline-block;
+}
+
+.forge-section-3 main .quotes.singular .quote-details {
+  margin: 0 16px;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: left;
+  line-height: initial;
+}
+
+.forge-section-3 main .quotes.singular .desktop-container .quote-details {
+  margin-left: 30px;
+}
+
+.forge-section-3 main .quotes.singular .author-description {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.forge-section-3 main .quotes.singular .mobile-container .author-panel {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.forge-section-3 main .quotes.singular .mobile-container .author-panel .author-photo {
+  margin-right: 15px;
+}
+
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 475px;
+  margin-left: 24px;
+}
+
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper .container div:first-child {
+  width: 100%;
+}
+
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper h2 {
+  font-size: var(--heading-font-size-s);
+  font-weight: 900;
+  line-height: 130%;
+  margin-bottom: var(--spacing-400);
+}
+
+.forge-section-3 .quotes.carousel .ratings-container {
+  max-width: 222px;
+  margin-bottom: var(--spacing-500);
+}
+
+.forge-section-3 .quotes.carousel .rating-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: var(--spacing-200);
+}
+
+.forge-section-3 .quotes.carousel .rating-votes {
+  display: flex;
+  justify-content: center;
+}
+
+.forge-section-3 .quotes.carousel .ratings-container .rating-average {
+  color: #000;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 130%;
+}
+
+.forge-section-3 .quotes.carousel .ratings-container .rating-count {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  color: #000;
+  font-size: 14px;
+}
+
+.forge-section-3 .quotes.carousel .no-slider, .forge-section-3 .quotes.carousel .no-slider a {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 130%;
+  text-align: center;
+}
+
+.forge-section-3 .quotes.carousel .no-slider a {
+  text-decoration: underline;
+  color: var(--color-black);
+}
+
+.forge-section-3 .quotes.carousel .ratings .slider-comment textarea {
+  resize: none;
+  border: 2px solid var(--color-gray-400);
+  border-radius: 6px;
+  padding: 10px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  color: var(--body-color);
+  margin: 16px 0;
+  background: var(--color-white);
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.forge-section-3 .quotes.carousel .ratings .slider-comment textarea.invalid {
+  border-color: rgb(229, 151, 0);
+}
+
+.forge-section-3 .quotes.carousel .ratings .slider-comment input[type="submit"] {
+  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+  color: var(--body-color);
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  margin: 0;
+  padding: 13px 1.5em 13px 1.5em;
+  border-radius: 27px;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+  border: 2px solid var(--color-gray-200);
+  background: var(--color-gray-200);
+}
+
+.forge-section-3 .quotes.ratings .hover-ratings {
+  position: relative;
+  display: inline-block;
+}
+
+.forge-section-3 .quotes.ratings .hover-stars {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.forge-section-3 .quotes.ratings .hover-stars .timer {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.forge-section-3 .quotes.ratings .hover-stars .timer .lottie {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.forge-section-3 .quotes.ratings .hover-star {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.forge-section-3 .quotes.ratings .hover-star:hover {
+  transform: scale(1.1);
+}
+
+.forge-section-3 .quotes.ratings .hover-star .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-gray-200);
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.forge-section-3 main .quotes.ratings .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.forge-section-3 main .quotes.carousel .ratings .icon.icon-star, .forge-section-3 main .quotes.carousel .ratings button.selected .icon.icon-star {
+  color: var(--color-info-accent);
+}
+
+.forge-section-3 .quotes.ratings .hover-star:not(.hover) .icon.icon-star {
+  color: var(--color-gray-200);
+}
+
+.forge-section-3 .quotes.ratings .hover-star:hover .icon, .forge-section-3 .quotes.ratings .hover-star.hover .icon {
+  color: var(--color-info-accent);
+}
+
+.forge-section-3 .quotes.ratings .hover-star.selected .icon {
+  color: var(--color-info-accent);
+}
+
+.forge-section-3 .quotes.ratings .hover-tooltip {
+  display: none;
+  visibility: hidden;
+  height: 0;
+}
+
+.forge-section-3 .quotes.ratings textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 8px;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.forge-section-3 .quotes.ratings textarea.invalid {
+  border-color: #dc3545;
+  background-color: #fff8f8;
+}
+
+.forge-section-3 .quotes.ratings textarea[aria-label] {
+  margin-bottom: 16px;
+}
+
+.forge-section-3 .quotes.ratings .slider-bottom .stars:hover {
+  color: var(--color-info-accent);
+}
+
+.forge-section-3 .quotes.carousel .quotes.ratings .hover-ratings {
+  margin: 0;
+}
+
+.forge-section-3 .quotes.carousel .quotes.ratings .hover-stars {
+  justify-content: center;
+}
+
+.forge-section-3 .quotes.carousel .ratings:has(.hover-ratings) {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+.forge-section-3 main .quotes.singular .quote {
+    width: 83.3%;
+    max-width: 968px;
+    min-height: 315px;
+  }
+.forge-section-3 .quotes.ratings .hover-stars .timer {
+    right: -50px;
+  }
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper .container {
+    max-width: 1410px;
+    width: unset;
+    margin-left: 40px;
+    display: block;
+  }
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper .container div:first-child {
+    width: 75%;
+  }
+.forge-section-3 .quotes.carousel .ratings:not(.submitted) {
+    display: flex;
+    width: 25%;
+    min-width: 300px;
+    align-items: center;
+    justify-content: center;
+  }
+.forge-section-3 .quotes.carousel .ratings:has(.hover-ratings) {
+    width: 100%;
+  }
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper h2 {
+    font-size: var(--heading-font-size-m);
+    font-weight: 900;
+    line-height: 130%;
+    margin-bottom: var(--spacing-500);
+    max-width: 495px;
+  }
+.forge-section-3 .quotes.carousel .ratings-container .rating-average {
+    color: #000;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 130%;
+    margin-bottom: 0;
+  }
+.forge-section-3 .quotes.carousel .ratings-container .rating-count {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+.forge-section-3 .quotes.ratings .hover-tooltip {
+    position: absolute;
+    top: -48px;
+    transform: translateX(-50%);
+    background-color: #2c2c2c;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+    z-index: 100;
+    display: none;
+  }
+.forge-section-3 .quotes.ratings .hover-tooltip[style*="display: block"] {
+    opacity: 1;
+    display: block;
+    visibility: visible;
+    height: auto;
+  }
+.forge-section-3 .quotes.ratings .hover-tooltip .tooltip-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+.forge-section-3 .quotes.ratings .hover-tooltip .tooltip-image {
+    display: flex;
+    align-items: center;
+    min-width: 20px;
+  }
+.forge-section-3 .quotes.ratings .hover-tooltip .tooltip-image .icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-white);
+    fill: var(--color-white);
+  }
+.forge-section-3 .quotes.ratings .hover-tooltip .tooltip-text {
+    color: var(--color-white);
+  }
+}
+
+@media (min-width: 1280px) {
+.forge-section-3 main .quotes.singular .quote {
+    width: 75%;
+    font-weight: 600;
+  }
+.forge-section-3 main .quotes.singular .quote-details {
+    font-size: 28px;
+  }
+.forge-section-3 .quotes.carousel .quotes-ratings-wrapper h2 {
+    font-size: var(--heading-font-size-l);
+  }
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel) .basic-carousel-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel) {
+    max-width: 1410px;
+  }
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel), .forge-section-3 .content:has(+ .carousel) {
+    padding: var(--spacing-900) var(--spacing-600) 0;
+  }
+.forge-section-3 .quotes-wrapper .basic-carousel-container .template.basic-carousel-element.quote:nth-child(2) {
+    margin-left: var(--spacing-600);
+  }
+}
+
+@media (min-width: 1550px) {
+.forge-section-3 .quotes-wrapper:has(.quotes.carousel), .forge-section-3 .content:has(+ .carousel) {
+    padding: var(--spacing-900) 0 0 0;
+  }
+}
+
+@media (min-width: 1680px) {
+.forge-section-3 main .quotes.singular .quote {
+    max-width: 1120px;
+  }
+}
+
+.forge-section-3 .quotes .quote .author .summary p {
+  text-align: left;
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.forge-section-3 .quotes.carousel .quote .author .summary p {
+  text-align: center;
+}
+
+.forge-section-3 .quotes h2, .forge-section-3 .quotes h3, .forge-section-3 .quotes h4, .forge-section-3 .quotes h5 {
+  color: var(--color-black);
+}
+
+@media (min-width: 900px) {
+.forge-section-3 .quotes-wrapper, .forge-section-3 .content:has(+ .quotes-wrapper) {
+    max-width: 724px;
+  }
+.forge-section-3 .quotes:not(.carousel) {
+    flex-direction: row;
+    gap: 16px;
+  }
+.forge-section-3 .quotes .quote {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1200px) {
+.forge-section-3 .quotes-wrapper, .forge-section-3 .content:has(+ .quotes-wrapper) {
+    max-width: 1024px;
+  }
+.forge-section-3 .basic-carousel-container .template.basic-carousel-element.quote:nth-child(2) {
+    margin-left: 40px;
+  }
+}
+
+.forge-section-3 .quotes .quote blockquote.content {
+  text-align: center;
+  margin: 0;
+}
+
+.forge-section-3 .quotes .quote blockquote.content .inner-content {
+  text-align: left;
+  margin: 0;
+  line-height: 20px;
+  font-size: var(--body-font-size-m);
+}
+
+.forge-section-3.darkest {
+  background-color: rgb(0 0 0);
+  color: rgb(255 255 255);
+}
+
+.forge-section-3.dark {
+  background-color: rgb(29 29 29);
+  color: rgb(255 255 255);
+}
+
+.forge-section-3.light {
+  background-color: rgb(255 255 255);
+  color: rgb(34 34 34);
+}
+
+.forge-section-3.hide-sticky-section, .forge-section-3.close-sticky-section {
+  display: none;
+}
+
+.forge-section-3.has-background {
+  background-color: unset;
+}
+
+.forge-section-3.xxxl-spacing-static { padding: var(--spacing-xxxl-static) 0; }
+
+.forge-section-3.xxl-spacing-static { padding: var(--spacing-xxl-static) 0; }
+
+.forge-section-3.xl-spacing-static { padding: var(--spacing-xl-static) 0; }
+
+.forge-section-3.xxxl-spacing-top-static { padding-top: var(--spacing-xxxl-static); }
+
+.forge-section-3.xxl-spacing-top-static { padding-top: var(--spacing-xxl-static); }
+
+.forge-section-3.xl-spacing-top-static { padding-top: var(--spacing-xl-static); }
+
+.forge-section-3.xxxl-spacing-bottom-static { padding-bottom: var(--spacing-xxxl-static); }
+
+.forge-section-3.xxl-spacing-bottom-static { padding-bottom: var(--spacing-xxl-static); }
+
+.forge-section-3.xl-spacing-bottom-static { padding-bottom: var(--spacing-xl-static); }
+
+.forge-section-3.xxxl-spacing { padding: var(--spacing-xxxl) 0; }
+
+.forge-section-3.xxl-spacing { padding: var(--spacing-xxl) 0; }
+
+.forge-section-3.xl-spacing { padding: var(--spacing-xl) 0; }
+
+.forge-section-3.l-spacing { padding: var(--spacing-l) 0; }
+
+.forge-section-3.m-spacing { padding: var(--spacing-m) 0; }
+
+.forge-section-3.s-spacing { padding: var(--spacing-s) 0; }
+
+.forge-section-3.xs-spacing { padding: var(--spacing-xs) 0; }
+
+.forge-section-3.xxs-spacing { padding: var(--spacing-xxs) 0; }
+
+.forge-section-3.xxxl-spacing-top { padding-top: var(--spacing-xxxl); }
+
+.forge-section-3.xxl-spacing-top { padding-top: var(--spacing-xxl); }
+
+.forge-section-3.xl-spacing-top { padding-top: var(--spacing-xl); }
+
+.forge-section-3.l-spacing-top { padding-top: var(--spacing-l); }
+
+.forge-section-3.m-spacing-top { padding-top: var(--spacing-m); }
+
+.forge-section-3.s-spacing-top { padding-top: var(--spacing-s); }
+
+.forge-section-3.xs-spacing-top { padding-top: var(--spacing-xs); }
+
+.forge-section-3.xxs-spacing-top { padding-top: var(--spacing-xxs); }
+
+.forge-section-3.xxxl-spacing-bottom { padding-bottom: var(--spacing-xxxl); }
+
+.forge-section-3.xxl-spacing-bottom { padding-bottom: var(--spacing-xxl); }
+
+.forge-section-3.xl-spacing-bottom { padding-bottom: var(--spacing-xl); }
+
+.forge-section-3.l-spacing-bottom { padding-bottom: var(--spacing-l); }
+
+.forge-section-3.m-spacing-bottom { padding-bottom: var(--spacing-m); }
+
+.forge-section-3.s-spacing-bottom { padding-bottom: var(--spacing-s); }
+
+.forge-section-3.xs-spacing-bottom { padding-bottom: var(--spacing-xs); }
+
+.forge-section-3.xxs-spacing-bottom { padding-bottom: var(--spacing-xxs); }
+
+.forge-section-3.xxxl-padding { padding: var(--spacing-xxxl); }
+
+.forge-section-3.xxl-padding { padding: var(--spacing-xxl); }
+
+.forge-section-3.xl-padding { padding: var(--spacing-xl); }
+
+.forge-section-3.l-padding { padding: var(--spacing-l); }
+
+.forge-section-3.m-padding { padding: var(--spacing-m); }
+
+.forge-section-3.s-padding { padding: var(--spacing-s); }
+
+.forge-section-3.xs-padding { padding: var(--spacing-xs); }
+
+.forge-section-3.xxs-padding { padding: var(--spacing-xxs); }
+
+.forge-section-3 picture.section-background {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.forge-section-3 .section-background img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.forge-section-3.center .content > h1, .forge-section-3.center .content > h2, .forge-section-3.center .content > h3, .forge-section-3.center .content > h4, .forge-section-3.center .content > h5, .forge-section-3.center .content > h6, .forge-section-3.center .content > p {
+  text-align: center;
+}
+
+.forge-section-3.divider {
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.forge-section-3.divider-inherit {
+  border-bottom: 1px solid;
+}
+
+.forge-section-3.center[class*='-up'] {
+  justify-items: center;
+}
+
+.forge-section-3[class*='-up'].no-gap {
+  gap: 0;
+}
+
+.forge-section-3[class*='-up'].xxs-gap {
+  gap: var(--spacing-xxs);
+}
+
+.forge-section-3[class*='-up'].xs-gap {
+  gap: var(--spacing-xs);
+}
+
+.forge-section-3[class*='-up'].s-gap {
+  gap: var(--spacing-s);
+}
+
+.forge-section-3[class*='-up'].l-gap {
+  gap: var(--spacing-l);
+}
+
+.forge-section-3[class*='-up'].xl-gap {
+  gap: var(--spacing-xl)
+}
+
+.forge-section-3[class*='-up'].xxl-gap {
+  gap: var(--spacing-xxl);
+}
+
+.forge-section-3[class*='-up'].xxxl-gap {
+  gap: var(--spacing-xxxl);
+}
+
+.forge-section-3.two-up, .forge-section-3.three-up, .forge-section-3.four-up, .forge-section-3.five-up {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(276px, 1fr));
+  gap: var(--spacing-m);
+  align-items: start;
+  padding-left: var(--grid-margins-width);
+  padding-right: var(--grid-margins-width);
+}
+
+.forge-section-3.five-up {
+  grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
+}
+
+.forge-section-3.sticky-top {
+  position: sticky;
+  top: 57px;
+  z-index: 4;
+  background-color: var(--color-white);
+}
+
+.forge-section-3.sticky-top:has(.notification.pill) {
+  height: 0;
+}
+
+.forge-section-3.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  background-color: var(--color-white);
+}
+
+.forge-section-3.sticky-bottom.promo-sticky-section {
+  background: none;
+  z-index: 4;
+}
+
+.forge-section-3.sticky-bottom.promo-sticky-section:has(.notification.split.focus) {
+  z-index: 10;
+}
+
+.forge-section-3.sticky-bottom.popup, .forge-section-3.sticky-bottom:has(.notification.pill) {
+  bottom: var(--spacing-xs);
+}
+
+.forge-section-3.sticky-bottom:has(.notification.split) {
+  bottom: 5px;
+}
+
+.forge-section-3[class*='grid-width-'] {
+  padding-left: var(--grid-margins-width);
+  padding-right: var(--grid-margins-width);
+  display: grid;
+  gap: var(--spacing-m);
+}
+
+.forge-section-3[class*='grid-width-'] > .content, main > .forge-section-3[class*='-up'] > .content {
+  max-width: initial;
+  margin: 0;
+}
+
+.forge-section-3.masonry-layout {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-s);
+  padding-left: var(--grid-margins-width);
+  padding-right: var(--grid-margins-width);
+}
+
+.forge-section-3.masonry-layout > div[class*='grid-'], .forge-section-3.masonry-layout > div[class*='grid-'] > div.fragment, .forge-section-3.masonry-layout > div[class*='grid-'] > div.fragment > div.section {
+  display: grid;
+}
+
+.forge-section-3 .show-more-button {
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+  gap: 10px;
+  border-radius: 8px;
+}
+
+.forge-section-3 .show-more-button button {
+  background-color: inherit;
+  border: none;
+  color: #070707;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: var(--type-body-m-size);
+  font-weight: 700;
+  line-height: 22px;
+  padding: var(--spacing-xxs) var(--spacing-s);
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.forge-section-3 .show-more-button.hidden {
+  display: none;
+}
+
+.forge-section-3 .show-more-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.forge-section-3.vertical-center {
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+.forge-section-3.two-up.reverse-mobile > div:nth-child(1) {
+    order: 2;
+  }
+.forge-section-3.two-up.reverse-mobile > div:nth-child(2) {
+    order: 1;
+  }
+.forge-section-3:has(> .show-more-button), .forge-section-3.show-all {
+    margin-inline: 30px;
+    padding: var(--spacing-xs);
+    border-radius: 8px;
+    grid-template-columns: none;
+  }
+.forge-section-3:has(> .show-more-button) > *:nth-child(n+4):not(.show-more-button):not(.section-metadata) {
+    display: none;
+  }
+.forge-section-3.show-all > *:nth-child(n+4):not(.show-more-button):not(.section-metadata) {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+.forge-section-3.five-up {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+.forge-section-3.one-up-tablet { grid-template-columns: 1fr; }
+.forge-section-3.three-up-tablet { grid-template-columns: repeat(3, 1fr); }
+.forge-section-3.four-up-tablet { grid-template-columns: repeat(4, 1fr); }
+.forge-section-3.masonry-layout {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+.forge-section-3.masonry-layout .grid-full-width {
+    grid-column: 1 / -1;
+  }
+.forge-section-3 .show-more-button {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 720px) {
+.forge-section-3.grid-width-6 {
+    padding-left: calc((100vw - 600px) / 2);
+    padding-right: calc((100vw - 600px) / 2);
+  }
+.forge-section-3 .show-more-button {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 920px) {
+.forge-section-3.grid-width-8 {
+    padding-left: calc((100vw - 800px) / 2);
+    padding-right: calc((100vw - 800px) / 2);
+  }
+}
+
+@media (min-width: 900px) {
+.forge-section-3.sticky-top {
+    top: 64px;
+  }
+}
+
+@media screen and (min-width: 1120px) {
+.forge-section-3.grid-width-10 {
+    padding-left: calc((100vw - 1000px) / 2);
+    padding-right: calc((100vw - 1000px) / 2);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+.forge-section-3.two-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+.forge-section-3.three-up {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+.forge-section-3.four-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+.forge-section-3.five-up {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+.forge-section-3.grid-template-columns-1-2 {
+    grid-template-columns: 1fr 2fr;
+  }
+.forge-section-3.grid-template-columns-2-1 {
+    grid-template-columns: 2fr 1fr;
+  }
+.forge-section-3.grid-template-columns-1-3 {
+    grid-template-columns: 1fr 3fr;
+  }
+.forge-section-3.grid-template-columns-3-1 {
+    grid-template-columns: 3fr 1fr;
+  }
+.forge-section-3.grid-width-6-desktop {
+    padding-left: var(--grid-margins-width-6);
+    padding-right: var(--grid-margins-width-6);
+  }
+.forge-section-3.grid-width-8-desktop {
+    padding-left: var(--grid-margins-width-8);
+    padding-right: var(--grid-margins-width-8);
+  }
+.forge-section-3.grid-width-10-desktop {
+    padding-left: var(--grid-margins-width-10);
+    padding-right: var(--grid-margins-width-10);
+  }
+.forge-section-3.masonry-layout {
+    grid-template-columns: repeat(12, 1fr);
+  }
+.forge-section-3.masonry-layout .grid-full-width {grid-column: span 12; }
+.forge-section-3.masonry-layout .grid-half-width {grid-column: span 6; }
+.forge-section-3.masonry-layout .grid-span-1 {grid-column: span 1; }
+.forge-section-3.masonry-layout .grid-span-2 {grid-column: span 2; }
+.forge-section-3.masonry-layout .grid-span-3 {grid-column: span 3; }
+.forge-section-3.masonry-layout .grid-span-4 {grid-column: span 4; }
+.forge-section-3.masonry-layout .grid-span-5 {grid-column: span 5; }
+.forge-section-3.masonry-layout .grid-span-6 {grid-column: span 6; }
+.forge-section-3.masonry-layout .grid-span-7 {grid-column: span 7; }
+.forge-section-3.masonry-layout .grid-span-8 {grid-column: span 8; }
+.forge-section-3.masonry-layout .grid-span-9 {grid-column: span 9; }
+.forge-section-3.masonry-layout .grid-span-10 {grid-column: span 10; }
+.forge-section-3.masonry-layout .grid-span-11 {grid-column: span 11; }
+}
+
+main .forge-section-3 .content-toggle-v2 { 
+    --button-height: 36px;
+    --spacing-button-padding-vertical: var(--spacing-200);
+    --button-exterior-padding: 2px;
+    --button-border-radius: 8px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-300);
+    max-width: max-content;
+}
+
+main .forge-section-3 .content-toggle-v2.padding-s {
+  padding: var(--spacing-300) 0 var(--spacing-400) 0;
+}
+
+@media screen and (min-width: 768px) {
+main .forge-section-3 .content-toggle-v2 {
+        --button-height: 40px;
+        --spacing-button-padding-vertical: var(--spacing-300);
+        max-width: 600px;
+        width: fit-content;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+main .forge-section-3 .content-toggle-v2.padding-m {
+        padding: var(--spacing-500) 0px;
+        margin: auto;
+        width: fit-content;
+    }
+main .forge-section-3 .content-toggle-v2.padding-400 {
+       padding: var(--spacing-400) 0px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+main .forge-section-3 .content-toggle-v2 {
+        padding: 0px var(--spacing-600);
+        box-sizing: border-box;
+        max-width: var(--ax-grid-12-col-width);
+    }
+main .forge-section-3 .content-toggle-v2.padding-m {
+        padding: var(--spacing-500) var(--spacing-600);
+    }
+}
+
+main .forge-section-3.content-toggle-hidden {
+  padding: 0;
+}
+
+main .fragment .forge-section-3.content-toggle-hidden > *, main .forge-section-3.content-toggle-hidden > * {
+  display: none;
+}
+
+.forge-section-3 .text-block {
+  --accent-height: 10px;
+
+  position: relative;
+}
+
+.forge-section-3 .dark .text-block, .forge-section-3 .text-block.dark {
+  color: #fff;
+}
+
+.forge-section-3 .text-block p, .forge-section-3 .text-block [class^="body-"] { margin: var(--spacing-xs) 0; }
+
+.forge-section-3 .text-block [class^="body-"]:only-child { margin: 0; }
+
+.forge-section-3 .text-block [class^="heading"] { margin: 0 0 var(--spacing-xs) 0; }
+
+.forge-section-3 .text-block [class^="detail"] { margin: 0 0 var(--spacing-xxs) 0; }
+
+.forge-section-3 .text-block [class^="detail"] strong { font-weight: unset; }
+
+.forge-section-3 .text-block .cta-container, .forge-section-3 .text-block p.action-area { margin-top: var(--spacing-s); }
+
+.forge-section-3 .text-block div > *:last-child { margin-bottom: 0; }
+
+.forge-section-3 .text-block.unstyled-list :is(ul, ol) {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.forge-section-3 .text-block.unstyled-list :is(ul, ol)[class^="body-"] > li:not(:first-child) { margin: inherit; }
+
+.forge-section-3 .grid .text-block div > *:last-child { margin-bottom: var(--spacing-s); }
+
+.forge-section-3 .text-block .foreground > div *:first-child { margin-top: 0; }
+
+.forge-section-3 .text-block .background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  overflow: hidden;
+}
+
+.forge-section-3 .text-block .background > div {
+  height: 100%;
+}
+
+.forge-section-3 .text-block .background img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.forge-section-3 .text-block .foreground {
+  max-width: var(--grid-container-width);
+  margin: 0 auto;
+}
+
+.forge-section-3 [class*=-up] .text-block .foreground {
+  max-width: none;
+  margin: 0;
+}
+
+.forge-section-3 .text-block .action-area {
+  margin-top: var(--spacing-s);
+  display: flex;
+  gap: var(--spacing-s);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.forge-section-3 .text-block .cta-container .action-area {
+  width: 100%;
+}
+
+.forge-section-3 .text-block hr {
+  border-color: #e1e1e1;
+  border-style: solid;
+  margin: var(--spacing-m) 0;
+}
+
+.forge-section-3 .text-block .title-l {
+  font-size: var(--type-body-m-size);
+  line-height: var(--type-body-m-lh);
+  font-weight: 700;
+  text-transform: none;
+  margin-bottom: var(--spacing-xs);
+}
+
+.forge-section-3 .text-block :is(.image, .lockup-area) {
+  margin-block-end: var(--spacing-m);
+}
+
+.forge-section-3 .text-block .image em {
+  display: block;
+  font-size: var(--type-body-s-size);
+  line-height: var(--type-body-s-lh);
+  margin-block-start: var(--spacing-xs);
+}
+
+.forge-section-3 .text-block .icon-list-item {
+  list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"); /* Must not be `none` for accessibility */
+  position: relative;
+}
+
+.forge-section-3 .text-block .icon-list-item .icon.margin-right:not(.margin-left) { /* target first node only */
+  position: absolute;
+  inset: 0 100% auto auto;
+}
+
+.forge-section-3 .text-block.accent-bar {
+  inline-size: 100%;
+  block-size: var(--accent-height);
+}
+
+.forge-section-3 .text-block .lockup-area img {
+  width: auto;
+}
+
+.forge-section-3 .text-block.center {
+  text-align: center;
+  align-items: center;
+}
+
+.forge-section-3 .text-block .icon-area:not(:has(span.icon)) {
+  display: flex;
+  column-gap: var(--spacing-xs);
+}
+
+.forge-section-3 .text-block p.icon-area { /* NOT <a/> tags with icons in them */
+  margin-block-end: var(--spacing-m);
+}
+
+.forge-section-3 .text-block.xxs-icon .icon-area {
+  height: var(--icon-size-xxs);
+}
+
+.forge-section-3 .text-block.xs-icon .icon-area {
+  height: var(--icon-size-xs);
+}
+
+.forge-section-3 .text-block.s-icon .icon-area {
+  height: var(--icon-size-s);
+}
+
+.forge-section-3 .text-block.m-icon .icon-area {
+  height: var(--icon-size-m);
+}
+
+.forge-section-3 .text-block.l-icon .icon-area {
+  height: var(--icon-size-l);
+}
+
+.forge-section-3 .text-block.xl-icon .icon-area {
+  height: var(--icon-size-xl);
+}
+
+.forge-section-3 .text-block.xxl-icon .icon-area {
+  height: var(--icon-size-xxl);
+}
+
+.forge-section-3 .text-block .icon-area img {
+  max-height: 100%;
+  width: auto;
+}
+
+.forge-section-3 .text-block.center .action-area, .forge-section-3 .text-block.center .icon-area { justify-content: center; }
+
+.forge-section-3 .text-block.right {
+  text-align: end;
+  align-items: end;
+}
+
+.forge-section-3 .text-block.right .action-area, .forge-section-3 .text-block.right .icon-area { justify-content: end; }
+
+.forge-section-3 .vertical.text-block .foreground {
+  padding-bottom: var(--spacing-m);
+}
+
+.forge-section-3 .inset.text-block .foreground {
+  position: relative;
+  padding-top: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
+}
+
+.forge-section-3 .inset.text-block .foreground::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  left: -8.3%;
+  top: 0;
+  background: var(--color-gray-400);
+}
+
+.forge-section-3 .inset.text-block [class^="heading"]:nth-child(n+2) {
+  margin-top: var(--spacing-xxl);
+}
+
+.forge-section-3 .inset.text-block .foreground ul, .forge-section-3 .inset.text-block .foreground ol {
+  padding-left: var(--spacing-xs);
+}
+
+.forge-section-3 .legal.text-block {
+  padding: var(--spacing-xl) 0;
+}
+
+.forge-section-3 .legal.text-block .foreground {
+  font-style: italic;
+}
+
+.forge-section-3[class*='grid-width-'] .text-block .foreground {
+  max-width: unset;
+}
+
+.forge-section-3 .text-block .icon-area.con-button {
+  column-gap: unset;
+}
+
+.forge-section-3 .text-block .icon-area picture {
+  line-height: 0em;
+  height: inherit; /* Safari + FF bug fix */
+}
+
+.forge-section-3 .text-block .image picture {
+  display: flex;
+}
+
+.forge-section-3 .text-block.center .image picture {
+  justify-content: center;
+}
+
+.forge-section-3 .text-block.right .image picture {
+  justify-content: flex-end;
+}
+
+.forge-section-3 .text-block.icon-inline .foreground > div {
+  display: grid;
+  column-gap: var(--spacing-xs);
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  justify-content: start;
+}
+
+.forge-section-3 .text-block.icon-inline .foreground [class^="body-"], .forge-section-3 .text-block.icon-inline .foreground .cta-container {
+  grid-column: span 2;
+  margin-top: 0;
+}
+
+.forge-section-3 .text-block.icon-inline .icon-area {
+  margin-bottom: var(--spacing-xs);
+}
+
+.forge-section-3 .text-block.icon-inline .icon-area picture img {
+  min-width: var(--icon-size-m);
+  max-width: var(--icon-size-m);
+}
+
+.forge-section-3 .text-block.center .foreground > .mobile-up {
+  justify-content: center;
+}
+
+.forge-section-3 .text-block.right .foreground > .mobile-up {
+  justify-content: end;
+}
+
+.forge-section-3 .text-block .foreground > .desktop-up, .forge-section-3 .text-block .foreground > .tablet-up, .forge-section-3 .text-block.icon-inline .foreground > .desktop-up, .forge-section-3 .text-block.icon-inline .foreground > .tablet-up {
+  display: none;
+}
+
+.forge-section-3[class*="-up"] .text-block:not(.legal, .link-farm) {
+  display: flex;
+  align-self: stretch;
+}
+
+.forge-section-3[class*="-up"] .text-block:not(.legal, .link-farm) .foreground {
+  display: flex;
+  align-self: stretch;
+  width: 100%;
+}
+
+.forge-section-3[class*="-up"] .text-block:not(.legal, .link-farm, .inline) .foreground > div:not(:has(> strong)) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.forge-section-3[class*="-up"] .text-block:not(.legal, .link-farm) [class^="heading"], .forge-section-3[class*="-up"] .text-block:not(.legal, .link-farm) p:not([class^="detail-"]), .forge-section-3[class*="-up"] .text-block:not(.legal, .link-farm) [class^="body-"] {
+  margin-bottom: 0;
+}
+
+.forge-section-3[class*="-up"] .text-block:not(.legal, .link-farm) .cta-container {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 599px) {
+.forge-section-3 .text.text-block.left-mobile {
+    text-align: start;
+  }
+.forge-section-3 .text.text-block.center-mobile {
+    text-align: center;
+  }
+.forge-section-3 .text.text-block.left-mobile .action-area, .forge-section-3 .text.text-block.center-mobile .action-area {
+    gap: var(--spacing-xxs);
+  }
+.forge-section-3 .text.text-block.left-mobile .action-area, .forge-section-3 .text.text-block.left-mobile .icon-area {
+    justify-content: start;
+  }
+.forge-section-3 .text.text-block.center-mobile .action-area, .forge-section-3 .text.text-block.center-mobile .icon-area {
+    justify-content: center;
+  }
+.forge-section-3 .text.text-block.left-mobile .icon-area, .forge-section-3 .text.text-block.center-mobile .icon-area {
+    margin-block-end: var(--spacing-xxs);
+  }
+.forge-section-3 .text.text-block.left-mobile [class^="heading"], .forge-section-3 .text.text-block.center-mobile [class^="heading"] {
+    margin: 0 0 12px;
+  }
+.forge-section-3 .text.text-block.left-mobile [class^="body-"]:not(.action-area), .forge-section-3 .text.text-block.center-mobile [class^="body-"]:not(.action-area) {
+    margin: 12px 0 var(--spacing-xs) 0;
+  }
+}
+
+@media screen and (min-width: 600px) {
+.forge-section-3 .inset.text-block .foreground::before {
+    display: none;
+  }
+.forge-section-3 .inset.text-block .foreground {
+    border-left: 2px solid var(--color-gray-400);
+  }
+.forge-section-3 .inset.text-block .foreground > div {
+    padding-left: var(--spacing-l);
+  }
+.forge-section-3 .text-block .foreground > .tablet-up, .forge-section-3 .text-block .foreground > .tablet-up.desktop-up {
+    display: block;
+  }
+.forge-section-3 .text-block.icon-inline .foreground > .tablet-up, .forge-section-3 .text-block.icon-inline .foreground > .tablet-up.desktop-up {
+    display: grid;
+  }
+.forge-section-3 .text-block.center .foreground > .tablet-up {
+    justify-content: center;
+  }
+.forge-section-3 .text-block.right .foreground > .tablet-up {
+    justify-content: end;
+  }
+.forge-section-3 .text-block .foreground > .mobile-up, .forge-section-3 .text-block .foreground > .desktop-up, .forge-section-3 .text-block.icon-inline .foreground > .mobile-up, .forge-section-3 .text-block.icon-inline .foreground > .desktop-up {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+.forge-section-3 .mweb-enabled .text-block.s-lockup .lockup-area {
+    font-size: var(--type-lockup-xs-size);
+    letter-spacing: var(--type-lockup-xs-ls);
+    gap: 6px;
+  }
+.forge-section-3 .mweb-enabled .text-block.s-lockup .lockup-area img { height: var(--icon-size-xs); }
+.forge-section-3 .mweb-enabled .text-block.l-icon .icon-area { height: var(--icon-size-m); }
+}
+
+@media screen and (min-width: 1200px) {
+.forge-section-3 .text-block .foreground > .desktop-up, .forge-section-3 .text-block .foreground > .tablet-up.desktop-up {
+    display: block;
+  }
+.forge-section-3 .text-block.icon-inline .foreground > .desktop-up, .forge-section-3 .text-block.icon-inline .foreground > .tablet-up.desktop-up {
+    display: grid;
+  }
+.forge-section-3 .text-block.center .foreground > .desktop-up {
+    justify-content: center;
+  }
+.forge-section-3 .text-block.right .foreground > .desktop-up {
+    justify-content: end;
+  }
+.forge-section-3 .text-block .foreground > .mobile-up, .forge-section-3 .text-block .foreground > .tablet-up, .forge-section-3 .text-block.icon-inline .foreground > .mobile-up, .forge-section-3 .text-block.icon-inline .foreground > .tablet-up {
+    display: none;
+  }
+}
