@@ -1,0 +1,20 @@
+.forge-flow *,
+.forge-flow *::before,
+.forge-flow *::after {
+  box-sizing: border-box;
+}
+
+.section .forge-flow-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-flow .flow {
+  background: #f6f6f6;
+}
+
+.forge-flow .flow img {
+  width: 100%;
+  min-width: 1440px;
+  display: block;
+}

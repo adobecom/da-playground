@@ -1,0 +1,24 @@
+.forge-page-footer *, .forge-page-footer *::before, .forge-page-footer *::after { box-sizing: border-box; }
+.section .forge-page-footer-wrapper { max-width: unset; padding: 0; }
+.forge-page-footer .footer { background: #000; display: flex; flex-direction: column; gap: 124px; padding-bottom: 0; }
+.forge-page-footer .footer-main { display: flex; flex-direction: column; gap: 40px; }
+.forge-page-footer .footer-cols { display: flex; gap: 8px; padding: 0 124px; }
+.forge-page-footer .fcol { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.forge-page-footer .fcol-hd { font-size: 16px; font-weight: 700; line-height: 20px; color: #fff; white-space: pre-line; }
+.forge-page-footer .fcol-links { display: flex; flex-direction: column; gap: 8px; }
+.forge-page-footer .fcol-link { font-size: 16px; font-weight: 400; line-height: 20px; color: rgba(255,255,255,0.64); cursor: pointer; }
+.forge-page-footer .footer-prods { padding: 0 124px; display: flex; flex-direction: column; gap: 24px; }
+.forge-page-footer .footer-prods-hd { font-size: 16px; font-weight: 700; line-height: 20px; color: #fff; white-space: nowrap; }
+.forge-page-footer .footer-prod-row { display: flex; gap: 24px; align-items: center; }
+.forge-page-footer .fprod { display: flex; align-items: center; gap: 8px; }
+.forge-page-footer .fprod img { width: 16px; height: 16px; }
+.forge-page-footer .fprod-name { font-size: 12px; font-weight: 700; line-height: 15.6px; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); white-space: nowrap; }
+.forge-page-footer .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 0 124px 24px; }
+.forge-page-footer .fb-left { display: flex; align-items: center; gap: 32px; }
+.forge-page-footer .fb-region { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); cursor: pointer; }
+.forge-page-footer .fb-copy { display: flex; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); flex-wrap: wrap; }
+.forge-page-footer .fb-ad { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.24px; color: rgba(255,255,255,0.64); }
+.forge-page-footer .fb-social { display: flex; gap: 16px; align-items: center; }
+.forge-page-footer .fb-social svg { width: 18px; height: 18px; }
+.forge-page-footer .footer-wordmark { width: 100%; overflow: hidden; background: #000; line-height: 0; padding: 0; }
+.forge-page-footer .footer-wordmark svg { width: 103.76%; margin-left: -1.88%; display: block; }

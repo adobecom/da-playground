@@ -1,0 +1,20 @@
+.forge-offer *,
+.forge-offer *::before,
+.forge-offer *::after {
+  box-sizing: border-box;
+}
+
+.section .forge-offer-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-offer .offer {
+  background: #fff;
+}
+
+.forge-offer .offer img {
+  width: 100%;
+  min-width: 1440px;
+  display: block;
+}

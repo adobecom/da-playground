@@ -1,0 +1,38 @@
+.forge-plans *, .forge-plans *::before, .forge-plans *::after { box-sizing: border-box; }
+.section .forge-plans-wrapper { max-width: unset; padding: 0; }
+.forge-plans .plans-section { background: #f8f8f8; position: relative; z-index: 4; }
+.forge-plans .plans-card { background: #fff; border-radius: 32px; padding: 124px 0 48px; display: flex; flex-direction: column; align-items: center; gap: 48px; overflow: hidden; margin-bottom: -32px; }
+.forge-plans .plans-h2 { font-family: "Adobe Clean Display","Adobe Clean",sans-serif; font-size: 56px; font-weight: 900; line-height: 56px; letter-spacing: -1.68px; color: #000; text-align: center; }
+.forge-plans .plans-tabs { background: rgba(0,0,0,0.04); border-radius: 50px; display: flex; align-items: stretch; width: 502px; padding: 4px; }
+.forge-plans .ptab { flex: 1; display: flex; align-items: center; justify-content: center; height: 32px; font-size: 14px; font-weight: 700; color: rgba(0,0,0,0.64); border-radius: 50px; cursor: pointer; white-space: nowrap; padding: 0 20px; letter-spacing: 0; border: none; background: none; font-family: inherit; }
+.forge-plans .ptab.active { background: #000; color: #fff; }
+.forge-plans .plans-grid { display: flex; gap: 8px; width: 1200px; }
+.forge-plans .pcard { flex: 1; min-width: 0; border-radius: 16px; border: 4px solid #f8f8f8; display: flex; flex-direction: column; background: #f8f8f8; overflow: hidden; }
+.forge-plans .pcard.featured { border-color: #000; background: #000; }
+.forge-plans .pcard-top { background: #fff; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+.forge-plans .pcard-mnemonic { display: flex; align-items: center; gap: 12px; }
+.forge-plans .pcard-mnemonic img { width: 24px; height: 24px; }
+.forge-plans .pcard-nnem-lbl { font-size: 16px; font-weight: 700; line-height: 20px; letter-spacing: 0.16px; color: rgba(0,0,0,0.64); flex: 1; }
+.forge-plans .pcard-mnem-lbl { font-size: 16px; font-weight: 700; line-height: 20px; letter-spacing: 0.16px; color: rgba(0,0,0,0.64); flex: 1; }
+.forge-plans .pcard-name { font-family: "Adobe Clean Display","Adobe Clean",sans-serif; font-size: 24px; font-weight: 900; line-height: 24px; letter-spacing: -0.48px; color: #000; display: block; }
+.forge-plans .pcard-desc { font-size: 14px; font-weight: 400; line-height: 18px; letter-spacing: 0.14px; color: #000; margin: 0; }
+.forge-plans .pcard-price { font-family: "Adobe Clean Display","Adobe Clean",sans-serif; font-size: 18px; font-weight: 900; line-height: 21px; letter-spacing: -0.48px; color: #000; }
+.forge-plans .pcard-price-note { font-size: 14px; font-weight: 400; line-height: 18px; letter-spacing: 0.14px; color: rgba(0,0,0,0.64); }
+.forge-plans .pcard-ctarow { display: flex; gap: 8px; }
+.forge-plans .pbtn { flex: 1; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0; white-space: nowrap; border: none; cursor: pointer; font-family: inherit; }
+.forge-plans .pbtn-accent { background: #3b63fb; color: #fff; }
+.forge-plans .pbtn-outline { border: 2px solid #000 !important; color: #000; background: transparent; }
+.forge-plans .pcard-secure { display: flex; align-items: center; gap: 8px; }
+.forge-plans .pcard-secure img { width: 16px; height: 16px; }
+.forge-plans .pcard-secure span { font-size: 14px; font-weight: 400; line-height: 18px; color: rgba(0,0,0,0.64); }
+.forge-plans .pcard-features { padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+.forge-plans .pcard.featured .pcard-features { background: #000; }
+.forge-plans .pfeat-sect { display: flex; flex-direction: column; gap: 12px; }
+.forge-plans .pfeat-sect + .pfeat-sect { border-top: 1px solid rgba(0,0,0,0.12); padding-top: 16px; }
+.forge-plans .pcard.featured .pfeat-sect + .pfeat-sect { border-top-color: rgba(255,255,255,0.16); }
+.forge-plans .pfeat-hd { display: flex; align-items: center; gap: 4px; }
+.forge-plans .pfeat-hd-txt { font-size: 14px; font-weight: 700; line-height: 18px; color: #000; }
+.forge-plans .pcard.featured .pfeat-hd-txt { color: #fff; }
+.forge-plans .pfeat-item { padding: 0 20px; font-size: 14px; font-weight: 400; line-height: 18px; color: rgba(0,0,0,0.64); letter-spacing: 0.14px; }
+.forge-plans .pcard.featured .pfeat-item { color: #fff; }
+.forge-plans .plans-compare-btn { height: 40px; padding: 0 24px; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px; font-size: 14px; font-weight: 700; color: #000; background: transparent; cursor: pointer; font-family: inherit; }

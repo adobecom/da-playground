@@ -1,0 +1,187 @@
+.forge-hero *,
+.forge-hero *::before,
+.forge-hero *::after {
+  box-sizing: border-box;
+}
+
+/* Full-bleed override for Milo section wrapper */
+.section .forge-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ─── Hero section ────────────────────────────────────────────────────────── */
+.forge-hero .hero {
+  position: relative;
+  width: 100%;
+  min-width: 1440px;
+  height: 1827px;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* ─── Hero copy (centered, absolute overlay) ─────────────────────────────── */
+.forge-hero .hero-copy {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.forge-hero .hero-eyebrow-wrap {
+  margin-top: 189px;
+}
+
+.forge-hero .hero-eyebrow {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+
+.forge-hero .hero-h1 {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Adobe Clean VF", sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 76px;
+  letter-spacing: -3.2px;
+  color: #000;
+  text-align: center;
+  width: 1440px;
+  margin: 44px 0 0;
+}
+
+.forge-hero .hero-body {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+  text-align: center;
+  width: 696px;
+  margin: 8px 0 0;
+}
+
+/* ─── Promo bar ───────────────────────────────────────────────────────────── */
+.forge-hero .hero-promo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: #000;
+  border-radius: 16px;
+  margin-top: 24px;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.forge-hero .hero-promo:hover {
+  opacity: 0.85;
+}
+
+.forge-hero .hero-promo-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.forge-hero .hero-promo-acrobat {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.forge-hero .hero-promo-acrobat img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.forge-hero .hero-promo-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.forge-hero .hero-promo-btn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── Mosaic ──────────────────────────────────────────────────────────────── */
+.forge-hero .hero-mosaic {
+  position: absolute;
+  left: -202px;
+  top: 373px;
+  width: 1845px;
+  height: 1454px;
+}
+
+.forge-hero .mcol {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.forge-hero .mcol-1 {
+  left: 388px;
+  top: 176px;
+  width: 291px;
+}
+
+.forge-hero .mcol-2 {
+  left: 0;
+  top: 0;
+  width: 291px;
+}
+
+.forge-hero .mcol-3 {
+  left: 1554px;
+  top: 0;
+  width: 291px;
+}
+
+.forge-hero .mcol-4 {
+  left: 777px;
+  top: 281px;
+  width: 291px;
+}
+
+.forge-hero .mcol-5 {
+  left: 1165px;
+  top: 176px;
+  width: 291px;
+}
+
+.forge-hero .mcard {
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.forge-hero .mcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}

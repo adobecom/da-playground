@@ -1,0 +1,98 @@
+.forge-audience *,
+.forge-audience *::before,
+.forge-audience *::after {
+  box-sizing: border-box;
+}
+
+.section .forge-audience-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-audience .audience {
+  background: #fff;
+  border-radius: 0 0 32px 32px;
+  padding: 124px 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.forge-audience .title-2 {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 56px;
+  letter-spacing: -1.68px;
+  color: #000;
+  text-align: center;
+  width: 540px;
+}
+
+.forge-audience .routing-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.forge-audience .rcard {
+  width: 292px;
+  background: #f6f6f6;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.forge-audience .rcard-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+}
+
+.forge-audience .rcard-title {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 18px;
+  letter-spacing: -0.48px;
+  color: #000;
+  flex: 1;
+}
+
+.forge-audience .rcard-img {
+  flex-shrink: 0;
+  height: 394px;
+  position: relative;
+}
+
+.forge-audience .rcard-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.forge-audience .rcard-foot {
+  padding: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #000;
+}
+
+.forge-audience .logo-bar-wrap {
+  width: 1192px;
+  overflow: hidden;
+  height: 37px;
+}
+
+.forge-audience .logo-bar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: darken;
+}
