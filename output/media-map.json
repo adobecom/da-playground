@@ -1,0 +1,141 @@
+{
+  "mapping": {
+    "media_bizpro-hub-adobe-logo.svg": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-adobe-logo.svg",
+    "media_bizpro-hub-aud-hr.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-hr.png",
+    "media_bizpro-hub-aud-legal.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-legal.png",
+    "media_bizpro-hub-aud-marketing.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-marketing.png",
+    "media_bizpro-hub-aud-sales.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-sales.png",
+    "media_bizpro-hub-flow.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-flow.png",
+    "media_bizpro-hub-hero-collage.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-hero-collage.png",
+    "media_bizpro-hub-jtbd-left.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-jtbd-left.png",
+    "media_bizpro-hub-jtbd-right.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-jtbd-right.png",
+    "media_bizpro-hub-logos.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-logos.png",
+    "media_bizpro-hub-offer.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-offer.png",
+    "media_bizpro-hub-pdf-icon.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-pdf-icon.png",
+    "media_bizpro-hub-wn-brandkit.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-brandkit.png",
+    "media_bizpro-hub-wn-podcast.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-podcast.png",
+    "media_bizpro-hub-wn-video.png": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-video.png"
+  },
+  "results": [
+    {
+      "localPath": "media-upload/media_bizpro-hub-adobe-logo.svg",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-adobe-logo.svg",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-adobe-logo.svg",
+      "size": 2123,
+      "mime": "image/svg+xml",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-aud-hr.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-hr.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-hr.png",
+      "size": 204605,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-aud-legal.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-legal.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-legal.png",
+      "size": 71719,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-aud-marketing.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-marketing.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-marketing.png",
+      "size": 211630,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-aud-sales.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-sales.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-aud-sales.png",
+      "size": 32346,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-flow.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-flow.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-flow.png",
+      "size": 599161,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-hero-collage.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-hero-collage.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-hero-collage.png",
+      "size": 1213538,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-jtbd-left.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-jtbd-left.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-jtbd-left.png",
+      "size": 1433460,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-jtbd-right.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-jtbd-right.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-jtbd-right.png",
+      "size": 105582,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-logos.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-logos.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-logos.png",
+      "size": 6391,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-offer.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-offer.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-offer.png",
+      "size": 283561,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-pdf-icon.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-pdf-icon.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-pdf-icon.png",
+      "size": 849,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-wn-brandkit.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-brandkit.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-brandkit.png",
+      "size": 55031,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-wn-podcast.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-podcast.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-podcast.png",
+      "size": 103838,
+      "mime": "image/png",
+      "ok": true
+    },
+    {
+      "localPath": "media-upload/media_bizpro-hub-wn-video.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-video.png",
+      "contentUrl": "https://content.da.live/adobecom/da-playground/media/drafts/cod87753/forge/figma-4f3075/media_bizpro-hub-wn-video.png",
+      "size": 97036,
+      "mime": "image/png",
+      "ok": true
+    }
+  ]
+}
