@@ -1,0 +1,50 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "hero"
+  },
+  {
+    "idx": 1,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "carousel"
+  },
+  {
+    "idx": 2,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "feature"
+  },
+  {
+    "idx": 3,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "assets"
+  },
+  {
+    "idx": 4,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "testdrive"
+  },
+  {
+    "idx": 5,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "whatsnew"
+  },
+  {
+    "idx": 6,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "plans"
+  },
+  {
+    "idx": 7,
+    "dataBlock": "global-footer",
+    "dataVariants": [],
+    "primaryClass": "footer"
+  }
+]
