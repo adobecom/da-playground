@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BizPro — Hub | Adobe Acrobat</title>
+<style>
+/* ===== Reset / web hygiene ===== */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+img,video,svg,picture{max-width:100%;height:auto}
+img{display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;margin:0;border:0;background:none;cursor:pointer}
+p{margin:0}
+
+/* ===== Figma design tokens (exact Figma variable names, kebab-cased) ===== */
+:root{
+  --s2a-typography-font-size-label:14px;
+  --s2a-typography-line-height-label:18px;
+  --s2a-typography-letter-spacing-label:0px;
+  --s2a-typography-font-size-eyebrow:16px;
+  --s2a-typography-line-height-eyebrow:20px;
+  --s2a-typography-letter-spacing-eyebrow:0px;
+  --s2a-typography-font-size-title-1:80px;
+  --s2a-typography-line-height-title-1:76px;
+  --s2a-typography-letter-spacing-title-1:-3.2px;
+  --s2a-typography-font-size-title-2:56px;
+  --s2a-typography-line-height-title-2:56px;
+  --s2a-typography-letter-spacing-title-2:-1.68px;
+  --s2a-typography-font-size-title-4:24px;
+  --s2a-typography-line-height-title-4:24px;
+  --s2a-font-letter-spacing-4xl:-0.48px;
+  --s2a-typography-font-size-body-lg:20px;
+  --s2a-typography-line-height-body-lg:24px;
+  --s2a-typography-font-size-body-md:16px;
+  --s2a-typography-line-height-body-md:20px;
+  --s2a-typography-font-size-body-sm:14px;
+  --s2a-typography-line-height-body-sm:18px;
+  --s2a-typography-letter-spacing-body-sm:0.14px;
+  --s2a-typography-font-size-heading-6:18px;
+  --s2a-typography-line-height-heading-6:18px;
+  --s2a-typography-letter-spacing-heading-6:-0.2px;
+  --typography-font-size-caption:12px;
+  --typography-line-height-caption:15.6px;
+  --typography-letter-spacing-caption:0.24px;
+  --s2a-color-content-default:#000000;
+  --s2a-color-content-title:#000000;
+  --s2a-color-content-label:#000000;
+  --s2a-color-content-body-strong:#131313;
+  --s2a-color-content-body-subtle:rgba(0,0,0,0.64);
+  --s2a-color-content-eyebrow:rgba(0,0,0,0.64);
+  --s2a-color-content-knockout:#ffffff;
+  --s2a-color-background-default:#ffffff;
+  --s2a-color-background-subtle:#f8f8f8;
+  --s2a-color-background-knockout:#000000;
+  --s2a-color-transparent-black-08:rgba(0,0,0,0.08);
+  --s2a-color-transparent-black-12:rgba(0,0,0,0.12);
+  --s2a-color-transparent-black-16:rgba(0,0,0,0.16);
+  --s2a-color-transparent-black-64:rgba(0,0,0,0.64);
+  --s2a-color-transparent-white-16:rgba(255,255,255,0.16);
+  --s2a-color-transparent-white-48:rgba(255,255,255,0.48);
+  --s2a-color-button-background-primary-solid-default:#000000;
+  --s2a-color-button-content-primary-solid-default:#ffffff;
+  --s2a-color-button-background-primary-solid-blue:#3b63fb;
+  --s2a-border-radius-md:16px;
+  --s2a-border-radius-lg:32px;
+  --s2a-border-radius-999:999px;
+  --s2a-spacing-xs:8px;
+  --s2a-spacing-sm:12px;
+  --s2a-spacing-lg:24px;
+  --s2a-spacing-xl:32px;
+  --s2a-spacing-2xl:40px;
+  --s2a-layout-lg:124px;
+  --font-adobe-clean:"Adobe Clean",sans-serif;
+  --font-adobe-clean-display:"Adobe Clean Display","Adobe Clean",sans-serif;
+  --font-adobe-clean-spectrum:"Adobe Clean Spectrum VF","Adobe Clean",sans-serif;
+}
+
+body{font-family:var(--font-adobe-clean);color:#000;background:#f6f6f6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+main{width:100%;overflow-x:hidden;background:#f6f6f6}
+.section-inner{max-width:1440px;margin:0 auto;position:relative}
+
+/* ===== Typography classes — 1:1 with unique Figma TEXT styles ===== */
+/* TEXT_STYLE: font:Adobe Clean 14/18 700 ls:0 (nav, buttons, CTAs) */
+.t-label{font-family:var(--font-adobe-clean);font-weight:700;font-size:var(--s2a-typography-font-size-label);line-height:var(--s2a-typography-line-height-label);letter-spacing:var(--s2a-typography-letter-spacing-label)}
+/* TEXT_STYLE: font:Adobe Clean 16/20 700 ls:0 (eyebrow, card captions, promo) */
+.t-eyebrow{font-family:var(--font-adobe-clean);font-weight:700;font-size:var(--s2a-typography-font-size-eyebrow);line-height:var(--s2a-typography-line-height-eyebrow);letter-spacing:var(--s2a-typography-letter-spacing-eyebrow)}
+/* TEXT_STYLE: font:Adobe Clean Display 80/76 900 ls:-3.2 (hero H1) */
+.t-h1{font-family:var(--font-adobe-clean-display);font-weight:900;font-size:var(--s2a-typography-font-size-title-1);line-height:var(--s2a-typography-line-height-title-1);letter-spacing:var(--s2a-typography-letter-spacing-title-1)}
+/* TEXT_STYLE: font:Adobe Clean Display 56/56 900 ls:-1.68 (section H2) */
+.t-h2{font-family:var(--font-adobe-clean-display);font-weight:900;font-size:var(--s2a-typography-font-size-title-2);line-height:var(--s2a-typography-line-height-title-2);letter-spacing:var(--s2a-typography-letter-spacing-title-2)}
+/* TEXT_STYLE: font:Adobe Clean 20/24 400 ls:0 (hero subhead) */
+.t-body-lg{font-family:var(--font-adobe-clean);font-weight:400;font-size:var(--s2a-typography-font-size-body-lg);line-height:var(--s2a-typography-line-height-body-lg);letter-spacing:0}
+/* TEXT_STYLE: font:Adobe Clean 20/26 400 ls:-0.4 (concierge subhead, tight) */
+.t-body-lg-tight{font-family:var(--font-adobe-clean);font-weight:400;font-size:20px;line-height:1.3;letter-spacing:-0.4px}
+/* TEXT_STYLE: font:Adobe Clean 16/20 400 ls:0 (body copy) */
+.t-body-md{font-family:var(--font-adobe-clean);font-weight:400;font-size:var(--s2a-typography-font-size-body-md);line-height:var(--s2a-typography-line-height-body-md);letter-spacing:0}
+/* TEXT_STYLE: font:Adobe Clean Display 18/18 900 ls:-0.48 (route titles, jtbd subheads) */
+.t-card18{font-family:var(--font-adobe-clean-display);font-weight:900;font-size:18px;line-height:18px;letter-spacing:var(--s2a-font-letter-spacing-4xl)}
+/* TEXT_STYLE: font:Adobe Clean Display 18/18 900 ls:-0.2 (what's-new card titles) */
+.t-h6{font-family:var(--font-adobe-clean-display);font-weight:900;font-size:var(--s2a-typography-font-size-heading-6);line-height:var(--s2a-typography-line-height-heading-6);letter-spacing:var(--s2a-typography-letter-spacing-heading-6)}
+/* TEXT_STYLE: font:Adobe Clean 14/18 400 ls:0.14 (footer links, feature items) */
+.t-body-sm{font-family:var(--font-adobe-clean);font-weight:400;font-size:var(--s2a-typography-font-size-body-sm);line-height:var(--s2a-typography-line-height-body-sm);letter-spacing:var(--s2a-typography-letter-spacing-body-sm)}
+/* TEXT_STYLE: font:Adobe Clean 12/15.6 700 ls:0.24 (legal / caption) */
+.t-caption{font-family:var(--font-adobe-clean);font-weight:700;font-size:var(--typography-font-size-caption);line-height:var(--typography-line-height-caption);letter-spacing:var(--typography-letter-spacing-caption)}
+/* TEXT_STYLE: font:Adobe Clean Display 24/24 900 ls:-0.48 (pricing plan names) */
+.t-title4{font-family:var(--font-adobe-clean-display);font-weight:900;font-size:var(--s2a-typography-font-size-title-4);line-height:var(--s2a-typography-line-height-title-4);letter-spacing:var(--s2a-font-letter-spacing-4xl)}
+/* TEXT_STYLE: font:Adobe Clean 18/20 700 ls:0 (pricing price) */
+.t-price{font-family:var(--font-adobe-clean);font-weight:700;font-size:18px;line-height:20px;letter-spacing:0}
+
+/* ===== Shared buttons (S2 pill) ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:var(--s2a-border-radius-999);white-space:nowrap}
+.btn-solid{background:var(--s2a-color-button-background-primary-solid-default);color:var(--s2a-color-button-content-primary-solid-default)}
+.btn-outline{background:transparent;color:#000;border:2px solid #000}
+.btn-blue{background:var(--s2a-color-button-background-primary-solid-blue);color:#fff}
+.btn-sm{padding:11px 20px}
+.chev{width:7px;height:11px;flex:none}
+
+/* =========================================================
+   1. HERO  (node 10474:12244)
+   ========================================================= */
+.hero{background:var(--s2a-color-background-default);min-height:1827px;position:relative;overflow:hidden}
+.hero-inner{height:1827px}
+.hero-collage{position:absolute;top:373px;left:0;width:1440px;height:1454px;z-index:1}
+.hero-collage img{width:1440px;height:1454px;max-width:none}
+.hero-stack{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:124px}
+.nav{width:100%}
+.nav-bar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;backdrop-filter:blur(64px);-webkit-backdrop-filter:blur(64px)}
+.nav-left{display:flex;align-items:center;gap:24px;height:64px;padding-left:4px}
+.nav-logo{width:67px;height:16px}
+.nav-logo img{width:67px;height:16px}
+.nav-item{display:flex;align-items:center;gap:6px;height:64px;padding:8px 0;color:var(--s2a-color-transparent-black-64)}
+.nav-item.first{color:#000}
+.nav-item.active{color:#000;border-bottom:2px solid #000}
+.nav-slash{width:1px;height:15px;background:var(--s2a-color-transparent-black-16)}
+.nav-caret{width:6px;height:6px}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-apps{width:18px;height:18px;color:#000;display:block}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-divider{height:1px;width:100%;background:var(--s2a-color-transparent-black-08)}
+.hero-copy{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;text-align:center}
+.hero-eyebrow{color:#000}
+.hero-headbody{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+.hero-h1{color:#000;max-width:1000px}
+.hero-sub{color:#000;width:696px;max-width:100%}
+.hero-promo{display:inline-flex;align-items:center;gap:16px;background:#000;padding:12px;border-radius:16px}
+.hero-promo-l{display:flex;align-items:center;gap:16px}
+.hero-promo-ico{width:32px;height:32px;border-radius:6px;overflow:hidden;flex:none}
+.hero-promo-ico img{width:32px;height:32px}
+.hero-promo-txt{color:#fff}
+.hero-promo-plus{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+
+/* =========================================================
+   2. AUDIENCE — Resting  (node 10474:12379)
+   ========================================================= */
+.audience{background:var(--s2a-color-background-default);min-height:988.32px;border-bottom-left-radius:32px;border-bottom-right-radius:32px;
+  display:flex;flex-direction:column;align-items:center;gap:40px;padding:124px 0 24px}
+.audience-h2{color:var(--s2a-color-content-title);text-align:center;width:540px;max-width:100%}
+.aud-stack{display:flex;flex-direction:column;align-items:center;gap:124px;width:100%}
+.routing{display:flex;gap:8px;justify-content:center}
+.route-card{width:292px;min-width:277px;background:#f6f6f6;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.route-head{display:flex;gap:16px;align-items:center;padding:24px}
+.route-head .t-card18{flex:1 0 0;color:#000}
+.route-caret{width:3px;height:6px;flex:none}
+.route-img{height:394px;width:100%}
+.route-img img{height:394px;width:100%;object-fit:cover}
+.route-foot{padding:24px}
+.route-foot .t-eyebrow{color:#000}
+.logo-strip{display:flex;align-items:center;justify-content:center;overflow:hidden;width:100%;height:37px}
+.logo-strip img{height:36px;width:auto;mix-blend-mode:darken}
+
+/* =========================================================
+   3. SECTION — JTBD  (node 10474:12417)
+   ========================================================= */
+.jtbd{background:#f6f6f6;min-height:1348px;border-top-left-radius:32px;border-top-right-radius:32px;
+  display:flex;flex-direction:column;align-items:center;gap:40px;padding:124px 0 24px}
+.jtbd-copy{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;width:100%}
+.jtbd-copy .t-h2{color:var(--s2a-color-content-title);width:540px;max-width:100%}
+.jtbd-copy .t-body-md{color:var(--s2a-color-content-body-strong);width:616px;max-width:100%}
+.jtbd-row{display:flex;align-items:flex-start;justify-content:space-between;height:1000px;width:100%;padding:0 24px}
+.jtbd-left{width:892px;height:1000px;border-radius:32px;overflow:hidden;position:relative}
+.jtbd-left img{width:892px;height:1000px;object-fit:cover}
+.jtbd-right{width:492px;display:flex;flex-direction:column}
+.jtbd-card{height:600px;width:100%;border-radius:32px;background:#fff;box-shadow:0 4px 100px 0 rgba(0,0,0,0.25);overflow:hidden}
+.jtbd-card img{width:100%;height:600px;object-fit:cover}
+.jtbd-rcopy{display:flex;flex-direction:column;gap:8px;width:391px;max-width:100%;padding:24px 24px 0}
+.jtbd-rcopy .t-card18{color:var(--s2a-color-content-title)}
+.jtbd-rcopy .t-body-md{color:var(--s2a-color-content-body-subtle)}
+
+/* =========================================================
+   4. OFFER  (node 10474:12440) — document collage, baked image
+   ========================================================= */
+.offer{background:#f6f6f6;min-height:1513px;position:relative;overflow:hidden}
+.offer-inner{height:1513px;display:flex;align-items:center;justify-content:center}
+.offer-doc{width:1371px;max-width:100%}
+.offer-doc img{width:1371px;height:1440px;max-width:100%;object-fit:contain}
+
+/* hidden Figma alternates (kept in DOM to match top-level child count) */
+.figma-hidden{display:none!important;min-height:0}
+
+/* =========================================================
+   5. FLOW — Grid to UI  (node 10474:12649)  [flattened frame]
+   ========================================================= */
+.flow{min-height:2169.84px;background:#f6f6f6;position:relative;overflow:hidden}
+.flow-inner{height:2169.84px}
+.flow-img{width:1440px;height:2169.84px}
+.flow-img img{width:1440px;height:2169.84px;object-fit:cover}
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* =========================================================
+   6. SECTION — What's New  (node 10474:13949)
+   ========================================================= */
+.whatsnew{background:var(--s2a-color-background-subtle);min-height:741px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding:24px 124px 124px}
+.wn-head{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;width:100%}
+.wn-head .t-eyebrow{color:var(--s2a-color-content-eyebrow)}
+.wn-head .t-h2{color:var(--s2a-color-content-title);width:664px;max-width:100%}
+.wn-cols{display:flex;gap:8px;align-items:flex-start;justify-content:center;width:1192px;max-width:100%}
+.wn-col{flex:1 0 0;min-width:0;display:flex;flex-direction:column}
+.wn-asset{height:294px;border-radius:16px;overflow:hidden;width:100%}
+.wn-asset img{width:100%;height:294px;object-fit:cover}
+.wn-copy{display:flex;flex-direction:column;gap:24px;padding:24px 24px 0}
+.wn-hb{display:flex;flex-direction:column;gap:8px}
+.wn-hb .t-h6{color:var(--s2a-color-content-title)}
+.wn-hb .t-body-md{color:var(--s2a-color-content-body-subtle)}
+.wn-cta{display:flex;gap:8px;align-items:center}
+.wn-cta .t-label{color:var(--s2a-color-content-label)}
+
+/* =========================================================
+   7. BOTTOM — Pricing + Concierge + Footer  (node 10474:14415)
+   ========================================================= */
+.bottom{min-height:2835.84px;display:flex;flex-direction:column;background:#fff}
+.pricing{background:#fff;display:flex;flex-direction:column;align-items:center;padding:124px 0 0}
+.pricing-h2{color:#000;text-align:center;margin-bottom:40px}
+.tabs{display:flex;background:#f0f0f0;border-radius:50px;padding:4px;margin-bottom:48px}
+.tab{padding:12px 28px;border-radius:50px;color:var(--s2a-color-content-body-subtle)}
+.tab[aria-selected="true"]{background:#000;color:#fff}
+.cards{display:flex;gap:8px;justify-content:center;padding:0 120px;width:100%;max-width:1440px}
+.pcard{flex:1 0 0;min-width:0;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;background:#f7f7f7}
+.pcard.featured{background:#fff;border:2px solid #000}
+.pcard-top{padding:24px;display:flex;flex-direction:column;gap:16px;background:#fff;flex:0 0 auto}
+.pcard:not(.featured) .pcard-top{background:#f7f7f7}
+.pcard-cat{display:flex;align-items:center;gap:8px}
+.pcard-cat-ico{width:20px;height:20px;border-radius:4px;flex:none;overflow:hidden}
+.pcard-cat-ico img{width:20px;height:20px}
+.pcard-cat .t-body-sm{color:var(--s2a-color-content-body-subtle)}
+.pcard-name{color:#000}
+.pcard-desc{color:var(--s2a-color-content-body-subtle);min-height:60px}
+.pcard-price{color:#000}
+.pcard-sub{color:var(--s2a-color-content-body-subtle)}
+.pcard-btns{display:flex;gap:8px;margin-top:4px}
+.pcard-secure{display:flex;align-items:center;gap:8px;color:var(--s2a-color-content-body-subtle)}
+.pcard-secure svg{width:14px;height:14px;flex:none}
+.pcard-feats{padding:24px;display:flex;flex-direction:column;gap:20px;flex:1 0 auto}
+.featured .pcard-feats{background:#000;color:#fff}
+.feat-group{display:flex;flex-direction:column;gap:8px;padding-bottom:20px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.feat-group:last-child{border-bottom:0;padding-bottom:0}
+.featured .feat-group{border-color:rgba(255,255,255,0.16)}
+.feat-head{display:flex;align-items:center;gap:8px}
+.feat-head .t-body-sm{font-weight:700;color:#000}
+.featured .feat-head .t-body-sm{color:#fff}
+.feat-head svg{width:16px;height:16px;flex:none}
+.feat-item{color:var(--s2a-color-content-body-subtle)}
+.featured .feat-item{color:rgba(255,255,255,0.7)}
+.pcard.featured .pcard-name,.pcard.featured .pcard-price{color:#000}
+.compare-wrap{display:flex;justify-content:center;padding:40px 0 60px}
+.dark-wrap{background:#000;color:#fff;flex:1 0 auto;display:flex;flex-direction:column}
+.concierge{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:88px 124px 64px;gap:24px}
+.concierge-copy{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;width:100%}
+.concierge .t-h2{color:#fff;line-height:1}
+.concierge .t-body-lg-tight{color:#fff}
+.concierge-input{display:flex;align-items:center;justify-content:space-between;width:768px;max-width:100%;height:56px;border-radius:28px;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.1);overflow:hidden;margin-top:24px}
+.concierge-input .ci-search{display:flex;align-items:center;padding-left:24px;color:rgba(255,255,255,0.6)}
+.concierge-input .ci-field{flex:1 0 0;padding:16px;color:rgba(255,255,255,0.6)}
+.concierge-input .ci-send{width:36px;height:36px;margin:10px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.concierge-disc{color:rgba(255,255,255,0.6);text-align:center;max-width:768px}
+.concierge-disc a{text-decoration:underline}
+.footer{position:relative;padding:0 124px;overflow:hidden}
+.footer-cols{display:flex;gap:24px;padding-top:8px}
+.footer-col{flex:1 0 0;display:flex;flex-direction:column;gap:16px}
+.footer-col.wide{flex:1.1 0 0}
+.footer-col h4{margin:0;color:#fff}
+.footer-col a{color:#fff;opacity:.85}
+.footer-col a:hover{opacity:1}
+.footer-featured{margin-top:48px}
+.footer-featured h4{margin:0 0 16px;color:#fff}
+.featured-row{display:flex;gap:32px;flex-wrap:wrap}
+.featured-item{display:flex;align-items:center;gap:8px;color:#fff}
+.featured-ico{width:18px;height:18px;border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;overflow:hidden}
+.featured-ico img{width:18px;height:18px}
+.footer-legal{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:32px;color:#fff;position:relative;z-index:2}
+.footer-legal .reg{display:flex;align-items:center;gap:6px}
+.footer-legal a,.footer-legal span{color:#fff;opacity:.9}
+.footer-social{margin-left:auto;display:flex;gap:18px}
+.footer-social svg{width:20px;height:20px;fill:#fff}
+.footer-wordmark{margin:24px 0 -80px;width:100%;line-height:0}
+.footer-wordmark img{width:100%;height:auto;display:block}
+
+/* ===== Responsive (desktop/canvas unchanged at 1440px) ===== */
+@media (max-width:1023px){
+  .routing,.cards,.wn-cols,.jtbd-row,.footer-cols{flex-wrap:wrap}
+  .jtbd-left,.jtbd-right{width:100%}
+  .jtbd-row{height:auto;gap:24px}
+  .jtbd-left,.jtbd-left img{height:auto}
+  .cards{padding:0 24px}
+  .footer,.concierge,.whatsnew{padding-left:32px;padding-right:32px}
+}
+@media (max-width:767px){
+  .t-h1{font-size:48px;line-height:48px;letter-spacing:-1.6px}
+  .t-h2{font-size:36px;line-height:38px;letter-spacing:-1px}
+  .route-card{width:100%}
+  .tabs{flex-wrap:wrap}
+  .hero-sub,.audience-h2,.jtbd-copy .t-h2,.jtbd-copy .t-body-md,.wn-head .t-h2{width:100%}
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- ============ 1. HERO ============ -->
+<section data-binding-variants="featured" data-binding-score="0.86" data-binding="loose-variant" class="hero" data-block="base-card" data-figma-node-id="10474:12244" data-section-style="full-width" data-variant-classes="hero-image-wall">
+  <div class="section-inner hero-inner">
+    <div class="hero-collage" aria-hidden="true" data-figma-node-id="10474:12266">
+      <picture>
+        <source type="image/webp" srcset="./media_bizpro-hub-hero-collage.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-hero-collage.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-hero-collage.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-hero-collage.png?width=350&format=webply&optimize=medium">
+        <img loading="eager" alt="" src="./media_bizpro-hub-hero-collage.png?width=750&format=png&optimize=medium">
+      </picture>
+    </div>
+
+    <div class="hero-stack">
+      <nav class="nav" aria-label="Primary" data-figma-node-id="10474:12250">
+        <div class="nav-bar">
+          <div class="nav-left">
+            <a class="nav-logo" href="https://www.adobe.com" aria-label="Adobe"><img src="./media_bizpro-hub-adobe-logo.svg" alt="Adobe" width="67" height="16"></a>
+            <a class="nav-item first t-label" href="#">Use Cases
+              <svg class="nav-caret" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 1.5L3 4l2.5-2.5" stroke="currentColor" stroke-width="1" /></svg>
+            </a>
+            <span class="nav-slash"></span>
+            <a class="nav-item active t-label" href="#">PDF &amp; Productivity</a>
+            <a class="nav-item t-label" href="#">Acrobat</a>
+            <a class="nav-item t-label" href="#">Express</a>
+            <a class="nav-item t-label" href="#">Sign</a>
+            <a class="nav-item t-label" href="#">Scan</a>
+          </div>
+          <div class="nav-right">
+            <span class="nav-apps" aria-hidden="true">
+              <svg viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="2.5" cy="2.5" r="1.6" /><circle cx="9" cy="2.5" r="1.6" /><circle cx="15.5" cy="2.5" r="1.6" /><circle cx="2.5" cy="9" r="1.6" /><circle cx="9" cy="9" r="1.6" /><circle cx="15.5" cy="9" r="1.6" /><circle cx="2.5" cy="15.5" r="1.6" /><circle cx="9" cy="15.5" r="1.6" /><circle cx="15.5" cy="15.5" r="1.6" /></svg>
+            </span>
+            <div class="nav-actions">
+              <a class="btn btn-outline t-label" href="#">Sign In</a>
+              <a class="btn btn-solid t-label" href="/pricing#_button-fill">View Pricing</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-divider"></div>
+      </nav>
+
+      <div class="hero-copy">
+        <div class="hero-eyebrow t-eyebrow" data-figma-node-id="10474:12254">PDF &amp; Productivity</div>
+        <div class="hero-headbody">
+          <h1 class="hero-h1 t-h1" data-figma-node-id="10474:12256">With great power<br>comes great productivity.</h1>
+          <p class="hero-sub t-body-lg" data-figma-node-id="10474:12257">Do your best work faster with trusted PDF tools, AI-powered document insights, secure collaboration, and professional content creation — all in one place.</p>
+        </div>
+        <a class="hero-promo" href="/free-trial#_button-fill" data-figma-node-id="10474:12258">
+          <span class="hero-promo-l">
+            <span class="hero-promo-ico">
+              <picture>
+                <source type="image/webp" srcset="./media_bizpro-hub-pdf-icon.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+                <source type="image/webp" srcset="./media_bizpro-hub-pdf-icon.png?width=350&format=webply&optimize=medium">
+                <img loading="lazy" alt="Adobe Acrobat" src="./media_bizpro-hub-pdf-icon.png?width=750&format=png&optimize=medium" width="32" height="32">
+              </picture>
+            </span>
+            <span class="hero-promo-txt t-eyebrow">Start an Acrobat free trial</span>
+          </span>
+          <span class="hero-promo-plus" aria-hidden="true">
+            <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.5L7 7l6-5.5" stroke="currentColor" stroke-width="1.6" /></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. AUDIENCE — Resting ============ -->
+<section data-binding-source="judge-snowflake" data-binding-variants="hero" data-binding-score="0.78" data-binding="ambiguous" class="audience" data-block="rich-content" data-figma-node-id="10474:12379" data-section-style="full-width">
+  <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;gap:40px;width:100%">
+    <h2 class="audience-h2 t-h2" data-figma-node-id="10474:12381">Work faster.<br>No matter the work.</h2>
+    <div class="aud-stack">
+      <div class="routing" data-figma-node-id="10474:12384">
+        <article class="route-card" data-figma-node-id="10474:12385">
+          <div class="route-head"><span class="t-card18">Sales</span>
+            <svg class="route-caret" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.3 0.3L2.7 3 0.3 5.7" stroke="#000" stroke-width="0.7" /></svg>
+          </div>
+          <div class="route-img">
+            <picture>
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-sales.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-sales.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Sales use case" src="./media_bizpro-hub-aud-sales.png?width=750&format=png&optimize=medium">
+            </picture>
+          </div>
+          <div class="route-foot"><p class="t-eyebrow" data-figma-node-id="10474:12391">Close more deals.</p></div>
+        </article>
+        <article class="route-card" data-figma-node-id="10474:12392">
+          <div class="route-head"><span class="t-card18">Marketing</span>
+            <svg class="route-caret" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.3 0.3L2.7 3 0.3 5.7" stroke="#000" stroke-width="0.7" /></svg>
+          </div>
+          <div class="route-img">
+            <picture>
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-marketing.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-marketing.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Marketing use case" src="./media_bizpro-hub-aud-marketing.png?width=750&format=png&optimize=medium">
+            </picture>
+          </div>
+          <div class="route-foot"><p class="t-eyebrow" data-figma-node-id="10474:12398">Take the pain out of campaigns.</p></div>
+        </article>
+        <article class="route-card" data-figma-node-id="10474:12399">
+          <div class="route-head"><span class="t-card18">Legal</span>
+            <svg class="route-caret" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.3 0.3L2.7 3 0.3 5.7" stroke="#000" stroke-width="0.7" /></svg>
+          </div>
+          <div class="route-img">
+            <picture>
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-legal.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-legal.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Legal use case" src="./media_bizpro-hub-aud-legal.png?width=750&format=png&optimize=medium">
+            </picture>
+          </div>
+          <div class="route-foot"><p class="t-eyebrow" data-figma-node-id="10474:12405">Move the fine print faster.</p></div>
+        </article>
+        <article class="route-card" data-figma-node-id="10474:12406">
+          <div class="route-head"><span class="t-card18">Human Resources</span>
+            <svg class="route-caret" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.3 0.3L2.7 3 0.3 5.7" stroke="#000" stroke-width="0.7" /></svg>
+          </div>
+          <div class="route-img">
+            <picture>
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-hr.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_bizpro-hub-aud-hr.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Human Resources use case" src="./media_bizpro-hub-aud-hr.png?width=750&format=png&optimize=medium">
+            </picture>
+          </div>
+          <div class="route-foot"><p class="t-eyebrow" data-figma-node-id="10474:12413">Make policy more personal.</p></div>
+        </article>
+      </div>
+      <div class="logo-strip" data-figma-node-id="10474:12414" aria-label="Trusted by leading companies">
+        <picture>
+          <source type="image/webp" srcset="./media_bizpro-hub-logos.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+          <source type="image/webp" srcset="./media_bizpro-hub-logos.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+          <source type="image/webp" srcset="./media_bizpro-hub-logos.png?width=350&format=webply&optimize=medium">
+          <img loading="lazy" alt="Company logos" src="./media_bizpro-hub-logos.png?width=750&format=png&optimize=medium">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. SECTION — JTBD ============ -->
+<section data-binding-source="judge" data-binding-variants="hero" data-binding-score="0.85" data-binding="tight-variant" class="jtbd" data-block="rich-content" data-figma-node-id="10474:12417" data-section-style="full-width">
+  <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;gap:40px;width:100%">
+    <div class="jtbd-copy">
+      <h2 class="t-h2" data-figma-node-id="10474:12419">There’s more to<br>Acrobat than Acrobat.</h2>
+      <p class="t-body-md" data-figma-node-id="10474:12420">Create, edit, sign, and more with 70+ professional tools. Use AI to generate a presentation from your files and documents. And that’s just the beginning.</p>
+    </div>
+    <div class="jtbd-row">
+      <div class="jtbd-left" data-figma-node-id="10474:12422" role="img" aria-label="Understand quickly. Ask your AI Assistant to quickly summarize, analyze, provide insights, turn docs into decks, and more.">
+        <picture>
+          <source type="image/webp" srcset="./media_bizpro-hub-jtbd-left.png?width=2000&format=webply&optimize=medium" media="(min-width:1024px)">
+          <source type="image/webp" srcset="./media_bizpro-hub-jtbd-left.png?width=1200&format=webply&optimize=medium" media="(min-width:600px)">
+          <source type="image/webp" srcset="./media_bizpro-hub-jtbd-left.png?width=600&format=webply&optimize=medium">
+          <img loading="lazy" alt="Understand quickly — AI Assistant summarizing a document" src="./media_bizpro-hub-jtbd-left.png?width=750&format=png&optimize=medium">
+        </picture>
+      </div>
+      <div class="jtbd-right">
+        <div class="jtbd-card" data-figma-node-id="10474:12432">
+          <picture>
+            <source type="image/webp" srcset="./media_bizpro-hub-jtbd-right.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-jtbd-right.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-jtbd-right.png?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="Shared secure PDF Space" src="./media_bizpro-hub-jtbd-right.png?width=750&format=png&optimize=medium">
+          </picture>
+        </div>
+        <div class="jtbd-rcopy">
+          <p class="t-card18" data-figma-node-id="10474:12435">Share effortlessly.</p>
+          <p class="t-body-md" data-figma-node-id="10474:12436">Share a secure PDF Space with teammates, where everyone can ask AI Assistant to help with research, strategy, planning, or quick learning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. OFFER (document collage — baked) ============ -->
+<section data-binding-source="judge-snowflake" data-binding-score="0.74" data-binding="ambiguous" class="offer" data-block="modal" data-figma-node-id="10474:12440" data-section-style="full-width" data-variant-classes="document-collage">
+  <div class="section-inner offer-inner">
+    <div class="offer-doc" data-figma-node-id="10474:12441" role="img" aria-label="Documents created with Acrobat and Adobe Express: an invoice, a quarterly media-mix report, a white paper, and a fintech industry report">
+      <picture>
+        <source type="image/webp" srcset="./media_bizpro-hub-offer.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-offer.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-offer.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-offer.png?width=350&format=webply&optimize=medium">
+        <img loading="lazy" alt="Documents created with Acrobat" src="./media_bizpro-hub-offer.png?width=750&format=png&optimize=medium">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<!-- hidden Figma alternate of Offer (node 10474:12643, hidden in source) -->
+<section data-binding-score="0.52" data-binding="snowflake" class="figma-hidden" data-block="modal" data-figma-node-id="10474:12643" data-extraction-note="hidden-alternate" hidden aria-hidden="true"></section>
+
+<!-- ============ 5. FLOW — Grid to UI (flattened frame) ============ -->
+<section data-binding-source="judge" data-binding-variants="featured" data-binding-score="0.85" data-binding="tight-variant" class="flow" data-block="base-card" data-figma-node-id="10474:12649" data-extraction-failure="true" data-section-style="full-width">
+  <div class="section-inner flow-inner">
+    <div class="foreground vh">
+      <h2>Create beautifully.</h2>
+      <p>Empower your whole team to create polished on-brand presentations, social content, and more using AI Assistant and the 100,000+ professional templates and images in Adobe Express.</p>
+      <h2>Test drive a PDF Space now.</h2>
+      <p>Learn how to turn files and links into knowledge hubs to work faster — and everything else you can do with PDF Spaces — in this immersive hands-on experience.</p>
+      <a href="/pdf-space-demo#_button-fill">Try the demo</a>
+    </div>
+    <div class="flow-img" aria-hidden="true">
+      <picture>
+        <source type="image/webp" srcset="./media_bizpro-hub-flow.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-flow.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-flow.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+        <source type="image/webp" srcset="./media_bizpro-hub-flow.png?width=350&format=webply&optimize=medium">
+        <img loading="lazy" alt="Create beautifully and test drive a PDF Space — a grid of documents transforming into the Acrobat PDF Space interface" src="./media_bizpro-hub-flow.png?width=750&format=png&optimize=medium">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<!-- hidden Figma alternate of What's New (node 10474:13560, hidden in source) -->
+<section data-binding-score="0.52" data-binding="snowflake" class="figma-hidden" data-block="modal" data-figma-node-id="10474:13560" data-extraction-note="hidden-alternate" hidden aria-hidden="true"></section>
+
+<!-- ============ 6. SECTION — What's New ============ -->
+<section data-binding-source="judge-snowflake" data-binding-variants="featured" data-binding-score="0.76" data-binding="ambiguous" class="whatsnew" data-block="base-card" data-figma-node-id="10474:13949" data-section-style="full-width">
+  <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;gap:40px;width:100%">
+    <div class="wn-head" data-figma-node-id="10474:13950">
+      <p class="t-eyebrow" data-figma-node-id="10474:13952">Features and Releases</p>
+      <h2 class="t-h2" data-figma-node-id="10474:13953">There’s always something new with Acrobat.</h2>
+    </div>
+    <div class="wn-cols" data-figma-node-id="10474:13957">
+      <article class="wn-col" data-figma-node-id="10474:13958">
+        <div class="wn-asset">
+          <picture>
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-podcast.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-podcast.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-podcast.png?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="Generate Podcast player" src="./media_bizpro-hub-wn-podcast.png?width=750&format=png&optimize=medium">
+          </picture>
+        </div>
+        <div class="wn-copy">
+          <div class="wn-hb">
+            <p class="t-h6" data-figma-node-id="10474:14022">PDF to Podcast</p>
+            <p class="t-body-md" data-figma-node-id="10474:14023">Convert any PDF into audio playback, with options to hear a quick overview or a complete narration.</p>
+          </div>
+          <a class="wn-cta" href="#" data-figma-node-id="10474:14024">
+            <span class="t-label">Learn more</span>
+            <svg class="chev" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.3 0.3L2.7 3 0.3 5.7" stroke="#000" stroke-width="0.7" /></svg>
+          </a>
+        </div>
+      </article>
+      <article class="wn-col" data-figma-node-id="10474:14027">
+        <div class="wn-asset">
+          <picture>
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-brandkit.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-brandkit.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-brandkit.png?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="One-click Brand Kit Setup" src="./media_bizpro-hub-wn-brandkit.png?width=750&format=png&optimize=medium">
+          </picture>
+        </div>
+        <div class="wn-copy">
+          <div class="wn-hb">
+            <p class="t-h6" data-figma-node-id="10474:14039">One-click Brand Kit Setup</p>
+            <p class="t-body-md" data-figma-node-id="10474:14040">Set up a complete brand kit in a single click by automatically extracting logos, colors, and fonts from existing content.</p>
+          </div>
+          <a class="wn-cta" href="#" data-figma-node-id="10474:14041">
+            <span class="t-label">Learn more</span>
+            <svg class="chev" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.3 0.3L2.7 3 0.3 5.7" stroke="#000" stroke-width="0.7" /></svg>
+          </a>
+        </div>
+      </article>
+      <article class="wn-col" data-figma-node-id="10474:14044">
+        <div class="wn-asset">
+          <picture>
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-video.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-video.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-wn-video.png?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="AI-Powered Video Highlights" src="./media_bizpro-hub-wn-video.png?width=750&format=png&optimize=medium">
+          </picture>
+        </div>
+        <div class="wn-copy">
+          <div class="wn-hb">
+            <p class="t-h6" data-figma-node-id="10474:14057">AI-Powered Video Highlights</p>
+            <p class="t-body-md" data-figma-node-id="10474:14058">Upload any video and let Adobe Express automatically find the highlights, add captions, and export in any aspect ratio.</p>
+          </div>
+          <a class="wn-cta" href="#" data-figma-node-id="10474:14059">
+            <span class="t-label">Learn more</span>
+            <svg class="chev" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.3 0.3L2.7 3 0.3 5.7" stroke="#000" stroke-width="0.7" /></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. BOTTOM — Pricing + Concierge + Footer ============ -->
+<section data-binding-source="judge-snowflake" data-binding-variants="featured" data-binding-score="0.58" data-binding="ambiguous" class="bottom" data-block="base-card" data-figma-node-id="10474:14415" data-section-style="full-width">
+
+  <!-- Pricing -->
+  <div class="pricing" data-figma-node-id="10474:14416">
+    <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;width:100%">
+      <h2 class="pricing-h2 t-h2">Plans that work for you.</h2>
+      <div class="tabs" role="tablist" aria-label="Audience">
+        <button class="tab t-label" role="tab" aria-selected="true">Individuals</button>
+        <button class="tab t-label" role="tab" aria-selected="false">Businesses</button>
+        <button class="tab t-label" role="tab" aria-selected="false">Students &amp; Teachers</button>
+      </div>
+      <div class="cards">
+
+        <!-- Acrobat Reader -->
+        <article class="pcard" data-figma-node-id="10474:14611">
+          <div class="pcard-top">
+            <div class="pcard-cat"><span class="pcard-cat-ico"><img src="./media_bizpro-hub-pdf-icon.png?width=350&format=png&optimize=medium" alt="" width="20" height="20"></span><span class="t-body-sm">PDF viewing</span></div>
+            <h3 class="pcard-name t-title4">Acrobat Reader</h3>
+            <p class="pcard-desc t-body-md">Get started with the trusted standard for viewing and sharing PDFs.</p>
+            <div><p class="pcard-price t-price">Free</p><p class="pcard-sub t-body-sm">Download today</p></div>
+            <div class="pcard-btns"><a class="btn btn-outline btn-sm t-label" href="#" style="flex:1">Get free app</a></div>
+            <div class="pcard-secure"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="6" width="9" height="6.5" rx="1.2" stroke="currentColor" stroke-width="1.1" /><path d="M4.5 6V4.3a2.5 2.5 0 015 0V6" stroke="currentColor" stroke-width="1.1" /></svg><span class="t-caption">Secure transaction</span></div>
+          </div>
+          <div class="pcard-feats">
+            <div class="feat-group">
+              <div class="feat-head"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2" /><path d="M5.5 6h5M5.5 8.5h5M5.5 11h3" stroke="currentColor" stroke-width="1.2" /></svg><span class="t-body-sm">Basic PDF tools</span></div>
+              <p class="feat-item t-body-sm">View, Print, Share PDFs</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Acrobat Express -->
+        <article class="pcard" data-figma-node-id="10474:14612">
+          <div class="pcard-top">
+            <div class="pcard-cat"><span class="pcard-cat-ico"><img src="./media_bizpro-hub-pdf-icon.png?width=350&format=png&optimize=medium" alt="" width="20" height="20"></span><span class="t-body-sm">AI Insights and creation</span></div>
+            <h3 class="pcard-name t-title4">Acrobat Express</h3>
+            <p class="pcard-desc t-body-md">Get document insights with AI-powered tools, and quickly create on-brand content.</p>
+            <div><p class="pcard-price t-price">US$9.99/mo</p><p class="pcard-sub t-body-sm">Annual, billed monthly</p></div>
+            <div class="pcard-btns"><a class="btn btn-blue btn-sm t-label" href="/free-trial#_button-fill" style="flex:1">Free trial</a><a class="btn btn-outline btn-sm t-label" href="#" style="flex:1">Learn more</a></div>
+            <div class="pcard-secure"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="6" width="9" height="6.5" rx="1.2" stroke="currentColor" stroke-width="1.1" /><path d="M4.5 6V4.3a2.5 2.5 0 015 0V6" stroke="currentColor" stroke-width="1.1" /></svg><span class="t-caption">Secure transaction</span></div>
+          </div>
+          <div class="pcard-feats">
+            <div class="feat-group">
+              <div class="feat-head"><svg viewBox="0 0 16 16" fill="#7326d3" xmlns="http://www.w3.org/2000/svg"><path d="M8 1l1.6 4.4L14 7l-4.4 1.6L8 13l-1.6-4.4L2 7l4.4-1.6L8 1z" /></svg><span class="t-body-sm">AI Assistant</span></div>
+              <p class="feat-item t-body-sm">Get AI summaries, insights, and answers</p>
+              <p class="feat-item t-body-sm">Organize, share, and share with PDF Spaces</p>
+            </div>
+            <div class="feat-group">
+              <div class="feat-head"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 2.5l2.5 2.5L6 12.5 3 13l.5-3L11 2.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" /></svg><span class="t-body-sm">Creation tools</span></div>
+              <p class="feat-item t-body-sm">Create flyers, social content, and presentations from documents</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Acrobat Pro -->
+        <article class="pcard" data-figma-node-id="10474:14613">
+          <div class="pcard-top">
+            <div class="pcard-cat"><span class="pcard-cat-ico"><img src="./media_bizpro-hub-pdf-icon.png?width=350&format=png&optimize=medium" alt="" width="20" height="20"></span><span class="t-body-sm">Full PDF toolset</span></div>
+            <h3 class="pcard-name t-title4">Acrobat Pro</h3>
+            <p class="pcard-desc t-body-md">Create, edit, and sign PDFs with secure document and e-signature workflows.</p>
+            <div><p class="pcard-price t-price">US$19.99/mo</p><p class="pcard-sub t-body-sm">Annual, billed monthly</p></div>
+            <div class="pcard-btns"><a class="btn btn-blue btn-sm t-label" href="/free-trial#_button-fill" style="flex:1">Free trial</a><a class="btn btn-outline btn-sm t-label" href="#" style="flex:1">Learn more</a></div>
+            <div class="pcard-secure"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="6" width="9" height="6.5" rx="1.2" stroke="currentColor" stroke-width="1.1" /><path d="M4.5 6V4.3a2.5 2.5 0 015 0V6" stroke="currentColor" stroke-width="1.1" /></svg><span class="t-caption">Secure transaction</span></div>
+          </div>
+          <div class="pcard-feats">
+            <div class="feat-group">
+              <div class="feat-head"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2" /><path d="M5.5 6h5M5.5 8.5h5M5.5 11h3" stroke="currentColor" stroke-width="1.2" /></svg><span class="t-body-sm">70+ PDF tools</span></div>
+              <p class="feat-item t-body-sm">Create, edit, convert, export, compare, and organize PDFs</p>
+              <p class="feat-item t-body-sm">Collect e-signatures and track responses</p>
+              <p class="feat-item t-body-sm">Password-protect and redact PDFs</p>
+              <p class="feat-item t-body-sm">Create, fill, sign, and send forms</p>
+              <p class="feat-item t-body-sm">Create web forms, turn scans into editable PDFs, and access 70+ features</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Acrobat Studio (featured) -->
+        <article class="pcard featured" data-figma-node-id="10474:14614">
+          <div class="pcard-top">
+            <div class="pcard-cat"><span class="pcard-cat-ico"><img src="./media_bizpro-hub-pdf-icon.png?width=350&format=png&optimize=medium" alt="" width="20" height="20"></span><span class="t-body-sm">All-in-one solution</span></div>
+            <h3 class="pcard-name t-title4">Acrobat Studio</h3>
+            <p class="pcard-desc t-body-md">Do it all with the complete AI-powered PDF and design solution for document workflows.</p>
+            <div><p class="pcard-price t-price">US$24.99/mo</p><p class="pcard-sub t-body-sm">Annual, billed monthly</p></div>
+            <div class="pcard-btns"><a class="btn btn-blue btn-sm t-label" href="/free-trial#_button-fill" style="flex:1">Free trial</a><a class="btn btn-outline btn-sm t-label" href="#" style="flex:1">Learn more</a></div>
+            <div class="pcard-secure"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="6" width="9" height="6.5" rx="1.2" stroke="currentColor" stroke-width="1.1" /><path d="M4.5 6V4.3a2.5 2.5 0 015 0V6" stroke="currentColor" stroke-width="1.1" /></svg><span class="t-caption">Secure transaction</span></div>
+          </div>
+          <div class="pcard-feats">
+            <div class="feat-group">
+              <div class="feat-head"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2" /><path d="M5.5 6h5M5.5 8.5h5M5.5 11h3" stroke="currentColor" stroke-width="1.2" /></svg><span class="t-body-sm">70+ PDF tools</span></div>
+              <p class="feat-item t-body-sm">Get all the PDF tools in Acrobat Pro</p>
+            </div>
+            <div class="feat-group">
+              <div class="feat-head"><svg viewBox="0 0 16 16" fill="#b07bff" xmlns="http://www.w3.org/2000/svg"><path d="M8 1l1.6 4.4L14 7l-4.4 1.6L8 13l-1.6-4.4L2 7l4.4-1.6L8 1z" /></svg><span class="t-body-sm">AI Assistant</span></div>
+              <p class="feat-item t-body-sm">Ask AI to edit, convert, or compress PDFs</p>
+              <p class="feat-item t-body-sm">Get AI summaries, insights, and answers</p>
+              <p class="feat-item t-body-sm">Organize, share, and share with PDF Spaces</p>
+            </div>
+            <div class="feat-group">
+              <div class="feat-head"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 2.5l2.5 2.5L6 12.5 3 13l.5-3L11 2.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" /></svg><span class="t-body-sm">Creation tools</span></div>
+              <p class="feat-item t-body-sm">Create flyers, social content, and presentations from documents</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <div class="compare-wrap"><a class="btn btn-outline t-label" href="#" data-figma-node-id="10474:14615">Compare Plans</a></div>
+    </div>
+  </div>
+
+  <!-- Dark wrap: Concierge + Footer -->
+  <div class="dark-wrap" data-figma-node-id="10474:14619">
+
+    <!-- Agentic Search / Concierge -->
+    <div class="concierge" data-figma-node-id="10474:14620">
+      <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;gap:24px;width:100%">
+        <div class="concierge-copy">
+          <h2 class="t-h2">Find what you’re looking for.</h2>
+          <p class="t-body-lg-tight">Get answers from our agent about Adobe products and solutions.</p>
+        </div>
+        <div class="concierge-input">
+          <span class="ci-search" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4" /><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.4" /></svg>
+          </span>
+          <span class="ci-field t-body-md">Ask anything</span>
+          <span class="ci-send" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2 14L14 8 2 2l2 5 6 1-6 1-2 5z" /></svg>
+          </span>
+        </div>
+        <p class="concierge-disc t-caption">Use of this beta AI chatbot is subject to Adobe’s <a href="#">Privacy Policy</a>. Don’t share sensitive data.<br>AI responses are not your Content, may be inaccurate and any offers provided are non-binding. <a href="#">Generative AI Terms</a>.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" data-figma-node-id="10474:14642">
+      <div class="section-inner">
+        <div class="footer-cols">
+          <div class="footer-col wide">
+            <h4 class="t-body-sm" style="font-weight:700">For individuals<br>&amp; small business</h4>
+            <a class="t-body-sm" href="#">Creative AI</a>
+            <a class="t-body-sm" href="#">Photography</a>
+            <a class="t-body-sm" href="#">Design &amp; Illustration</a>
+            <a class="t-body-sm" href="#">Video &amp; animation</a>
+            <a class="t-body-sm" href="#">PDF</a>
+            <a class="t-body-sm" href="#">3D</a>
+            <a class="t-body-sm" href="#">Elements Family</a>
+            <a class="t-body-sm" href="#">Stock images &amp; video</a>
+            <a class="t-body-sm" href="#">View all products</a>
+          </div>
+          <div class="footer-col wide">
+            <h4 class="t-body-sm" style="font-weight:700">For medium<br>&amp; large business</h4>
+            <a class="t-body-sm" href="#">Personalization at scale</a>
+            <a class="t-body-sm" href="#">Content supply chain</a>
+            <a class="t-body-sm" href="#">Unified customer experience</a>
+            <a class="t-body-sm" href="#">Creativity and production</a>
+            <a class="t-body-sm" href="#">B2B GTM orchestration</a>
+            <a class="t-body-sm" href="#">View all products</a>
+          </div>
+          <div class="footer-col">
+            <h4 class="t-body-sm" style="font-weight:700">For<br>Organizations</h4>
+            <a class="t-body-sm" href="#">Education</a>
+            <a class="t-body-sm" href="#">Nonprofits</a>
+            <a class="t-body-sm" href="#">Government</a>
+          </div>
+          <div class="footer-col">
+            <h4 class="t-body-sm" style="font-weight:700">Support</h4>
+            <a class="t-body-sm" href="#">Help Center</a>
+            <a class="t-body-sm" href="#">Download and install</a>
+            <a class="t-body-sm" href="#">Adobe Community</a>
+            <a class="t-body-sm" href="#">Adobe Learn</a>
+            <a class="t-body-sm" href="#">Medium &amp; large business support</a>
+          </div>
+          <div class="footer-col">
+            <h4 class="t-body-sm" style="font-weight:700">Contact</h4>
+            <a class="t-body-sm" href="#">Chat with sales</a>
+            <a class="t-body-sm" href="#">Request information</a>
+          </div>
+          <div class="footer-col">
+            <h4 class="t-body-sm" style="font-weight:700">Adobe</h4>
+            <a class="t-body-sm" href="#">Log into your account</a>
+            <a class="t-body-sm" href="#">About</a>
+            <a class="t-body-sm" href="#">Careers</a>
+            <a class="t-body-sm" href="#">Events</a>
+            <a class="t-body-sm" href="#">Newsroom</a>
+            <a class="t-body-sm" href="#">Corporate Responsibility</a>
+            <a class="t-body-sm" href="#">Investor Relations</a>
+            <a class="t-body-sm" href="#">Supply Chain</a>
+            <a class="t-body-sm" href="#">Trust Center</a>
+            <a class="t-body-sm" href="#">Integrity</a>
+            <a class="t-body-sm" href="#">Adobe for All</a>
+            <a class="t-body-sm" href="#">Adobe Blog</a>
+            <a class="t-body-sm" href="#">Terms</a>
+            <a class="t-body-sm" href="#">Privacy</a>
+            <a class="t-body-sm" href="#">Cookie preferences</a>
+          </div>
+        </div>
+
+        <div class="footer-featured">
+          <h4 class="t-body-sm" style="font-weight:700">Featured Products</h4>
+          <div class="featured-row">
+            <span class="featured-item"><span class="featured-ico" style="padding:0"><img src="./media_bizpro-hub-pdf-icon.png?width=350&format=png&optimize=medium" alt="" width="18" height="18"></span><span class="t-body-sm">Acrobat Reader</span></span>
+            <span class="featured-item"><span class="featured-ico" style="background:#ff3366">Fl</span><span class="t-body-sm">Firefly</span></span>
+            <span class="featured-item"><span class="featured-ico" style="background:#e34536">Ae</span><span class="t-body-sm">Adobe Express</span></span>
+            <span class="featured-item"><span class="featured-ico" style="background:#001e36;color:#31a8ff">Ps</span><span class="t-body-sm">Photoshop</span></span>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <span class="reg t-caption">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" stroke="currentColor" /><path d="M1 6h10M6 1c2 2 2 8 0 10M6 1c-2 2-2 8 0 10" stroke="currentColor" stroke-width="0.8" /></svg>
+            <a href="#">Change region</a>
+          </span>
+          <span class="t-caption">© 2026 Adobe Inc. All rights reserved.</span>
+          <a class="t-caption" href="#">Do not sell or share my personal information</a>
+          <a class="t-caption" href="#">AdChoices</a>
+          <span class="footer-social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 20v-7h2.3l.4-2.7h-2.7V8.5c0-.8.2-1.3 1.3-1.3h1.4V4.8c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v1.9H6.5V13h2.3v7h2.7z" /></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 7H2v11h3V7zm-.2-3.2A1.8 1.8 0 103 5.6a1.8 1.8 0 001.8-1.8zM18 11.7c0-2.8-1.5-4.1-3.5-4.1-1.6 0-2.3.9-2.7 1.5V7H8.8v11h3v-6.1c0-.3 0-.6.1-.8.3-.6.8-1.2 1.7-1.2 1.2 0 1.6.9 1.6 2.2V18h3v-6.3z" /></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.7c2.4 0 2.7 0 3.6.1 2.5.1 3.6 1.3 3.7 3.7 0 .9.1 1.2.1 3.5s0 2.6-.1 3.5c-.1 2.4-1.2 3.6-3.7 3.7-.9.1-1.2.1-3.6.1s-2.7 0-3.6-.1c-2.5-.1-3.6-1.3-3.7-3.7 0-.9-.1-1.2-.1-3.5s0-2.6.1-3.5C2.8 4.1 3.9 2.9 6.4 2.8c.9-.1 1.2-.1 3.6-.1zm0 3.1A4.2 4.2 0 1014.2 10 4.2 4.2 0 0010 5.8zm0 6.9A2.7 2.7 0 1112.7 10 2.7 2.7 0 0110 12.7zm4.3-7.1a1 1 0 100 2 1 1 0 000-2z" /></svg></a>
+            <a href="#" aria-label="X"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11.9 8.8L18 2h-1.5l-5.3 5.9L7 2H2l6.4 9.1L2 18h1.5l5.6-6.3L13.4 18H18l-6.1-9.2zm-2 2.2l-.6-.9L4 3.1h2.3l4.2 5.9.6.9 5.4 7.6h-2.3l-4.3-6.4z" /></svg></a>
+          </span>
+        </div>
+
+        <div class="footer-wordmark" aria-hidden="true" data-figma-node-id="10474:14641">
+          <picture>
+            <source type="image/webp" srcset="./media_bizpro-hub-footer-logo.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-footer-logo.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-footer-logo.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_bizpro-hub-footer-logo.png?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="Adobe" src="./media_bizpro-hub-footer-logo.png?width=750&format=png&optimize=medium">
+          </picture>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</section>
+
+</main>
+
+<script>
+/* Pricing audience tabs — scoped IIFE, no globals */
+(function(){
+  var root=document.currentScript&&document.currentScript.closest?document.currentScript.closest('.bottom'):null;
+  if(!root){var s=document.querySelectorAll('.bottom');root=s[s.length-1];}
+  if(!root)return;
+  var tabs=root.querySelectorAll('.tabs [role="tab"]');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-selected','false');});
+      t.setAttribute('aria-selected','true');
+    });
+  });
+})();
+</script>
+</body>
+</html>

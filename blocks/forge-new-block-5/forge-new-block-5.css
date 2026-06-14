@@ -1,0 +1,8 @@
+/* forge-new-block-5 — hidden alternate section (renders nothing). */
+.forge-new-block-5 {
+  display: none;
+}
+
+.forge-new-block-5[hidden] {
+  display: none;
+}

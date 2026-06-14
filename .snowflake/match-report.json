@@ -1,0 +1,523 @@
+{
+  "stats": {
+    "totalSections": 9,
+    "tightVariant": 2,
+    "looseVariant": 1,
+    "snowflake": 2,
+    "ambiguous": 4,
+    "belowThreshold": 0,
+    "coverage": 0.2222222222222222,
+    "reuseRate": 0.3333333333333333
+  },
+  "counters": {
+    "reusableBlocksUsed": 3,
+    "newBlocksCreated": 2,
+    "newBlocksPlanned": 2,
+    "tightVariants": 2,
+    "looseVariants": 1,
+    "snowflakeSections": 2,
+    "ambiguous": 4,
+    "belowThreshold": 0,
+    "bespokeHostSections": 0,
+    "pendingReview": 4,
+    "totalSections": 9,
+    "distinctReusableBlocks": [
+      "base-card",
+      "rich-content"
+    ],
+    "distinctNewBlocks": [
+      "new-block-5",
+      "new-block-7"
+    ]
+  },
+  "sections": [
+    {
+      "index": 1,
+      "block": "base-card",
+      "decision": "loose-variant",
+      "score": 0.8620000000000001,
+      "variantClasses": [
+        "featured"
+      ],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/base-card/base-card.js",
+        "css": "libs/c2/blocks/base-card/base-card.css"
+      },
+      "candidates": [
+        {
+          "block": "base-card",
+          "score": 0.862,
+          "foundation": "c2"
+        },
+        {
+          "block": "explore-card",
+          "score": 0.754,
+          "foundation": "c2"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [
+        "featured"
+      ],
+      "variantSource": "matcher",
+      "figmaNodeId": "10474:12244",
+      "layoutKey": "lk:c81cc7f6abca"
+    },
+    {
+      "index": 2,
+      "block": "rich-content",
+      "decision": "ambiguous",
+      "score": 0.7849999999999999,
+      "variantClasses": [
+        "hero"
+      ],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/rich-content/rich-content.js",
+        "css": "libs/c2/blocks/rich-content/rich-content.css"
+      },
+      "candidates": [
+        {
+          "block": "rich-content",
+          "score": 0.785,
+          "foundation": "c2"
+        },
+        {
+          "block": "base-card",
+          "score": 0.754,
+          "foundation": "c2"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [
+        "hero"
+      ],
+      "variantSource": "matcher",
+      "figmaNodeId": "10474:12379",
+      "layoutKey": "lk:c81cc7f6abca",
+      "judgeConcurred": true
+    },
+    {
+      "index": 3,
+      "block": "rich-content",
+      "decision": "tight-variant",
+      "score": 0.85,
+      "variantClasses": [
+        "hero"
+      ],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/rich-content/rich-content.js",
+        "css": "libs/c2/blocks/rich-content/rich-content.css"
+      },
+      "candidates": [
+        {
+          "block": "rich-content",
+          "score": 0.785,
+          "foundation": "c2"
+        },
+        {
+          "block": "base-card",
+          "score": 0.754,
+          "foundation": "c2"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [
+        "hero"
+      ],
+      "variantSource": "matcher",
+      "figmaNodeId": "10474:12417",
+      "layoutKey": "lk:c81cc7f6abca",
+      "judgePromoted": true
+    },
+    {
+      "index": 4,
+      "block": "modal",
+      "decision": "ambiguous",
+      "score": 0.74,
+      "variantClasses": [],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/modal/modal.js",
+        "css": "libs/c2/blocks/modal/modal.css"
+      },
+      "candidates": [
+        {
+          "block": "modal",
+          "score": 0.74,
+          "foundation": "c2"
+        },
+        {
+          "block": "base-card",
+          "score": 0.646,
+          "foundation": "c2"
+        },
+        {
+          "block": "rich-content",
+          "score": 0.605,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [],
+      "variantSource": null,
+      "figmaNodeId": "10474:12440",
+      "layoutKey": "lk:c81cc7f6abca",
+      "judgeConcurred": true
+    },
+    {
+      "index": 5,
+      "block": "modal",
+      "decision": "snowflake",
+      "score": 0.518,
+      "variantClasses": [],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/modal/modal.js",
+        "css": "libs/c2/blocks/modal/modal.css"
+      },
+      "candidates": [
+        {
+          "block": "modal",
+          "score": 0.518,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [],
+      "variantSource": null,
+      "figmaNodeId": "10474:12643",
+      "layoutKey": "lk:2f31c3e5e982"
+    },
+    {
+      "index": 6,
+      "block": "base-card",
+      "decision": "tight-variant",
+      "score": 0.85,
+      "variantClasses": [
+        "featured"
+      ],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/base-card/base-card.js",
+        "css": "libs/c2/blocks/base-card/base-card.css"
+      },
+      "candidates": [
+        {
+          "block": "base-card",
+          "score": 0.808,
+          "foundation": "c2"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "foundation": "c2"
+        },
+        {
+          "block": "rich-content",
+          "score": 0.74,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [
+        "featured"
+      ],
+      "variantSource": "matcher",
+      "figmaNodeId": "10474:12649",
+      "layoutKey": "lk:c81cc7f6abca",
+      "judgePromoted": true
+    },
+    {
+      "index": 7,
+      "block": "modal",
+      "decision": "snowflake",
+      "score": 0.518,
+      "variantClasses": [],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/modal/modal.js",
+        "css": "libs/c2/blocks/modal/modal.css"
+      },
+      "candidates": [
+        {
+          "block": "modal",
+          "score": 0.518,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [],
+      "variantSource": null,
+      "figmaNodeId": "10474:13560",
+      "layoutKey": "lk:2f31c3e5e982"
+    },
+    {
+      "index": 8,
+      "block": "base-card",
+      "decision": "ambiguous",
+      "score": 0.7648000000000001,
+      "variantClasses": [
+        "featured"
+      ],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/base-card/base-card.js",
+        "css": "libs/c2/blocks/base-card/base-card.css"
+      },
+      "candidates": [
+        {
+          "block": "base-card",
+          "score": 0.765,
+          "foundation": "c2"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "foundation": "c2"
+        },
+        {
+          "block": "rich-content",
+          "score": 0.713,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [
+        "featured"
+      ],
+      "variantSource": "matcher",
+      "figmaNodeId": "10474:13949",
+      "layoutKey": "lk:c81cc7f6abca",
+      "judgeConcurred": true
+    },
+    {
+      "index": 9,
+      "block": "base-card",
+      "decision": "ambiguous",
+      "score": 0.5800000000000001,
+      "variantClasses": [
+        "featured"
+      ],
+      "foundation": "c2",
+      "blockSource": {
+        "js": "libs/c2/blocks/base-card/base-card.js",
+        "css": "libs/c2/blocks/base-card/base-card.css"
+      },
+      "candidates": [
+        {
+          "block": "base-card",
+          "score": 0.58,
+          "foundation": "c2"
+        },
+        {
+          "block": "news",
+          "score": 0.496,
+          "foundation": "c2"
+        },
+        {
+          "block": "explore-card",
+          "score": 0.472,
+          "foundation": "c2"
+        }
+      ],
+      "agentVariants": [],
+      "resolvedVariants": [
+        "featured"
+      ],
+      "variantSource": "matcher",
+      "figmaNodeId": "10474:14415",
+      "layoutKey": "lk:a48333c2a822",
+      "judgeConcurred": true
+    }
+  ],
+  "newBlockTasks": [
+    {
+      "index": 5,
+      "blockName": "new-block-5",
+      "sectionHtml": "<section data-binding-score=\"0.52\" data-binding=\"snowflake\" class=\"figma-hidden\" data-block=\"modal\" data-figma-node-id=\"10474:12643\" data-extraction-note=\"hidden-alternate\" hidden aria-hidden=\"true\"></section>",
+      "decision": "snowflake",
+      "score": 0.518,
+      "topCandidate": "modal"
+    },
+    {
+      "index": 7,
+      "blockName": "new-block-7",
+      "sectionHtml": "<section data-binding-score=\"0.52\" data-binding=\"snowflake\" class=\"figma-hidden\" data-block=\"modal\" data-figma-node-id=\"10474:13560\" data-extraction-note=\"hidden-alternate\" hidden aria-hidden=\"true\"></section>",
+      "decision": "snowflake",
+      "score": 0.518,
+      "topCandidate": "modal"
+    }
+  ],
+  "judgeVerdicts": [
+    {
+      "nodeId": null,
+      "index": 2,
+      "top3Before": [
+        {
+          "block": "rich-content",
+          "score": 0.785,
+          "bindingDecision": "ambiguous"
+        },
+        {
+          "block": "base-card",
+          "score": 0.754,
+          "bindingDecision": "loose-variant"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "bindingDecision": "snowflake"
+        }
+      ],
+      "verdict": "snowflake",
+      "latencyMs": 1,
+      "cacheHit": true
+    },
+    {
+      "nodeId": null,
+      "index": 3,
+      "top3Before": [
+        {
+          "block": "rich-content",
+          "score": 0.785,
+          "bindingDecision": "ambiguous"
+        },
+        {
+          "block": "base-card",
+          "score": 0.754,
+          "bindingDecision": "loose-variant"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "bindingDecision": "snowflake"
+        }
+      ],
+      "verdict": "tight-match",
+      "latencyMs": 0,
+      "cacheHit": true,
+      "block": "rich-content",
+      "variants": [
+        "hero"
+      ]
+    },
+    {
+      "nodeId": null,
+      "index": 4,
+      "top3Before": [
+        {
+          "block": "modal",
+          "score": 0.74,
+          "bindingDecision": "ambiguous"
+        },
+        {
+          "block": "base-card",
+          "score": 0.646,
+          "bindingDecision": "below-threshold"
+        },
+        {
+          "block": "rich-content",
+          "score": 0.605,
+          "bindingDecision": "below-threshold"
+        }
+      ],
+      "verdict": "snowflake",
+      "latencyMs": 1,
+      "cacheHit": true
+    },
+    {
+      "nodeId": null,
+      "index": 6,
+      "top3Before": [
+        {
+          "block": "base-card",
+          "score": 0.808,
+          "bindingDecision": "ambiguous"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "bindingDecision": "snowflake"
+        },
+        {
+          "block": "rich-content",
+          "score": 0.74,
+          "bindingDecision": "loose-variant"
+        }
+      ],
+      "verdict": "tight-match",
+      "latencyMs": 0,
+      "cacheHit": true,
+      "block": "base-card",
+      "variants": [
+        "featured"
+      ]
+    },
+    {
+      "nodeId": null,
+      "index": 8,
+      "top3Before": [
+        {
+          "block": "base-card",
+          "score": 0.765,
+          "bindingDecision": "ambiguous"
+        },
+        {
+          "block": "modal",
+          "score": 0.74,
+          "bindingDecision": "snowflake"
+        },
+        {
+          "block": "rich-content",
+          "score": 0.713,
+          "bindingDecision": "loose-variant"
+        }
+      ],
+      "verdict": "snowflake",
+      "latencyMs": 0,
+      "cacheHit": true
+    },
+    {
+      "nodeId": null,
+      "index": 9,
+      "top3Before": [
+        {
+          "block": "base-card",
+          "score": 0.58,
+          "bindingDecision": "ambiguous"
+        },
+        {
+          "block": "news",
+          "score": 0.496,
+          "bindingDecision": "snowflake"
+        },
+        {
+          "block": "explore-card",
+          "score": 0.472,
+          "bindingDecision": "snowflake"
+        }
+      ],
+      "verdict": "snowflake",
+      "latencyMs": 0,
+      "cacheHit": true
+    }
+  ]
+}

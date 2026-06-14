@@ -1,0 +1,101 @@
+{
+  "mapping": {},
+  "results": [
+    {
+      "localPath": "assets/media/media_bizpro-hub-adobe-logo.svg",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-adobe-logo.svg",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-aud-hr.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-aud-hr.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-aud-legal.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-aud-legal.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-aud-marketing.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-aud-marketing.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-aud-sales.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-aud-sales.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-flow.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-flow.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-footer-logo.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-footer-logo.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-hero-collage.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-hero-collage.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-jtbd-left.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-jtbd-left.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-jtbd-right.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-jtbd-right.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-logos.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-logos.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-offer.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-offer.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-pdf-icon.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-pdf-icon.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-wn-brandkit.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-wn-brandkit.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-wn-podcast.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-wn-podcast.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    },
+    {
+      "localPath": "assets/media/media_bizpro-hub-wn-video.png",
+      "remotePath": "media/drafts/cod87753/forge/figma-b0c1fa/media_bizpro-hub-wn-video.png",
+      "ok": false,
+      "reason": "HTTP 403: "
+    }
+  ]
+}
