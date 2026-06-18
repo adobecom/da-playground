@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:         stardust:prototype  (delegated render via impeccable:craft)
+  writtenAt:         2026-06-18T14:55:00Z
+  page:              home
+  pageUrl:           https://main--milo--adobecom.aem.live/
+  againstDirection:  stardust/direction.md (Active 2026-06-18T14:30:00Z)
+  readArtifacts:
+    - stardust/prototypes/home-shape.md
+    - stardust/current/pages/home.json
+    - DESIGN.md
+    - DESIGN.json
+    - stardust/direction.md
+  mode:              A (brand-faithful to Adobe Consonant 2)
+  divergenceVersion: v1.0 (stardust v2)
+  fontDeck:          brand-inherited (Adobe Clean Display 900 + Adobe Clean 400/700)
+  paletteSource:     inherited from _brand-extraction.json (C2 single-chroma blue + two-act neutrals)
+  reflexRejectAudit: { bypassed: true, reason: "Mode A — captured display/body families (Adobe Clean / Adobe Clean Display) pinned, not a reflex pick" }
+  unsourcedContent:  []   # every literal value traces to current/pages/home.json, voice samples, or a fact-free direction-authorized rewrite
+  critique:          { p0: 0, p1: 0, notes: "brand-faithful C2; eyebrow used once (hero) not per-section; no side-stripes / gradient-text / decorative-glass; sentence-case headings; type steps 80/56/48/24/18 ≥1.25 ratio" }
+  audit:             { p0: 0, p1: 0, contrastAA: "pass (worst real pair ~5.9:1 subtle-on-stone; white-on-blue 4.81:1)", oneH1: true, imgsMissingAlt: 0, jsGatedHiddenContent: false, lcp: "type-led hero, no above-fold raster" }
+  adapt:             { viewports: [1440, 768, 390], horizontalOverflow: 0, navCollapse: "hamburger ≤640px (aria-expanded verified)", mediaRules: ["1024","900","768","640","420"], navFontPx: 15 }
+  perfNote:          "captured C2 nav backdrop blur(128px) reduced to blur(24px) for compositing performance (brand-faithful glass retained, scoped to nav)"
+  motionValidation:  "n/a — static prototype: hover/focus transitions + prefers-reduced-motion only; no scroll-gated reveals, no IntersectionObserver, no animation-timeline"
+  validationNote:    "Playwright screenshots not saved — sandbox enforces a 5s screenshot-encode timeout that even a single viewport JPEG exceeds. Page renders cleanly (console: only favicon 404); all layout/contrast/responsive gates validated programmatically via browser_evaluate."
+  stardustVersion:   0.10.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="header" content="/nav">
+<meta name="footer" content="/footer">
+<meta name="libs" content="https://main--milo--adobecom.aem.live/libs">
+<title>milo — Website foundation technology</title>
+<script src="https://main--milo--adobecom.aem.live/libs/scripts/scripts.js" type="module"></script>
+<style>
+@import url("https://use.typekit.net/hah7vzn.css"); /* Adobe Clean / Adobe Clean Display — prototype-only; migrate inlines @font-face */
+
+/* ============================================================
+   :root token contract  (stardust/reference/token-contract.md)
+   Color format follows DESIGN.md frontmatter (hex) — Mode A.
+   ============================================================ */
+:root {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family:    'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+
+  --heading-xxl: clamp(40px, 6.25vw, 80px);  /* title-1, hero */
+  --heading-xl:  clamp(34px, 4.4vw, 56px);   /* title-2, section heads */
+  --heading-lg:  clamp(30px, 3.6vw, 48px);   /* title-3 */
+  --heading-md:  24px;                        /* title-4, card/tile names */
+  --body:        18px;
+  --body-sm:     14px;
+
+  --line-height-heading: 0.98;
+  --line-height-body:    1.5;
+
+  /* Color — Adobe Consonant 2 (hex, Mode A brand-faithful) */
+  --color-bg:     #FFFFFF;   /* paper */
+  --color-fg:     #1A1A1A;   /* near-ink body on light */
+  --color-accent: #3b63fb;   /* Adobe Blue — sole saturated color */
+  --color-accent-deep: #274dea;
+  --color-surface: #F8F8F8;  /* cloud */
+  --color-surface-warm: #ECEAE7; /* warm-stone */
+  --color-ink: #000000;      /* dark-act ground (pure-black retained, Mode A) */
+  --color-eyebrow: #505050;  /* gray-700 */
+  --color-fg-subtle: rgba(0,0,0,0.64);
+  --color-on-dark: #FFFFFF;
+  --color-on-dark-subtle: rgba(255,255,255,0.72);
+  --color-on-dark-hairline: rgba(255,255,255,0.16);
+
+  --spacing-xs:  4px;
+  --spacing-sm:  8px;
+  --spacing-md:  16px;
+  --spacing-lg:  24px;
+  --spacing-xl:  48px;
+  --spacing-2xl: 96px;
+
+  --section-padding: clamp(32px, 5vw, 64px);  /* density: balanced, multi-audience floor */
+  --max-width:       1200px;
+  --side-margin:     clamp(20px, 8.333vw, 160px);
+  --radius:          16px;
+  --radius-pill:     999px;
+
+  --shadow-nav: 0 2px 12px rgba(0,0,0,0.08);
+  --ease: cubic-bezier(0.42, 0, 0, 1);
+
+  /* z-index scale */
+  --z-nav: 100;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; hanging-punctuation: first; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--body-font-family);
+  font-size: var(--body);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0;
+}
+p { text-wrap: pretty; }
+a { color: inherit; }
+
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--side-margin);
+}
+
+/* ---------- Buttons (pill system) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 48px; padding-inline: 26px;
+  border: 1.5px solid transparent; border-radius: var(--radius-pill);
+  font-family: var(--body-font-family); font-size: 16px; font-weight: 700;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease), transform 200ms var(--ease);
+}
+.btn--sm { height: 40px; padding-inline: 20px; font-size: 15px; }
+.btn--primary { background: var(--color-accent); color: #fff; }
+.btn--primary:hover { background: var(--color-accent-deep); }
+.btn--outline { background: transparent; color: var(--color-ink); border-color: var(--color-ink); }
+.btn--outline:hover { background: rgba(0,0,0,0.04); }
+.btn--ghost { background: transparent; color: #fff; border-color: #fff; backdrop-filter: blur(16px); }
+.btn--ghost:hover { background: rgba(255,255,255,0.10); }
+.btn svg { width: 18px; height: 18px; }
+
+:where(a, button, input):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Hero — left-anchored, type-led (upper act)
+   ============================================================ */
+.hero { padding-block: clamp(140px, 18vh, 220px) var(--section-padding); }
+.hero__inner { max-width: 56rem; }
+.eyebrow {
+  font-size: var(--body-sm); font-weight: 700; letter-spacing: 0.04em;
+  color: var(--color-eyebrow); margin: 0 0 var(--spacing-lg);
+  text-transform: none;
+}
+.hero h1 { font-size: var(--heading-xxl); margin-bottom: var(--spacing-lg); }
+.hero h1 .accent { color: var(--color-accent); }
+.hero__sub {
+  font-size: clamp(20px, 2.2vw, 24px); line-height: 1.3; color: var(--color-fg-subtle);
+  max-width: 40ch; margin: 0 0 var(--spacing-xl);
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: var(--spacing-md); }
+
+/* ---------- Trust band ---------- */
+.trust { border-block: 1px solid #ECECEC; }
+.trust__inner {
+  display: flex; flex-wrap: wrap; gap: clamp(20px, 4vw, 56px);
+  padding-block: var(--spacing-xl);
+}
+.trust__item { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; }
+.trust__item svg { width: 22px; height: 22px; color: var(--color-accent); flex: none; }
+
+/* ============================================================
+   Features — flat warm-stone 3-up
+   ============================================================ */
+.section { padding-block: var(--section-padding); }
+.section__head { max-width: 44rem; margin-bottom: var(--spacing-xl); }
+.section__head h2 { font-size: var(--heading-xl); }
+.section__head p { font-size: 20px; color: var(--color-fg-subtle); margin: var(--spacing-md) 0 0; max-width: 52ch; }
+
+.features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md); }
+.feature {
+  background: var(--color-surface-warm); border-radius: var(--radius);
+  padding: clamp(24px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 10px;
+}
+.feature h3 { font-size: var(--heading-md); }
+.feature p { font-size: 16px; line-height: 1.45; color: var(--color-fg-subtle); margin: 0; }
+
+/* ============================================================
+   Block library — product-mnemonic tile grid
+   ============================================================ */
+.blocks { background: var(--color-surface); }
+.blocks__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); }
+.tile {
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 14px;
+  min-height: 172px; padding: 22px;
+  background: #fff; border-radius: var(--radius); text-decoration: none; color: var(--color-ink);
+  transition: transform 200ms var(--ease), background 200ms var(--ease);
+}
+.tile:hover { background: var(--color-surface-warm); transform: translateY(-3px); }
+.tile__badge {
+  align-self: flex-start; background: rgba(0,0,0,0.06); border-radius: var(--radius-pill);
+  padding: 4px 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.01em;
+}
+.tile h3 { font-size: var(--heading-md); }
+.blocks__more { margin-top: var(--spacing-xl); }
+.blocks__more a {
+  font-size: 17px; font-weight: 700; color: var(--color-accent); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.blocks__more a:hover { text-decoration: underline; }
+
+/* ============================================================
+   Dark act  (get-involved + wayfinding)
+   ============================================================ */
+.act-dark { background: var(--color-ink); color: var(--color-on-dark); }
+.act-dark .section__head p { color: var(--color-on-dark-subtle); }
+
+.involved__inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+.involved h2 { font-size: var(--heading-xl); }
+.involved__lead { font-size: 20px; line-height: 1.4; color: var(--color-on-dark-subtle); margin: var(--spacing-lg) 0 var(--spacing-xl); max-width: 42ch; }
+.involved__links { display: flex; flex-direction: column; gap: 2px; }
+.involved__links a {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 4px; border-top: 1px solid var(--color-on-dark-hairline);
+  text-decoration: none; color: var(--color-on-dark); font-weight: 700; font-size: 18px;
+  transition: padding-inline 200ms var(--ease), color 200ms var(--ease);
+}
+.involved__links a:last-child { border-bottom: 1px solid var(--color-on-dark-hairline); }
+.involved__links a:hover { padding-left: 12px; color: #fff; }
+.involved__links .arrow { color: var(--color-on-dark-subtle); transition: transform 200ms var(--ease); }
+.involved__links a:hover .arrow { transform: translateX(4px); color: #fff; }
+.involved__cta { margin-bottom: var(--spacing-xl); }
+.made-in {
+  margin-top: var(--spacing-2xl); padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-on-dark-hairline);
+}
+.made-in__label { font-family: var(--heading-font-family); font-weight: 900; font-size: 20px; letter-spacing: -0.02em; }
+.made-in__states { color: var(--color-on-dark-subtle); font-weight: 700; letter-spacing: 0.08em; margin-top: 6px; }
+
+/* Wayfinding band */
+.wayfinding { border-top: 1px solid var(--color-on-dark-hairline); }
+.wayfinding__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--spacing-lg); }
+.wayfinding h2 { font-size: var(--heading-lg); }
+.wayfinding__nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; }
+.wayfinding__nav a { color: var(--color-on-dark-subtle); text-decoration: none; font-weight: 700; font-size: 16px; transition: color 200ms var(--ease); }
+.wayfinding__nav a:hover { color: #fff; }
+.wayfinding__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-xl); }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .blocks__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .features__grid { grid-template-columns: 1fr; }
+  .involved__inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .blocks__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .wayfinding__inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 420px) {
+  .blocks__grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body data-template="landing">
+
+<header></header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero" data-section="hero" data-intent="value proposition" data-layout="stack" data-media="none">
+    <div class="container hero__inner">
+      <p class="eyebrow">Website foundation technology</p>
+      <h1>The foundation behind <span class="accent">adobe.com</span>.</h1>
+      <p class="hero__sub">Milo is a shared set of features and services to power Helix-based websites on adobe.com.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="https://main--milo--adobecom.aem.live/docs/">Read the docs</a>
+        <a class="btn btn--outline" href="https://github.com/adobecom/milo">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.95.68 1.92 0 1.39-.01 2.51-.01 2.85 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust band -->
+  <section class="trust" data-section="trust-band" data-intent="build trust" data-layout="grid" data-items="3">
+    <div class="container trust__inner">
+      <div class="trust__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/></svg>
+        Open source
+      </div>
+      <div class="trust__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8z"/></svg>
+        Built on Edge Delivery
+      </div>
+      <div class="trust__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
+        Powers adobe.com
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" data-section="features" data-intent="explain mechanic" data-layout="grid" data-items="3">
+    <div class="container">
+      <div class="section__head">
+        <h2>Everything a page needs, out of the box.</h2>
+        <p>Milo gives developers and authors a shared foundation — so teams ship faster and every site behaves the same way.</p>
+      </div>
+      <div class="features__grid">
+        <article class="feature">
+          <h3>Author anywhere</h3>
+          <p>Write in Microsoft Word or Document Authoring. Milo turns ordinary documents into production-ready pages — no build step, no handoff.</p>
+        </article>
+        <article class="feature">
+          <h3>Blocks, batteries included</h3>
+          <p>A library of production blocks — feeds, fragments, commerce, personalization and more — ready to drop into any page.</p>
+        </article>
+        <article class="feature">
+          <h3>Fast by default</h3>
+          <p>Built on Edge Delivery Services for top-tier Core Web Vitals, with localization and personalization built in.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Block library -->
+  <section class="section blocks" data-section="block-library" data-intent="discovery" data-layout="grid" data-items="8">
+    <div class="container">
+      <div class="section__head">
+        <h2>A block for every job.</h2>
+        <p>Compose pages from a shared catalogue. Each block is documented, tested, and used in production across adobe.com.</p>
+      </div>
+      <div class="blocks__grid">
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/article-feed"><span class="tile__badge">Content</span><h3>Article Feed</h3></a>
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/caas/intro-to-caas"><span class="tile__badge">Content</span><h3>CaaS</h3></a>
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/commerce"><span class="tile__badge">Commerce</span><h3>Commerce</h3></a>
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/create-fragment"><span class="tile__badge">Content</span><h3>Fragments</h3></a>
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/features/mep/"><span class="tile__badge">Targeting</span><h3>Personalization</h3></a>
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/quiz/quiz-intro"><span class="tile__badge">Engagement</span><h3>Quiz</h3></a>
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/tables"><span class="tile__badge">Content</span><h3>Tables</h3></a>
+        <a class="tile" href="https://main--milo--adobecom.aem.live/docs/authoring/blocks/share"><span class="tile__badge">Engagement</span><h3>Social Share</h3></a>
+      </div>
+      <p class="blocks__more">
+        <a href="https://main--milo--adobecom.aem.live/docs/authoring/">Browse all blocks
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Dark act ===== -->
+
+  <!-- Get involved -->
+  <section class="section act-dark" data-section="get-involved" data-intent="drive action" data-layout="split-media" data-media="none">
+    <div class="container involved__inner">
+      <div>
+        <h2 class="involved">Get involved</h2>
+        <p class="involved__lead">Milo is open source and built in the open. Join the conversation, file issues, and ship improvements with the team.</p>
+        <a class="btn btn--ghost involved__cta" href="https://adobe-mwp.slack.com/archives/C03B0BUA75E">Join #milo-community</a>
+        <div class="made-in">
+          <div class="made-in__label">Proudly made in:</div>
+          <div class="made-in__states">CA, CH, IA, NC, UT</div>
+        </div>
+      </div>
+      <div class="involved__links">
+        <a href="https://github.com/adobecom/milo"><span>GitHub repository</span><span class="arrow" aria-hidden="true">→</span></a>
+        <a href="https://github.com/adobecom/milo/wiki/Submitting-PRs"><span>Submitting PRs</span><span class="arrow" aria-hidden="true">→</span></a>
+        <a href="https://github.com/orgs/adobecom/teams/community"><span>Community discussions</span><span class="arrow" aria-hidden="true">→</span></a>
+        <a href="https://github.com/adobecom/milo/wiki"><span>Engineering wiki</span><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wayfinding band -->
+  <section class="section act-dark wayfinding" data-section="wayfinding" data-intent="navigate" data-layout="stack">
+    <div class="container wayfinding__inner">
+      <h2>Find your way around.</h2>
+      <div class="wayfinding__row">
+        <nav class="wayfinding__nav" aria-label="Site sections">
+          <a href="https://main--milo--adobecom.aem.live/about/">About</a>
+          <a href="https://main--milo--adobecom.aem.live/wiki/">Wiki</a>
+          <a href="https://main--milo--adobecom.aem.live/docs/">Docs</a>
+          <a href="https://main--milo--adobecom.aem.live/blog/">Blog</a>
+          <a href="https://main--milo--adobecom.aem.live/docs/library/kitchen-sink/">Kitchen Sink</a>
+          <a href="https://main--milo--adobecom.aem.live/docs/engineering/">For Devs</a>
+        </nav>
+        <a class="btn btn--primary" href="https://main--milo--adobecom.aem.live/docs/">Read the docs</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer></footer>
+
+</body>
+</html>

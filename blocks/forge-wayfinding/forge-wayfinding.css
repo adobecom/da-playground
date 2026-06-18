@@ -1,0 +1,129 @@
+/* forge-wayfinding — dark wayfinding band */
+
+.forge-wayfinding *,
+.forge-wayfinding *::before,
+.forge-wayfinding *::after {
+  box-sizing: border-box;
+}
+
+.section .forge-wayfinding-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* Dark act: border-top separates from get-involved */
+main .section:has(.forge-wayfinding) {
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.forge-wayfinding {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-lg: clamp(30px, 3.6vw, 48px);
+  --color-ink: #000000;
+  --color-on-dark: #ffffff;
+  --color-on-dark-subtle: rgba(255, 255, 255, 0.72);
+  --color-on-dark-hairline: rgba(255, 255, 255, 0.16);
+  --color-accent: #3b63fb;
+  --color-accent-deep: #274dea;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --section-padding: clamp(32px, 5vw, 64px);
+  --side-margin: clamp(20px, 8.333vw, 160px);
+  --max-width: 1200px;
+  --radius-pill: 999px;
+  --ease: cubic-bezier(0.42, 0, 0, 1);
+
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  font-family: var(--body-font-family);
+  padding-block: var(--section-padding);
+  padding-inline: var(--side-margin);
+  border-top: 1px solid var(--color-on-dark-hairline);
+}
+
+.forge-wayfinding .wayfinding__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+.forge-wayfinding h2 {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: var(--heading-lg);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--color-on-dark);
+}
+
+.forge-wayfinding .wayfinding__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.forge-wayfinding .wayfinding__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 22px;
+}
+
+.forge-wayfinding .wayfinding__nav a {
+  color: var(--color-on-dark-subtle);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  transition: color 200ms var(--ease);
+}
+
+.forge-wayfinding .wayfinding__nav a:hover {
+  color: #fff;
+}
+
+/* CTA button */
+.forge-wayfinding .btn--primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding-inline: 26px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--color-accent);
+  color: #fff;
+  transition: background 200ms var(--ease);
+}
+
+.forge-wayfinding .btn--primary:hover {
+  background: var(--color-accent-deep);
+}
+
+@media (max-width: 640px) {
+  .forge-wayfinding .wayfinding__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-wayfinding .wayfinding__nav a,
+  .forge-wayfinding .btn--primary {
+    transition-duration: 0.01ms;
+  }
+}

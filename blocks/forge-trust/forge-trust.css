@@ -1,0 +1,52 @@
+/* forge-trust — trust band block styles */
+
+.forge-trust *,
+.forge-trust *::before,
+.forge-trust *::after {
+  box-sizing: border-box;
+}
+
+/* Lift Milo wrapper constraints */
+.section .forge-trust-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-trust {
+  --body-font-family: 'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --color-accent: #3b63fb;
+  --color-fg: #1a1a1a;
+  --spacing-xl: 48px;
+  --side-margin: clamp(20px, 8.333vw, 160px);
+  --max-width: 1200px;
+
+  border-block: 1px solid #ececec;
+  background: #ffffff;
+  font-family: var(--body-font-family);
+  padding-inline: var(--side-margin);
+}
+
+.forge-trust .trust__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 4vw, 56px);
+  padding-block: var(--spacing-xl);
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+.forge-trust .trust__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--color-fg);
+}
+
+.forge-trust .trust__item svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-accent);
+  flex: none;
+}

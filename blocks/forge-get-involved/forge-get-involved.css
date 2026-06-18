@@ -1,0 +1,169 @@
+/* forge-get-involved — dark act section */
+
+.forge-get-involved *,
+.forge-get-involved *::before,
+.forge-get-involved *::after {
+  box-sizing: border-box;
+}
+
+.section .forge-get-involved-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-get-involved {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-xl: clamp(34px, 4.4vw, 56px);
+  --color-ink: #000000;
+  --color-on-dark: #ffffff;
+  --color-on-dark-subtle: rgba(255, 255, 255, 0.72);
+  --color-on-dark-hairline: rgba(255, 255, 255, 0.16);
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 96px;
+  --section-padding: clamp(32px, 5vw, 64px);
+  --side-margin: clamp(20px, 8.333vw, 160px);
+  --max-width: 1200px;
+  --radius-pill: 999px;
+  --ease: cubic-bezier(0.42, 0, 0, 1);
+
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  font-family: var(--body-font-family);
+  padding-block: var(--section-padding);
+  padding-inline: var(--side-margin);
+}
+
+.forge-get-involved .involved__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+/* H2 */
+.forge-get-involved h2.involved,
+.forge-get-involved .involved {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: var(--heading-xl);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--color-on-dark);
+}
+
+/* Lead */
+.forge-get-involved .involved__lead {
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--color-on-dark-subtle);
+  margin: var(--spacing-lg) 0 var(--spacing-xl);
+  max-width: 42ch;
+}
+
+/* CTA button */
+.forge-get-involved .btn--ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding-inline: 26px;
+  border: 1.5px solid #fff;
+  border-radius: var(--radius-pill);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  background: transparent;
+  color: #fff;
+  backdrop-filter: blur(16px);
+  transition: background 200ms var(--ease);
+}
+
+.forge-get-involved .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Made-in */
+.forge-get-involved .made-in {
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-on-dark-hairline);
+}
+
+.forge-get-involved .made-in__label {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+}
+
+.forge-get-involved .made-in__states {
+  color: var(--color-on-dark-subtle);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+}
+
+/* Right column — involved links */
+.forge-get-involved .involved__links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.forge-get-involved .involved__links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 4px;
+  border-top: 1px solid var(--color-on-dark-hairline);
+  text-decoration: none;
+  color: var(--color-on-dark);
+  font-weight: 700;
+  font-size: 18px;
+  transition: padding-inline 200ms var(--ease), color 200ms var(--ease);
+}
+
+.forge-get-involved .involved__links a:last-child {
+  border-bottom: 1px solid var(--color-on-dark-hairline);
+}
+
+.forge-get-involved .involved__links a:hover {
+  padding-left: 12px;
+  color: #fff;
+}
+
+.forge-get-involved .involved__links .arrow {
+  color: var(--color-on-dark-subtle);
+  transition: transform 200ms var(--ease);
+}
+
+.forge-get-involved .involved__links a:hover .arrow {
+  transform: translateX(4px);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .forge-get-involved .involved__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-get-involved .btn--ghost,
+  .forge-get-involved .involved__links a,
+  .forge-get-involved .involved__links .arrow {
+    transition-duration: 0.01ms;
+  }
+}

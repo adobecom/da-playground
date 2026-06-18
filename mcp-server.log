@@ -1,0 +1,44 @@
+2026-06-18 15:56:58.561 [debug] Initializing ConfigManager from environment variables
+2026-06-18 15:56:58.563 [debug] Loaded config from environment (sensitive data redacted):
+2026-06-18 15:56:58.564 [debug] {
+  "host": "wiki.corp.adobe.com",
+  "authMethod": "[REDACTED]",
+  "port": 1984,
+  "assetsOutputDir": "./wiki-mcp/assets",
+  "assets": {
+    "extractAssets": false,
+    "outputDir": "./wiki-mcp/assets",
+    "filenamePrefix": "asset-",
+    "createOutputDirs": true,
+    "useAbsolutePath": true,
+    "assetTypes": [
+      "image",
+      "pdf",
+      "document",
+      "attachment",
+      "plantuml"
+    ]
+  }
+}
+2026-06-18 15:56:58.565 [debug] ConfigManager initialized
+2026-06-18 15:56:58.878 [info] Initializing MCP Server...
+2026-06-18 15:56:58.879 [info] 📦 Build ID: unknown
+2026-06-18 15:56:58.880 [info] 📦 Version: unknown
+2026-06-18 15:56:58.884 [info] 📦 Build Date: unknown
+2026-06-18 15:56:58.885 [info] 📦 Timestamp: 1781791018877
+2026-06-18 15:56:58.892 [debug] Creating authenticated Confluence client via AuthenticationManager
+2026-06-18 15:56:58.894 [debug] Normalized host: wiki.corp.adobe.com
+2026-06-18 15:56:58.896 [info] Using Personal Access Token authentication method
+2026-06-18 15:56:58.902 [info] Confluence client created successfully for host: wiki.corp.adobe.com
+2026-06-18 15:56:58.904 [info] Registered expert-wiki-editing-workflow prompt
+2026-06-18 15:56:58.905 [info] Registered expert-wiki-editor prompt
+2026-06-18 15:56:58.905 [info] Registered plantuml_diagram_creator prompt
+2026-06-18 15:56:58.905 [info] Registered prompts: expert_wiki_editing_workflow, expert_wiki_editor, plantuml_diagram_creator
+2026-06-18 15:56:58.906 [info] Prompt "expert_wiki_editing_workflow" registered: has description=true, has callback=true
+2026-06-18 15:56:58.906 [info] Prompt "expert_wiki_editor" registered: has description=true, has callback=true
+2026-06-18 15:56:58.906 [info] Prompt "plantuml_diagram_creator" registered: has description=true, has callback=true
+2026-06-18 15:56:58.906 [info] MCP Server initialized successfully
+2026-06-18 15:56:58.907 [info] Wiki MCP Server connected via stdio
+2026-06-18 15:56:58.907 [info] Wiki MCP Server started successfully with stdio transport
+2026-06-18 16:12:39.740 [info] Transport closed
+2026-06-18 16:12:39.752 [info] MCP server closed

@@ -1,0 +1,95 @@
+/* forge-features — 3-up feature cards */
+
+.forge-features *,
+.forge-features *::before,
+.forge-features *::after {
+  box-sizing: border-box;
+}
+
+.section .forge-features-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-features {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-xl: clamp(34px, 4.4vw, 56px);
+  --heading-md: 24px;
+  --color-bg: #ffffff;
+  --color-fg: #1a1a1a;
+  --color-fg-subtle: rgba(0, 0, 0, 0.64);
+  --color-surface-warm: #eceae7;
+  --spacing-md: 16px;
+  --spacing-xl: 48px;
+  --section-padding: clamp(32px, 5vw, 64px);
+  --side-margin: clamp(20px, 8.333vw, 160px);
+  --max-width: 1200px;
+  --radius: 16px;
+
+  background: var(--color-bg);
+  font-family: var(--body-font-family);
+  padding-block: var(--section-padding);
+  padding-inline: var(--side-margin);
+}
+
+.forge-features .section__head {
+  max-width: 44rem;
+  margin-bottom: var(--spacing-xl);
+}
+
+.forge-features .section__head h2 {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: var(--heading-xl);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--color-fg);
+}
+
+.forge-features .section__head p {
+  font-size: 20px;
+  color: var(--color-fg-subtle);
+  margin: 16px 0 0;
+  max-width: 52ch;
+}
+
+.forge-features .features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.forge-features .feature {
+  background: var(--color-surface-warm);
+  border-radius: var(--radius);
+  padding: clamp(24px, 2.4vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.forge-features .feature h3 {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: var(--heading-md);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--color-fg);
+}
+
+.forge-features .feature p {
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--color-fg-subtle);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .forge-features .features__grid {
+    grid-template-columns: 1fr;
+  }
+}

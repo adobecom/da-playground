@@ -1,0 +1,4 @@
+[     619ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://forge-ac4c9a93-mqjkd75t--da-playground--adobecom.aem.page/drafts/osahin/snowflake/the-does-not-have-a-lot-of-content-and-i:0
+[     686ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://forge-ac4c9a93-mqjkd75t--da-playground--adobecom.aem.page/favicon.ico:0
+[  119344ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://forge-ac4c9a93-mqjkd75t--da-playground--adobecom.aem.page/drafts/osahin/snowflake/the-does-not-have-a-lot-of-content-and-i:0
+[  119404ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://forge-ac4c9a93-mqjkd75t--da-playground--adobecom.aem.page/favicon.ico:0

@@ -1,0 +1,139 @@
+/* forge-hero — self-contained block styles */
+@import url("https://use.typekit.net/hah7vzn.css");
+
+/* Box-sizing reset for this block */
+.forge-hero *,
+.forge-hero *::before,
+.forge-hero *::after {
+  box-sizing: border-box;
+}
+
+/* Lift full-bleed constraints imposed by Milo's .section wrapper */
+.section .forge-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ---- Design tokens (scoped) ---- */
+.forge-hero {
+  --heading-font-family: 'adobe-clean-display', 'Adobe Clean Display', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family: 'adobe-clean', 'Adobe Clean', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --heading-xxl: clamp(40px, 6.25vw, 80px);
+  --color-bg: #ffffff;
+  --color-fg: #1a1a1a;
+  --color-accent: #3b63fb;
+  --color-accent-deep: #274dea;
+  --color-ink: #000000;
+  --color-eyebrow: #505050;
+  --color-fg-subtle: rgba(0, 0, 0, 0.64);
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-md: 16px;
+  --side-margin: clamp(20px, 8.333vw, 160px);
+  --max-width: 1200px;
+  --radius-pill: 999px;
+  --ease: cubic-bezier(0.42, 0, 0, 1);
+  --section-padding: clamp(32px, 5vw, 64px);
+
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--body-font-family);
+  padding-block: clamp(140px, 18vh, 220px) var(--section-padding);
+  padding-inline: var(--side-margin);
+}
+
+.forge-hero .hero__inner {
+  max-width: 56rem;
+}
+
+/* Eyebrow */
+.forge-hero .eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-eyebrow);
+  margin: 0 0 var(--spacing-lg);
+  text-transform: none;
+}
+
+/* H1 */
+.forge-hero h1 {
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: var(--heading-xxl);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0 0 var(--spacing-lg);
+  color: var(--color-fg);
+}
+
+.forge-hero h1 .accent {
+  color: var(--color-accent);
+}
+
+/* Sub paragraph */
+.forge-hero .hero__sub {
+  font-size: clamp(20px, 2.2vw, 24px);
+  line-height: 1.3;
+  color: var(--color-fg-subtle);
+  max-width: 40ch;
+  margin: 0 0 var(--spacing-xl);
+}
+
+/* CTA row */
+.forge-hero .hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+/* Buttons */
+.forge-hero .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding-inline: 26px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 200ms var(--ease), color 200ms var(--ease),
+    border-color 200ms var(--ease), transform 200ms var(--ease);
+}
+
+.forge-hero .btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.forge-hero .btn--primary:hover {
+  background: var(--color-accent-deep);
+}
+
+.forge-hero .btn--outline {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.forge-hero .btn--outline:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.forge-hero .btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-hero .btn {
+    transition-duration: 0.01ms;
+  }
+}
