@@ -1,0 +1,76 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "hero"
+  },
+  {
+    "idx": 1,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "jump"
+  },
+  {
+    "idx": 2,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "usecase"
+  },
+  {
+    "idx": 3,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "usecase"
+  },
+  {
+    "idx": 4,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "usecase"
+  },
+  {
+    "idx": 5,
+    "dataBlock": "carousel-c2",
+    "dataVariants": [],
+    "primaryClass": "carousel"
+  },
+  {
+    "idx": 6,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "trust"
+  },
+  {
+    "idx": 7,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "faq"
+  },
+  {
+    "idx": 8,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "merch"
+  },
+  {
+    "idx": 9,
+    "dataBlock": "unknown",
+    "dataVariants": [
+      "long-form"
+    ],
+    "primaryClass": "quote"
+  },
+  {
+    "idx": 10,
+    "dataBlock": "brand-concierge",
+    "dataVariants": [],
+    "primaryClass": "concierge"
+  },
+  {
+    "idx": 11,
+    "dataBlock": "global-footer",
+    "dataVariants": [],
+    "primaryClass": "footer"
+  }
+]
