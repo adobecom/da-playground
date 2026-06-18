@@ -1,0 +1,32 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "hero"
+  },
+  {
+    "idx": 1,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "audience"
+  },
+  {
+    "idx": 2,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "s3"
+  },
+  {
+    "idx": 3,
+    "dataBlock": "news",
+    "dataVariants": [],
+    "primaryClass": "s4"
+  },
+  {
+    "idx": 4,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "s5"
+  }
+]
