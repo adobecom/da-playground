@@ -1,0 +1,30 @@
+.forge-section {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--side-margin);
+}
+
+.forge-section { padding-block: var(--section-padding); }
+
+.forge-section { max-width: 44rem; margin-bottom: var(--spacing-xl); }
+
+.forge-section h2 { font-size: var(--heading-xl); }
+
+.forge-section p { font-size: 20px; color: var(--color-fg-subtle); margin: var(--spacing-md) 0 0; max-width: 52ch; }
+
+.forge-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md); }
+
+.forge-section {
+  background: var(--color-surface-warm); border-radius: var(--radius);
+  padding: clamp(24px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 10px;
+}
+
+.forge-section h3 { font-size: var(--heading-md); }
+
+.forge-section p { font-size: 16px; line-height: 1.45; color: var(--color-fg-subtle); margin: 0; }
+
+.act-dark .forge-section p { color: var(--color-on-dark-subtle); }
+
+@media (max-width: 900px) {
+.forge-section { grid-template-columns: 1fr; }
+}

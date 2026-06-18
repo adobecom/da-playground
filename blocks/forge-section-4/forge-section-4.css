@@ -1,0 +1,64 @@
+.forge-section-4 {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--side-margin);
+}
+
+.forge-section-4 {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 48px; padding-inline: 26px;
+  border: 1.5px solid transparent; border-radius: var(--radius-pill);
+  font-family: var(--body-font-family); font-size: 16px; font-weight: 700;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease), transform 200ms var(--ease);
+}
+
+.forge-section-4 { background: transparent; color: #fff; border-color: #fff; backdrop-filter: blur(16px); }
+
+.forge-section-4:hover { background: rgba(255,255,255,0.10); }
+
+.forge-section-4 svg { width: 18px; height: 18px; }
+
+.forge-section-4 { padding-block: var(--section-padding); }
+
+.forge-section-4 { background: var(--color-ink); color: var(--color-on-dark); }
+
+.forge-section-4 .section__head p { color: var(--color-on-dark-subtle); }
+
+.forge-section-4 { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+
+.forge-section-4 h2 { font-size: var(--heading-xl); }
+
+.forge-section-4 { font-size: 20px; line-height: 1.4; color: var(--color-on-dark-subtle); margin: var(--spacing-lg) 0 var(--spacing-xl); max-width: 42ch; }
+
+.forge-section-4 { display: flex; flex-direction: column; gap: 2px; }
+
+.forge-section-4 a {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 4px; border-top: 1px solid var(--color-on-dark-hairline);
+  text-decoration: none; color: var(--color-on-dark); font-weight: 700; font-size: 18px;
+  transition: padding-inline 200ms var(--ease), color 200ms var(--ease);
+}
+
+.forge-section-4 a:last-child { border-bottom: 1px solid var(--color-on-dark-hairline); }
+
+.forge-section-4 a:hover { padding-left: 12px; color: #fff; }
+
+.forge-section-4 .arrow { color: var(--color-on-dark-subtle); transition: transform 200ms var(--ease); }
+
+.forge-section-4 a:hover .arrow { transform: translateX(4px); color: #fff; }
+
+.forge-section-4 { margin-bottom: var(--spacing-xl); }
+
+.forge-section-4 {
+  margin-top: var(--spacing-2xl); padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-on-dark-hairline);
+}
+
+.forge-section-4 { font-family: var(--heading-font-family); font-weight: 900; font-size: 20px; letter-spacing: -0.02em; }
+
+.forge-section-4 { color: var(--color-on-dark-subtle); font-weight: 700; letter-spacing: 0.08em; margin-top: 6px; }
+
+@media (max-width: 900px) {
+.forge-section-4 { grid-template-columns: 1fr; }
+}

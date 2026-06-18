@@ -1,0 +1,44 @@
+.forge-section-5 {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--side-margin);
+}
+
+.forge-section-5 {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 48px; padding-inline: 26px;
+  border: 1.5px solid transparent; border-radius: var(--radius-pill);
+  font-family: var(--body-font-family); font-size: 16px; font-weight: 700;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease), transform 200ms var(--ease);
+}
+
+.forge-section-5 { background: var(--color-accent); color: #fff; }
+
+.forge-section-5:hover { background: var(--color-accent-deep); }
+
+.forge-section-5 svg { width: 18px; height: 18px; }
+
+.forge-section-5 { padding-block: var(--section-padding); }
+
+.forge-section-5 { background: var(--color-ink); color: var(--color-on-dark); }
+
+.forge-section-5 .section__head p { color: var(--color-on-dark-subtle); }
+
+.forge-section-5 { border-top: 1px solid var(--color-on-dark-hairline); }
+
+.forge-section-5 { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--spacing-lg); }
+
+.forge-section-5 h2 { font-size: var(--heading-lg); }
+
+.forge-section-5 { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; }
+
+.forge-section-5 a { color: var(--color-on-dark-subtle); text-decoration: none; font-weight: 700; font-size: 16px; transition: color 200ms var(--ease); }
+
+.forge-section-5 a:hover { color: #fff; }
+
+.forge-section-5 { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-xl); }
+
+@media (max-width: 640px) {
+.forge-section-5 { flex-direction: column; align-items: flex-start; }
+}

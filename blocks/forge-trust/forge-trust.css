@@ -1,0 +1,16 @@
+.forge-trust {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--side-margin);
+}
+
+.forge-trust { border-block: 1px solid #ECECEC; }
+
+.forge-trust {
+  display: flex; flex-wrap: wrap; gap: clamp(20px, 4vw, 56px);
+  padding-block: var(--spacing-xl);
+}
+
+.forge-trust { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; }
+
+.forge-trust svg { width: 22px; height: 22px; color: var(--color-accent); flex: none; }

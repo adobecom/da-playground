@@ -1,0 +1,38 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "hero"
+  },
+  {
+    "idx": 1,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "trust"
+  },
+  {
+    "idx": 2,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 3,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 4,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 5,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "section"
+  }
+]
