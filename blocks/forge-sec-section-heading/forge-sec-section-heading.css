@@ -1,0 +1,69 @@
+.sec-hero .forge-sec-section-heading {
+    position: absolute;
+    top: 152px;
+    left: 64px;
+    width: 667px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    color: rgba(255, 255, 255, 1);
+  }
+
+.sec-hero .forge-sec-section-heading {
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 1);
+    width: 522px;
+    margin: 0;
+  }
+
+.forge-sec-section-heading {
+    position: absolute;
+    top: 770px;
+    left: 0;
+    width: 1440px;
+    height: 298px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 96px 124px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+.forge-sec-section-heading .copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 1192px;
+  }
+
+.forge-sec-section-heading h2 {
+    font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: -1.44px;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+    margin: 0;
+    width: 100%;
+  }
+
+.forge-sec-section-heading .body {
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20.8px;
+    letter-spacing: 0.16px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.56);
+    width: 592px;
+    margin: 0;
+  }

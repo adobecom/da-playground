@@ -1,0 +1,26 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "sec-hero"
+  },
+  {
+    "idx": 1,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "sec-section-heading"
+  },
+  {
+    "idx": 2,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "sec-nav-main"
+  },
+  {
+    "idx": 3,
+    "dataBlock": null,
+    "dataVariants": [],
+    "primaryClass": "sec-router"
+  }
+]

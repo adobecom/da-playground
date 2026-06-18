@@ -1,0 +1,172 @@
+:root {
+    --root-w: 1440px;
+    --root-h: 810px;
+    --section-heading-h: 298px;
+    --total-h: 1068px;
+
+    --c-white: rgba(255, 255, 255, 1);
+    --c-black: rgba(0, 0, 0, 1);
+    --c-black-44: rgba(0, 0, 0, 0.44);
+    --c-black-56: rgba(0, 0, 0, 0.56);
+    --c-white-11: rgba(255, 255, 255, 0.11);
+    --c-red-active: rgba(235, 16, 0, 1);
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #d8d8d8;
+    font-family: "Adobe Clean", sans-serif;
+    color: rgba(0, 0, 0, 1);
+    -webkit-font-smoothing: antialiased;
+  }
+
+.forge-sec-hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1440px;
+    height: 810px;
+    background-color: rgb(221, 221, 221);
+    overflow: hidden;
+  }
+
+.forge-sec-hero .bg-image {
+    position: absolute;
+    top: 0;
+    left: -425px;
+    width: 2163px;
+    height: 850px;
+    object-fit: cover;
+    display: block;
+  }
+
+.forge-sec-hero .ipad-illustration {
+    position: absolute;
+    top: 222px;
+    left: 790.5px;
+    width: 565px;
+    height: 448px;
+    border-radius: 4px;
+    object-fit: contain;
+    display: block;
+  }
+
+.forge-sec-hero .scrim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1440px;
+    height: 850px;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+    pointer-events: none;
+  }
+
+.forge-sec-hero .copy {
+    position: absolute;
+    top: 152px;
+    left: 64px;
+    width: 667px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    color: rgba(255, 255, 255, 1);
+  }
+
+.forge-sec-hero .copy-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+.forge-sec-hero .eyebrow {
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 1);
+    margin: 0;
+  }
+
+.forge-sec-hero h1 {
+    font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 76px;
+    letter-spacing: -3.2px;
+    color: rgba(255, 255, 255, 1);
+    margin: 0;
+  }
+
+.forge-sec-hero .body {
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 1);
+    width: 522px;
+    margin: 0;
+  }
+
+.forge-sec-hero .ctas {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+.forge-sec-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    border-radius: 75px;
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    backdrop-filter: blur(33px);
+    -webkit-backdrop-filter: blur(33px);
+    height: 40px;
+    box-sizing: border-box;
+  }
+
+.forge-sec-hero {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+    border: none;
+  }
+
+.forge-sec-hero {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(255, 255, 255, 1);
+  }
+
+.sec-section-heading .forge-sec-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 1192px;
+  }
+
+.sec-section-heading .forge-sec-hero {
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20.8px;
+    letter-spacing: 0.16px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.56);
+    width: 592px;
+    margin: 0;
+  }

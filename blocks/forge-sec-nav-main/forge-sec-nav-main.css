@@ -1,0 +1,87 @@
+.forge-sec-nav-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1440px;
+    height: 72px;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+.forge-sec-nav-main > * { pointer-events: auto; }
+
+.forge-sec-nav-main .logo-primary {
+    position: absolute;
+    top: 4px;
+    left: 24px;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+
+.forge-sec-nav-main .adobe-logo {
+    display: inline-flex;
+    width: 67px;
+    height: 16px;
+    color: rgba(255, 255, 255, 1);
+  }
+
+.forge-sec-nav-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+.forge-sec-nav-main {
+    width: 6px;
+    height: 3.375px;
+    display: inline-block;
+  }
+
+.forge-sec-nav-main .nav-utility {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    height: 40px;
+  }
+
+.forge-sec-nav-main {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 1);
+  }
+
+.forge-sec-nav-main {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 75px;
+    text-decoration: none;
+    font-family: "Adobe Clean", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    backdrop-filter: blur(33px);
+    -webkit-backdrop-filter: blur(33px);
+  }
+
+.forge-sec-nav-main {
+    display: none;
+  }
