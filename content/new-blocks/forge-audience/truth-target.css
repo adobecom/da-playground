@@ -1,0 +1,64 @@
+.forge-audience img, .forge-audience video, .forge-audience svg, .forge-audience picture { max-width: 100%; height: auto; }
+
+.forge-audience main {width:100%;}
+
+.forge-audience .section-inner {max-width:1440px;margin:0 auto;position:relative;}
+
+.forge-audience .d56 {font-family:"Adobe Clean Display","Adobe Clean",sans-serif;font-size:56px;line-height:56px;font-weight:900;letter-spacing:-1.68px;margin:0;}
+
+.forge-audience .d18 {font-family:"Adobe Clean Display","Adobe Clean",sans-serif;font-size:18px;line-height:18px;font-weight:900;letter-spacing:-.2px;margin:0;}
+
+.forge-audience .b16b {font-size:16px;line-height:20px;font-weight:700;margin:0;}
+
+.forge-audience .tcenter {text-align:center;}
+
+.forge-audience .band {width:100%;overflow:hidden;display:flex;justify-content:center;}
+
+.forge-audience .band > picture {display:block;flex:none;}
+
+.forge-audience .band img {display:block;}
+
+.forge-audience .hero .section-inner {display:flex;flex-direction:column;align-items:center;}
+
+.forge-audience {background:#000;height:958px;overflow:hidden;border-radius:0 0 32px 32px;}
+
+.forge-audience .section-inner {display:flex;flex-direction:column;align-items:center;padding-top:124px;padding-bottom:24px;}
+
+.forge-audience .audience-title {max-width:680px;}
+
+.forge-audience .cards3 {display:flex;gap:8px;justify-content:center;margin-top:40px;}
+
+.forge-audience .cat-card {width:292px;background:var(--s2a-color-gray-900);border:1px solid #000;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
+
+.forge-audience .cat-card .head {height:66px;display:flex;align-items:center;padding:24px;}
+
+.forge-audience .cat-card .media {height:394px;}
+
+.forge-audience .cat-card .media picture, .forge-audience .cat-card .media img {width:100%;height:100%;}
+
+.forge-audience .cat-card .media img {object-fit:cover;object-position:center;}
+
+.forge-audience .cat-card .foot {height:88px;padding:24px;display:flex;align-items:flex-start;}
+
+.forge-audience .logowall {margin-top:124px;height:42px;}
+
+.forge-audience .logowall img {height:42px;width:1920px;max-width:none;}
+
+.forge-audience .s3 .section-inner {display:flex;flex-direction:column;align-items:center;}
+
+.forge-audience .s4 .section-inner {display:flex;flex-direction:column;align-items:center;}
+
+.forge-audience .usecase .head {display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+
+.forge-audience .merch .head {display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding-bottom:48px;}
+
+.forge-audience .s5 .section-inner {display:flex;flex-direction:column;}
+
+@media (max-width:1023px) {
+.forge-audience .cards3 {flex-wrap:wrap;}
+}
+
+@media (max-width:767px) {
+.forge-audience .d56 {font-size:38px;line-height:40px;letter-spacing:-1px;}
+.forge-audience .cards3 {flex-direction:column;align-items:center;}
+}

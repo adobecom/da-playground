@@ -1,0 +1,25 @@
+{
+  "blockName": "forge-audience",
+  "sectionIndex": 1,
+  "decision": "ambiguous",
+  "score": 0.74,
+  "topCandidate": "modal",
+  "sectionClass": "sf-sec-1",
+  "figmaUrl": "https://www.figma.com/design/lOFnBFhsYyFWPbSdiPa9us/Hub-%E2%80%94-A.com?node-id=15435-27005&m=dev",
+  "figmaNodeId": "15435:27163",
+  "distinctive": true,
+  "truthShotRel": "screenshots/section-1-ref.png",
+  "geometry": null,
+  "miloPath": "/Users/adambaker/source/da-playground/.forge-worktrees/session-5f13c772-mqjxfd1v",
+  "miloTargetPath": "/Users/adambaker/source/da-playground/.forge-worktrees/session-5f13c772-mqjxfd1v/libs/c2/blocks/forge-audience",
+  "miloBranch": "forge/session-5f13c772-683",
+  "baseBranch": "forge-a-panel",
+  "previewUrl": "http://localhost:3000/drafts/adamb/forge/figma-5f13c7?milolibs=local",
+  "files": {
+    "sectionHtml": "section.html",
+    "starterCss": "starter.css",
+    "authorContentHtml": "author-content.html",
+    "truthTargetCss": "truth-target.css",
+    "pageGlobalsCss": "page-globals.css"
+  }
+}
