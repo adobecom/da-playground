@@ -1,0 +1,61 @@
+.forge-usecase img, .forge-usecase video, .forge-usecase svg, .forge-usecase picture {max-width:100%;height:auto}
+
+.forge-usecase main {width:100%;overflow-x:hidden}
+
+.forge-usecase .section-inner {max-width:1440px;margin:0 auto}
+
+.forge-usecase .t-title3 {font-family:var(--ff-display);font-weight:900;font-size:48px;line-height:48px;letter-spacing:-1.44px}
+
+.forge-usecase .t-h6 {font-family:var(--ff-display);font-weight:900;font-size:18px;line-height:18px;letter-spacing:-0.2px}
+
+.forge-usecase .t-body-md {font-family:var(--ff-body);font-weight:400;font-size:16px;line-height:20px}
+
+.forge-usecase .hero-bentos .title {color:#fff;text-align:center;width:100%;padding:0 24px}
+
+.forge-usecase .bento-grid {display:flex;flex-direction:column;gap:8px;width:100%}
+
+.forge-usecase .bento-row {display:flex;gap:8px;align-items:stretch;width:100%}
+
+.forge-usecase .bento {background:var(--card-bg);border:2px solid var(--hairline);border-radius:var(--radius-md);overflow:hidden;position:relative;display:flex;flex-direction:column;flex:1 1 0;min-width:280px}
+
+.forge-usecase .bento-img {position:relative;width:100%;aspect-ratio:692/560;overflow:hidden}
+
+.forge-usecase .bento-img img {width:100%;height:100%;object-fit:cover;object-position:top}
+
+.forge-usecase .bento-type {display:flex;flex-direction:column;gap:16px;padding:48px;justify-content:flex-end}
+
+.forge-usecase .bento-type .w {display:flex;flex-direction:column;gap:4px;max-width:450px}
+
+.forge-usecase .bento-type h3 {color:#fff}
+
+.forge-usecase .bento-type p {color:var(--body-subtle)}
+
+.forge-usecase .bento-icon {position:absolute;left:48px;top:48px;width:32px;height:32px;z-index:3}
+
+.forge-usecase .bento-icon img {width:100%;height:100%;display:block}
+
+.forge-usecase .bento--full {flex:none;width:100%}
+
+.forge-usecase .bento--overlay {position:relative}
+
+.forge-usecase .bento--overlay .bento-img {position:absolute;inset:0;aspect-ratio:auto;height:100%}
+
+.forge-usecase .bento--overlay .bento-type {position:relative;z-index:2;min-height:inherit;background:linear-gradient(to top,rgba(0,0,0,0.3),rgba(0,0,0,0));justify-content:flex-end}
+
+.forge-usecase .bento--overlay .bento-type h3, .forge-usecase .bento--overlay .bento-type p {color:#fff}
+
+.forge-usecase {display:flex;flex-direction:column;gap:40px;align-items:center;padding:0 124px}
+
+.forge-usecase>.title {width:100%;padding:0 16px;color:#fff}
+
+.forge-usecase .tile .type .w {display:flex;flex-direction:column;gap:4px;max-width:450px}
+
+@media (max-width:1023px) {
+.forge-usecase {padding:0 40px}
+.forge-usecase .bento-row {flex-wrap:wrap}
+}
+
+@media (max-width:767px) {
+.forge-usecase .bento {flex:1 1 100%;min-width:0}
+.forge-usecase .t-title3 {font-size:30px;line-height:32px}
+}

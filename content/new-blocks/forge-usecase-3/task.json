@@ -1,0 +1,24 @@
+{
+  "blockName": "forge-usecase-3",
+  "sectionIndex": 3,
+  "decision": "ambiguous",
+  "score": 0.75,
+  "topCandidate": "base-card",
+  "sectionClass": "sf-sec-3",
+  "figmaUrl": "https://www.figma.com/design/q87sUm2fvForRQzxGum5wE/Offer-%E2%80%94-A.com?node-id=392-14969&m=dev",
+  "figmaNodeId": "392:15016",
+  "distinctive": true,
+  "truthShotRel": "screenshots/v0-figma-reference.png",
+  "geometry": null,
+  "miloPath": "/Users/cod87753/Code/da-playground/.forge-worktrees/session-7d1abf2e-mqjtty3w",
+  "miloTargetPath": "/Users/cod87753/Code/da-playground/.forge-worktrees/session-7d1abf2e-mqjtty3w/libs/c2/blocks/forge-usecase-3",
+  "miloBranch": "forge/session-7d1abf2e-c3c",
+  "baseBranch": "forge-a-panel",
+  "previewUrl": "http://localhost:3000/drafts/cod87753/forge/figma-7d1abf?milolibs=local",
+  "files": {
+    "sectionHtml": "section.html",
+    "starterCss": "starter.css",
+    "authorContentHtml": "author-content.html",
+    "truthTargetCss": "truth-target.css"
+  }
+}
