@@ -1,0 +1,35 @@
+.forge-section-5 img, .forge-section-5 video, .forge-section-5 svg, .forge-section-5 picture {max-width:100%;height:auto;display:block}
+
+.forge-section-5 main {width:100%;overflow-x:hidden}
+
+.forge-section-5 {width:100%;position:relative}
+
+.forge-section-5 .section-inner {max-width:var(--canvas);margin:0 auto;position:relative}
+
+.forge-section-5 .t-h3 {font-family:var(--font-display);font-weight:900;font-size:var(--s2a-typography-font-size-title-3);line-height:var(--s2a-typography-line-height-title-3);letter-spacing:var(--s2a-typography-letter-spacing-title-3)}
+
+.forge-section-5 .hero .inner {padding-top:8px}
+
+.forge-section-5 {background:#000}
+
+.forge-section-5 .inner {padding:124px 0 0}
+
+.forge-section-5 .head {padding:0 16px;margin-bottom:40px}
+
+.forge-section-5 h2 {color:#fff;max-width:1888px}
+
+.forge-section-5 .uc-rows {display:flex;flex-direction:column;gap:8px;width:1920px;max-width:100%;margin:0 auto}
+
+.forge-section-5 {min-height:2820px}
+
+.forge-section-5 .carousel .inner {padding:160px 0 0}
+
+.forge-section-5 .trust .inner {padding:124px 0 0}
+
+.forge-section-5 .trust .head {padding:0 16px;display:flex;flex-direction:column;gap:8px;margin-bottom:40px}
+
+.forge-section-5 .faq .inner {padding:0 16px}
+
+@media (max-width:767px) {
+.forge-section-5 .t-h3 {font-size:32px;line-height:34px}
+}

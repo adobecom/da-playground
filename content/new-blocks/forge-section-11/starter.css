@@ -1,0 +1,51 @@
+.forge-section-11 img, .forge-section-11 video, .forge-section-11 svg, .forge-section-11 picture {max-width:100%;height:auto;display:block}
+
+.forge-section-11 main {width:100%;overflow-x:hidden}
+
+.forge-section-11 {width:100%;position:relative}
+
+.forge-section-11 .section-inner {max-width:var(--canvas);margin:0 auto;position:relative}
+
+.forge-section-11 .t-h2 {font-family:var(--font-display);font-weight:900;font-size:var(--s2a-typography-font-size-title-2);line-height:var(--s2a-typography-line-height-title-2);letter-spacing:var(--s2a-typography-letter-spacing-title-2)}
+
+.forge-section-11 .t-body-md {font-family:var(--font-body);font-weight:400;font-size:var(--s2a-typography-font-size-body-md);line-height:var(--s2a-typography-line-height-body-md);letter-spacing:0}
+
+.forge-section-11 .t-body-sm {font-family:var(--font-body);font-weight:400;font-size:var(--s2a-typography-font-size-body-sm);line-height:var(--s2a-typography-line-height-body-sm);letter-spacing:0}
+
+.forge-section-11 .t-body-xs {font-family:var(--font-body);font-weight:400;font-size:var(--s2a-typography-font-size-body-xs);line-height:var(--s2a-typography-line-height-body-xs);letter-spacing:0}
+
+.forge-section-11 {background:#000;min-height:568px;display:flex;align-items:center;justify-content:center;padding:0 120px 96px}
+
+.forge-section-11 .box {max-width:1200px;width:100%;display:flex;flex-direction:column;align-items:center;gap:24px}
+
+.forge-section-11 h2 {color:#fff;text-align:center;width:100%}
+
+.forge-section-11 .prompt {max-width:768px;width:100%;display:flex;flex-direction:column;gap:24px;align-items:center}
+
+.forge-section-11 .input {width:100%;background:rgba(255,255,255,.1);border:1px solid var(--concierge-input-border);border-radius:28px}
+
+.forge-section-11 .actions {height:56px;display:flex;align-items:center;gap:16px;padding:12px}
+
+.forge-section-11 .ai {width:32px;height:32px;flex:none;display:flex;align-items:center;justify-content:center}
+
+.forge-section-11 .ai img {width:24px;height:24px}
+
+.forge-section-11 .ph {flex:1 1 0;color:rgba(255,255,255,.64)}
+
+.forge-section-11 .send {width:32px;height:32px;flex:none}
+
+.forge-section-11 .sugg {display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:768px;max-width:100%}
+
+.forge-section-11 .chip {background:rgba(255,255,255,.1);border:1.5px solid var(--concierge-suggestion-border);border-radius:18px;padding:12px 16px;color:rgba(255,255,255,.7);white-space:nowrap}
+
+.forge-section-11 .disc {color:rgba(255,255,255,.64);text-align:center;width:100%}
+
+.forge-section-11 .disc a {text-decoration:underline}
+
+@media (max-width:1023px) {
+.forge-section-11 {padding-left:32px;padding-right:32px}
+}
+
+@media (max-width:767px) {
+.forge-section-11 .t-h2 {font-size:38px;line-height:40px;letter-spacing:-1px}
+}

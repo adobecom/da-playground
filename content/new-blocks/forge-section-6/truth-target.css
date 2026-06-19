@@ -1,0 +1,70 @@
+.forge-section-6 img, .forge-section-6 video, .forge-section-6 svg, .forge-section-6 picture {max-width:100%;height:auto;display:block}
+
+.forge-section-6 main {width:100%;overflow-x:hidden}
+
+.forge-section-6 {width:100%;position:relative}
+
+.forge-section-6 .section-inner {max-width:var(--canvas);margin:0 auto;position:relative}
+
+.forge-section-6 .t-h2 {font-family:var(--font-display);font-weight:900;font-size:var(--s2a-typography-font-size-title-2);line-height:var(--s2a-typography-line-height-title-2);letter-spacing:var(--s2a-typography-letter-spacing-title-2)}
+
+.forge-section-6 .t-body-md {font-family:var(--font-body);font-weight:400;font-size:var(--s2a-typography-font-size-body-md);line-height:var(--s2a-typography-line-height-body-md);letter-spacing:0}
+
+.forge-section-6 .nav .left {display:flex;align-items:center;gap:24px;height:64px}
+
+.forge-section-6 .hero .inner {padding-top:8px}
+
+.forge-section-6 .usecase .inner {padding:124px 0 0}
+
+.forge-section-6 {background:#000;min-height:1150px;overflow:hidden}
+
+.forge-section-6 .inner {padding:160px 0 0}
+
+.forge-section-6 .grid {display:flex;gap:0;padding:0 16px}
+
+.forge-section-6 .left {flex:1 1 0;min-width:0;max-width:952px;padding-left:16px}
+
+.forge-section-6 .clock h2 {color:#fff;max-width:952px;margin-top:8px}
+
+.forge-section-6 .ceyebrow {color:rgba(255,255,255,.7)}
+
+.forge-section-6 .cwrap {margin-top:180px}
+
+.forge-section-6 .ctitle {color:#fff}
+
+.forge-section-6 .divider {height:1px;background:rgba(255,255,255,.25);margin-top:16px}
+
+.forge-section-6 .list {position:relative;height:620px;overflow:hidden;margin-top:8px}
+
+.forge-section-6 .list::before, .forge-section-6 .list::after {content:"";position:absolute;left:0;right:0;height:200px;z-index:2;pointer-events:none}
+
+.forge-section-6 .list::before {top:0;background:linear-gradient(#000,rgba(0,0,0,0))}
+
+.forge-section-6 .list::after {bottom:0;background:linear-gradient(rgba(0,0,0,0),#000)}
+
+.forge-section-6 .items {display:flex;flex-direction:column}
+
+.forge-section-6 .ci {font-family:var(--font-display);font-weight:900;letter-spacing:-1.68px;color:rgba(255,255,255,.28);height:92px;display:flex;align-items:center;font-size:56px;line-height:1}
+
+.forge-section-6 .ci.active {color:#fff;font-size:72px}
+
+.forge-section-6 .right {flex:1 1 0;min-width:0;display:flex;justify-content:flex-end}
+
+.forge-section-6 .media {position:relative;width:650px;max-width:100%}
+
+.forge-section-6 .media .ov {position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55))}
+
+.forge-section-6 .trust .inner {padding:124px 0 0}
+
+.forge-section-6 .faq .inner {padding:0 16px}
+
+@media (max-width:1023px) {
+.forge-section-6 .grid {flex-direction:column;gap:40px}
+.forge-section-6 .right {justify-content:flex-start}
+}
+
+@media (max-width:767px) {
+.forge-section-6 .t-h2 {font-size:38px;line-height:40px;letter-spacing:-1px}
+.forge-section-6 .ci {font-size:36px;height:64px}
+.forge-section-6 .ci.active {font-size:46px}
+}

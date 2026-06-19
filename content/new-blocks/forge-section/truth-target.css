@@ -1,0 +1,44 @@
+.forge-section img, .forge-section video, .forge-section svg, .forge-section picture {max-width:100%;height:auto;display:block}
+
+.forge-section main {width:100%;overflow-x:hidden}
+
+.forge-section {width:100%;position:relative}
+
+.forge-section .section-inner {max-width:var(--canvas);margin:0 auto;position:relative}
+
+.forge-section .t-h2 {font-family:var(--font-display);font-weight:900;font-size:var(--s2a-typography-font-size-title-2);line-height:var(--s2a-typography-line-height-title-2);letter-spacing:var(--s2a-typography-letter-spacing-title-2)}
+
+.forge-section .t-eyebrow {font-family:var(--font-body);font-weight:700;font-size:var(--s2a-typography-font-size-eyebrow);line-height:var(--s2a-typography-line-height-eyebrow);letter-spacing:0}
+
+.forge-section .appid {display:inline-flex;gap:var(--s2a-spacing-xs);align-items:center;justify-content:center}
+
+.forge-section .appid img {width:24px;height:23.143px;flex:none}
+
+.forge-section .hero-copy .appid .t-eyebrow {color:#fff}
+
+.forge-section {min-height:1053px;position:relative;overflow:hidden;background:#000}
+
+.forge-section .bg {position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.forge-section .scrim {position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,0) 39.451%,rgba(0,0,0,0) 74.489%,rgba(0,0,0,.8) 100%)}
+
+.forge-section .fg {position:relative;max-width:1920px;margin:0 auto;min-height:1053px;display:flex;flex-direction:column;justify-content:space-between;padding:160px 16px 80px}
+
+.forge-section .rl-head {display:flex;flex-direction:column;gap:16px;max-width:656px}
+
+.forge-section .rl-head .t-eyebrow {color:#fff}
+
+.forge-section h2 {color:#fff;max-width:656px}
+
+.forge-section .jump {display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+
+.forge-section .jl {display:flex;align-items:center;gap:8px;color:#fff}
+
+.forge-section .jbtn {width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--s2a-color-transparent-white-16);border:1px solid var(--s2a-color-transparent-white-12)}
+
+.forge-section .merch .appid .t-eyebrow {color:#fff}
+
+@media (max-width:767px) {
+.forge-section .t-h2 {font-size:38px;line-height:40px;letter-spacing:-1px}
+.forge-section .fg {padding-top:96px;padding-bottom:48px}
+}
