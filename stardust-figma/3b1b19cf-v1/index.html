@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative Cloud Pro — Offer | Adobe</title>
+<style>
+/* ===== Figma design tokens (get_variable_defs, kebab-cased) ===== */
+:root{
+  --s2a-color-content-knockout:#ffffff;
+  --s2a-color-content-default:#000000;
+  --s2a-color-content-label:#ffffff;
+  --s2a-color-content-body-subtle:#ffffffa3;   /* white 64% (dark surfaces) */
+  --s2a-color-content-subtle:#ffffffa3;
+  --s2a-color-content-disabled:#c6c6c6;
+  --s2a-color-background-default:#ffffff;
+  --s2a-color-gray-800:#292929;
+  --s2a-color-transparent-white-16:#ffffff29;
+  --s2a-color-transparent-white-12:#ffffff1f;
+  --s2a-color-transparent-white-64:#ffffffcc;
+  --s2a-color-button-background-primary-solid-default:#ffffff;
+  --s2a-color-button-content-primary-solid-inverse:#000000;
+  --s2a-color-button-background-primary-outlined-on-dark:#ffffff3d;
+  --s2a-color-button-border-primary-outlined-on-dark:#ffffff;
+  --s2a-page-bg:#000000;
+  --bento-bg:#f6f6f6;
+  --hero-cta-blue:#3a63fb;
+  --concierge-input-border:#972ee3;
+  --concierge-pill-border:#e11d1a;
+  /* typography */
+  --s2a-font-family-heading:"Adobe Clean Display","Adobe Clean",sans-serif;
+  --s2a-font-family-body:"Adobe Clean",sans-serif;
+  --s2a-font-family-eyebrow:"Adobe Clean",sans-serif;
+  --s2a-typography-font-size-super:96px;   --s2a-typography-line-height-super:92px;   --s2a-typography-letter-spacing-super:-3.84px;
+  --s2a-typography-font-size-title-1:80px; --s2a-typography-line-height-title-1:76px; --s2a-typography-letter-spacing-title-1:-3.2px;
+  --s2a-typography-font-size-title-2:56px; --s2a-typography-line-height-title-2:56px; --s2a-typography-letter-spacing-title-2:-1.68px;
+  --s2a-typography-font-size-title-3:48px; --s2a-typography-line-height-title-3:48px; --s2a-typography-letter-spacing-title-3:-1.44px;
+  --s2a-typography-font-size-eyebrow:16px; --s2a-typography-line-height-eyebrow:20px;
+  --s2a-typography-font-size-body-lg:20px; --s2a-typography-line-height-body-lg:24px;
+  --s2a-typography-font-size-body-md:16px; --s2a-typography-line-height-body-md:20px;
+  --s2a-typography-font-size-body-sm:14px; --s2a-typography-line-height-body-sm:18px;
+  --s2a-typography-font-size-label:14px;   --s2a-typography-line-height-label:18px;
+  --section-padding-xl:120px;
+  --s2a-layout-xl:160px;
+  --s2a-border-radius-md:16px;
+  --s2a-border-radius-lg:32px;
+}
+
+/* ===== Web hygiene baseline ===== */
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+img,video,svg,picture{max-width:100%;height:auto;}
+body{
+  background:var(--s2a-page-bg);
+  color:#fff;
+  font-family:var(--s2a-font-family-body);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+main{width:100%;overflow-x:hidden;}
+.section-inner{max-width:2560px;margin:0 auto;position:relative;}
+a{color:inherit;text-decoration:none;}
+p{margin:0;}
+
+/* ===== Typography ramp (1 class per unique Figma style) ===== */
+.type-super{font-family:var(--s2a-font-family-heading);font-weight:900;font-size:96px;line-height:92px;letter-spacing:-3.84px;}
+.type-title-1{font-family:var(--s2a-font-family-heading);font-weight:900;font-size:80px;line-height:76px;letter-spacing:-3.2px;}
+.type-title-2{font-family:var(--s2a-font-family-heading);font-weight:900;font-size:56px;line-height:56px;letter-spacing:-1.68px;}
+.type-title-3{font-family:var(--s2a-font-family-heading);font-weight:900;font-size:48px;line-height:48px;letter-spacing:-1.44px;}
+.type-heading-5{font-family:var(--s2a-font-family-heading);font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;}
+.type-heading-6{font-family:var(--s2a-font-family-heading);font-weight:900;font-size:18px;line-height:18px;letter-spacing:-0.2px;}
+.type-eyebrow{font-family:var(--s2a-font-family-eyebrow);font-weight:700;font-size:16px;line-height:20px;letter-spacing:0;}
+.type-label{font-family:var(--s2a-font-family-body);font-weight:700;font-size:14px;line-height:18px;letter-spacing:0;}
+.type-caption{font-family:var(--s2a-font-family-body);font-weight:700;font-size:12px;line-height:15.6px;letter-spacing:0.24px;}
+.type-body-lg{font-family:var(--s2a-font-family-body);font-weight:400;font-size:20px;line-height:24px;letter-spacing:0;}
+.type-body-md{font-family:var(--s2a-font-family-body);font-weight:400;font-size:16px;line-height:20px;letter-spacing:0;}
+.type-body-sm{font-family:var(--s2a-font-family-body);font-weight:400;font-size:14px;line-height:18px;letter-spacing:0;}
+.type-body-xs{font-family:var(--s2a-font-family-body);font-weight:400;font-size:12px;line-height:18px;letter-spacing:0;}
+.type-faq-q{font-family:var(--s2a-font-family-heading);font-weight:700;font-size:16px;line-height:16px;letter-spacing:-0.16px;}
+
+/* ===== App-icon "pneumonic" badges (Adobe's colored-square icons) ===== */
+.app-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--s2a-font-family-heading);font-weight:900;font-size:13px;line-height:1;flex:none;letter-spacing:0;}
+.app-icon.sm{width:24px;height:23px;border-radius:5px;font-size:10px;}
+.app-icon.xs{width:18px;height:18px;border-radius:4px;font-size:8px;}
+.ai-photoshop{background:#001e36;color:#31a8ff;}
+.ai-lightroom{background:#001e36;color:#31a8ff;}
+.ai-premiere{background:#00005b;color:#9999ff;}
+.ai-aftereffects{background:#00005b;color:#9999ff;}
+.ai-illustrator{background:#330000;color:#ff9a00;}
+.ai-indesign{background:#2c001e;color:#ff3366;}
+.ai-acrobat{background:#b30b00;color:#fff;}
+.ai-frameio{background:#11151f;color:#fff;}
+.ai-firefly{background:linear-gradient(135deg,#7b2ff7 0%,#e0349b 50%,#ff7a45 100%);color:#fff;}
+.ai-express{background:linear-gradient(135deg,#ec1c8f 0%,#ff5a5f 100%);color:#fff;}
+.ai-cc{background:radial-gradient(circle at 30% 30%,#ff4d6d 0%,#d31c5c 55%,#7a0b3a 100%);color:#fff;}
+
+/* ===== Nav (global-navigation) ===== */
+.nav{min-height:72px;padding:8px;}
+.nav-bar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-radius:16px;
+  backdrop-filter:blur(24px);}
+.nav-left{display:flex;align-items:center;gap:24px;height:64px;}
+.nav-logo{width:67px;height:16px;display:block;}
+.nav-logo img{width:67px;height:16px;display:block;}
+.nav-menu{display:flex;align-items:center;gap:24px;}
+.nav-menu .nav-item{display:flex;align-items:center;gap:6px;color:#fff;cursor:pointer;}
+.nav-chevron{width:7px;height:7px;}
+.nav-utility{display:flex;align-items:center;gap:12px;}
+.nav-apps{width:18px;height:18px;color:#fff;}
+.nav-signin{height:40px;display:flex;align-items:center;justify-content:center;padding:0 24px;border-radius:75px;
+  background:#fff;color:#000;border:1px solid #fff;}
+
+/* ===== Hero ===== */
+.hero{min-height:1845.14px;background:#000;position:relative;overflow:hidden;}
+.hero-inner{display:flex;flex-direction:column;align-items:center;padding:0 320px;}
+.hero-copy{display:flex;flex-direction:column;align-items:center;gap:24px;padding:0 120px;width:100%;}
+.hero-eyebrow{display:flex;align-items:center;gap:8px;}
+.hero-eyebrow .label{color:#fff;}
+.hero-h1{color:#fff;text-align:center;max-width:800px;margin:0;}
+.hero-sub{color:rgba(255,255,255,0.72);text-align:center;max-width:658px;margin:0;}
+.hero-cta{height:40px;display:inline-flex;align-items:center;justify-content:center;padding:0 24px;border-radius:75px;
+  background:var(--hero-cta-blue);color:#fff;backdrop-filter:blur(16.5px);}
+.hero-asset{margin-top:124px;width:1498px;max-width:100%;}
+.hero-asset img{width:100%;height:auto;display:block;}
+/* floating promo pill */
+.promo-cta{position:absolute;left:50%;transform:translateX(-50%);top:1112px;z-index:5;}
+.promo-root{display:flex;align-items:center;justify-content:space-between;background:var(--s2a-color-gray-800);border-radius:12px;}
+.promo-left{display:flex;align-items:center;padding:12px;gap:0;}
+.promo-left .label{color:#fff;padding-left:12px;white-space:nowrap;}
+.promo-right{padding:12px;}
+.promo-iconbtn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px;
+  background:var(--s2a-color-transparent-white-16);border:1px solid var(--s2a-color-transparent-white-12);}
+
+/* ===== Bentos / Use-cases shared ===== */
+.bentos{min-height:2051.29px;background:#000;}
+.bentos-inner{display:flex;flex-direction:column;align-items:center;gap:40px;padding:0 320px;}
+.bentos-title{color:#fff;text-align:center;margin:0;padding:0 24px;}
+.bento-stack{display:flex;flex-direction:column;gap:8px;width:100%;}
+.bento-row{display:flex;gap:8px;width:100%;align-items:stretch;}
+.bento-card{flex:1 1 0;min-width:280px;display:flex;flex-direction:column;background:var(--bento-bg);
+  border:2px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;position:relative;}
+.bento-img{aspect-ratio:692/560;width:100%;overflow:hidden;}
+.bento-img.tall{aspect-ratio:1392/560;}
+.bento-img img{width:100%;height:100%;object-fit:cover;display:block;object-position:center top;}
+.bento-type{display:flex;flex-direction:column;gap:16px;padding:32px;}
+.bento-type .wrap{display:flex;flex-direction:column;gap:4px;max-width:450px;}
+.bento-h{color:#000;margin:0;}
+.bento-b{color:rgba(0,0,0,0.64);margin:0;}
+.bento-pneumonic{position:absolute;left:32px;top:32px;z-index:2;}
+/* full-width gradient card */
+.bento-card.wide{flex:1 1 100%;}
+.bento-card.wide .bento-img{aspect-ratio:1392/560;}
+.bento-overlay{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:16px;padding:32px;
+  background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0) 60%);}
+.bento-overlay .wrap{display:flex;flex-direction:column;gap:4px;max-width:450px;}
+.bento-overlay .bento-h{color:#fff;}
+.bento-overlay .bento-b{color:rgba(255,255,255,0.88);}
+/* dark image-fill card (white-text bentos) */
+.bento-card.dark{background:#1a1a1a;}
+.bento-card.dark .bento-h{color:#fff;}
+.bento-card.dark .bento-b{color:#e7e7e7;}
+
+/* ===== Use case section ===== */
+.usecase{background:#000;}
+.usecase-inner{display:flex;flex-direction:column;align-items:center;gap:40px;padding:0 320px;}
+.usecase-title{color:#fff;width:100%;padding:0 16px;margin:0;}
+
+/* ===== Rich content jump-link ===== */
+.richnav{min-height:1177px;background:#000;position:relative;display:flex;justify-content:center;overflow:hidden;}
+.richnav-bg{position:absolute;inset:0;z-index:0;}
+.richnav-bg img{width:100%;height:100%;object-fit:cover;display:block;}
+.richnav-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 39.4%,rgba(0,0,0,0) 74.5%,rgba(0,0,0,0.8) 100%);}
+.richnav-fg{position:relative;z-index:2;width:1920px;max-width:100%;display:flex;flex-direction:column;justify-content:space-between;
+  padding:160px 320px 80px;height:1085px;}
+.richnav-top{max-width:656px;display:flex;flex-direction:column;gap:16px;padding:0 16px;}
+.richnav-eyebrow{display:flex;align-items:center;gap:8px;}
+.richnav-eyebrow .label{color:#fff;}
+.richnav-h{color:#fff;margin:0;}
+.richnav-links{display:flex;gap:32px;align-items:center;padding:0 16px;}
+.richnav-link{display:flex;align-items:center;gap:8px;color:#fff;}
+.richnav-iconbtn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px;
+  background:var(--s2a-color-transparent-white-16);border:1px solid var(--s2a-color-transparent-white-12);}
+.richnav-iconbtn.muted{background:var(--s2a-color-transparent-white-12);}
+
+/* ===== Carousel (all-products roller) ===== */
+.carousel{min-height:1182px;background:#070708;position:relative;overflow:hidden;
+  padding:160px 24px 32px;display:flex;justify-content:center;}
+.carousel-blur{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.carousel-blur img{width:100%;height:100%;object-fit:cover;filter:blur(145px);transform:scale(1.2);}
+.carousel-blur .ov{position:absolute;inset:0;background:rgba(0,0,0,0.2);}
+.carousel-inner{position:relative;z-index:2;width:1920px;max-width:100%;display:flex;gap:8px;align-items:stretch;padding-left:16px;}
+.carousel-left{flex:1 1 0;display:flex;flex-direction:column;gap:96px;}
+.carousel-head{display:flex;flex-direction:column;gap:8px;color:#fff;text-align:center;}
+.carousel-head .eyebrow,.carousel-head .h{width:100%;}
+.carousel-wrap{display:flex;flex-direction:column;height:928px;}
+.carousel-cat{display:flex;align-items:center;padding-bottom:16px;}
+.carousel-cat p{color:#fff;}
+.carousel-divider{height:1px;width:100%;background:rgba(255,255,255,0.1);}
+.carousel-list-wrap{position:relative;flex:1 1 0;overflow:hidden;width:759px;max-width:100%;}
+.carousel-list{position:absolute;left:0;top:-165px;display:flex;flex-direction:column;}
+.carousel-list p{margin:0;color:rgba(255,255,255,0.12);}
+.carousel-list p.active{color:#fff;}
+.carousel-right{flex:1 1 0;display:flex;justify-content:flex-end;align-items:flex-start;padding-bottom:24px;}
+.carousel-media{position:relative;width:650px;max-width:100%;height:766px;border-radius:16px;overflow:hidden;padding:24px;}
+.carousel-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;}
+.carousel-media .app-icon{position:relative;z-index:2;}
+
+/* ===== Trust (light panel) ===== */
+.trust{min-height:802px;background:#000;display:flex;justify-content:center;}
+.trust-panel{width:1920px;max-width:100%;background:#fff;border-radius:0 0 32px 32px;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;gap:40px;padding:124px 0 0;}
+.trust-head{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;text-align:center;}
+.trust-eyebrow{color:rgba(0,0,0,0.64);margin:0;}
+.trust-h{color:#000;margin:0;}
+.trust-tiles{display:flex;gap:8px;width:100%;align-items:flex-start;}
+.trust-tile{flex:1 1 0;min-width:234px;display:flex;flex-direction:column;}
+.trust-tile-img{aspect-ratio:596/447;border:2px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;background:var(--bento-bg);}
+.trust-tile-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.trust-tile-type{display:flex;flex-direction:column;gap:4px;padding:16px 16px 0;}
+.trust-tile-h{color:#000;margin:0;}
+.trust-tile-b{color:rgba(0,0,0,0.64);margin:0;}
+
+/* ===== FAQ (accordion) ===== */
+.faq{min-height:550px;background:#000;display:flex;justify-content:center;}
+.faq-inner{width:1920px;max-width:100%;display:flex;flex-direction:column;}
+.faq-head{display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,0.1);}
+.faq-head h2{color:#fff;margin:0;width:100%;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,0.1);}
+.faq-btn{width:100%;background:none;border:0;cursor:pointer;display:flex;gap:40px;align-items:center;padding:32px 0;color:#fff;text-align:left;}
+.faq-q{flex:1 1 0;color:#fff;margin:0;}
+.faq-toggle{width:12px;height:12px;flex:none;position:relative;}
+.faq-toggle::before,.faq-toggle::after{content:"";position:absolute;background:#fff;}
+.faq-toggle::before{left:0;top:5.5px;width:12px;height:1px;}
+.faq-toggle::after{left:5.5px;top:0;width:1px;height:12px;transition:opacity .2s;}
+.faq-item.open .faq-toggle::after{opacity:0;}
+.faq-panel{overflow:hidden;max-height:0;}
+.faq-item.open .faq-panel{max-height:400px;padding-bottom:32px;}
+.faq-a{color:#fff;opacity:.7;max-width:587px;margin:0;}
+.faq-item:first-child .faq-btn{padding-top:32px;}
+
+/* ===== Merch & social proof ===== */
+.merch{min-height:1655.14px;background:#000;display:flex;flex-direction:column;align-items:center;}
+.merch-copy{width:1440px;max-width:100%;display:flex;flex-direction:column;align-items:center;gap:24px;padding:160px 0 0;}
+.merch-lock{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;}
+.merch-eyebrow{display:flex;align-items:center;gap:8px;}
+.merch-eyebrow .label{color:#fff;}
+.merch-h{color:#fff;text-align:center;margin:0;}
+.merch-sub{color:#fff;text-align:center;width:100%;}
+.merch-sub .price-old{text-decoration:line-through;}
+.merch-sub .terms{text-decoration:underline;}
+.merch-btns{display:flex;gap:8px;justify-content:center;width:100%;}
+.btn{height:40px;display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;}
+.btn-solid{background:#fff;color:#000;}
+.btn-outline{border:1px solid #fff;color:#fff;backdrop-filter:blur(16px);background:transparent;}
+.merch-asset{width:100%;display:flex;justify-content:center;margin-top:8px;}
+.merch-asset img{max-height:1216px;width:auto;max-width:100%;height:auto;object-fit:contain;display:block;}
+
+/* ===== Quote ===== */
+.quote{min-height:874px;background:#000;display:flex;align-items:center;justify-content:center;padding:0 320px;}
+.quote-frame{position:relative;width:1920px;max-width:100%;border:1px solid rgba(229,229,229,0.1);
+  display:flex;flex-direction:column;justify-content:space-between;padding:48px 48px;height:650px;gap:24px;}
+.quote-text{color:#fff;margin:0;}
+.quote-cite{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.quote-cite .who{color:#fff;margin:0;}
+.quote-cite .role{color:rgba(255,255,255,0.6);margin:0;}
+.quote-plus{position:absolute;width:37px;height:37px;opacity:.4;}
+.quote-plus::before,.quote-plus::after{content:"";position:absolute;background:rgba(229,229,229,0.5);}
+.quote-plus::before{left:0;top:18px;width:37px;height:1px;}
+.quote-plus::after{left:18px;top:0;width:1px;height:37px;}
+.quote-plus.tl{left:-19px;top:-19px;} .quote-plus.tr{right:-19px;top:-19px;}
+.quote-plus.bl{left:-19px;bottom:-19px;} .quote-plus.br{right:-19px;bottom:-19px;}
+
+/* ===== Brand concierge ===== */
+.concierge{min-height:408px;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 120px 96px;}
+.concierge-c{width:1200px;max-width:100%;display:flex;flex-direction:column;align-items:center;gap:24px;}
+.concierge-h{color:#fff;text-align:center;margin:0;width:100%;}
+.concierge-prompt{width:768px;max-width:100%;display:flex;flex-direction:column;gap:24px;align-items:center;}
+.concierge-input{width:100%;display:flex;align-items:center;gap:16px;height:56px;padding:12px;border-radius:28px;
+  background:rgba(255,255,255,0.1);border:1px solid var(--concierge-input-border);}
+.concierge-input .ai-dot{width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex:none;}
+.concierge-input .ph{flex:1 1 0;color:rgba(255,255,255,0.64);}
+.concierge-send{width:32px;height:32px;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;}
+.concierge-suggest{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%;}
+.suggest-pill{display:flex;align-items:center;padding:12px 16px;border-radius:18px;
+  background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.7);white-space:nowrap;}
+.concierge-disc{color:rgba(255,255,255,0.64);text-align:center;width:100%;margin:0;}
+.concierge-disc a{text-decoration:underline;color:rgba(255,255,255,0.64);}
+
+/* ===== Footer ===== */
+.footer{min-height:1204.67px;background:#000;display:flex;flex-direction:column;align-items:center;padding-top:80px;}
+.footer-wrap{width:1920px;max-width:100%;display:flex;flex-direction:column;gap:40px;align-items:center;}
+.footer-cols{display:flex;gap:8px;width:100%;padding:0 120px;align-items:flex-start;}
+.footer-col{flex:1 1 0;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center;}
+.footer-col .head{color:#fff;margin:0;width:100%;}
+.footer-col .links{display:flex;flex-direction:column;gap:8px;align-items:center;width:100%;}
+.footer-col .links p{color:rgba(255,255,255,0.64);margin:0;width:100%;}
+.footer-featured{display:flex;flex-direction:column;gap:24px;width:100%;padding:0 120px;align-items:flex-start;}
+.footer-featured .head{color:#fff;margin:0;}
+.footer-chips{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+.footer-chip{display:flex;gap:8px;align-items:center;}
+.footer-chip p{color:rgba(255,255,255,0.64);margin:0;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 120px;gap:24px;flex-wrap:wrap;}
+.footer-bottom-left{display:flex;gap:32px;align-items:center;flex-wrap:wrap;}
+.footer-bottom-left p{color:rgba(255,255,255,0.64);margin:0;}
+.footer-region{display:flex;gap:5px;align-items:center;}
+.footer-legal{display:flex;gap:16px;align-items:center;}
+.footer-social{display:flex;gap:16px;align-items:center;}
+.footer-social svg{width:18px;height:18px;fill:rgba(255,255,255,0.8);}
+.footer-wordmark{width:1920px;max-width:100%;}
+.footer-wordmark img{width:100%;height:auto;display:block;}
+
+/* ===== Responsive collapse (below canvas only) ===== */
+@media (max-width:1600px){
+  .hero-inner,.bentos-inner,.usecase-inner{padding-left:96px;padding-right:96px;}
+  .richnav-fg{padding-left:96px;padding-right:96px;}
+  .quote{padding-left:96px;padding-right:96px;}
+}
+@media (max-width:1023px){
+  .hero-inner,.bentos-inner,.usecase-inner{padding-left:32px;padding-right:32px;}
+  .hero-copy{padding:0;}
+  .type-title-1{font-size:56px;line-height:54px;letter-spacing:-2px;}
+  .type-super{font-size:64px;line-height:62px;}
+  .type-title-2{font-size:40px;line-height:42px;letter-spacing:-1px;}
+  .type-title-3{font-size:34px;line-height:36px;}
+  .bento-row{flex-direction:column;}
+  .carousel-inner{flex-direction:column;}
+  .carousel-media{width:100%;}
+  .trust-tiles,.footer-cols{flex-wrap:wrap;}
+  .richnav-fg{padding-left:24px;padding-right:24px;}
+  .merch-copy,.footer-cols,.footer-featured,.footer-bottom{padding-left:24px;padding-right:24px;}
+}
+@media (max-width:767px){
+  .type-title-1{font-size:40px;line-height:40px;letter-spacing:-1.2px;}
+  .type-super{font-size:44px;line-height:44px;}
+  .type-title-2{font-size:30px;line-height:32px;}
+  .nav-menu{display:none;}
+  .footer-col{flex:1 1 40%;}
+  .promo-cta{top:auto;bottom:24px;}
+}
+</style>
+</head>
+<body>
+<main style="width:100%">
+
+  <!-- ============ NAV ============ -->
+  <section data-block="global-navigation" data-figma-node-id="317:32874" data-section-style="full-width" class="nav">
+    <div class="section-inner">
+      <div class="nav-bar">
+        <div class="nav-left">
+          <span class="nav-logo"><picture><img loading="eager" alt="Adobe" src="./media_offer-acom-nav-logo.svg"></picture></span>
+          <nav class="nav-menu">
+            <span class="nav-item"><span class="type-label">Products</span><svg class="nav-chevron" viewBox="0 0 7 7" fill="none"><path d="M1 2l2.5 2.5L6 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="nav-item"><span class="type-label">Use Cases</span><svg class="nav-chevron" viewBox="0 0 7 7" fill="none"><path d="M1 2l2.5 2.5L6 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="nav-item"><span class="type-label">Solutions</span><svg class="nav-chevron" viewBox="0 0 7 7" fill="none"><path d="M1 2l2.5 2.5L6 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="nav-item"><span class="type-label">Learn &amp; Support</span><svg class="nav-chevron" viewBox="0 0 7 7" fill="none"><path d="M1 2l2.5 2.5L6 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="nav-item"><span class="type-label">Plans</span></span>
+          </nav>
+        </div>
+        <div class="nav-utility">
+          <svg class="nav-apps" viewBox="0 0 18 18" fill="#fff" aria-label="Applications"><circle cx="3" cy="3" r="1.6"/><circle cx="9" cy="3" r="1.6"/><circle cx="15" cy="3" r="1.6"/><circle cx="3" cy="9" r="1.6"/><circle cx="9" cy="9" r="1.6"/><circle cx="15" cy="9" r="1.6"/><circle cx="3" cy="15" r="1.6"/><circle cx="9" cy="15" r="1.6"/><circle cx="15" cy="15" r="1.6"/></svg>
+          <a href="#_button-fill" class="nav-signin type-label">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HERO ============ -->
+  <section data-block="new-block" data-figma-node-id="317:32875" data-variant-classes="hero-dark" class="hero">
+    <div class="section-inner hero-inner">
+      <div class="hero-copy">
+        <div class="hero-eyebrow">
+          <span class="app-icon sm ai-cc">∞</span>
+          <span class="type-eyebrow label">Creative Cloud Pro</span>
+        </div>
+        <h1 class="type-title-1 hero-h1">Powerful. Precise. Pro. Just like you.</h1>
+        <p class="type-body-lg hero-sub">Pixel-perfect images. Iconic brand designs. Oscar-worthy films. Dream it up and make it real with 20+ apps, creative AI, and more in Creative Cloud Pro.</p>
+        <a href="#_button-fill" class="hero-cta type-label">Free trial</a>
+      </div>
+      <div class="hero-asset">
+        <picture>
+          <source type="image/webp" srcset="./media_offer-acom-hero-asset.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+          <source type="image/webp" srcset="./media_offer-acom-hero-asset.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+          <source type="image/webp" srcset="./media_offer-acom-hero-asset.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+          <source type="image/webp" srcset="./media_offer-acom-hero-asset.png?width=350&format=webply&optimize=medium">
+          <img loading="eager" alt="Creative Cloud Pro app tiles and creative work samples" src="./media_offer-acom-hero-asset.png?width=750&format=png&optimize=medium">
+        </picture>
+      </div>
+      <div class="promo-cta">
+        <div class="promo-root">
+          <div class="promo-left">
+            <span class="app-icon ai-cc">∞</span>
+            <span class="type-eyebrow label">Start a free trial</span>
+          </div>
+          <div class="promo-right">
+            <a href="#merch" class="promo-iconbtn" aria-label="Jump to offer">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HERO BENTOS ============ -->
+  <section data-block="new-block" data-figma-node-id="317:32893" data-variant-classes="bento-grid" class="bentos">
+    <div class="section-inner bentos-inner">
+      <h2 class="type-title-2 bentos-title">See what&rsquo;s in<br>Creative Cloud Pro.</h2>
+      <div class="bento-stack">
+        <div class="bento-row">
+          <article class="bento-card">
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-bento-apps.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-apps.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-apps.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-apps.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Adobe Photoshop, Illustrator and Premiere artwork" src="./media_offer-acom-bento-apps.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Adobe Photoshop, Illustrator, Premiere, and 20+ more</p>
+              <p class="type-body-md bento-b">Create images, graphics, illustrations, videos, UI/UX designs, layouts, social content, and interactive PDFs with integrated apps.</p>
+            </div></div>
+          </article>
+          <article class="bento-card">
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-bento-firefly.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-firefly.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-firefly.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-firefly.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Adobe Firefly creative AI studio" src="./media_offer-acom-bento-firefly.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Adobe Firefly, your creative AI studio</p>
+              <p class="type-body-md bento-b">Ideate faster and breeze through busywork by generating and editing images, video, audio, and designs using top AI models.</p>
+            </div></div>
+          </article>
+        </div>
+        <div class="bento-row">
+          <article class="bento-card">
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-bento-fonts.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-fonts.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-fonts.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-fonts.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Fonts and Adobe Stock assets" src="./media_offer-acom-bento-fonts.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">30,000 fonts, one million+ Adobe Stock assets, and more</p>
+              <p class="type-body-md bento-b">Kick-start your creativity with fonts from top foundries, free stock assets, templates, tutorials, and Creative Cloud Libraries.</p>
+            </div></div>
+          </article>
+          <article class="bento-card">
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-bento-mobile.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-mobile.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-mobile.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-bento-mobile.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Web and mobile apps" src="./media_offer-acom-bento-mobile.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Web and mobile apps</p>
+              <p class="type-body-md bento-b">Create wherever you&rsquo;re inspired. Projects sync across your desktop and devices so you&rsquo;re always working with the latest versions.</p>
+            </div></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RICH CONTENT JUMP LINK ============ -->
+  <section data-block="new-block" data-figma-node-id="317:32904" data-variant-classes="jump-nav-hero" class="richnav">
+    <div class="richnav-bg">
+      <picture>
+        <source type="image/webp" srcset="./media_offer-acom-richcontent-bg.jpg?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+        <source type="image/webp" srcset="./media_offer-acom-richcontent-bg.jpg?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+        <source type="image/webp" srcset="./media_offer-acom-richcontent-bg.jpg?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+        <source type="image/webp" srcset="./media_offer-acom-richcontent-bg.jpg?width=350&format=webply&optimize=medium">
+        <img loading="lazy" alt="Creative professional working across Adobe apps" src="./media_offer-acom-richcontent-bg.jpg?width=750&format=png&optimize=medium">
+      </picture>
+    </div>
+    <div class="richnav-scrim"></div>
+    <div class="richnav-fg">
+      <div class="richnav-top">
+        <div class="richnav-eyebrow">
+          <span class="app-icon sm ai-acrobat">A</span>
+          <span class="type-eyebrow label">Acrobat Studio</span>
+        </div>
+        <h2 class="type-title-2 richnav-h">Create better with apps that work together.</h2>
+      </div>
+      <div class="richnav-links">
+        <a class="richnav-link" href="#usecase1">
+          <span class="richnav-iconbtn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M8 4l4 4-4 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="type-heading-5">Photography</span>
+        </a>
+        <a class="richnav-link" href="#usecase2">
+          <span class="richnav-iconbtn muted"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M8 4l4 4-4 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="type-heading-5">Video Production</span>
+        </a>
+        <a class="richnav-link" href="#usecase3">
+          <span class="richnav-iconbtn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M8 4l4 4-4 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="type-heading-5">Design</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASE 1 ============ -->
+  <section data-block="new-block" data-figma-node-id="317:32910" data-variant-classes="usecase-bento" class="usecase" id="usecase1" style="min-height:2018.06px;">
+    <div class="section-inner usecase-inner">
+      <h2 class="type-title-3 usecase-title">Enhance a photo, then totally transform it.</h2>
+      <div class="bento-stack">
+        <div class="bento-row">
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-firefly">Af</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc1-firefly.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-firefly.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-firefly.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-firefly.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Firefly Boards visual shot list" src="./media_offer-acom-uc1-firefly.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Prepare the perfect shoot with Firefly Boards.</p>
+              <p class="type-body-md bento-b">Build a visual shot list and use AI to brainstorm ideas for locations, set designs, and compositions before you pick up a camera.</p>
+            </div></div>
+          </article>
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-lightroom">Lr</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc1-lightroom.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-lightroom.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-lightroom.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-lightroom.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Lightroom photo organization and editing" src="./media_offer-acom-uc1-lightroom.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Import, organize, and make quick edits with Lightroom.</p>
+              <p class="type-body-md bento-b">Batch-edit photos with color corrections, presets, and AI-powered tools. Then make selects and send them to Photoshop with a click.</p>
+            </div></div>
+          </article>
+        </div>
+        <div class="bento-row">
+          <article class="bento-card wide">
+            <span class="bento-pneumonic app-icon ai-photoshop">Ps</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc1-photoshop.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-photoshop.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-photoshop.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc1-photoshop.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Photoshop image compositing and retouching" src="./media_offer-acom-uc1-photoshop.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-overlay"><div class="wrap">
+              <p class="type-heading-6 bento-h">Remix and reimagine with Photoshop.</p>
+              <p class="type-body-md bento-b">Retouch your selects with unmatched precision and control, and then use them in image composites, digital paintings, and 3D artwork.</p>
+            </div></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASE 2 ============ -->
+  <section data-block="new-block" data-figma-node-id="317:32919" data-variant-classes="usecase-bento" class="usecase" id="usecase2" style="min-height:2019.28px;">
+    <div class="section-inner usecase-inner">
+      <h2 class="type-title-3 usecase-title">Go from raw clips to release-ready videos.</h2>
+      <div class="bento-stack">
+        <div class="bento-row">
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-firefly">Af</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc2-firefly.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-firefly.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-firefly.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-firefly.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Firefly Boards storyboard" src="./media_offer-acom-uc2-firefly.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Storyboard in Firefly Boards to speed up pre-production.</p>
+              <p class="type-body-md bento-b">Generate a storyboard from your script to lock in your shot composition, camera angles, lighting style, color palette, and more.</p>
+            </div></div>
+          </article>
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-premiere">Pr</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc2-premiere.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-premiere.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-premiere.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-premiere.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Premiere video editing timeline" src="./media_offer-acom-uc2-premiere.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Build your story frame by frame in Premiere.</p>
+              <p class="type-body-md bento-b">Get to the right cut fast with industry-standard video editing tools and timesaving AI features.</p>
+            </div></div>
+          </article>
+        </div>
+        <div class="bento-row">
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-aftereffects">Ae</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc2-aftereffects.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-aftereffects.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-aftereffects.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-aftereffects.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="After Effects motion graphics" src="./media_offer-acom-uc2-aftereffects.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Add motion graphics with After Effects.</p>
+              <p class="type-body-md bento-b">Enhance your video with animated text and illustrations, realistic 3D animations, and attention-grabbing effects.</p>
+            </div></div>
+          </article>
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-frameio">Fi</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc2-frameio.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-frameio.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-frameio.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc2-frameio.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Frame.io workflow in Premiere" src="./media_offer-acom-uc2-frameio.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Bring your workflow together with Frame.io in Premiere.</p>
+              <p class="type-body-md bento-b">Easily access, organize, and import media. Share sequences for review. And get the feedback you need, right on your timeline.</p>
+            </div></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASE 3 ============ -->
+  <section data-block="new-block" data-figma-node-id="317:32929" data-variant-classes="usecase-bento" class="usecase" id="usecase3" style="min-height:2911.69px;">
+    <div class="section-inner usecase-inner">
+      <h2 class="type-title-3 usecase-title">Take your designs further, faster.</h2>
+      <div class="bento-stack">
+        <div class="bento-row">
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-firefly">Af</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc3-firefly.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-firefly.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-firefly.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-firefly.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Firefly Boards design exploration" src="./media_offer-acom-uc3-firefly.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Jump-start design exploration with Firefly Boards.</p>
+              <p class="type-body-md bento-b">Generate images and use moodboards to play with typography, color palettes, and logo directions as you develop your look and feel.</p>
+            </div></div>
+          </article>
+          <article class="bento-card">
+            <span class="bento-pneumonic app-icon ai-illustrator">Ai</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc3-illustrator.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-illustrator.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-illustrator.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-illustrator.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Illustrator vector logos and design elements" src="./media_offer-acom-uc3-illustrator.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Craft logos and other design elements with Illustrator.</p>
+              <p class="type-body-md bento-b">Design crisp, infinitely scalable vector graphics and illustrations with precision drawing and typography tools plus creative AI.</p>
+            </div></div>
+          </article>
+        </div>
+        <div class="bento-row">
+          <article class="bento-card wide">
+            <span class="bento-pneumonic app-icon ai-photoshop">Ps</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc3-photoshop.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-photoshop.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-photoshop.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-photoshop.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Photoshop comps combining vectors and images" src="./media_offer-acom-uc3-photoshop.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-overlay"><div class="wrap">
+              <p class="type-heading-6 bento-h">Make comps in Photoshop that combine vectors and images.</p>
+              <p class="type-body-md bento-b">Retouch images and create mockups to visualize how all your elements come together in web pages, clothing designs, and more.</p>
+            </div></div>
+          </article>
+        </div>
+        <div class="bento-row">
+          <article class="bento-card dark">
+            <span class="bento-pneumonic app-icon ai-indesign" style="z-index:3;">Id</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc3-indesign.jpg?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-indesign.jpg?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-indesign.jpg?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-indesign.jpg?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="InDesign multi-page layouts" src="./media_offer-acom-uc3-indesign.jpg?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Integrate your designs into layouts with InDesign.</p>
+              <p class="type-body-md bento-b">Create beautiful multi-page layouts for print and digital pitch decks, brand books, and business collateral.</p>
+            </div></div>
+          </article>
+          <article class="bento-card dark">
+            <span class="bento-pneumonic app-icon ai-express" style="z-index:3;">Ex</span>
+            <div class="bento-img"><picture>
+              <source type="image/webp" srcset="./media_offer-acom-uc3-express.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-express.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-express.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+              <source type="image/webp" srcset="./media_offer-acom-uc3-express.png?width=350&format=webply&optimize=medium">
+              <img loading="lazy" alt="Adobe Express brand kits and social posts" src="./media_offer-acom-uc3-express.png?width=750&format=png&optimize=medium"></picture></div>
+            <div class="bento-type"><div class="wrap">
+              <p class="type-heading-6 bento-h">Adapt your assets and stay on brand with Adobe Express.</p>
+              <p class="type-body-md bento-b">Reformat design assets or turn them into social posts, flyers, and more. And create and share brand kits to keep things consistent.</p>
+            </div></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ALL-PRODUCTS ROLLER CAROUSEL ============ -->
+  <section data-block="new-block" data-figma-node-id="1624:14966" data-variant-classes="roller-carousel" class="carousel">
+    <div class="carousel-blur">
+      <img loading="lazy" alt="" aria-hidden="true" src="./media_offer-acom-carousel-media.jpg?width=1200&format=webply&optimize=medium">
+      <div class="ov"></div>
+    </div>
+    <div class="section-inner carousel-inner">
+      <div class="carousel-left">
+        <div class="carousel-head">
+          <p class="type-eyebrow eyebrow">20+ apps included</p>
+          <p class="type-title-2 h">The right tool for any idea.</p>
+        </div>
+        <div class="carousel-wrap">
+          <div class="carousel-cat"><p class="type-heading-6">Video</p></div>
+          <div class="carousel-divider"></div>
+          <div class="carousel-list-wrap">
+            <div class="carousel-list">
+              <p class="type-super">Photoshop</p>
+              <p class="type-super">Lightroom</p>
+              <p class="type-super">Lightroom Classic</p>
+              <p class="type-super">Photoshop Express</p>
+              <p class="type-super">Premiere</p>
+              <p class="type-super active">After Effects</p>
+              <p class="type-super">Audition</p>
+              <p class="type-super">Animate</p>
+              <p class="type-super">Character Animate</p>
+              <p class="type-super">Media Encoder</p>
+              <p class="type-super">Photoshop</p>
+              <p class="type-super">Illustrator</p>
+              <p class="type-super">InDesign</p>
+              <p class="type-super">Adobe Firefly</p>
+              <p class="type-super">Adobe Express</p>
+              <p class="type-super">Acrobate Pro</p>
+              <p class="type-super">Acrobat Reader</p>
+              <p class="type-super">Adobe Fresco</p>
+              <p class="type-super">Dreamweaver</p>
+              <p class="type-super">Capture</p>
+              <p class="type-super">Adobe Scan</p>
+              <p class="type-super">Bridge</p>
+              <p class="type-super">Fill &amp; Sign</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-right">
+        <div class="carousel-media">
+          <img loading="lazy" alt="After Effects motion design sample" src="./media_offer-acom-carousel-media.jpg?width=1200&format=webply&optimize=medium">
+          <span class="app-icon ai-aftereffects">Ae</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST (light panel) ============ -->
+  <section data-block="new-block" data-figma-node-id="317:32980" data-variant-classes="light-panel rounded-corners-bottom" class="trust">
+    <div class="trust-panel">
+      <div class="trust-head" style="padding:0 320px;">
+        <p class="type-eyebrow trust-eyebrow">World-class tools for every creative workflow</p>
+        <h2 class="type-title-2 trust-h">Why choose Creative Cloud Pro.</h2>
+      </div>
+      <div class="trust-tiles" style="padding:0 320px 0;">
+        <article class="trust-tile">
+          <div class="trust-tile-img"><picture>
+            <source type="image/webp" srcset="./media_offer-acom-trust-1.jpg?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-1.jpg?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-1.jpg?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-1.jpg?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="Seamless integration across Adobe apps" src="./media_offer-acom-trust-1.jpg?width=750&format=png&optimize=medium"></picture></div>
+          <div class="trust-tile-type">
+            <p class="type-heading-6 trust-tile-h">Seamless integration</p>
+            <p class="type-body-md trust-tile-b">Create any multimedia project from start to finish with powerful, connected apps all in one place.</p>
+          </div>
+        </article>
+        <article class="trust-tile">
+          <div class="trust-tile-img"><picture>
+            <source type="image/webp" srcset="./media_offer-acom-trust-2.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-2.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-2.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-2.png?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="Trusted technology used worldwide" src="./media_offer-acom-trust-2.png?width=750&format=png&optimize=medium"></picture></div>
+          <div class="trust-tile-type">
+            <p class="type-heading-6 trust-tile-h">Trusted technology</p>
+            <p class="type-body-md trust-tile-b">Creatives and businesses around the world rely on Creative Cloud Pro to craft and deliver their best work.</p>
+          </div>
+        </article>
+        <article class="trust-tile">
+          <div class="trust-tile-img"><picture>
+            <source type="image/webp" srcset="./media_offer-acom-trust-3.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-3.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-3.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+            <source type="image/webp" srcset="./media_offer-acom-trust-3.png?width=350&format=webply&optimize=medium">
+            <img loading="lazy" alt="Constant innovation and new features" src="./media_offer-acom-trust-3.png?width=750&format=png&optimize=medium"></picture></div>
+          <div class="trust-tile-type">
+            <p class="type-heading-6 trust-tile-h">Constant innovation</p>
+            <p class="type-body-md trust-tile-b">Adobe is always adding new features to help you work faster, work smarter, and bring your best ideas to life.</p>
+          </div>
+        </article>
+      </div>
+      <div style="height:124px;width:100%;"></div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ (accordion) ============ -->
+  <section data-block="accordion" data-figma-node-id="317:32988" data-variant-classes="seo" class="faq">
+    <div class="faq-inner">
+      <div class="faq-head"><h2 class="type-title-2">Frequently asked questions</h2></div>
+      <div class="faq-item open">
+        <button class="faq-btn" aria-expanded="true" aria-controls="faq-p1">
+          <span class="type-faq-q faq-q">What is Adobe Creative Cloud?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="faq-panel" id="faq-p1" role="region">
+          <p class="type-body-md faq-a">Adobe Creative Cloud provides apps, web services, and resources for all your creative projects — photography, graphic design, video editing, UX design, drawing and painting, social media, and more.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="type-faq-q faq-q">What is the Adobe Creative Cloud Pro plan?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="type-faq-q faq-q">How do I download and install Creative Cloud?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="type-faq-q faq-q">Are Substance 3D products included with the Creative Cloud Pro plan?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root=document.currentScript.closest('section');if(!root)return;
+      root.querySelectorAll('.faq-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var item=btn.closest('.faq-item');
+          var open=item.classList.toggle('open');
+          btn.setAttribute('aria-expanded',open?'true':'false');
+        });
+      });
+    })();
+    </script>
+  </section>
+
+  <!-- ============ MERCH & SOCIAL PROOF ============ -->
+  <section data-block="new-block" data-figma-node-id="317:33034" data-variant-classes="merch-cta" class="merch" id="merch">
+    <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;width:100%;">
+      <div class="merch-copy">
+        <div class="merch-lock">
+          <div class="merch-eyebrow">
+            <span class="app-icon sm ai-cc">∞</span>
+            <span class="type-eyebrow label">Creative Cloud Pro</span>
+          </div>
+          <h2 class="type-title-2 merch-h">Get Creative Cloud Pro today.</h2>
+        </div>
+        <p class="type-body-lg merch-sub">The all-in-one toolkit with 20+ creative apps and AI tools that work together<br>so you can ideate, create, and deliver high-quality content faster.<br><br><strong><span class="price-old">US$69.99/mo</span> US$34.99/mo. Save 50% for the first 3 months. <a class="terms" href="#_modal">See terms</a>.</strong></p>
+        <div class="merch-btns">
+          <a href="#_button-fill" class="btn btn-solid type-label">Free trial</a>
+          <a href="#_button-blue" class="btn btn-outline type-label">Compare plans</a>
+        </div>
+      </div>
+      <div class="merch-asset">
+        <picture>
+          <source type="image/webp" srcset="./media_offer-acom-merch-flowers.png?width=2000&format=webply&optimize=medium" media="(min-width:1440px)">
+          <source type="image/webp" srcset="./media_offer-acom-merch-flowers.png?width=1200&format=webply&optimize=medium" media="(min-width:1024px)">
+          <source type="image/webp" srcset="./media_offer-acom-merch-flowers.png?width=600&format=webply&optimize=medium" media="(min-width:600px)">
+          <source type="image/webp" srcset="./media_offer-acom-merch-flowers.png?width=350&format=webply&optimize=medium">
+          <img loading="lazy" alt="Generative Creative Cloud Pro poppy artwork" src="./media_offer-acom-merch-flowers.png?width=750&format=png&optimize=medium">
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section data-block="quote" data-figma-node-id="338:24779" data-variant-classes="long-form dark" class="quote">
+    <div class="section-inner" style="display:flex;justify-content:center;">
+      <figure class="quote-frame" style="margin:0;">
+        <span class="quote-plus tl"></span><span class="quote-plus tr"></span>
+        <span class="quote-plus bl"></span><span class="quote-plus br"></span>
+        <blockquote class="type-title-1 quote-text" style="margin:0;">&ldquo;Creative Cloud Pro is the only tool where I never hit a wall. Twenty years in, it still does exactly what I ask it to — no more, no less. That&rsquo;s rarer than people realize.&rdquo;</blockquote>
+        <figcaption class="quote-cite">
+          <p class="type-body-md who">Bart Simpson</p>
+          <p class="type-body-md role">— Creative Director - HBO</p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ BRAND CONCIERGE ============ -->
+  <section data-block="brand-concierge" data-figma-node-id="317:33076" data-variant-classes="input-first has-bg-color" class="concierge">
+    <div class="section-inner concierge-c">
+      <h2 class="type-title-2 concierge-h">Find what you&rsquo;re looking for.</h2>
+      <div class="concierge-prompt">
+        <div class="concierge-input">
+          <span class="ai-dot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 5.4L19 9l-5.2 1.6L12 16l-1.8-5.4L5 9l5.2-1.6L12 2z" fill="url(#aig)"/><defs><linearGradient id="aig" x1="5" y1="2" x2="19" y2="16"><stop stop-color="#972ee3"/><stop offset="0.5" stop-color="#e0349b"/><stop offset="1" stop-color="#ff7a45"/></linearGradient></defs></svg>
+          </span>
+          <span class="type-body-md ph">Ask anything</span>
+          <span class="concierge-send"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M5 9l5-5 5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="concierge-suggest">
+          <span class="suggest-pill type-body-sm">I&rsquo;d like to explore templates to see what I can create.</span>
+          <span class="suggest-pill type-body-sm">I want to touch up and enhance my photos.</span>
+          <span class="suggest-pill type-body-sm">I&rsquo;d like to edit PDFs and make them interactive.</span>
+          <span class="suggest-pill type-body-sm">I want to turn my clips into polished videos.</span>
+        </div>
+      </div>
+      <p class="type-body-xs concierge-disc">Use of this beta AI chatbot is subject to Adobe&rsquo;s <a href="#_modal">Privacy Policy</a>. Don&rsquo;t share sensitive data.<br>AI responses are not your Content, may be inaccurate and any offers provided are non-binding. <a href="#_modal">Generative AI Terms</a>.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <section data-block="global-footer" data-figma-node-id="317:33088" data-variant-classes="responsive-container" class="footer">
+    <div class="footer-wrap">
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="type-eyebrow head">For individuals<br>&amp; small business</p>
+          <div class="links type-body-md">
+            <p>Creative AI</p><p>Photography</p><p>Design &amp; Illustration</p><p>Video &amp; animation</p><p>PDF</p><p>3D</p><p>Elements Family</p><p>Stock images &amp; video</p><p>View all products</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <p class="type-eyebrow head">For medium<br>&amp; large business</p>
+          <div class="links type-body-md">
+            <p>Personalization at scale</p><p>Content supply chain</p><p>Unified customer experience</p><p>Creativity and production</p><p>B2B GTM orchestration</p><p>View all products</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <p class="type-eyebrow head">For<br>Organizations</p>
+          <div class="links type-body-md"><p>Education</p><p>Nonprofits</p><p>Government</p></div>
+        </div>
+        <div class="footer-col">
+          <p class="type-eyebrow head"><br>Support</p>
+          <div class="links type-body-md">
+            <p>Help Center</p><p>Download and install</p><p>Adobe Community</p><p>Adobe Learn</p><p>Medium &amp; large business support</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <p class="type-eyebrow head"><br>Contact</p>
+          <div class="links type-body-md"><p>Chat with sales</p><p>Request information</p></div>
+        </div>
+        <div class="footer-col">
+          <p class="type-eyebrow head"><br>Adobe</p>
+          <div class="links type-body-md">
+            <p>Log into your account</p><p>About</p><p>Careers</p><p>Events</p><p>Newsroom</p><p>Corporate Responsibility</p><p>Investor Relations</p><p>Supply Chain</p><p>Trust Center</p><p>Integrity</p><p>Adobe for All</p><p>Adobe Blog</p><p>Terms</p><p>Privacy</p><p>Cookie preferences</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-featured">
+        <p class="type-eyebrow head">Featured Products</p>
+        <div class="footer-chips">
+          <span class="footer-chip"><span class="app-icon xs ai-acrobat">A</span><p class="type-caption">Acrobat Reader</p></span>
+          <span class="footer-chip"><span class="app-icon xs ai-firefly">Af</span><p class="type-caption">Firefly</p></span>
+          <span class="footer-chip"><span class="app-icon xs ai-express">Ex</span><p class="type-caption">Adobe Express</p></span>
+          <span class="footer-chip"><span class="app-icon xs ai-photoshop">Ps</span><p class="type-caption">Photoshop</p></span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <span class="footer-region"><p class="type-caption">Change region</p><svg width="6" height="3" viewBox="0 0 6 3" fill="none"><path d="M0 0l3 3 3-3" fill="rgba(255,255,255,0.64)"/></svg></span>
+          <span class="footer-legal">
+            <p class="type-caption">© 2026 Adobe Inc. All rights reserved.</p>
+            <p class="type-caption">Do not sell or share my personal information</p>
+          </span>
+          <span class="footer-region"><svg width="7" height="8" viewBox="0 0 7 8" fill="rgba(255,255,255,0.64)"><path d="M3.5 0L7 2v4L3.5 8 0 6V2z"/></svg><p class="type-caption">AdChoices</p></span>
+        </div>
+        <div class="footer-social">
+          <svg viewBox="0 0 24 24" aria-label="Facebook"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          <svg viewBox="0 0 24 24" aria-label="Instagram"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.2-8.3a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/></svg>
+          <svg viewBox="0 0 24 24" aria-label="X"><path d="M18.2 2.3h3.3l-7.2 8.3 8.5 11.1h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.1 2.3h6.8l4.7 6.3 5.6-6.3zm-1.2 17.5h1.8L7.1 4.1H5.2L17 19.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-label="LinkedIn"><path d="M20.5 2h-17C2.7 2 2 2.7 2 3.5v17c0 .8.7 1.5 1.5 1.5h17c.8 0 1.5-.7 1.5-1.5v-17c0-.8-.7-1.5-1.5-1.5zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V19h-3V9h2.9v1.4h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7V19z"/></svg>
+        </div>
+      </div>
+      <div class="footer-wordmark">
+        <picture><img loading="lazy" alt="Adobe" src="./media_offer-acom-footer-adobe.svg"></picture>
+      </div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
