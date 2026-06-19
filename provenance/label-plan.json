@@ -1,0 +1,80 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": "global-navigation",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 1,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 2,
+    "dataBlock": "news",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 3,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 4,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 5,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 6,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 7,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 8,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 9,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 10,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 11,
+    "dataBlock": "brand-concierge",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 12,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  }
+]

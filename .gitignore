@@ -10,3 +10,4 @@ node_modules/*
 .snowflake/projects/*/state.json
 # DA auth token — written by forge at runtime, must never be committed
 .snowflake/da-token.json
+/blocks/
