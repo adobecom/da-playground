@@ -1,0 +1,279 @@
+.forge-plans *, .forge-plans *::before, .forge-plans *::after { box-sizing: border-box; }
+
+.section .forge-plans-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+main .section:has(.forge-plans) {
+  padding: 0;
+  margin: 0;
+}
+
+.forge-plans {
+  background: rgb(255, 255, 255);
+  padding: 120px 64px;
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.forge-plans .fp-eyebrow {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 16px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  text-align: center;
+  margin: 0 0 24px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-body {
+  font-size: 16px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 48px auto;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.forge-plans .fp-tab {
+  padding: 10px 24px;
+  border-radius: 20px;
+  border: 1px solid rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 700;
+  background: transparent;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+}
+
+.forge-plans .fp-tab-active {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.forge-plans .fp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.forge-plans .fp-card {
+  background: rgb(245, 245, 245);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.forge-plans .fp-card-rec {
+  background: rgb(255, 255, 255);
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.forge-plans .fp-badge {
+  position: absolute;
+  top: -12px;
+  left: 32px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.forge-plans .fp-mnemonic {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.forge-plans .fp-icon-tile {
+  width: 24px;
+  height: 24px;
+  background: rgb(179, 11, 0);
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.forge-plans .fp-plan-eyebrow {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-plan-name {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-plan-desc {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-see-terms {
+  font-size: 14px;
+  text-decoration: underline;
+  display: block;
+  margin-bottom: 16px;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-price-block {
+  margin-bottom: 16px;
+}
+
+.forge-plans .fp-price {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-billing {
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-fine {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 0 16px 0;
+}
+
+.forge-plans .fp-cta-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.forge-plans .fp-btn-primary {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 24px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+}
+
+.forge-plans .fp-btn-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: 1px solid rgb(0, 0, 0);
+  background: transparent;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+}
+
+.forge-plans .fp-license-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.forge-plans .fp-lic-num,
+.forge-plans .fp-lic-label {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-save {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-secure {
+  font-size: 14px;
+  margin: 0 0 16px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-addon {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.forge-plans .fp-addon label {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  align-items: flex-start;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-features {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.forge-plans .fp-features h5 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-features ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(0, 0, 0);
+}
+
+.forge-plans .fp-compare-row {
+  text-align: center;
+  margin-top: 32px;
+}

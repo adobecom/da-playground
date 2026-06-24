@@ -1,0 +1,98 @@
+.forge-search *, .forge-search *::before, .forge-search *::after { box-sizing: border-box; }
+
+.section .forge-search-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+main .section:has(.forge-search) {
+  padding: 0;
+  margin: 0;
+}
+
+.forge-search {
+  background: linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 245, 245));
+  padding: 120px 64px;
+  text-align: center;
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.forge-search .fs-eyebrow {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-search .fs-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 0 0 24px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-search .fs-body {
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-size: 20px;
+  margin: 0 0 32px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-search .fs-input-group {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: 32px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.forge-search .fs-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+.forge-search .fs-cta {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 24px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+}
+
+.forge-search .fs-ps-cta {
+  display: inline-block;
+  margin-top: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  color: rgb(0, 0, 0);
+}
+
+.forge-search .fs-disclaimer {
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 24px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}

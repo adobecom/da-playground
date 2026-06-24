@@ -1,0 +1,5 @@
+# Per-template CSS is vendor — extracted verbatim from the source.
+# Ignore everything in styles/ except the repo's own boilerplate files.
+styles/*.css
+!styles/styles.css
+!styles/lazy-styles.css

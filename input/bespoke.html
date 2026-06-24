@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>2561 — Adobe Acrobat</title>
+<meta name="viewport" content="width=1920">
+<style>
+:root {
+  --color-bg: rgb(255,255,255);
+  --color-bg-soft: rgb(245,245,245);
+  --color-bg-softer: rgb(246,246,246);
+  --color-text: rgb(0,0,0);
+  --color-text-inverse: rgb(255,255,255);
+  --color-accent: rgb(179,11,0);
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--color-bg); }
+body {
+  font-family: "Adobe Clean", sans-serif;
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 1.4;
+}
+main { max-width: 2560px; margin: 0 auto; background: var(--color-bg); }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ---- Section 0: header (nav + hero + documents grid) ---- */
+.section-header { background: rgb(255,255,255); width: 100%; }
+.header-inner { max-width: 1920px; margin: 0 auto; padding: 0 320px 0 320px; }
+@media (max-width: 1920px) { .header-inner { padding: 0; } }
+
+.nav-bar-container { width: 100%; }
+.nav-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  background: rgb(255,255,255);
+  padding: 0;
+}
+.nav-logo-links { display: flex; align-items: center; gap: 24px; }
+.adobe-logo {
+  width: 24px; height: 23px; background: rgb(179,11,0); border-radius: 2px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: white; font-weight: 900; font-size: 14px;
+}
+.nav-link {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(0,0,0);
+  padding: 0 8px;
+  white-space: nowrap;
+}
+.nav-utility { display: flex; align-items: center; gap: 8px; }
+.nav-button {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border: 1px solid rgb(0,0,0);
+  border-radius: 16px;
+  background: transparent;
+  color: rgb(0,0,0);
+  cursor: pointer;
+}
+.nav-divider { width: 100%; height: 1px; background: rgb(0,0,0); }
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+  background: rgb(0,0,0);
+  color: rgb(255,255,255);
+  padding: 0;
+}
+.breadcrumbs .crumb { font-size: 14px; font-weight: 700; color: rgb(255,255,255); padding: 0 8px; }
+.breadcrumbs .slash { color: rgba(255,255,255,0.6); }
+
+/* Hero copy */
+.hero {
+  padding: 124px 0 80px 0;
+  background: rgb(255,255,255);
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 16px; font-weight: 700; font-family: "Adobe Clean", sans-serif;
+  color: rgb(0,0,0);
+  margin-bottom: 24px;
+}
+.hero-eyebrow .app-tile {
+  width: 24px; height: 23px; background: rgb(179,11,0); border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: white; font-weight: 900; font-size: 10px;
+}
+.hero-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 80px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px 0;
+  color: rgb(0,0,0);
+  max-width: 1200px;
+}
+.hero-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  color: rgb(0,0,0);
+  max-width: 696px;
+  margin: 0 0 32px 0;
+}
+.btn-promo {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgb(0,0,0); color: rgb(255,255,255);
+  padding: 16px 24px; border-radius: 28px;
+  font-size: 16px; font-weight: 700; font-family: "Adobe Clean", sans-serif;
+  cursor: pointer;
+}
+.btn-promo .ac-icon {
+  width: 32px; height: 32px; background: rgb(179,11,0); border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: white; font-weight: 900; font-size: 12px;
+}
+.btn-promo .arrow {
+  width: 32px; height: 32px; background: rgb(255,255,255); border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: rgb(0,0,0); font-size: 14px;
+}
+
+/* Documents grid */
+.docs-grid {
+  display: flex; flex-direction: row; gap: 100px;
+  padding: 80px 0;
+  align-items: flex-start;
+  justify-content: center;
+  background: rgb(255,255,255);
+}
+.docs-col { display: flex; flex-direction: column; gap: 24px; width: 303px; }
+.docs-col.offset-down { padding-top: 180px; }
+.docs-col.offset-mid { padding-top: 100px; }
+.doc-card {
+  background: rgb(245,245,245); border-radius: 12px;
+  width: 303px; height: 397px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  overflow: hidden;
+  position: relative;
+}
+.doc-card .doc-thumb {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #efefef, #ddd);
+  display: flex; align-items: flex-end;
+  padding: 16px;
+  font-size: 14px; font-weight: 700; color: rgb(40,40,40);
+}
+
+/* Section 1: Main content sections */
+.section-main { background: rgb(255,255,255); }
+
+/* Tabs section */
+.tabs-section { background: rgb(245,245,245); padding: 120px 320px; }
+@media (max-width: 1920px) { .tabs-section { padding: 120px 64px; } }
+.tabs-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 56px; line-height: 1.05;
+  text-align: center; margin: 0 0 48px 0;
+}
+.tabs-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.tab-card {
+  background: rgb(255,255,255);
+  border-radius: 16px; padding: 32px;
+  display: flex; flex-direction: column; min-height: 600px;
+  position: relative; overflow: hidden;
+}
+.tab-card .tab-img {
+  width: 100%; height: 240px; background: linear-gradient(135deg,#f5f5f5,#e0e0e0);
+  border-radius: 8px; margin-bottom: 32px;
+}
+.tab-title {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 18px;
+  margin: 0 0 12px 0;
+}
+.tab-sub {
+  font-family: "Adobe Clean", sans-serif;
+  font-weight: 700; font-size: 16px;
+  margin: 0;
+}
+
+/* Work-faster ("There's more to Acrobat") section */
+.more-section { background: rgb(245,245,245); padding: 120px 320px; }
+@media (max-width: 1920px) { .more-section { padding: 120px 64px; } }
+.more-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 56px; line-height: 1.05;
+  text-align: center; margin: 0 0 24px 0;
+}
+.more-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-weight: 400; font-size: 16px;
+  text-align: center; max-width: 720px; margin: 0 auto 64px auto;
+}
+
+/* Feature panels */
+.feature-grid { display: flex; flex-direction: column; gap: 24px; max-width: 1920px; margin: 0 auto; }
+.feature-panel {
+  background: rgb(255,255,255); border-radius: 24px;
+  padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  align-items: center;
+}
+.feature-panel.flipped { direction: rtl; }
+.feature-panel.flipped > * { direction: ltr; }
+.feature-copy h3 {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 32px; line-height: 1.1;
+  margin: 0 0 16px 0;
+}
+.feature-copy p {
+  font-family: "Adobe Clean", sans-serif;
+  font-weight: 400; font-size: 16px; line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+.feature-copy .learn-more {
+  font-family: "Adobe Clean", sans-serif;
+  font-weight: 700; font-size: 19px;
+  text-decoration: underline;
+}
+.feature-visual {
+  width: 100%; min-height: 480px; background: rgb(245,245,245);
+  border-radius: 16px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.feature-visual .mock {
+  width: 90%; height: 90%;
+  background: linear-gradient(135deg, #fff, #eee);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(0,0,0,0.4); font-size: 14px;
+}
+
+/* Test drive section */
+.testdrive {
+  background: rgb(255,255,255); padding: 120px 320px;
+  text-align: center;
+}
+@media (max-width: 1920px) { .testdrive { padding: 120px 64px; } }
+.td-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 56px; line-height: 1.05;
+  margin: 0 0 24px 0;
+}
+.td-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px; max-width: 720px; margin: 0 auto 48px auto;
+}
+.td-mockup {
+  margin: 0 auto; max-width: 1280px; min-height: 720px;
+  background: rgb(248,248,248); border-radius: 24px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding: 32px; gap: 32px;
+}
+.td-panel {
+  background: rgb(255,255,255); border-radius: 16px;
+  padding: 24px; min-height: 600px;
+  text-align: left;
+}
+.td-panel h4 {
+  font-family: "Adobe Clean Spectrum VF", "Adobe Clean", sans-serif;
+  font-weight: 700; font-size: 18px; margin: 0 0 12px 0;
+}
+.td-search {
+  display: flex; gap: 8px; margin-top: 24px;
+  padding: 12px 16px; background: rgb(245,245,245); border-radius: 12px;
+  align-items: center;
+}
+.td-search input {
+  flex: 1; border: none; background: transparent;
+  font-family: "Adobe Clean Spectrum VF", "Adobe Clean", sans-serif;
+  font-size: 14px;
+}
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 12px 24px; border-radius: 24px;
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; text-align: center;
+}
+.btn-primary { background: rgb(0,0,0); color: rgb(255,255,255); }
+.btn-secondary { background: transparent; color: rgb(0,0,0); border: 1px solid rgb(0,0,0); }
+
+/* What's New section */
+.whats-new { background: rgb(245,245,245); padding: 120px 320px; }
+@media (max-width: 1920px) { .whats-new { padding: 120px 64px; } }
+.wn-eyebrow {
+  font-family: "Adobe Clean", sans-serif; font-size: 16px; font-weight: 700;
+  text-align: center; margin: 0 0 16px 0;
+}
+.wn-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 56px; line-height: 1.05;
+  text-align: center; margin: 0 0 64px 0;
+}
+.wn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.wn-card {
+  background: rgb(255,255,255); border-radius: 16px; padding: 32px;
+}
+.wn-card .wn-img {
+  width: 100%; height: 320px; background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
+  border-radius: 8px; margin-bottom: 24px;
+}
+.wn-card h4 {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 18px;
+  margin: 0 0 12px 0;
+}
+.wn-card p { font-family: "Adobe Clean", sans-serif; font-size: 16px; margin: 0 0 16px 0; }
+.wn-card a { font-weight: 700; font-size: 14px; text-decoration: underline; }
+
+/* Plans section */
+.plans-section { background: rgb(255,255,255); padding: 120px 320px; }
+@media (max-width: 1920px) { .plans-section { padding: 120px 64px; } }
+.plans-eyebrow {
+  font-family: "Adobe Clean", sans-serif; font-size: 16px; font-weight: 700;
+  text-align: center; margin: 0 0 16px 0;
+}
+.plans-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 56px; line-height: 1.05;
+  text-align: center; margin: 0 0 24px 0;
+}
+.plans-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px;
+  text-align: center; max-width: 720px; margin: 0 auto 48px auto;
+}
+.plans-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 48px; }
+.plans-tab {
+  padding: 10px 24px; border-radius: 20px;
+  border: 1px solid rgb(0,0,0);
+  font-size: 14px; font-weight: 700;
+  background: transparent; cursor: pointer;
+}
+.plans-tab.active { background: rgb(0,0,0); color: rgb(255,255,255); }
+.plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.plan-card {
+  background: rgb(245,245,245); border-radius: 16px; padding: 32px;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.plan-card-rec { background: rgb(255,255,255); border: 2px solid rgb(0,0,0); }
+.plan-badge {
+  position: absolute; top: -12px; left: 32px;
+  background: rgb(0,0,0); color: rgb(255,255,255);
+  padding: 4px 12px; border-radius: 12px;
+  font-size: 12px; font-weight: 700;
+}
+.plan-mnemonic { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.plan-icon-img { width: 24px; height: 24px; }
+.plan-eyebrow { font-size: 16px; font-weight: 700; }
+.plan-name {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 24px;
+  margin: 0 0 8px 0;
+}
+.plan-desc { font-size: 14px; margin: 0 0 8px 0; }
+.plan-see-terms { font-size: 14px; text-decoration: underline; display: block; margin-bottom: 16px; }
+.plan-price-block { margin-bottom: 16px; }
+.plan-price {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 18px;
+}
+.plan-billing { font-size: 14px; }
+.plan-fine { font-size: 12px; color: rgba(0,0,0,0.7); margin: 0 0 16px 0; }
+.plan-cta-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.plan-license-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
+.lic-num, .lic-label { font-size: 14px; font-weight: 700; padding: 4px 8px; background: rgb(255,255,255); border-radius: 8px; }
+.plan-save { font-size: 12px; font-weight: 700; margin: 0 0 8px 0; }
+.plan-secure { font-size: 14px; margin: 0 0 16px 0; }
+.plan-addon { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.plan-addon label { display: flex; gap: 8px; font-size: 14px; font-weight: 700; align-items: flex-start; }
+.plan-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1); }
+.plan-section-title { font-size: 14px; font-weight: 700; margin: 0 0 8px 0; }
+.plan-feature-list { list-style: disc; padding-left: 20px; margin: 0; font-size: 14px; line-height: 1.5; }
+.plans-compare-row { text-align: center; margin-top: 32px; }
+
+/* Search section */
+.search-section {
+  background: linear-gradient(135deg, rgb(255,255,255), rgb(245,245,245));
+  padding: 120px 320px;
+  text-align: center;
+}
+@media (max-width: 1920px) { .search-section { padding: 120px 64px; } }
+.search-eyebrow {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 600; font-size: 14px;
+  margin: 0 0 16px 0;
+}
+.search-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900; font-size: 56px; line-height: 1.05;
+  margin: 0 0 24px 0;
+}
+.search-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 20px;
+  margin: 0 0 32px 0;
+}
+.search-input-group {
+  max-width: 720px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 24px;
+  border-radius: 32px;
+  background: rgb(255,255,255);
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+.search-input-group input {
+  flex: 1; border: none; background: transparent;
+  font-family: "Adobe Clean Spectrum VF", "Adobe Clean", sans-serif;
+  font-size: 16px;
+}
+.ps-cta {
+  display: inline-block; margin-top: 32px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: underline;
+}
+.beta-disclaimer {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 12px; color: rgba(0,0,0,0.6);
+  margin-top: 24px;
+  max-width: 720px; margin-left: auto; margin-right: auto;
+}
+
+/* Footer */
+.footer {
+  background: rgb(0,0,0);
+  color: rgb(255,255,255);
+  padding: 80px 320px 32px 320px;
+}
+@media (max-width: 1920px) { .footer { padding: 80px 64px 32px 64px; } }
+.footer-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; margin-bottom: 48px; }
+.footer-col h5 {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px; font-weight: 700;
+  margin: 0 0 16px 0;
+}
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col li { font-size: 16px; font-weight: 400; margin-bottom: 8px; }
+.footer-col a { color: rgba(255,255,255,0.9); }
+.featured-products { margin: 32px 0; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.2); }
+.featured-products h5 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+.featured-products-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.featured-products-row .fp-item { font-size: 12px; font-weight: 700; }
+.legal-row {
+  display: flex; gap: 24px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 12px; font-weight: 700;
+}
+
+/* Section 2: header overlay (sized like a region; not visually rendered separately) */
+.section-overlay-anchor { position: relative; width: 100%; height: 0; overflow: visible; }
+
+/* Section 3: decorative band */
+.section-decorative-band {
+  width: 100%; height: 67px;
+  background: linear-gradient(90deg, rgba(245,245,245,1), rgba(255,255,255,1));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: rgba(0,0,0,0.4);
+}
+
+/* Hidden image inventory — one img element per IMAGE-fill node in Figma JSON */
+.image-inventory { width: 0; height: 0; overflow: hidden; position: absolute; }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- Section 0 (Figma index): RECTANGLE 'image 3636' — decorative band image (3261x67) -->
+  <section class="section-decorative-band" aria-label="Decorative band (Figma: image 3636)">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:3261px;height:67px;object-fit:cover">
+  </section>
+
+  <!-- Section 1 (Figma index): FRAME 'Frame 2147230556' — main content sections (2562x11735) -->
+  <section class="section-main" aria-label="Main content (Figma: Frame 2147230556)">
+
+    <!-- Sub-section: Work faster. No matter the work. (tabs) -->
+    <div class="tabs-section">
+      <h2 class="tabs-headline">Work faster. No matter the work.</h2>
+      <div class="tabs-row">
+        <div class="tab-card"><div class="tab-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover"></div><h3 class="tab-title">Sales</h3><p class="tab-sub">Win more pitches. In less time.</p></div><div class="tab-card"><div class="tab-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover"></div><h3 class="tab-title">Marketing</h3><p class="tab-sub">Take the pain out of campaigns.</p></div><div class="tab-card"><div class="tab-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover"></div><h3 class="tab-title">Legal</h3><p class="tab-sub">Move the fine print faster.</p></div><div class="tab-card"><div class="tab-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover"></div><h3 class="tab-title">Human Resources</h3><p class="tab-sub">Less paperwork. More people work.</p></div>
+      </div>
+    </div>
+
+    <!-- Sub-section: There's more to Acrobat than Acrobat -->
+    <div class="more-section">
+      <h2 class="more-headline">There’s more to Acrobat than Acrobat.</h2>
+      <p class="more-body">Create, edit, sign, and more with 70+ professional tools. Use AI to generate a whole presentation from your PDF. And that’s just the beginning.</p>
+
+      <div class="feature-grid">
+
+        <div class="feature-panel">
+          <div class="feature-copy">
+            <h3>Understand quickly.</h3>
+            <p>Ask AI Assistant to quickly summarize, create an audio overview, analyze, provide insights, get answers with citations, and more.</p>
+            <a href="#" class="learn-more">Learn more</a>
+          </div>
+          <div class="feature-visual"><div class="mock"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Understand quickly visual" style="width:100%;height:100%"></div></div>
+        </div>
+
+        <div class="feature-panel flipped">
+          <div class="feature-copy">
+            <h3>Share effortlessly with PDF Spaces.</h3>
+            <p>Share a secure PDF Space with teammates, where everyone can ask AI Assistant to help with research, strategy, planning, or quick learning.</p>
+            <a href="#" class="learn-more">Learn more</a>
+          </div>
+          <div class="feature-visual"><div class="mock"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Share effortlessly visual" style="width:100%;height:100%"></div></div>
+        </div>
+
+        <div class="feature-panel">
+          <div class="feature-copy">
+            <h3>Create beautifully.</h3>
+            <p>Empower your whole team to turn docs into decks, create polished on-brand presentations, social content, and more using AI Assistant and the 250,000+ templates and images in Adobe Express.</p>
+            <a href="#" class="learn-more">Learn more</a>
+          </div>
+          <div class="feature-visual"><div class="mock"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Create beautifully visual" style="width:100%;height:100%"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sub-section: Test drive a PDF Space -->
+    <div class="testdrive">
+      <h2 class="td-headline">Test drive a PDF Space now.</h2>
+      <p class="td-body">Learn how to turn files and links into digital workspaces to work faster — and everything else you can do with PDF Spaces — in this immersive hands-on experience.</p>
+      <div class="td-mockup">
+        <div class="td-panel">
+          <h4>Files</h4>
+          <p style="font-size: 14px; margin:0 0 16px 0;">Add or select files and links to update your PDF Space. </p>
+          <div style="border:2px dashed rgba(0,0,0,0.2); border-radius:12px; padding:32px; text-align:center;">
+            <p style="font-size: 14px; margin: 0;">Drag and drop your files, or choose files</p>
+          </div>
+        </div>
+        <div class="td-panel">
+          <h4>Explore insights or ask a question.</h4>
+          <p style="font-size:14px;">The fastest-growing segment in 2026 was mid-market B2B customers (50–200 employees), growing 42% YoY. This was intentional—we shifted 30% of paid budget toward LinkedIn and account-based marketing in Q2.      CAC in this segment is 18% higher than SMB, but LTV is 2.3x, so it’s materially more profitable.         Early indicators (activation + retention) confirm this is sustainable.</p>
+          <div class="td-search">
+            <input type="text" placeholder="Ask a question or describe what you'd like to work on">
+            <a href="#" class="btn-primary">Try PDF Spaces now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-section: What's New -->
+    <div class="whats-new">
+      <p class="wn-eyebrow">Features and Releases</p>
+      <h2 class="wn-headline">There’s always something new with Acrobat.</h2>
+      <div class="wn-grid">
+        <div class="wn-card"><div class="wn-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover"></div><h4>PDF to Podcast</h4><p>Convert any PDF into audio playback, with options to hear a quick overview or a complete narration.
+</p><a href="#">Learn more</a></div><div class="wn-card"><div class="wn-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover"></div><h4>One-click Brand Kit Setup </h4><p>Set up a complete brand kit in a single click by automatically extracting logos, colors, and fonts from existing content.</p><a href="#">Learn more</a></div><div class="wn-card"><div class="wn-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover"></div><h4>AI-Powered Video Highlights</h4><p>Upload any video and let Adobe Express automatically find the highlights, add captions, and export in any aspect ratio.</p><a href="#">Learn more</a></div>
+      </div>
+    </div>
+
+    <!-- Sub-section: Plans -->
+    <div class="plans-section">
+      <p class="plans-eyebrow">Plans &amp; Pricing</p>
+      <h2 class="plans-headline">Plans that work for you.</h2>
+      <p class="plans-body">Everyone from solo-preneurs to the world’s largest enterprises are using Acrobat to work faster, unleash creativity, accelerate document productivity, and power their digital businesses.</p>
+      <div class="plans-tabs">
+        <button class="plans-tab active" type="button">Individuals</button><button class="plans-tab" type="button">Businesses</button><button class="plans-tab" type="button">Students &amp; Teachers</button>
+      </div>
+      <div class="plans-grid">
+        
+    <div class="plan-card">
+      
+      <div class="plan-mnemonic"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" class="plan-icon-img"/><span class="plan-eyebrow">PDF viewing</span></div>
+      <h3 class="plan-name">Acrobat Reader</h3>
+      <p class="plan-desc">Get started with the trusted standard for viewing and sharing PDFs. </p>
+      <a href="#" class="plan-see-terms">See what's included | See terms</a>
+      <div class="plan-price-block">
+        <div class="plan-price">Free</div>
+        <div class="plan-billing">Download today</div>
+      </div>
+      <p class="plan-fine">Annual subscription, cancel within 14 days for a full refund. Fee applies if you cancel after 14 days.</p>
+      <div class="plan-cta-row">
+        <a href="#" class="btn-primary">Get free app</a>
+        
+      </div>
+      <div class="plan-license-row"><span class="lic-num">1</span><span class="lic-label">License</span></div>
+      <p class="plan-save">Save 7.5% your first year with 3+ licenses. See terms</p>
+      <p class="plan-secure">Secure transaction</p>
+      <div class="plan-addon">
+        <label><input type="checkbox"> <span>Add Acrobat AI Assistant to your Acrobat plan for US$1.99/mo.</span></label>
+        <label><input type="checkbox"> <span>Add a 30-day free trial of Adobe Stock.**</span></label>
+      </div>
+      <div class="plan-section"><h5 class="plan-section-title">Basic PDF tools</h5><ul class="plan-feature-list"><li>View, print, and share PDFs</li></ul></div>
+    </div>
+    <div class="plan-card">
+      
+      <div class="plan-mnemonic"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" class="plan-icon-img"/><span class="plan-eyebrow">Standard PDF toolset</span></div>
+      <h3 class="plan-name">Acrobat Standard</h3>
+      <p class="plan-desc">Trusted PDF tools for editing and converting documents. </p>
+      <a href="#" class="plan-see-terms">See what's included | See terms</a>
+      <div class="plan-price-block">
+        <div class="plan-price">US$14.99/mo</div>
+        <div class="plan-billing">Annual, billed monthly</div>
+      </div>
+      <p class="plan-fine">Annual subscription, cancel within 14 days for a full refund. Fee applies if you cancel after 14 days.</p>
+      <div class="plan-cta-row">
+        <a href="#" class="btn-primary">Buy now</a>
+        <a href="#" class="btn-secondary">Free trial</a>
+      </div>
+      <div class="plan-license-row"><span class="lic-num">1</span><span class="lic-label">License</span></div>
+      <p class="plan-save">Save 7.5% your first year with 3+ licenses. See terms</p>
+      <p class="plan-secure">Secure transaction</p>
+      <div class="plan-addon">
+        <label><input type="checkbox"> <span>Add Acrobat AI Assistant to your Acrobat plan for US$1.99/mo.</span></label>
+        <label><input type="checkbox"> <span>Add a 30-day free trial of Adobe Stock.**</span></label>
+      </div>
+      <div class="plan-section"><h5 class="plan-section-title">Standard PDF tools</h5><ul class="plan-feature-list"><li>Create, edit, convert, export, and organize PDFs</li><li>Collect e-signatures and track responses</li><li>Password-protect PDFs</li><li>Create, fill, sign, and send forms</li></ul></div>
+    </div>
+    <div class="plan-card">
+      
+      <div class="plan-mnemonic"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" class="plan-icon-img"/><span class="plan-eyebrow">Full PDF toolset</span></div>
+      <h3 class="plan-name">Acrobat Pro</h3>
+      <p class="plan-desc">Create, edit, and sign PDFs with secure document and e-signature workflows.</p>
+      <a href="#" class="plan-see-terms">See what's included | See terms</a>
+      <div class="plan-price-block">
+        <div class="plan-price">US$19.99/mo</div>
+        <div class="plan-billing">Annual, billed monthly</div>
+      </div>
+      <p class="plan-fine">Annual subscription, cancel within 14 days for a full refund. Fee applies if you cancel after 14 days.</p>
+      <div class="plan-cta-row">
+        <a href="#" class="btn-primary">Buy now</a>
+        <a href="#" class="btn-secondary">Free trial</a>
+      </div>
+      <div class="plan-license-row"><span class="lic-num">1</span><span class="lic-label">License</span></div>
+      <p class="plan-save">Save 7.5% your first year with 3+ licenses. See terms</p>
+      <p class="plan-secure">Secure transaction</p>
+      <div class="plan-addon">
+        <label><input type="checkbox"> <span>Add Acrobat AI Assistant to your Acrobat plan for US$1.99/mo.</span></label>
+        <label><input type="checkbox"> <span>Add a 30-day free trial of Adobe Stock.**</span></label>
+      </div>
+      <div class="plan-section"><h5 class="plan-section-title">70+ PDF tools</h5><ul class="plan-feature-list"><li>Create, edit, convert, export, compare, and organize PDFs</li><li>Collect e-signatures and track responses</li><li>Password-protect and redact PDFs</li><li>Create, fill, sign, and send forms</li><li>Create web forms, turn scans into editable PDFs, and access 70+ features</li></ul></div>
+    </div>
+    <div class="plan-card plan-card-rec">
+      <div class="plan-badge">Recommended</div>
+      <div class="plan-mnemonic"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" class="plan-icon-img"/><span class="plan-eyebrow">All-in-one solution</span></div>
+      <h3 class="plan-name">Acrobat Studio</h3>
+      <p class="plan-desc">Do it all with the AI-powered PDF and design solution for document workflows.</p>
+      <a href="#" class="plan-see-terms">See what's included | See terms</a>
+      <div class="plan-price-block">
+        <div class="plan-price">US$24.99/mo</div>
+        <div class="plan-billing">Annual, billed monthly</div>
+      </div>
+      <p class="plan-fine">Annual subscription, cancel within 14 days for a full refund. Fee applies if you cancel after 14 days.</p>
+      <div class="plan-cta-row">
+        <a href="#" class="btn-primary">Buy now</a>
+        <a href="#" class="btn-secondary">Free trial</a>
+      </div>
+      <div class="plan-license-row"><span class="lic-num">1</span><span class="lic-label">License</span></div>
+      <p class="plan-save">Save 7.5% your first year with 3+ licenses. See terms</p>
+      <p class="plan-secure">Secure transaction</p>
+      <div class="plan-addon">
+        <label><input type="checkbox"> <span>Add Acrobat AI Assistant to your Acrobat plan for US$1.99/mo.</span></label>
+        <label><input type="checkbox"> <span>Add a 30-day free trial of Adobe Stock.**</span></label>
+      </div>
+      <div class="plan-section"><h5 class="plan-section-title">70+ PDF tools</h5><ul class="plan-feature-list"><li>Get all the PDF tools in Acrobat Pro</li><li>Edit, export, protect and organize PDFs</li><li>Collect e-signatures and track responses</li><li>Password protect PDFs and redact sensitive information</li><li>Auto-compare versions of a PDF</li></ul></div><div class="plan-section"><h5 class="plan-section-title">AI Assistant</h5><ul class="plan-feature-list"><li>Ask AI to edit, convert, or compress PDFs</li><li>Get AI summaries, insights, and answers</li><li>Organize, share, and collaborate with PDF Spaces</li></ul></div><div class="plan-section"><h5 class="plan-section-title">Creation tools</h5><ul class="plan-feature-list"><li>Create flyers, social content, and presentations from documents</li><li>Design with easy-to-use tools</li></ul></div>
+    </div>
+      </div>
+      <div class="plans-compare-row">
+        <a href="#" class="btn-secondary">Compare plans</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Section 2 (Figma index): FRAME 'Frame 2147230504' — Header: nav + hero + documents grid (2559x1886) -->
+  <section class="section-header" aria-label="Header (Figma: Frame 2147230504)">
+    <div class="header-inner">
+      <div class="nav-bar-container">
+        <div class="nav-row">
+          <div class="nav-logo-links">
+            <span class="adobe-logo" aria-label="Adobe">A</span>
+            <a href="#" class="nav-link">PDF &amp; document essentials</a><a href="#" class="nav-link">Adobe Acrobat</a><a href="#" class="nav-link">Features</a><a href="#" class="nav-link">Mobile</a><a href="#" class="nav-link">Compare plans</a><a href="#" class="nav-link">Quick Actions</a><a href="#" class="nav-link">Learn &amp; Support</a>
+          </div>
+          <div class="nav-utility">
+            <a href="#" class="nav-button">Buy now</a>
+            <a href="#" class="nav-button">Go to Acrobat</a>
+            <a href="#" class="nav-button">Sign In</a>
+          </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="breadcrumbs">
+          <a href="#" class="crumb">Home</a>
+          <span class="slash">/</span>
+          <span class="crumb">PDF &amp; document essentials</span>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-eyebrow"><span class="app-tile">Ac</span>PDF &amp; Productivity</div>
+        <h1 class="hero-headline">With great power comes great productivity.</h1>
+        <p class="hero-body">Do your best work faster with trusted PDF tools, AI-powered document insights, secure collaboration, and professional content creation — all in one place.</p>
+        <a href="#" class="btn-promo"><span class="ac-icon">Ac</span><span>Start an Acrobat free trial</span><span class="arrow">→</span></a>
+      </div>
+
+      <div class="docs-grid" aria-label="Floating documents grid (Figma: Frame 2147230612)">
+        <div class="docs-col">
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Sign / Signature</div></div>
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Document mock</div></div>
+        </div>
+        <div class="docs-col offset-down">
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Special Report</div></div>
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Research</div></div>
+        </div>
+        <div class="docs-col offset-mid">
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Invoice</div></div>
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Asset</div></div>
+        </div>
+        <div class="docs-col offset-down">
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Sales Playbook</div></div>
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Q3 Media Mix</div></div>
+        </div>
+        <div class="docs-col">
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">White Paper</div></div>
+          <div class="doc-card"><div class="doc-thumb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="" style="width:100%;height:100%;object-fit:cover">Event Flyer</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 (Figma index): GROUP 'Group 2087327850' — overlay group with document mockups (3250x2129) -->
+  <section class="section-overlay-anchor" aria-label="Document mockups overlay (Figma: Group 2087327850)">
+    <!-- This group overlays into the hero/docs grid in Figma. Rendered visually inline above. -->
+    <div class="search-section">
+      <p class="search-eyebrow">Adobe is for everyuone</p>
+      <h2 class="search-headline">Find what you’re looking for.</h2>
+      <p class="search-body">Get answers, find assets, access your work and create.</p>
+      <div class="search-input-group">
+        <input type="text" placeholder="Ask anything">
+        <a href="#" class="btn-primary">Try in Photoshop Web</a>
+      </div>
+      <p class="beta-disclaimer">Use of this beta AI chatbot is subject to Adobe’s Privacy Policy. Don’t share sensitive data. AI responses are not your Content, may be inaccurate and any offers provided are non-binding. Generative AI Terms.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col"><h5>For individuals &amp; small business</h5><ul><li><a href="#">Creative AI</a></li><li><a href="#">Photography</a></li><li><a href="#">Design &amp; Illustration</a></li><li><a href="#">Video &amp; animation</a></li><li><a href="#">PDF</a></li><li><a href="#">3D</a></li><li><a href="#">Elements Family</a></li><li><a href="#">Stock images &amp; video</a></li><li><a href="#">View all products</a></li></ul></div><div class="footer-col"><h5>For medium &amp; large business</h5><ul><li><a href="#">Personalization at scale</a></li><li><a href="#">Content supply chain</a></li><li><a href="#">Unified customer experience</a></li><li><a href="#">Creativity and production</a></li><li><a href="#">B2B GTM orchestration</a></li><li><a href="#">View all products</a></li></ul></div><div class="footer-col"><h5>For Organizations</h5><ul><li><a href="#">Education</a></li><li><a href="#">Nonprofits</a></li><li><a href="#">Government</a></li></ul></div><div class="footer-col"><h5>Support</h5><ul><li><a href="#">Help Center</a></li><li><a href="#">Download and install</a></li><li><a href="#">Adobe Community</a></li><li><a href="#">Adobe Learn</a></li><li><a href="#">Medium &amp; large business support</a></li></ul></div><div class="footer-col"><h5>Contact</h5><ul><li><a href="#">Chat with sales</a></li><li><a href="#">Request information</a></li></ul></div><div class="footer-col"><h5>Adobe</h5><ul><li><a href="#">Log into your account</a></li><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Events</a></li><li><a href="#">Newsroom</a></li><li><a href="#">Corporate Responsibility</a></li><li><a href="#">Investor Relations</a></li><li><a href="#">Supply Chain</a></li><li><a href="#">Trust Center</a></li><li><a href="#">Integrity</a></li><li><a href="#">Adobe for All</a></li><li><a href="#">Adobe Blog</a></li><li><a href="#">Terms</a></li><li><a href="#">Privacy</a></li><li><a href="#">Cookie preferences</a></li></ul></div>
+  </div>
+  <div class="featured-products">
+    <h5>Featured Products</h5>
+    <div class="featured-products-row">
+      <a href="#" class="fp-item">Acrobat Reader</a><a href="#" class="fp-item">Firefly</a><a href="#" class="fp-item">Adobe Express</a><a href="#" class="fp-item">Photoshop</a>
+    </div>
+  </div>
+  <div class="legal-row">
+    <a href="#">Change region</a>
+    <span>© 2026 Adobe Inc. All rights reserved.</span>
+    <a href="#">Do not sell or share my personal information</a>
+    <a href="#">AdChoices</a>
+  </div>
+</footer>
+
+<!-- Image inventory: 1 hidden <img> per IMAGE-fill node in Figma JSON (count = 51). -->
+<div class="image-inventory" aria-hidden="true">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3636" style="width:3261px;height:66px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="_ASSET FRAME" style="width:1234px;height:1383px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Frame 2147230324" style="width:679px;height:828px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 2147231485" style="width:93px;height:123px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 2147231485" style="width:109px;height:135px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="ui - cursors - grab 1" style="width:40px;height:40px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Ellipse 36309" style="width:46px;height:46px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Asset" style="width:391px;height:528px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Asset" style="width:391px;height:528px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Frame 2087327770" style="width:391px;height:528px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Frame 2087328029" style="width:391px;height:528px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3642" style="width:1102px;height:36px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3643" style="width:1102px;height:36px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3644" style="width:1102px;height:36px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3636" style="width:1102px;height:36px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3637" style="width:1102px;height:36px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3638" style="width:1102px;height:36px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3641" style="width:1102px;height:36px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Union" style="width:301px;height:280px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 2147231900" style="width:302px;height:240px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Invoice" style="width:336px;height:419px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 2147231787" style="width:301px;height:301px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Vector" style="width:301px;height:188px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Social Post" style="width:334px;height:417px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Social Post" style="width:211px;height:264px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Ellipse 28201" style="width:17px;height:17px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Photo" style="width:16px;height:16px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Photo" style="width:16px;height:16px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Asset" style="width:634px;height:476px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Asset" style="width:634px;height:476px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Asset" style="width:634px;height:476px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Asset" style="width:392px;height:294px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810732" style="width:302px;height:302px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3587" style="width:311px;height:106px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810724" style="width:302px;height:409px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810732" style="width:302px;height:410px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="col-2_img-02" style="width:308px;height:303px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810731" style="width:302px;height:410px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810734" style="width:302px;height:302px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="col-5_img-02" style="width:305px;height:303px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810735" style="width:302px;height:408px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Image" style="width:302px;height:302px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810731" style="width:302px;height:410px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810729" style="width:302px;height:302px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810727" style="width:302px;height:409px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="image 3860" style="width:843px;height:515px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="col-4_img-02" style="width:304px;height:410px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 810724" style="width:302px;height:409px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Vector" style="width:723px;height:670px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="3_Invoice" style="width:929px;height:1035px;display:none" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgAAIAAAUAAeImBZsAAAAASUVORK5CYII=" alt="Rectangle 2147231900" style="width:722px;height:630px;display:none" aria-hidden="true">
+</div>
+
+<script>
+// All anchor clicks: prevent default navigation (no real URLs in this static page).
+document.querySelectorAll('a[href="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){ e.preventDefault(); });
+});
+// Tabs (Plans section): toggle .active on click
+document.querySelectorAll('.plans-tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.plans-tab').forEach(function(o){ o.classList.remove('active'); });
+    t.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

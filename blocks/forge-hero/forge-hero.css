@@ -1,0 +1,189 @@
+/* forge-hero — full-bleed, reset Milo wrappers */
+.forge-hero *, .forge-hero *::before, .forge-hero *::after { box-sizing: border-box; }
+
+.section .forge-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+main .section:has(.forge-hero) {
+  padding: 0;
+  margin: 0;
+}
+
+.forge-hero {
+  background: rgb(255, 255, 255);
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Breadcrumbs */
+.forge-hero .fh-breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 0 64px;
+}
+
+.forge-hero .fh-crumb {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  padding: 0 8px;
+  text-decoration: none;
+}
+
+.forge-hero .fh-slash {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Inner container */
+.forge-hero .fh-inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+
+/* Hero area */
+.forge-hero .fh-hero {
+  padding: 124px 0 80px 0;
+  background: rgb(255, 255, 255);
+}
+
+.forge-hero .fh-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+  margin-bottom: 24px;
+}
+
+.forge-hero .fh-app-tile {
+  width: 24px;
+  height: 23px;
+  background: rgb(179, 11, 0);
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.forge-hero .fh-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 80px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px 0;
+  color: rgb(0, 0, 0);
+  max-width: 1200px;
+}
+
+.forge-hero .fh-body {
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  color: rgb(0, 0, 0);
+  max-width: 696px;
+  margin: 0 0 32px 0;
+}
+
+.forge-hero .fh-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 16px 24px;
+  border-radius: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forge-hero .fh-cta-icon {
+  width: 32px;
+  height: 32px;
+  background: rgb(179, 11, 0);
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.forge-hero .fh-cta-arrow {
+  width: 32px;
+  height: 32px;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+}
+
+/* Docs grid */
+.forge-hero .fh-docs-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  padding: 80px 0;
+  align-items: flex-start;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+}
+
+.forge-hero .fh-docs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 303px;
+}
+
+.forge-hero .fh-col-offset-down {
+  padding-top: 180px;
+}
+
+.forge-hero .fh-col-offset-mid {
+  padding-top: 100px;
+}
+
+.forge-hero .fh-doc-card {
+  background: rgb(245, 245, 245);
+  border-radius: 12px;
+  width: 303px;
+  height: 397px;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.forge-hero .fh-doc-thumb {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #efefef, #ddd);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(40, 40, 40);
+}

@@ -1,0 +1,80 @@
+.forge-whats-new *, .forge-whats-new *::before, .forge-whats-new *::after { box-sizing: border-box; }
+
+.section .forge-whats-new-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+main .section:has(.forge-whats-new) {
+  padding: 0;
+  margin: 0;
+}
+
+.forge-whats-new {
+  background: rgb(245, 245, 245);
+  padding: 120px 64px;
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.forge-whats-new .fwn-eyebrow {
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 16px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-whats-new .fwn-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  text-align: center;
+  margin: 0 0 64px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-whats-new .fwn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.forge-whats-new .fwn-card {
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.forge-whats-new .fwn-img {
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.forge-whats-new .fwn-card h4 {
+  font-family: "Adobe Clean Display", "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-whats-new .fwn-card p {
+  font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+  color: rgb(0, 0, 0);
+}
+
+.forge-whats-new .fwn-card a {
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: underline;
+  color: rgb(0, 0, 0);
+}
