@@ -1,0 +1,264 @@
+.forge-plans *,
+.forge-plans *::before,
+.forge-plans *::after {
+  box-sizing: border-box;
+}
+
+.section .forge-plans-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-plans .plans-section {
+  background: rgb(255, 255, 255);
+  padding: 120px 320px;
+}
+
+@media (max-width: 1920px) {
+  .forge-plans .plans-section {
+    padding: 120px 64px;
+  }
+}
+
+.forge-plans .plans-eyebrow {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 16px 0;
+}
+
+.forge-plans .plans-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  text-align: center;
+  margin: 0 0 24px 0;
+}
+
+.forge-plans .plans-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 48px auto;
+}
+
+.forge-plans .plans-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.forge-plans .plans-tab {
+  padding: 10px 24px;
+  border-radius: 20px;
+  border: 1px solid rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 700;
+  background: transparent;
+  cursor: pointer;
+  font-family: "Adobe Clean", sans-serif;
+}
+
+.forge-plans .plans-tab.active {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.forge-plans .plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.forge-plans .plan-card {
+  background: rgb(245, 245, 245);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.forge-plans .plan-card-rec {
+  background: rgb(255, 255, 255);
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.forge-plans .plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 32px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Adobe Clean", sans-serif;
+}
+
+.forge-plans .plan-mnemonic {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.forge-plans .plan-icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+.forge-plans .plan-eyebrow {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Adobe Clean", sans-serif;
+}
+
+.forge-plans .plan-name {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+}
+
+.forge-plans .plan-desc {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+}
+
+.forge-plans .plan-see-terms {
+  font-size: 14px;
+  text-decoration: underline;
+  display: block;
+  margin-bottom: 16px;
+  color: inherit;
+}
+
+.forge-plans .plan-price-block {
+  margin-bottom: 16px;
+}
+
+.forge-plans .plan-price {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.forge-plans .plan-billing {
+  font-size: 14px;
+}
+
+.forge-plans .plan-fine {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 0 16px 0;
+}
+
+.forge-plans .plan-cta-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.forge-plans .plan-license-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.forge-plans .lic-num,
+.forge-plans .lic-label {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+
+.forge-plans .plan-save {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.forge-plans .plan-secure {
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.forge-plans .plan-addon {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.forge-plans .plan-addon label {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.forge-plans .plan-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.forge-plans .plan-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.forge-plans .plan-feature-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.forge-plans .plans-compare-row {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.forge-plans .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: "Adobe Clean", sans-serif;
+}
+
+.forge-plans .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: transparent;
+  color: rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: "Adobe Clean", sans-serif;
+}

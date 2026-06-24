@@ -1,0 +1,112 @@
+/* forge-tabs — box-sizing reset */
+.forge-tabs *,
+.forge-tabs *::before,
+.forge-tabs *::after {
+  box-sizing: border-box;
+}
+
+/* Milo wrapper override: let the block control its own full-width padding */
+.section .forge-tabs-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* Section shell (maps to .tabs-section) */
+.forge-tabs {
+  padding: 120px 320px;
+  background: rgb(255, 255, 255);
+  text-align: center;
+}
+
+@media (max-width: 1920px) {
+  .forge-tabs {
+    padding: 120px 64px;
+  }
+}
+
+/* Headline */
+.forge-tabs .tabs-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 0 0 64px 0;
+  text-align: center;
+}
+
+/* 4-column card grid */
+.forge-tabs .tabs-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Individual card */
+.forge-tabs .tab-card {
+  background: rgb(245, 245, 245);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+}
+
+/* Image container */
+.forge-tabs .tab-card .tab-img {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.forge-tabs .tab-card .tab-img picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.forge-tabs .tab-card .tab-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card title */
+.forge-tabs .tab-title {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+}
+
+/* Card subtitle */
+.forge-tabs .tab-sub {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Responsive: 2-col on medium viewports */
+@media (max-width: 1024px) {
+  .forge-tabs .tabs-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive: 1-col on mobile */
+@media (max-width: 600px) {
+  .forge-tabs {
+    padding: 64px 24px;
+  }
+
+  .forge-tabs .tabs-headline {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .forge-tabs .tabs-row {
+    grid-template-columns: 1fr;
+  }
+}

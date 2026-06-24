@@ -6,3 +6,5 @@ node_modules/*
 .idea
 .env
 .github/workflows/import/node_modules/*
+# Snowflake skill: in-progress run state (committed only on close)
+.snowflake/projects/*/state.json

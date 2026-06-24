@@ -1,0 +1,8 @@
+.hlx/*
+coverage/*
+logs/*
+node_modules/*
+.DS_Store
+.idea
+.env
+.github/workflows/import/node_modules/*

@@ -1,0 +1,124 @@
+/* Milo wrapper override — remove max-width/padding so the section bleeds full-width */
+.section .forge-features-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* Box-sizing reset */
+.forge-features *,
+.forge-features *::before,
+.forge-features *::after {
+  box-sizing: border-box;
+}
+
+/* .forge-features maps to .more-section */
+.forge-features .more-section {
+  padding: 120px 320px;
+  background: rgb(246, 246, 246);
+  text-align: center;
+}
+
+@media (max-width: 1920px) {
+  .forge-features .more-section {
+    padding: 120px 64px;
+  }
+}
+
+.forge-features .more-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -1.68px;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.forge-features .more-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  margin: 0 auto 48px auto;
+  max-width: 720px;
+  text-align: center;
+}
+
+/* Feature grid */
+.forge-features .feature-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.forge-features .feature-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  padding: 48px;
+  align-items: center;
+}
+
+/* Flipped: image left, copy right */
+.forge-features .feature-panel.flipped .feature-copy {
+  order: 2;
+}
+
+.forge-features .feature-panel.flipped .feature-visual {
+  order: 1;
+}
+
+/* Feature copy */
+.forge-features .feature-copy h3 {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+  text-align: left;
+}
+
+.forge-features .feature-copy p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  text-align: left;
+}
+
+.forge-features .feature-copy .learn-more {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* Feature visual */
+.forge-features .feature-visual {
+  position: relative;
+  min-height: 320px;
+}
+
+.forge-features .mock {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  background: linear-gradient(135deg, rgba(255, 128, 28, 0.16), rgba(179, 11, 0, 0.06));
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.forge-features .mock picture {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.forge-features .mock picture img,
+.forge-features .mock > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

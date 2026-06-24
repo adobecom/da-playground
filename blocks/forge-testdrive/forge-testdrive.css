@@ -1,0 +1,109 @@
+.section .forge-testdrive-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-testdrive *,
+.forge-testdrive *::before,
+.forge-testdrive *::after {
+  box-sizing: border-box;
+}
+
+.forge-testdrive .testdrive {
+  padding: 120px 320px;
+  background: rgb(255, 255, 255);
+  text-align: center;
+}
+
+@media (max-width: 1920px) {
+  .forge-testdrive .testdrive {
+    padding: 120px 64px;
+  }
+}
+
+.forge-testdrive .td-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 0 0 24px 0;
+}
+
+.forge-testdrive .td-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 16px;
+  max-width: 720px;
+  margin: 0 auto 48px auto;
+}
+
+.forge-testdrive .td-mockup {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  background: rgb(245, 245, 245);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: left;
+}
+
+.forge-testdrive .td-panel {
+  background: rgb(255, 255, 255);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.forge-testdrive .td-panel h4 {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  margin: 0 0 8px 0;
+}
+
+.forge-testdrive .td-panel .td-panel-desc {
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.forge-testdrive .td-drop-zone {
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+}
+
+.forge-testdrive .td-drop-zone p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.forge-testdrive .td-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px;
+  background: rgb(245, 245, 245);
+  border-radius: 12px;
+}
+
+.forge-testdrive .td-search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  outline: none;
+}
+
+.forge-testdrive .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}

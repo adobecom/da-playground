@@ -1,0 +1,89 @@
+.section .forge-search-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.forge-search *,
+.forge-search *::before,
+.forge-search *::after {
+  box-sizing: border-box;
+}
+
+.forge-search .section-overlay {
+  background: linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 245, 245));
+  padding: 120px 320px;
+  text-align: center;
+}
+
+@media (max-width: 1920px) {
+  .forge-search .section-overlay {
+    padding: 120px 64px;
+  }
+}
+
+.forge-search .search-eyebrow {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.forge-search .search-headline {
+  font-family: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 0 0 24px 0;
+}
+
+.forge-search .search-body {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 20px;
+  margin: 0 0 32px 0;
+}
+
+.forge-search .search-input-group {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: 32px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.forge-search .search-input-group input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: "Adobe Clean Spectrum VF", "Adobe Clean", sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+.forge-search .beta-disclaimer {
+  font-family: "Adobe Clean", sans-serif;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 24px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forge-search .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}
