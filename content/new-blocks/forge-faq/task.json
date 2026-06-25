@@ -1,0 +1,24 @@
+{
+  "blockName": "forge-faq",
+  "sectionIndex": 6,
+  "decision": "ambiguous",
+  "score": 0.74,
+  "topCandidate": "modal",
+  "sectionClass": "sf-sec-6",
+  "figmaUrl": "",
+  "figmaNodeId": "",
+  "distinctive": false,
+  "truthShotRel": null,
+  "geometry": null,
+  "miloPath": "/Users/adambaker/source/da-playground/.forge-worktrees/session-14818c30",
+  "miloTargetPath": "/Users/adambaker/source/da-playground/.forge-worktrees/session-14818c30/libs/c2/blocks/forge-faq",
+  "miloBranch": "forge/session-14818c30-61c",
+  "baseBranch": "forge-a-panel",
+  "previewUrl": "http://localhost:3000/drafts/adamb/forge/variant-a-14818c?milolibs=local",
+  "files": {
+    "sectionHtml": "section.html",
+    "starterCss": "starter.css",
+    "authorContentHtml": "author-content.html",
+    "pageGlobalsCss": "page-globals.css"
+  }
+}

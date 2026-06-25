@@ -1,0 +1,73 @@
+:root {
+  /* ── Type (Adobe Clean Display / Adobe Clean) ── */
+  --heading-font-family:'Adobe Clean Display','adobe-clean-display','Adobe Clean',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --body-font-family:'Adobe Clean','adobe-clean',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --heading-xxl:clamp(40px,6.25vw,80px);
+  --heading-xl:clamp(34px,4.4vw,56px);
+  --heading-lg:clamp(28px,3.6vw,44px);
+  --heading-md:24px;
+  --body:20px;
+  --body-sm:16px;
+  --line-height-heading:0.98;
+  --line-height-body:1.45;
+  /* ── Color (C2 surface) ── */
+  --color-bg:#ffffff;
+  --color-fg:#000000;
+  --color-accent:#3b63fb;
+  --blue-deep:#274dea;
+  --ink:#000000;
+  --paper:#ffffff;
+  --warm-stone:#eceae7;
+  --cloud:#f8f8f8;
+  --text-secondary:rgba(0,0,0,.64);
+  --text-subtle:#505050;
+  --on-dark:#ffffff;
+  --on-dark-subtle:rgba(255,255,255,.72);
+  --hairline:rgba(0,0,0,.10);
+  --hairline-dark:rgba(255,255,255,.12);
+  /* ── Spacing ── */
+  --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px; --spacing-lg:24px;
+  --spacing-xl:48px; --spacing-2xl:96px;
+  --section-padding:96px;
+  --max-width:1200px;
+  --radius:16px;
+  --radius-sm:12px;
+  /* ── Motion (live-systems register) ── */
+  --ease-out-cubic:cubic-bezier(.42,0,0,1);
+  --enter-duration:.7s;
+  --ticker-duration:34s;
+}
+
+* {box-sizing:border-box;margin:0;padding:0}
+
+html {-webkit-text-size-adjust:100%}
+
+body {
+  font-family:var(--body-font-family);
+  font-size:var(--body-sm);
+  line-height:var(--line-height-body);
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+@media(max-width:900px) {.nav__links{display:none}.nav__cta .btn--outline{display:none}}
+
+@media(max-width:860px) {.hero__inner{grid-template-columns:1fr;gap:32px}.hero__sub{max-width:none}}
+
+@media(max-width:760px) {.stats{grid-template-columns:1fr;gap:8px}.stat{padding-block:24px}}
+
+@media(max-width:820px) {.console__grid{grid-template-columns:1fr}.sov__row{grid-template-columns:104px 1fr 46px}}
+
+@media(max-width:820px) {.cap{grid-template-columns:1fr;gap:28px}.cap:nth-child(even) .cap__media{order:0}}
+
+@media(max-width:820px) {.xpromo{grid-template-columns:1fr;gap:24px}.xpromo__cta{justify-content:flex-start}}
+
+@media(prefers-reduced-motion:reduce) {
+  *{scroll-behavior:auto!important}
+  .ticker__track{animation:none!important;transform:none!important}
+  .ticker__dot,.hero__chip::before,.hero__pulse i,.console__status i{animation:none!important}
+  .sov__bar{transition:none!important}
+}
