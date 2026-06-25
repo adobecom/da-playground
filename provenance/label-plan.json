@@ -1,0 +1,44 @@
+[
+  {
+    "idx": 0,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "hero"
+  },
+  {
+    "idx": 1,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "proof"
+  },
+  {
+    "idx": 2,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "intro"
+  },
+  {
+    "idx": 3,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "console"
+  },
+  {
+    "idx": 4,
+    "dataBlock": "base-card",
+    "dataVariants": [],
+    "primaryClass": "section"
+  },
+  {
+    "idx": 5,
+    "dataBlock": "rich-content",
+    "dataVariants": [],
+    "primaryClass": "dark-act"
+  },
+  {
+    "idx": 6,
+    "dataBlock": "modal",
+    "dataVariants": [],
+    "primaryClass": "faq"
+  }
+]
