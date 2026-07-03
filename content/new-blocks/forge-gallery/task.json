@@ -1,0 +1,23 @@
+{
+  "blockName": "forge-gallery",
+  "sectionIndex": 1,
+  "decision": "ambiguous",
+  "score": 0.7,
+  "topCandidate": "base-card",
+  "sectionClass": "sf-sec-1",
+  "figmaUrl": "",
+  "figmaNodeId": "17090:51004",
+  "distinctive": false,
+  "truthShotRel": null,
+  "geometry": null,
+  "miloPath": "/Users/victor/dev/da-playground/.forge-worktrees/session-5dae1546",
+  "miloTargetPath": "/Users/victor/dev/da-playground/.forge-worktrees/session-5dae1546/libs/c2/blocks/forge-gallery",
+  "miloBranch": "forge/session-5dae1546-209",
+  "baseBranch": "forge-a-panel",
+  "previewUrl": "http://localhost:3000/drafts/vhargrave/forge/hub-acom-seeded-html-5dae15?milolibs=local",
+  "files": {
+    "sectionHtml": "section.html",
+    "starterCss": "starter.css",
+    "authorContentHtml": "author-content.html"
+  }
+}

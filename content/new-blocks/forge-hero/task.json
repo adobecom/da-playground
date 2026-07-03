@@ -1,0 +1,24 @@
+{
+  "blockName": "forge-hero",
+  "sectionIndex": 0,
+  "decision": "tight-variant",
+  "score": 0.91,
+  "topCandidate": "rich-content",
+  "sectionClass": "sf-sec-0",
+  "figmaUrl": "",
+  "figmaNodeId": "9661:12017",
+  "distinctive": false,
+  "truthShotRel": null,
+  "geometry": null,
+  "miloPath": "/Users/victor/dev/da-playground/.forge-worktrees/session-5dae1546",
+  "miloTargetPath": "/Users/victor/dev/da-playground/.forge-worktrees/session-5dae1546/libs/c2/blocks/forge-hero",
+  "miloBranch": "forge/session-5dae1546-209",
+  "baseBranch": "forge-a-panel",
+  "previewUrl": "http://localhost:3000/drafts/vhargrave/forge/hub-acom-seeded-html-5dae15?milolibs=local",
+  "files": {
+    "sectionHtml": "section.html",
+    "starterCss": "starter.css",
+    "authorContentHtml": "author-content.html",
+    "pageGlobalsCss": "page-globals.css"
+  }
+}
