@@ -1,0 +1,70 @@
+.forge-gallery img, .forge-gallery video, .forge-gallery svg, .forge-gallery picture { max-width: 100%; height: auto; }
+
+.forge-gallery main { width: 100%; }
+
+.forge-gallery .section-inner { max-width: 100%; margin: 0 auto; }
+
+.forge-gallery {
+  min-height: 1325px;
+  height: 1325px;
+  overflow: hidden;
+  background: var(--background-white);
+}
+
+.forge-gallery .gallery-canvas {
+  width: 1920px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 101px;
+}
+
+.forge-gallery .g-col { display: flex; flex-direction: column; gap: 104px; width: 303px; flex: 0 0 303px; }
+
+.forge-gallery .g-col .g-card { width: 100%; border-radius: 16px; display: block; overflow: hidden; }
+
+.forge-gallery .g-col .g-card img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 16px; }
+
+.forge-gallery .g-card.g-ph { background: linear-gradient(135deg, #ededf0 0%, #d9dae1 100%); }
+
+.forge-gallery .g-card.g-ph.alt { background: linear-gradient(135deg, #e7e3ea 0%, #d2cede 100%); }
+
+.forge-gallery .g-card.g-sign { position: relative; background: #e5e5e5; }
+
+.forge-gallery .g-sign .sign-badge { position: absolute; top: 18px; left: 20px; font: 700 15px/18px var(--font-adobe-clean); color: #000; }
+
+.forge-gallery .g-sign .sign-stroke { position: absolute; left: 14%; top: 40%; width: 72%; height: 30%; }
+
+.forge-gallery .g-sign .sign-line { position: absolute; left: 16%; right: 16%; bottom: 30%; height: 2px; background: #000; }
+
+.forge-gallery .g-sign .sign-label { position: absolute; bottom: 18px; left: 20px; font: 400 13px/16px var(--font-adobe-clean); color: #6b6b6b; }
+
+.forge-gallery .g-card.g-research { background: #fff; border: 1px solid #e5e5e5; padding: 20px 18px; display: flex; flex-direction: column; gap: 9px; }
+
+.forge-gallery .g-research .rc-eyebrow { font: 700 9px/11px var(--font-aktiv); letter-spacing: 1.6px; color: #eb1000; }
+
+.forge-gallery .g-research .rc-title { margin: 0; font: 600 23px/23px var(--font-source-serif); letter-spacing: -0.9px; color: #29293e; }
+
+.forge-gallery .g-research .rc-body { flex: 1 1 auto; overflow: hidden; columns: 2; column-gap: 12px; font: 400 8px/11px var(--font-source-serif); color: #49496f; text-align: justify; }
+
+.forge-gallery .g-research .rc-fig { font: 700 8px/10px var(--font-aktiv); letter-spacing: 0.6px; color: #332c6c; }
+
+.forge-gallery .g-research .rc-chart { display: flex; align-items: flex-end; gap: 5px; height: 54px; margin-top: 3px; }
+
+.forge-gallery .g-research .rc-chart span { flex: 1; background: #626294; border-radius: 2px 2px 0 0; }
+
+.forge-gallery .g-research .rc-byline { font: italic 400 8px/10px var(--font-source-serif); color: #5a5a87; }
+
+@media (max-width: 1023px) {
+.forge-gallery .gallery-canvas { flex-wrap: wrap; gap: 32px; }
+.forge-gallery .g-col { flex: 1 1 220px; gap: 32px; }
+.forge-gallery { height: auto; min-height: 0; }
+}
+
+@media (max-width: 767px) {
+.forge-gallery .gallery-canvas { gap: 16px; }
+.forge-gallery .g-col { gap: 16px; }
+}
