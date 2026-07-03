@@ -1,0 +1,135 @@
+.forge-hero img, .forge-hero video, .forge-hero svg, .forge-hero picture { max-width: 100%; height: auto; }
+
+.forge-hero main { width: 100%; }
+
+.forge-hero .t-display-80 {
+  font-family: var(--font-adobe-clean-display);
+  font-weight: 900;
+  font-size: 80px;
+  line-height: 76px;
+  letter-spacing: -3.2px;
+}
+
+.forge-hero .t-body-20 {
+  font-family: var(--font-adobe-clean);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.forge-hero .t-label-16 {
+  font-family: var(--font-adobe-clean);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.forge-hero .section-inner { max-width: 100%; margin: 0 auto; }
+
+.forge-hero .canvas { width: 1920px; max-width: 100%; margin: 0 auto; }
+
+.forge-hero { min-height: 561px; background: var(--background-white); padding: 0; }
+
+.forge-hero .hero-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 124px;
+}
+
+.forge-hero .hero-nav { width: 100%; }
+
+.forge-hero .hero-nav img { width: 100%; height: auto; display: block; }
+
+.forge-hero .hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.forge-hero .hero-headblock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.forge-hero .app-id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 1px;
+  border-radius: 8px;
+}
+
+.forge-hero .app-id img { width: 24px; height: 23px; display: block; }
+
+.forge-hero .app-id .app-id-label { color: var(--s2ac-palette-static-black); text-align: center; }
+
+.forge-hero .hero-headbody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.forge-hero .hero-headline {
+  color: var(--s2ac-palette-static-black);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.forge-hero .hero-subcopy {
+  color: var(--s2a-color-content-default);
+  text-align: center;
+  width: 696px;
+  max-width: 100%;
+  margin: 0;
+}
+
+.forge-hero .cta-pill {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--s2a-color-background-knockout);
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.forge-hero .cta-pill .cta-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+}
+
+.forge-hero .cta-pill .cta-left .cta-app-icon { width: 32px; height: 32px; display: block; }
+
+.forge-hero .cta-pill .cta-label {
+  padding-left: 12px;
+  color: var(--s2a-color-content-knockout);
+  white-space: nowrap;
+}
+
+.forge-hero .cta-pill .cta-right { display: flex; align-items: center; }
+
+.forge-hero .cta-pill .cta-right img { width: 56px; height: 56px; display: block; }
+
+@media (max-width: 1023px) {
+.forge-hero .hero-headline { font-size: 56px; line-height: 54px; letter-spacing: -2px; }
+}
+
+@media (max-width: 767px) {
+.forge-hero .hero-stack { gap: 56px; }
+.forge-hero .hero-headline { font-size: 40px; line-height: 40px; letter-spacing: -1.4px; }
+.forge-hero .hero-subcopy { font-size: 18px; line-height: 22px; }
+}

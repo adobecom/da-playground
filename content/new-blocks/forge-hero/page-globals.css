@@ -1,0 +1,22 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+:root {
+  --s2ac-palette-static-black: #000000;
+  --s2ac-palette-static-white: #ffffff;
+  --s2a-color-content-default: #000000;
+  --s2a-color-content-knockout: #ffffff;
+  --s2a-color-background-knockout: #000000;
+  --s2a-color-transparent-black-64: #000000a3;
+  --s2ac-palette-transparent-black-600: #0000008f;
+  --c1-brand-adobe-red: #eb1000;
+  --s2a-border-radius-12: 12px;
+  --background-white: #ffffff;
+  --font-adobe-clean: "Adobe Clean", sans-serif;
+  --font-adobe-clean-display: "Adobe Clean Display", "Adobe Clean", sans-serif;
+  --font-source-serif: "Source Serif Pro", serif;
+  --font-aktiv: "Aktiv Grotesk", sans-serif;
+}
+
+body { background: var(--background-white); color: var(--s2a-color-content-default); font-family: var(--font-adobe-clean); }
