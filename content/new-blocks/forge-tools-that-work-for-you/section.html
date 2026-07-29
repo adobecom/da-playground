@@ -1,0 +1,336 @@
+<section data-binding-score="0.71" data-binding="loose-variant" data-figma-node-id="8473:17860" data-block="news" style="width:100%;background:#000000;display:flex;flex-direction:column;gap:160px;">
+<style>
+[data-figma-node-id="8473:17860"] *{box-sizing:border-box;margin:0;padding:0;}
+[data-figma-node-id="8473:17860"] a{cursor:pointer;text-decoration:none;}
+[data-figma-node-id="8473:17860"] .hero-wrap{position:relative;width:100%;min-height:480px;padding-top:160px;padding-bottom:60px;background:linear-gradient(180deg,#000 5%,rgba(0,0,0,0) 25%,rgba(0,0,0,0) 65%,#000 95%);display:flex;flex-direction:column;align-items:center;gap:24px;}
+[data-figma-node-id="8473:17860"] .hero-inner{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;max-width:1920px;margin:0 auto;padding:0 8px;}
+[data-figma-node-id="8473:17860"] .cards-outer{width:100%;padding:0 220px;background:#000;}
+[data-figma-node-id="8473:17860"] .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;}
+[data-figma-node-id="8473:17860"] .prod-card{display:flex;flex-direction:column;justify-content:space-between;padding:24px;border-radius:16px;background:rgba(255,255,255,.08);overflow:hidden;min-height:270px;}
+[data-figma-node-id="8473:17860"] .card-text{display:flex;flex-direction:column;gap:8px;}
+[data-figma-node-id="8473:17860"] .card-title{font-family:'Adobe Clean Display',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-.48px;color:#fff;}
+[data-figma-node-id="8473:17860"] .card-body{font-family:'Adobe Clean',sans-serif;font-weight:400;font-size:16px;line-height:20px;color:rgba(255,255,255,.64);}
+[data-figma-node-id="8473:17860"] .search-section{display:flex;flex-direction:column;align-items:center;width:100%;background:#000;}
+[data-figma-node-id="8473:17860"] .search-inner{width:100%;max-width:1920px;margin:0 auto;padding:0 124px;display:flex;flex-direction:column;align-items:center;gap:24px;}
+[data-figma-node-id="8473:17860"] .copy-lockup{display:flex;flex-direction:column;align-items:center;gap:8px;padding-bottom:32px;width:100%;text-align:center;}
+[data-figma-node-id="8473:17860"] .search-box{display:flex;flex-direction:row;align-items:center;width:768px;max-width:100%;height:56px;border-radius:28px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.15);overflow:hidden;flex-shrink:0;}
+[data-figma-node-id="8473:17860"] .footer-section{display:flex;flex-direction:column;width:100%;background:#000;overflow:hidden;}
+[data-figma-node-id="8473:17860"] .footer-inner{display:flex;flex-direction:column;gap:40px;width:100%;}
+[data-figma-node-id="8473:17860"] .footer-cols-wrap{padding:0 220px;width:100%;}
+[data-figma-node-id="8473:17860"] .footer-cols{display:flex;flex-direction:row;gap:8px;width:100%;}
+[data-figma-node-id="8473:17860"] .footer-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px;}
+[data-figma-node-id="8473:17860"] .footer-col-head{font-family:'Adobe Clean',sans-serif;font-weight:700;font-size:16px;line-height:20px;color:#fff;display:block;}
+[data-figma-node-id="8473:17860"] .footer-col nav{display:flex;flex-direction:column;gap:8px;}
+[data-figma-node-id="8473:17860"] .footer-link{font-family:'Adobe Clean',sans-serif;font-weight:400;font-size:16px;line-height:20px;color:rgba(255,255,255,.64);display:block;}
+[data-figma-node-id="8473:17860"] .footer-link:hover{color:#fff;}
+[data-figma-node-id="8473:17860"] .featured-wrap{padding:0 220px;display:flex;flex-direction:column;gap:24px;width:100%;}
+[data-figma-node-id="8473:17860"] .featured-row{display:flex;flex-direction:row;align-items:center;gap:24px;flex-wrap:wrap;}
+[data-figma-node-id="8473:17860"] .featured-item{display:flex;flex-direction:row;align-items:center;gap:8px;}
+[data-figma-node-id="8473:17860"] .featured-label{font-family:'Adobe Clean',sans-serif;font-weight:700;font-size:12px;line-height:16px;letter-spacing:.24px;color:rgba(255,255,255,.64);}
+[data-figma-node-id="8473:17860"] .bottom-wrap{padding:0 220px;display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:32px;width:100%;flex-wrap:wrap;}
+[data-figma-node-id="8473:17860"] .bottom-left{display:flex;flex-direction:row;align-items:center;gap:32px;flex-wrap:wrap;}
+[data-figma-node-id="8473:17860"] .bottom-text{font-family:'Adobe Clean',sans-serif;font-weight:700;font-size:12px;line-height:16px;letter-spacing:.24px;color:rgba(255,255,255,.64);}
+[data-figma-node-id="8473:17860"] .icon-wrap{position:relative;flex-shrink:0;overflow:hidden;}
+@media(max-width:1440px){
+  [data-figma-node-id="8473:17860"] .cards-outer{padding:0 60px;}
+  [data-figma-node-id="8473:17860"] .footer-cols-wrap{padding:0 60px;}
+  [data-figma-node-id="8473:17860"] .featured-wrap{padding:0 60px;}
+  [data-figma-node-id="8473:17860"] .bottom-wrap{padding:0 60px;}
+  [data-figma-node-id="8473:17860"] .search-inner{padding:0 60px;}
+}
+@media(max-width:1024px){
+  [data-figma-node-id="8473:17860"] .cards-grid{grid-template-columns:repeat(2,1fr);}
+  [data-figma-node-id="8473:17860"] .footer-cols{flex-wrap:wrap;}
+  [data-figma-node-id="8473:17860"] .footer-col{flex:0 0 calc(50% - 4px);min-width:calc(50% - 4px);}
+  [data-figma-node-id="8473:17860"] .cards-outer{padding:0 40px;}
+  [data-figma-node-id="8473:17860"] .footer-cols-wrap{padding:0 40px;}
+  [data-figma-node-id="8473:17860"] .featured-wrap{padding:0 40px;}
+  [data-figma-node-id="8473:17860"] .bottom-wrap{padding:0 40px;}
+  [data-figma-node-id="8473:17860"] .search-inner{padding:0 40px;}
+}
+@media(max-width:768px){
+  [data-figma-node-id="8473:17860"] .cards-grid{grid-template-columns:1fr;}
+  [data-figma-node-id="8473:17860"] .footer-cols{flex-direction:column;}
+  [data-figma-node-id="8473:17860"] .footer-col{flex:none;width:100%;}
+  [data-figma-node-id="8473:17860"] .cards-outer{padding:0 24px;}
+  [data-figma-node-id="8473:17860"] .footer-cols-wrap{padding:0 24px;}
+  [data-figma-node-id="8473:17860"] .featured-wrap{padding:0 24px;}
+  [data-figma-node-id="8473:17860"] .bottom-wrap{padding:0 24px;flex-direction:column;align-items:flex-start;}
+  [data-figma-node-id="8473:17860"] .search-inner{padding:0 24px;}
+  [data-figma-node-id="8473:17860"] .search-box{width:100%;}
+  [data-figma-node-id="8473:17860"] .hero-wrap{padding-top:80px;padding-bottom:40px;min-height:320px;}
+  [data-figma-node-id="8473:17860"] h2.hero-title{font-size:36px!important;line-height:40px!important;}
+  [data-figma-node-id="8473:17860"] h2.search-title{font-size:36px!important;line-height:40px!important;}
+}
+</style>
+
+<!-- ═══════════════ PRODUCT ROUTER ═══════════════ -->
+<div style="display:flex;flex-direction:column;width:100%;">
+
+  <!-- Hero -->
+  <div class="hero-wrap">
+    <div class="hero-inner">
+      <div style="display:flex;flex-direction:column;gap:8px;width:100%;text-align:center;">
+        <h2 class="hero-title" style="font-family:'Adobe Clean Display',sans-serif;font-weight:900;font-size:56px;line-height:56px;letter-spacing:-1.68px;color:#fff;text-align:center;">Tools that work for you.</h2>
+        <p style="font-family:'Adobe Clean',sans-serif;font-weight:400;font-size:20px;line-height:24px;color:#717171;text-align:center;">Bring any idea to life with products for creators, businesses, and beyond.</p>
+      </div>
+      <a href="#" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 24px;height:40px;border-radius:75px;border:1px solid rgba(255,255,255,.6);color:#fff;font-family:'Adobe Clean',sans-serif;font-weight:700;font-size:14px;line-height:18px;flex-shrink:0;">See all products</a>
+    </div>
+  </div>
+
+  <!-- Product Cards -->
+  <div class="cards-outer">
+    <div class="cards-grid">
+
+      <!-- Firefly -->
+      <div class="prod-card">
+        <img src="media_home-1441-bappadobefirefly.png" alt="Adobe Firefly" style="width:32px;height:32px;object-fit:contain;flex-shrink:0;background:rgba(235,16,0,.15);border-radius:4px;" />
+        <div class="card-text">
+          <h3 class="card-title">Firefly</h3>
+          <p class="card-body">Create and enhance images, video, and audio with AI-powered tools.</p>
+        </div>
+      </div>
+
+      <!-- Acrobat -->
+      <div class="prod-card">
+        <div class="icon-wrap" style="width:32px;height:31px;background:#b30b00;border-radius:3px;">
+          <img src="media_home-1441-tile2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="media_home-1441-mnemoniclogo2.png" alt="Acrobat" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" />
+        </div>
+        <div class="card-text">
+          <h3 class="card-title">Acrobat</h3>
+          <p class="card-body">The complete AI-powered PDF and design solution for business workflows.</p>
+        </div>
+      </div>
+
+      <!-- Photoshop card (rendered as full image) -->
+      <img src="media_home-1441-card.png" alt="Photoshop" style="border-radius:16px;width:100%;min-height:270px;object-fit:cover;background:#1a1a2e;display:block;" />
+
+      <!-- Premiere -->
+      <div class="prod-card">
+        <img src="media_home-1441-bapppremierepro.png" alt="Premiere Pro" style="width:32px;height:32px;object-fit:contain;flex-shrink:0;" />
+        <div class="card-text">
+          <h3 class="card-title">Premiere</h3>
+          <p class="card-body">Create everything from social clips to feature films with the leading video editor.</p>
+        </div>
+      </div>
+
+      <!-- Creative Cloud -->
+      <div class="prod-card">
+        <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+          <div class="icon-wrap" style="width:32px;height:31px;border-radius:3px;">
+            <img src="media_home-1441-tile.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+            <img src="media_home-1441-mnemoniclogo.png" alt="Creative Cloud" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" />
+          </div>
+          <span style="font-family:'Adobe Clean',sans-serif;font-weight:700;font-size:14px;line-height:18px;color:#fff;">20+ Apps</span>
+        </div>
+        <div class="card-text">
+          <h3 class="card-title">Creative Cloud</h3>
+          <p class="card-body">Get 20+ apps, including Photoshop, Illustrator, Premiere Pro, and Acrobat Pro.</p>
+        </div>
+      </div>
+
+      <!-- GenStudio -->
+      <div class="prod-card">
+        <div class="icon-wrap" style="width:32px;height:31px;background:#eb1000;border-radius:3px;">
+          <img src="media_home-1441-tile3.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="media_home-1441-mnemoniclogo3.png" alt="GenStudio" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" />
+        </div>
+        <div class="card-text">
+          <h3 class="card-title">GenStudio</h3>
+          <p class="card-body">Scale your content supply chain</p>
+        </div>
+      </div>
+
+      <!-- All Products -->
+      <div class="prod-card">
+        <img src="media_home-1441-frame2087327920.png" alt="All products" style="width:24px;height:24px;border-radius:4px;object-fit:contain;flex-shrink:0;background:rgba(255,255,255,.1);" />
+        <div class="card-text">
+          <h3 class="card-title">All products</h3>
+          <p class="card-body">See all Adobe products</p>
+        </div>
+      </div>
+
+      <!-- Business Products -->
+      <div class="prod-card">
+        <img src="media_home-1441-bappexperienceplatform.png" alt="Experience Platform" style="width:32px;height:31px;object-fit:contain;flex-shrink:0;" />
+        <div class="card-text">
+          <h3 class="card-title">Business Products</h3>
+          <p class="card-body">Adobe solutions integrate our best-in-class products to help you tackle pressing business challenges.</p>
+        </div>
+      </div>
+
+      <!-- Illustrator -->
+      <div class="prod-card">
+        <img src="media_home-1441-bappillustrator.png" alt="Illustrator" style="width:32px;height:32px;object-fit:contain;flex-shrink:0;" />
+        <div class="card-text">
+          <h3 class="card-title">Illustrator</h3>
+          <p class="card-body">Design precision vector graphics—from branding to illustration—that stay sharp, scalable, and fully editable at any size.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ AGENTIC SEARCH ═══════════════ -->
+<div class="search-section">
+  <div class="search-inner">
+
+    <!-- Copy Lockup -->
+    <div class="copy-lockup">
+      <p style="font-family:'Adobe Clean Display',sans-serif;font-weight:600;font-size:14px;line-height:13px;letter-spacing:.14px;color:#4f4f4f;">Adobe is for everyone</p>
+      <h2 class="search-title" style="font-family:'Adobe Clean Display',sans-serif;font-weight:900;font-size:56px;line-height:56px;letter-spacing:-1.68px;color:#fff;margin-top:8px;">Find what you're looking for.</h2>
+      <p style="font-family:'Adobe Clean',sans-serif;font-weight:400;font-size:20px;line-height:26px;letter-spacing:-.4px;color:#fff;margin-top:4px;">Get answers, find assets, access your work and create.</p>
+      <div style="margin-top:16px;">
+        <a href="#" style="display:inline-flex;align-items:center;justify-content:center;padding:0 24px;height:40px;border-radius:75px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);font-family:'Adobe Clean Display',sans-serif;font-weight:600;font-size:14px;line-height:13px;letter-spacing:.14px;color:#fff;">Try in Photoshop Web</a>
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <img src="media_home-1441-frame2085665359.png" alt="" style="height:100%;width:auto;object-fit:contain;padding:0 8px 0 16px;flex-shrink:0;max-width:52px;opacity:.7;" />
+      <div style="flex:1;padding:0 12px;display:flex;align-items:center;min-width:0;">
+        <span style="font-family:'Adobe Clean',sans-serif;font-weight:400;font-size:16px;line-height:24px;color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Ask anything</span>
+      </div>
+      <img src="media_home-1441-controlls.png" alt="" style="height:100%;width:auto;object-fit:contain;flex-shrink:0;max-width:96px;" />
+    </div>
+
+    <!-- Disclaimer -->
+    <p style="font-family:'Adobe Clean',sans-serif;font-weight:400;font-size:12px;line-height:18px;color:rgba(255,255,255,.6);text-align:center;max-width:860px;">Use of this beta AI chatbot is subject to Adobe's Privacy Policy. Don't share sensitive data. AI responses are not your Content, may be inaccurate and any offers provided are non-binding. Generative AI Terms.</p>
+
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="footer-section">
+  <div class="footer-inner">
+
+    <!-- Link Columns -->
+    <div class="footer-cols-wrap">
+      <div class="footer-cols">
+
+        <!-- Col 1: Individuals & Small Businesses -->
+        <div class="footer-col">
+          <strong class="footer-col-head">For individuals &amp; small businesses</strong>
+          
+        </div>
+
+        <!-- Col 2: Medium & Large Businesses -->
+        <div class="footer-col">
+          <strong class="footer-col-head">For medium &amp; large businesses</strong>
+          
+        </div>
+
+        <!-- Col 3: Organizations -->
+        <div class="footer-col">
+          <strong class="footer-col-head">For organizations</strong>
+          
+        </div>
+
+        <!-- Col 4: Support -->
+        <div class="footer-col">
+          <strong class="footer-col-head">Support</strong>
+          
+        </div>
+
+        <!-- Col 5: Contact -->
+        <div class="footer-col">
+          <strong class="footer-col-head">Contact</strong>
+          
+        </div>
+
+        <!-- Col 6: Adobe -->
+        <div class="footer-col">
+          <strong class="footer-col-head">Adobe</strong>
+          
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Featured Products -->
+    <div class="featured-wrap">
+      <strong style="font-family:'Adobe Clean',sans-serif;font-weight:700;font-size:16px;line-height:20px;color:#fff;">Featured Products</strong>
+      <div class="featured-row">
+
+        <!-- Acrobat Reader -->
+        <a href="#" class="featured-item">
+          <div class="icon-wrap" style="width:16px;height:15px;">
+            <img src="media_home-1441-tile2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+            <img src="media_home-1441-mnemoniclogo2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" />
+          </div>
+          <span class="featured-label">Acrobat Reader</span>
+        </a>
+
+        <!-- Firefly -->
+        <a href="#" class="featured-item">
+          <img src="media_home-1441-bappadobefirefly.png" alt="Firefly" style="width:16px;height:16px;object-fit:contain;flex-shrink:0;" />
+          <span class="featured-label">Firefly</span>
+        </a>
+
+        <!-- Adobe Express -->
+        <a href="#" class="featured-item">
+          <div class="icon-wrap" style="width:16px;height:15px;">
+            <img src="media_home-1441-tile3.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+            <img src="media_home-1441-mnemoniclogo3.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" />
+          </div>
+          <span class="featured-label">Adobe Express</span>
+        </a>
+
+        <!-- Photoshop -->
+        <a href="#" class="featured-item">
+          <div class="icon-wrap" style="width:16px;height:16px;background:#001e36;border-radius:2px;">
+            <img src="media_home-1441-tile7.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+            <img src="media_home-1441-mnemoniclogo6.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" />
+          </div>
+          <span class="featured-label">Photoshop</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Bottom Links -->
+    <div class="bottom-wrap">
+      <div class="bottom-left">
+
+        <!-- Change Region -->
+        <div style="display:flex;flex-direction:row;align-items:center;gap:5px;cursor:pointer;">
+          <span class="bottom-text">Change region</span>
+          <svg width="8" height="5" viewBox="0 0 8 5" fill="none" style="flex-shrink:0;">
+            <path d="M1 1L4 4L7 1" stroke="rgba(255,255,255,0.64)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path>
+          </svg>
+        </div>
+
+        <!-- Copyright block -->
+        <div style="display:flex;flex-direction:row;gap:16px;align-items:center;flex-wrap:wrap;">
+          <span class="bottom-text">© 2026 Adobe Inc. All rights reserved.</span>
+          <a href="#" class="bottom-text">Do not sell or share my personal information</a>
+        </div>
+
+        <!-- AdChoices -->
+        <div style="display:flex;flex-direction:row;align-items:center;gap:4px;">
+          <svg width="9" height="9" viewBox="0 0 9 9" style="flex-shrink:0;">
+            <circle cx="4.5" cy="4.5" r="4" stroke="rgba(255,255,255,0.64)" stroke-width="1" fill="none" ></circle>
+            <text x="4.5" y="7.2" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.64)" font-family="sans-serif" font-weight="bold">i</text>
+          </svg>
+          <a href="#" class="bottom-text">AdChoices</a>
+        </div>
+
+        <!-- Cert badge -->
+        <img src="media_home-1441-1.png" alt="" style="width:50px;height:13px;object-fit:contain;flex-shrink:0;opacity:.7;background:rgba(255,255,255,.1);min-height:13px;" />
+
+      </div>
+
+      <!-- Social Media Icons -->
+      <img src="media_home-1441-frame2087328003.png" alt="Follow Adobe on social media" style="width:192px;height:auto;min-height:28px;object-fit:contain;flex-shrink:0;" />
+    </div>
+
+    <!-- Adobe Wordmark Logo -->
+    <img src="media_home-1441-logo1.png" alt="Adobe" style="width:100%;height:451px;object-fit:cover;background:#000;display:block;flex-shrink:0;" />
+
+  </div>
+</div>
+
+</section>

@@ -1,0 +1,480 @@
+<section data-binding-source="judge" data-binding-score="0.85" data-binding="tight-variant" data-figma-node-id="8473:17504" data-block="news" style="width:100%;display:flex;flex-direction:column;background:#000;font-family:'Adobe Clean','Helvetica Neue',Arial,sans-serif;box-sizing:border-box;">
+<style>
+  [data-figma-node-id="8473:17504"] *{box-sizing:border-box;}
+  [data-figma-node-id="8473:17504"] .hero-tabs::-webkit-scrollbar{display:none;}
+  [data-figma-node-id="8473:17504"] .routing-carousel::-webkit-scrollbar{display:none;}
+  [data-figma-node-id="8473:17504"] .cta-link{display:flex;flex-direction:row;align-items:center;gap:8px;text-decoration:none;cursor:pointer;}
+  @media(max-width:1280px){
+    [data-figma-node-id="8473:17504"] .hero-h1{font-size:60px!important;line-height:58px!important;}
+    [data-figma-node-id="8473:17504"] .section-h2{font-size:44px!important;line-height:46px!important;}
+    [data-figma-node-id="8473:17504"] .whats-new-inner{padding:0 60px!important;}
+    [data-figma-node-id="8473:17504"] .news-inner{padding:0 60px!important;}
+    [data-figma-node-id="8473:17504"] .hero-inner-pad{padding-left:40px!important;padding-right:40px!important;}
+    [data-figma-node-id="8473:17504"] .social-slide{height:640px!important;}
+    [data-figma-node-id="8473:17504"] .social-quote{font-size:40px!important;line-height:42px!important;}
+  }
+  @media(max-width:1024px){
+    [data-figma-node-id="8473:17504"] .hero-wrapper{height:720px!important;}
+    [data-figma-node-id="8473:17504"] .hero-h1{font-size:48px!important;line-height:48px!important;letter-spacing:-2px!important;}
+    [data-figma-node-id="8473:17504"] .hero-body-text{font-size:16px!important;}
+    [data-figma-node-id="8473:17504"] .hero-inner-pad{padding:120px 32px 60px 32px!important;}
+    [data-figma-node-id="8473:17504"] .section-h2{font-size:38px!important;line-height:40px!important;}
+    [data-figma-node-id="8473:17504"] .whats-new-inner{padding:0 32px!important;}
+    [data-figma-node-id="8473:17504"] .news-inner{padding:0 32px!important;}
+    [data-figma-node-id="8473:17504"] .three-col{flex-direction:column!important;}
+    [data-figma-node-id="8473:17504"] .three-col-item{width:100%!important;}
+    [data-figma-node-id="8473:17504"] .three-col-img{width:100%!important;}
+    [data-figma-node-id="8473:17504"] .news-list{flex-direction:column!important;}
+    [data-figma-node-id="8473:17504"] .social-slide{height:560px!important;padding:40px!important;}
+    [data-figma-node-id="8473:17504"] .social-quote{font-size:32px!important;line-height:36px!important;}
+    [data-figma-node-id="8473:17504"] .nav-ai-bar{display:none!important;}
+    [data-figma-node-id="8473:17504"] .body-gap{gap:80px!important;padding:80px 0!important;}
+  }
+  @media(max-width:768px){
+    [data-figma-node-id="8473:17504"] .hero-wrapper{height:auto!important;min-height:640px!important;}
+    [data-figma-node-id="8473:17504"] .hero-inner-pad{padding:100px 24px 48px 24px!important;gap:160px!important;}
+    [data-figma-node-id="8473:17504"] .hero-copy{max-width:100%!important;}
+    [data-figma-node-id="8473:17504"] .hero-h1{font-size:36px!important;line-height:38px!important;letter-spacing:-1px!important;}
+    [data-figma-node-id="8473:17504"] .hero-body-text{font-size:15px!important;max-width:100%!important;}
+    [data-figma-node-id="8473:17504"] .section-h2{font-size:32px!important;line-height:36px!important;}
+    [data-figma-node-id="8473:17504"] .section-body-text{font-size:16px!important;max-width:100%!important;}
+    [data-figma-node-id="8473:17504"] .whats-new-inner{padding:0 20px!important;}
+    [data-figma-node-id="8473:17504"] .news-inner{padding:0 20px!important;}
+    [data-figma-node-id="8473:17504"] .nav-wrapper{padding:4px 16px!important;}
+    [data-figma-node-id="8473:17504"] .nav-sign-in{display:flex!important;}
+    [data-figma-node-id="8473:17504"] .full-col-img{height:320px!important;}
+    [data-figma-node-id="8473:17504"] .social-slide-inner-pad{padding:32px 24px!important;}
+    [data-figma-node-id="8473:17504"] .social-quote{font-size:26px!important;line-height:30px!important;}
+    [data-figma-node-id="8473:17504"] .routing-carousel-card-featured{width:92vw!important;}
+    [data-figma-node-id="8473:17504"] .body-gap{gap:64px!important;padding:64px 0!important;}
+  }
+</style>
+
+<!-- ===== HERO ===== -->
+<div class="hero-wrapper" style="position:relative;width:100%;height:960px;background:#0d0d0d;overflow:hidden;flex-shrink:0;">
+  <!-- Atmospheric background gradient -->
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 68% 45%, rgba(60,20,80,0.55) 0%, rgba(0,0,0,0) 65%),radial-gradient(ellipse 50% 40% at 80% 60%, rgba(180,20,40,0.18) 0%, transparent 55%),linear-gradient(160deg,rgba(0,0,0,0.92) 0%,rgba(10,5,20,0.7) 100%);pointer-events:none;z-index:0;"></div>
+
+  <!-- Inner content container -->
+  <div style="position:relative;max-width:1920px;margin:0 auto;height:100%;">
+
+    <!-- ── Navigation Bar ── -->
+    
+
+    <!-- ── Hero Content Overlay ── -->
+    <div class="hero-inner-pad" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:160px 64px 80px 64px;background:linear-gradient(135deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.00) 55%);">
+
+      <!-- Copy Block -->
+      <div class="hero-copy" style="display:flex;flex-direction:column;gap:32px;max-width:667px;">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="font-weight:700;font-size:16px;line-height:20px;color:#fff;">Acrobat</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <h1 class="hero-h1" style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:80px;line-height:76px;letter-spacing:-3.2px;color:#fff;margin:0;padding:0;">Get work done. Faster.</h1>
+            <p class="hero-body-text" style="font-size:20px;line-height:24px;color:#fff;max-width:500px;margin:0;font-weight:400;">Create, edit, share, and sign documents with trusted PDF tools. Use AI to make easy edits, get answers, generate summaries, and create polished content.</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:row;gap:8px;flex-wrap:wrap;">
+          <a href="#" style="display:flex;justify-content:center;align-items:center;padding:0 24px;height:40px;border-radius:75px;background:#fff;text-decoration:none;white-space:nowrap;">
+            <span style="font-weight:700;font-size:14px;line-height:18px;color:#000;">Free trial</span>
+          </a>
+          <a href="#" style="display:flex;justify-content:center;align-items:center;padding:0 24px;height:40px;border-radius:75px;background:transparent;border:1px solid #fff;text-decoration:none;white-space:nowrap;">
+            <span style="font-weight:700;font-size:14px;line-height:18px;color:#fff;">See plans</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Router Navigation Tabs -->
+      <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;gap:24px;width:100%;">
+        <div class="hero-tabs" style="display:flex;flex-direction:row;align-items:flex-end;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;flex:1;min-width:0;">
+
+          <!-- Tab 1: Creativity and design (inactive) -->
+          <a href="#" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;width:220px;min-width:131px;min-height:96px;border-radius:8px;background:rgba(0,0,0,0.44);border:1px solid rgba(255,255,255,0.11);overflow:hidden;flex-shrink:0;text-decoration:none;">
+            <div style="position:absolute;top:12px;left:12px;width:96px;height:4px;background:rgba(0,0,0,0.5);border-radius:2px;"></div>
+            <img src="media_home-1441-productId.png" alt="Product ID" style="position:absolute;top:0;left:0;width:auto;max-width:100%;height:auto;object-fit:contain;object-position:top left;" loading="lazy" />
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;position:relative;z-index:1;">
+              <span style="flex:1;font-weight:700;font-size:14px;line-height:18px;color:#fff;">Creativity and design</span>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </a>
+
+          <!-- Tab 2: Content creation (inactive) -->
+          <a href="#" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;width:220px;min-width:131px;min-height:96px;border-radius:8px;background:rgba(0,0,0,0.44);border:1px solid rgba(255,255,255,0.11);overflow:hidden;flex-shrink:0;text-decoration:none;">
+            <div style="position:absolute;top:12px;left:12px;width:96px;height:4px;background:rgba(0,0,0,0.5);border-radius:2px;"></div>
+            <img src="media_home-1441-productId1.png" alt="Product ID" style="position:absolute;top:0;left:0;width:auto;max-width:100%;height:auto;object-fit:contain;object-position:top left;" loading="lazy" />
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;position:relative;z-index:1;">
+              <span style="flex:1;font-weight:700;font-size:14px;line-height:18px;color:#fff;">Content creation</span>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </a>
+
+          <!-- Tab 3: PDF and productivity (ACTIVE – white bg, red bar) -->
+          <a href="#" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;width:220px;min-height:96px;border-radius:8px;background:#ffffff;border:1px solid rgba(255,255,255,0.10);overflow:hidden;flex-shrink:0;text-decoration:none;">
+            <div style="position:absolute;top:12px;left:12px;width:96px;height:4px;background:#eb1000;border-radius:4px;"></div>
+            <img src="media_home-1441-productId2.png" alt="Product ID" style="position:absolute;top:0;left:0;width:auto;max-width:100%;height:auto;object-fit:contain;object-position:top left;" loading="lazy" />
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;position:relative;z-index:1;">
+              <span style="flex:1;font-weight:700;font-size:14px;line-height:18px;color:#000;">PDF and productivity</span>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </a>
+
+          <!-- Tab 4: Adobe for Business (inactive) -->
+          <a href="#" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;width:220px;min-width:131px;min-height:96px;border-radius:8px;background:rgba(0,0,0,0.48);border:1px solid rgba(255,255,255,0.11);overflow:hidden;flex-shrink:0;text-decoration:none;">
+            <div style="position:absolute;top:12px;left:12px;width:96px;height:4px;background:rgba(0,0,0,0.5);border-radius:2px;"></div>
+            <img src="media_home-1441-productId3.png" alt="Product ID" style="position:absolute;top:0;left:0;width:auto;max-width:100%;height:auto;object-fit:contain;object-position:top left;" loading="lazy" />
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;position:relative;z-index:1;">
+              <span style="flex:1;font-weight:700;font-size:14px;line-height:18px;color:#fff;">Adobe for Business</span>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </a>
+
+          <!-- Tab 5: Students and teachers (inactive) -->
+          <a href="#" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;width:220px;min-width:131px;min-height:96px;border-radius:8px;background:rgba(0,0,0,0.44);border:1px solid rgba(255,255,255,0.11);overflow:hidden;flex-shrink:0;text-decoration:none;">
+            <div style="position:absolute;top:12px;left:12px;width:96px;height:4px;background:rgba(0,0,0,0.5);border-radius:2px;"></div>
+            <img src="media_home-1441-productId4.png" alt="Product ID" style="position:absolute;top:0;left:0;width:auto;max-width:100%;height:auto;object-fit:contain;object-position:top left;" loading="lazy" />
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;position:relative;z-index:1;">
+              <span style="flex:1;font-weight:700;font-size:14px;line-height:18px;color:#fff;">Students and teachers</span>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </a>
+
+        </div>
+        <!-- Play/Pause control -->
+        <img src="media_home-1441-playPause.png" alt="Play / Pause" style="width:40px;height:40px;border-radius:100px;flex-shrink:0;background:rgba(0,0,0,0.44);border:1px solid rgba(255,255,255,0.11);object-fit:contain;" loading="lazy" />
+      </div>
+    </div><!-- /hero content overlay -->
+  </div><!-- /inner -->
+</div><!-- /hero wrapper -->
+
+
+<!-- ===== BODY (white, rounded top, overlaps hero by 32px) ===== -->
+<div style="position:relative;z-index:2;width:100%;background:#ffffff;border-radius:32px 32px 0 0;margin-top:-32px;overflow:hidden;">
+  <div class="body-gap" style="max-width:1920px;margin:0 auto;padding:124px 0;display:flex;flex-direction:column;gap:124px;">
+
+
+    <!-- ════════════════════════════════
+         SECTION – HUB ROUTER
+    ════════════════════════════════ -->
+    <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:64px;overflow:hidden;">
+
+      <!-- Section Heading -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:32px;width:100%;max-width:1480px;padding:0 24px;margin:0 auto;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;text-align:center;">
+          <div style="font-weight:700;font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);">Optimized Workflows</div>
+          <h2 class="section-h2" style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:56px;line-height:56px;letter-spacing:-1.68px;color:#000;margin:0;max-width:984px;text-align:center;">Everything you need to make anything.</h2>
+          <p class="section-body-text" style="font-size:20px;line-height:24px;color:#131313;max-width:736px;margin:0;text-align:center;font-weight:400;">Whether you're a student, social influencer, creative professional, performance marketer, or global brand, Adobe has the apps you need to make it happen.</p>
+        </div>
+        <div style="display:flex;flex-direction:row;gap:8px;flex-wrap:wrap;justify-content:center;">
+          <a href="#" style="display:flex;justify-content:center;align-items:center;padding:16px 24px;border-radius:75px;background:#000;text-decoration:none;">
+            <span style="font-weight:700;font-size:14px;line-height:17px;color:#fff;">Get Creative Cloud</span>
+          </a>
+          <a href="#" style="display:flex;justify-content:center;align-items:center;padding:16px 24px;border-radius:75px;background:transparent;border:1px solid #000;text-decoration:none;">
+            <span style="font-weight:700;font-size:14px;line-height:17px;color:#000;">See all plans</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Routing Carousel (5 cards) -->
+      <div class="routing-carousel" style="display:flex;flex-direction:row;align-items:flex-start;gap:8px;justify-content:center;width:100%;padding:0 24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
+
+        <!-- Card 1: Creativity and design (light) -->
+        <div style="display:flex;flex-direction:column;width:294px;min-width:277px;border-radius:16px;background:#f6f6f6;overflow:hidden;flex-shrink:0;">
+          <div style="display:flex;flex-direction:row;align-items:center;gap:16px;padding:24px;width:100%;">
+            <img src="media_home-1441-bappcreativecloud.png" alt="B_app_CreativeCloud" style="width:24px;height:23px;object-fit:contain;flex-shrink:0;" loading="lazy" />
+            <span style="font-weight:700;font-size:14px;line-height:18px;color:#000;flex:1;">Creativity and design</span>
+          </div>
+          <div style="width:100%;height:394px;background:#c8c8c8;overflow:hidden;flex-shrink:0;">
+            <img src="media_home-1441-asset.png" alt="Asset" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;padding:24px;">
+            <div style="font-weight:700;font-size:16px;line-height:20px;color:#000;">Create at the highest level.</div>
+            <div style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);font-weight:400;">Do it all with industry-leading apps for design, photo, video, and creative AI.</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Content creation (FEATURED – black, wider) -->
+        <div class="routing-carousel-card-featured" style="display:flex;flex-direction:column;width:496px;min-width:277px;border-radius:16px;background:#000;border:1px solid rgba(0,0,0,0.10);overflow:hidden;flex-shrink:0;">
+          <div style="display:flex;flex-direction:row;align-items:center;gap:16px;padding:24px;width:100%;">
+            <img src="media_home-1441-bappadobefirefly.png" alt="B_app_AdobeFirefly" style="width:24px;height:24px;object-fit:contain;flex-shrink:0;" loading="lazy" />
+            <span style="font-weight:700;font-size:14px;line-height:18px;color:#fff;flex:1;">Content creation</span>
+          </div>
+          <div style="width:100%;height:394px;background:#1a1a1a;overflow:hidden;flex-shrink:0;">
+            <img src="media_home-1441-asset1.png" alt="Asset" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+          </div>
+          <div style="position:relative;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;padding:24px;width:100%;gap:12px;min-height:96px;">
+            <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;">
+              <div style="font-weight:700;font-size:16px;line-height:20px;color:#fff;">Generate stunning content easily.</div>
+              <div style="font-size:16px;line-height:20px;color:rgba(255,255,255,0.64);font-weight:400;">Quickly create and edit images, video, and audio with creative AI.</div>
+            </div>
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;flex-shrink:0;padding-bottom:5px;">
+              <span style="font-weight:700;font-size:14px;line-height:17px;color:#fff;white-space:nowrap;">Explore</span>
+              <div style="width:24px;height:24px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;">
+                <img src="media_home-1441-frame2087328062.png" alt="Frame 2087328062" style="width:24px;height:24px;object-fit:contain;" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: PDF and productivity (light) -->
+        <div style="display:flex;flex-direction:column;width:294px;min-width:277px;border-radius:16px;background:#f6f6f6;overflow:hidden;flex-shrink:0;">
+          <div style="display:flex;flex-direction:row;align-items:center;gap:16px;padding:24px;width:100%;">
+            <div style="position:relative;width:19px;height:18px;flex-shrink:0;overflow:hidden;">
+              <img src="media_home-1441-tile2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+              <img src="media_home-1441-mnemoniclogo2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+            </div>
+            <span style="font-weight:700;font-size:14px;line-height:18px;color:#000;flex:1;">PDF and productivity</span>
+          </div>
+          <div style="width:100%;height:394px;background:#c0c0c0;overflow:hidden;flex-shrink:0;">
+            <img src="media_home-1441-asset2.png" alt="Asset" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;padding:24px;">
+            <div style="font-weight:700;font-size:16px;line-height:20px;color:#000;">Get work done faster.</div>
+            <div style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);font-weight:400;">Create, edit, and share PDFs. Make edits and create presentations with AI.</div>
+          </div>
+        </div>
+
+        <!-- Card 4: Adobe for Business (light) -->
+        <div style="display:flex;flex-direction:column;width:293px;min-width:277px;border-radius:16px;background:#f6f6f6;overflow:hidden;flex-shrink:0;">
+          <div style="display:flex;flex-direction:row;align-items:center;gap:16px;padding:24px;width:100%;">
+            <div style="position:relative;width:16px;height:16px;flex-shrink:0;overflow:hidden;">
+              <img src="media_home-1441-tile3.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+              <img src="media_home-1441-mnemoniclogo3.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+            </div>
+            <span style="font-weight:700;font-size:14px;line-height:18px;color:#000;flex:1;">Adobe for Business</span>
+          </div>
+          <div style="width:100%;height:394px;background:#f9f0e6;overflow:hidden;flex-shrink:0;">
+            <img src="media_home-1441-asset3.png" alt="Asset" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;padding:24px;">
+            <div style="font-weight:700;font-size:16px;line-height:20px;color:#000;">Orchestrate customer experiences</div>
+            <div style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);font-weight:400;">Deliver business impact, move faster, and personalize at scale.</div>
+          </div>
+        </div>
+
+        <!-- Card 5: Students and teachers (light) -->
+        <div style="display:flex;flex-direction:column;width:293px;min-width:277px;border-radius:16px;background:#f6f6f6;overflow:hidden;flex-shrink:0;">
+          <div style="display:flex;flex-direction:row;align-items:center;gap:16px;padding:24px;width:100%;">
+            <div style="position:relative;width:19px;height:18px;flex-shrink:0;overflow:hidden;">
+              <img src="media_home-1441-tile.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+              <img src="media_home-1441-mnemoniclogo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+            </div>
+            <span style="font-weight:700;font-size:14px;line-height:18px;color:#000;flex:1;">Students and teachers</span>
+          </div>
+          <div style="width:100%;height:394px;background:#d8d8d8;overflow:hidden;flex-shrink:0;">
+            <img src="media_home-1441-asset4.png" alt="Asset" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;padding:24px;">
+            <div style="font-weight:700;font-size:16px;line-height:20px;color:#000;">Students and teachers save 71%.</div>
+            <div style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);font-weight:400;">Save a bundle on our biggest bundle of top industry creative tools.</div>
+          </div>
+        </div>
+
+      </div><!-- /routing carousel -->
+    </div><!-- /hub router -->
+
+
+    <!-- ════════════════════════════════
+         SECTION – WHAT'S NEW
+    ════════════════════════════════ -->
+    <div class="whats-new-inner" style="width:100%;max-width:1480px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;align-items:center;gap:64px;">
+
+      <!-- Section Heading -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:32px;width:100%;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;text-align:center;">
+          <div style="font-weight:700;font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);">Features and Releases</div>
+          <h2 class="section-h2" style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:56px;line-height:56px;letter-spacing:-1.68px;color:#000;margin:0;max-width:984px;text-align:center;">Explore what's new.</h2>
+          <p class="section-body-text" style="font-size:20px;line-height:24px;color:#131313;max-width:736px;margin:0;text-align:center;font-weight:400;">Discover the latest product features from Adobe.</p>
+        </div>
+        <div style="display:flex;flex-direction:row;gap:8px;flex-wrap:wrap;justify-content:center;">
+          <a href="#" style="display:flex;justify-content:center;align-items:center;padding:16px 24px;border-radius:75px;background:#000;text-decoration:none;">
+            <span style="font-weight:700;font-size:14px;line-height:17px;color:#fff;">See what's new</span>
+          </a>
+          <a href="#" style="display:flex;justify-content:center;align-items:center;padding:16px 24px;border-radius:75px;background:transparent;border:1px solid #000;text-decoration:none;">
+            <span style="font-weight:700;font-size:14px;line-height:17px;color:#000;">Explore all</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Full Column Feature Image -->
+      <div style="width:100%;display:flex;flex-direction:column;">
+        <div style="position:relative;width:100%;height:670px;border-radius:16px;background:#cecece;overflow:hidden;flex-shrink:0;">
+          <img src="media_home-1441-image.png" alt="image" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#c4c4c4;" loading="lazy" />
+          <img src="media_home-1441-bappadobefirefly.png" alt="B_app_AdobeFirefly" style="position:absolute;top:24px;left:24px;width:auto;height:auto;max-height:48px;object-fit:contain;" loading="lazy" />
+        </div>
+        <div style="display:flex;flex-direction:row;gap:24px;padding:24px;flex-wrap:wrap;align-items:flex-start;">
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:8px;flex:1;min-width:200px;">
+            <h3 style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;color:#000;margin:0;">Upscale images instantly with AI.</h3>
+            <p style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);max-width:567px;margin:0;font-weight:400;">Improve resolution, clarity, and sharpness while preserving detail—perfect for photos, designs, and creatives.</p>
+          </div>
+          <div style="display:flex;flex-direction:row;align-items:center;gap:8px;padding-top:11px;flex-shrink:0;">
+            <a href="#" style="font-weight:700;font-size:14px;line-height:18px;color:#000;text-decoration:none;white-space:nowrap;">Explore Firefly</a>
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Column Features -->
+      <div class="three-col" style="display:flex;flex-direction:row;justify-content:center;gap:8px;width:100%;">
+
+        <!-- Col 1 -->
+        <div class="three-col-item" style="display:flex;flex-direction:column;flex:1;min-width:0;">
+          <div style="width:100%;height:366px;border-radius:16px;background:#000;overflow:hidden;flex-shrink:0;">
+            <img class="three-col-img" src="media_home-1441-asset5.png" alt="Asset" style="width:100%;height:100%;object-fit:cover;display:block;background:#000;" loading="lazy" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:24px;padding:24px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;color:#000;margin:0;">Work smarter than ever with documents.</h3>
+              <p style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);margin:0;font-weight:400;">Trusted PDF tools, now with AI for editing, insights, and content creation.</p>
+            </div>
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+              <a href="#" style="font-weight:700;font-size:14px;line-height:18px;color:#000;text-decoration:none;white-space:nowrap;">Explore Acrobat</a>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="three-col-item" style="display:flex;flex-direction:column;flex:1;min-width:0;">
+          <div style="width:100%;height:366px;border-radius:16px;background:#1a1a1a;overflow:hidden;flex-shrink:0;">
+            <img class="three-col-img" src="media_home-1441-ffpartnermodels.png" alt="FF_PartnerModels" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:24px;padding:24px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;color:#000;margin:0;">Generate with top AI models in one place.</h3>
+              <p style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);margin:0;font-weight:400;">Access Gemini 3.1 (with Nano Banana 2), GPT Image, Runway, FLUX models, Luma AI, and more.</p>
+            </div>
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+              <a href="#" style="font-weight:700;font-size:14px;line-height:18px;color:#000;text-decoration:none;white-space:nowrap;">Explore Firefly</a>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="three-col-item" style="display:flex;flex-direction:column;flex:1;min-width:0;">
+          <div style="width:100%;height:366px;border-radius:16px;background:#d0d0d0;overflow:hidden;flex-shrink:0;">
+            <img class="three-col-img" src="media_home-1441-psharmonize.png" alt="PS_Harmonize" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+          </div>
+          <div style="display:flex;flex-direction:column;gap:24px;padding:24px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;color:#000;margin:0;">Blend images seamlessly with Harmonize.</h3>
+              <p style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);margin:0;font-weight:400;">Combine people and objects into any background instantly.</p>
+            </div>
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+              <a href="#" style="font-weight:700;font-size:14px;line-height:18px;color:#000;text-decoration:none;white-space:nowrap;">Explore Photoshop</a>
+              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /3 col -->
+    </div><!-- /whats-new -->
+
+
+    <!-- ════════════════════════════════
+         SECTION – SOCIAL PROOF
+    ════════════════════════════════ -->
+    <div style="position:relative;width:100%;display:flex;justify-content:center;align-items:center;overflow:visible;">
+
+      <!-- Active Testimonial Slide -->
+      <div class="social-slide" style="position:relative;width:1480px;max-width:calc(100% - 48px);height:824px;border-radius:16px;background:#1a1028;overflow:hidden;flex-shrink:0;margin:0 auto;">
+        <!-- Gradient overlay: transparent right → black left -->
+        <div style="position:absolute;inset:0;background:linear-gradient(270deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.70) 40%, #000 72%);z-index:1;pointer-events:none;"></div>
+
+        <!-- Quote content -->
+        <div class="social-slide-inner-pad" style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;height:100%;padding:0 80px;">
+          <div style="display:flex;flex-direction:column;gap:24px;max-width:532px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <blockquote class="social-quote" style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:56px;line-height:56px;letter-spacing:-1.68px;color:#fff;margin:0;padding:0;">"If it wasn't for Creative Cloud, I don't think I'd be here. I feel like I can create anything."</blockquote>
+              <div>
+                <div style="font-weight:700;font-size:16px;line-height:20px;color:#fff;">Michelle Phan</div>
+                <div style="font-size:16px;line-height:20px;color:#fff;font-weight:400;">Creator</div>
+              </div>
+            </div>
+            <a href="#" style="display:inline-flex;justify-content:center;align-items:center;padding:0 24px;height:40px;border-radius:75px;background:#fff;text-decoration:none;width:fit-content;align-self:flex-start;">
+              <span style="font-weight:700;font-size:14px;line-height:18px;color:#000;">Explore Firefly</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Pagination dots (bottom centre) -->
+        <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:row;gap:8px;align-items:center;z-index:2;">
+          <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.60);"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#fff;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.60);"></div>
+        </div>
+      </div>
+
+      <!-- Left nav arrow (outside slide, centred vertically) -->
+      <button aria-label="Previous slide" style="position:absolute;left:calc(50% - 800px);top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.18);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;flex-shrink:0;">
+        <img src="media_home-1441-globalCarousel.png" alt="Global / Carousel" style="width:40px;height:40px;border-radius:50%;transform:rotate(180deg);display:block;" loading="lazy" />
+      </button>
+
+      <!-- Right nav arrow -->
+      <button aria-label="Next slide" style="position:absolute;right:calc(50% - 800px);top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;flex-shrink:0;">
+        <img src="media_home-1441-globalCarousel.png" alt="Global / Carousel" style="width:40px;height:40px;border-radius:50%;display:block;" loading="lazy" />
+      </button>
+
+    </div><!-- /social proof -->
+
+
+    <!-- ════════════════════════════════
+         SECTION – NEWS
+    ════════════════════════════════ -->
+    <div class="news-inner" style="width:100%;max-width:1480px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;align-items:flex-start;gap:24px;">
+
+      <!-- Header -->
+      <div style="display:flex;flex-direction:row;align-items:center;gap:16px;padding:0 24px;width:100%;">
+        <div style="position:relative;width:16px;height:16px;flex-shrink:0;overflow:hidden;">
+          <img src="media_home-1441-tile3.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+          <img src="media_home-1441-mnemoniclogo3.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" loading="lazy" />
+        </div>
+        <span style="font-weight:700;font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);">Adobe News</span>
+      </div>
+
+      <!-- News Items row -->
+      <div class="news-list" style="display:flex;flex-direction:row;gap:8px;width:100%;">
+
+        <!-- News 1 -->
+        <div style="display:flex;flex-direction:column;gap:24px;padding:24px;flex:1;border-radius:16px;min-width:0;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <h3 style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;color:#000;margin:0;">Adobe apps are top choice for Sundance filmmakers.</h3>
+            <p style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);margin:0;max-height:63px;overflow:hidden;font-weight:400;">85% of Sundance Filmmakers Choose Adobe as Company Releases New AI Video Innovations and $10M in Creator Grants.</p>
+          </div>
+          <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+            <a href="#" style="font-weight:700;font-size:14px;line-height:18px;color:#000;text-decoration:none;white-space:nowrap;">Read story</a>
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+          </div>
+        </div>
+
+        <!-- News 2 -->
+        <div style="display:flex;flex-direction:column;gap:24px;padding:24px;flex:1;border-radius:16px;min-width:0;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <h3 style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;color:#000;margin:0;">Adobe's new Incubator creates the future.</h3>
+            <p style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);margin:0;max-height:63px;overflow:hidden;font-weight:400;">At Adobe, innovating for our customers has always been our north star. From pioneering digital creativity to reimagining the future of customer engagement, our mission has been to change the world through personalized digital experiences.</p>
+          </div>
+          <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+            <a href="#" style="font-weight:700;font-size:14px;line-height:18px;color:#000;text-decoration:none;white-space:nowrap;">Read story</a>
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+          </div>
+        </div>
+
+        <!-- News 3 -->
+        <div style="display:flex;flex-direction:column;gap:24px;padding:24px;flex:1;border-radius:16px;min-width:0;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <h3 style="font-family:'Adobe Clean Display','Helvetica Neue',sans-serif;font-weight:900;font-size:24px;line-height:24px;letter-spacing:-0.48px;color:#000;margin:0;">Adobe partners with OpenAI to test ads in ChatGPT</h3>
+            <p style="font-size:16px;line-height:20px;color:rgba(0,0,0,0.64);margin:0;max-height:63px;overflow:hidden;font-weight:400;">Adobe empowers marketing professionals with AI-driven Customer Experience Orchestration to create, deliver and optimize personalized digital experiences. As a pilot program partner testing ads in ChatGPT, Adobe is working closely with OpenAI to explore how advertising can be thoughtfully integrated.</p>
+          </div>
+          <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+            <a href="#" style="font-weight:700;font-size:14px;line-height:18px;color:#000;text-decoration:none;white-space:nowrap;">Read story</a>
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style="flex-shrink:0;"><path d="M1 1.5L4.5 5L1 8.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ></path></svg>
+          </div>
+        </div>
+
+      </div><!-- /news list -->
+    </div><!-- /news section -->
+
+
+  </div><!-- /body inner -->
+</div><!-- /body -->
+
+</section>

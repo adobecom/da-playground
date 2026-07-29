@@ -1,0 +1,5 @@
+@keyframes forge-shimmer {100%{transform:translateX(100%)}}
+
+.forge-get-work-done-faster [data-figma-node-id="8473:17504"] .hero-tabs::-webkit-scrollbar {display:none;}
+
+.forge-get-work-done-faster [data-figma-node-id="8473:17504"] .routing-carousel::-webkit-scrollbar {display:none;}

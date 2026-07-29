@@ -1,0 +1,24 @@
+{
+  "blockName": "forge-get-work-done-faster",
+  "sectionIndex": 0,
+  "decision": "tight-variant",
+  "score": 0.85,
+  "topCandidate": "news",
+  "sectionClass": "sf-sec-0",
+  "figmaUrl": "https://www.figma.com/design/fMKQndDRSNu4yTjDYyiQoN/Home-%E2%80%94-A.com?node-id=8473-17503",
+  "figmaNodeId": "8473:17504",
+  "distinctive": false,
+  "truthShotRel": null,
+  "geometry": null,
+  "miloPath": "/Users/bradjohn/Documents/da-playground/.forge-worktrees/session-8007fcd6-ms67m882",
+  "miloTargetPath": "/Users/bradjohn/Documents/da-playground/.forge-worktrees/session-8007fcd6-ms67m882/libs/c2/blocks/forge-get-work-done-faster",
+  "miloBranch": "forge/session-8007fcd6-33a",
+  "baseBranch": "forge-a-panel",
+  "previewUrl": "http://localhost:3000/drafts/local-dev/forge/figma-8007fc?milolibs=local",
+  "files": {
+    "sectionHtml": "section.html",
+    "starterCss": "starter.css",
+    "authorContentHtml": "author-content.html",
+    "pageGlobalsCss": "page-globals.css"
+  }
+}
